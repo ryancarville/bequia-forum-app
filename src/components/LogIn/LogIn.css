@@ -1,33 +1,33 @@
-.logIn-page {
+.logIn-container {
 	width: 100%;
 	height: auto;
 	padding-top: 50px;
 	padding-bottom: 100px;
 	background-color: blue;
 }
-.logIn-container {
+.logIn-content {
 	width: 25%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.logIn-container h3 {
+.logIn-content h3 {
 	color: white;
 }
-.logIn-container form {
+.logIn-content form {
 	display: flex;
 	flex-direction: column;
 	border: 5px solid lightgreen;
 	padding: 20px;
 	background-color: yellow;
 }
-.logIn-container form input {
+.logIn-content form input {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	height: 20px;
 	font-size: 18px;
 	padding: 5px;
 }
-.logIn-container form button {
+.logIn-content form button {
 	height: 35px;
 	font-size: 18px;
 	margin-top: 10px;

@@ -9,15 +9,20 @@ export default class HomePage extends Component {
 			error: null
 		};
 	}
-
+	dateFormat = (date) => {
+		const newDate = new Date(date);
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(newDate);
+		return formatted_date;
+	};
 	render() {
 		return (
 			<ForumContext.Consumer>
 				{context => (
-					<div className='homePage-Page'>
-						<div classname='homePage-container'>
+					<div className='homePage-container'>
+						<div classname='homePage-content'>
 							<h3>HomePage</h3>
 							<p>{context.user.name}</p>
+							<p>Last logged in: {this.dateFormat(context.user.lastLogin)}</p>
 						</div>
 					</div>
 				)}

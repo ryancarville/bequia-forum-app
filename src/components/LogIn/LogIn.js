@@ -38,8 +38,8 @@ export default class LogIn extends Component {
 			return <Redirect to='/homePage' />;
 		}
 		return (
-			<div className='logIn-page'>
-				<div className='logIn-container'>
+			<div className='logIn-container'>
+				<div className='logIn-content'>
 					<h3>Sign In</h3>
 					{this.state.error}
 					<form onSubmit={this.handleSubmit}>

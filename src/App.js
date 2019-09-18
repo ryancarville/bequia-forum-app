@@ -11,7 +11,8 @@ class App extends Component {
 		this.state = {
 			user: {
 				id: 1,
-				name: 'Test user'
+				name: 'Test user',
+				lastLogin: '2019-05-23'
 			}
 		};
 	}

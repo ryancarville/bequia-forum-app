@@ -43,8 +43,8 @@ export default class SingUp extends Component {
 	};
 	render() {
 		return (
-			<div className='signUp-Page'>
-				<div className='signUp-container'>
+			<div className='signUp-container'>
+				<div className='signUp-content'>
 					<h3>Create Account</h3>
 					{this.state.error}
 					<form onSubmit={() => this.handleSubmit}>

@@ -3,6 +3,9 @@
 	background-color: lightgray;
 	text-transform: uppercase;
 }
+.forumLogo img {
+	width: 100px;
+}
 .navBar ul {
 	padding: 10px;
 	list-style: none;
@@ -14,4 +17,13 @@
 .navBar ul li a {
 	text-decoration: none;
 	color: white;
+}
+.siteNav ul {
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+}
+.siteNav ul a {
+	text-decoration: none;
+	color: black;
 }
