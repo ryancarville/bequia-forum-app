@@ -1,0 +1,7 @@
+.homePage-container {
+	margin: 20px;
+}
+.homePage-content {
+	display: flex;
+	justify-content: center;
+}

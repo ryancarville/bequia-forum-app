@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import TokenServices from '../../services/TokenServices';
 import SearchInput from '../SearchInput/SearchInput';
 import './Nav.css';
+import ForumContext from '../../ForumContext';
 
 class Nav extends Component {
 	render() {
@@ -66,7 +67,19 @@ class Nav extends Component {
 								/>
 							</Link>
 						</li>
-						<div>
+
+						<div className='rightNavInfo'>
+							<ForumContext.Consumer>
+								{context => (
+									<div className='userInfo'>
+										<p>
+											Welcome back <br />
+											{context.user.name}!
+										</p>
+										<p></p>
+									</div>
+								)}
+							</ForumContext.Consumer>
 							<li>
 								<Link to='/homePage'>Dashboard</Link>
 							</li>

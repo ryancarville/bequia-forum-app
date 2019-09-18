@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ForumContext from '../../ForumContext';
 import './HomePage.css';
+import NewPost from '../NewPost/NewPost';
+import Calendar from '../Calendar/Calendar';
 
 export default class HomePage extends Component {
 	constructor(props) {
@@ -9,7 +11,7 @@ export default class HomePage extends Component {
 			error: null
 		};
 	}
-	dateFormat = (date) => {
+	dateFormat = date => {
 		const newDate = new Date(date);
 		const formatted_date = new Intl.DateTimeFormat('en-US').format(newDate);
 		return formatted_date;
@@ -19,10 +21,9 @@ export default class HomePage extends Component {
 			<ForumContext.Consumer>
 				{context => (
 					<div className='homePage-container'>
-						<div classname='homePage-content'>
-							<h3>HomePage</h3>
-							<p>{context.user.name}</p>
-							<p>Last logged in: {this.dateFormat(context.user.lastLogin)}</p>
+						<div className='homePage-content'>
+							<NewPost />
+							<Calendar />
 						</div>
 					</div>
 				)}

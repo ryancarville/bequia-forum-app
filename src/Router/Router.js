@@ -6,6 +6,7 @@ import LandingPage from '../components/LandingPage/LandingPage';
 import SingUp from '../components/SignUp/SignUp';
 import LogIn from '../components/LogIn/LogIn';
 import HomePage from '../components/HomePage/HomePage';
+import NewPosts from '../components/NewPost/NewPost';
 export default class Router extends Component {
 	render() {
 		return (
@@ -15,6 +16,7 @@ export default class Router extends Component {
 					<Route path='/' component={LandingPage} exact />
 					<Route path='/signup' component={SingUp} exact />
 					<Route path='/login' component={LogIn} exact />
+					<Route path='/newPosts' component={NewPosts} />
 					<PrivateRoute path='/homePage' component={HomePage} exact />
 				</Switch>
 			</>

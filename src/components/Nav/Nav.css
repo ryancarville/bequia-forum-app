@@ -6,6 +6,11 @@
 .forumLogo img {
 	width: 100px;
 }
+.rightNavInfo {
+	font-size: 15px;
+	line-height: 18px;
+	text-align: right;
+}
 .navBar ul {
 	padding: 10px;
 	list-style: none;
