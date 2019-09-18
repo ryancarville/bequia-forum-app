@@ -6,8 +6,57 @@ import './Nav.css';
 import ForumContext from '../../ForumContext';
 
 class Nav extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			hover: false
+		};
+	}
+
 	render() {
 		const loggedIn = TokenServices.getAuthToken();
+		const siteNav = (
+			<div className='siteNav'>
+				<ul>
+					<li>
+						<Link to='/messageBoard'>
+							<p>Forum</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/new-post'>
+							<p>New Posts</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/events'>
+							<p>Events</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/directory'>
+							<p>Directory</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/jobs'>
+							<p>Jobs</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/rentals'>
+							<p>Rentals</p>
+						</Link>
+					</li>
+					<li>
+						<Link to='/marketplace'>
+							<p>Market Place</p>
+						</Link>
+					</li>
+					<SearchInput />
+				</ul>
+			</div>
+		);
 		const publicNav = (
 			<>
 				<div className='navBar'>
@@ -22,37 +71,19 @@ class Nav extends Component {
 						</li>
 						<div>
 							<li>
-								<Link to='/signup'>Sign Up</Link>
+								<Link to='/signup'>
+									<p>Sign Up</p>
+								</Link>
 							</li>
 							<li>
-								<Link to='/login'>Log in</Link>
+								<Link to='/login'>
+									<p>Log in</p>
+								</Link>
 							</li>
 						</div>
 					</ul>
 				</div>
-				<div className='siteNav'>
-					<ul>
-						<li>
-							<Link to='/messageBoard'>Forum</Link>
-						</li>
-						<li>
-							<Link to='/new-post'>New Posts</Link>
-						</li>
-						<li>
-							<Link to='/events'>Events</Link>
-						</li>
-						<li>
-							<Link to='/directory'>Directory</Link>
-						</li>
-						<li>
-							<Link to='/jobs'>Jobs</Link>
-						</li>
-						<li>
-							<Link to='/rentals'>Rentals</Link>
-						</li>
-						<SearchInput />
-					</ul>
-				</div>
+				{siteNav}
 			</>
 		);
 		const privateNav = (
@@ -76,44 +107,23 @@ class Nav extends Component {
 											Welcome back <br />
 											{context.user.name}!
 										</p>
-										<p></p>
 									</div>
 								)}
 							</ForumContext.Consumer>
 							<li>
-								<Link to='/homePage'>Dashboard</Link>
+								<Link to='/homePage'>
+									<p>Dashboard</p>
+								</Link>
 							</li>
 							<li>
 								<Link to='/' onClick={() => TokenServices.clearAuthToken()}>
-									Log Out
+									<p>Log Out</p>
 								</Link>
 							</li>
 						</div>
 					</ul>
 				</div>
-				<div className='siteNav'>
-					<ul>
-						<li>
-							<Link to='/messageBoard'>Forum</Link>
-						</li>
-						<li>
-							<Link to='/new-post'>New Posts</Link>
-						</li>
-						<li>
-							<Link to='/events'>Events</Link>
-						</li>
-						<li>
-							<Link to='/directory'>Directory</Link>
-						</li>
-						<li>
-							<Link to='/jobs'>Jobs</Link>
-						</li>
-						<li>
-							<Link to='/rentals'>Rentals</Link>
-						</li>
-						<SearchInput />
-					</ul>
-				</div>
+				{siteNav}
 			</>
 		);
 		const navBar = loggedIn ? privateNav : publicNav;

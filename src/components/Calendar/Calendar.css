@@ -5,9 +5,6 @@
 .events-calendar-container ul {
 	list-style-type: none;
 }
-#calendar {
-	width: 100%;
-}
 
 .month {
 	padding: 20px 25px;

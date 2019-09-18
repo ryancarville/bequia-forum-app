@@ -1,19 +1,25 @@
 .newPost-container {
 	width: 60%;
-	height: 600px;
+	height: 550px;
 	margin: 25px;
-    overflow: scroll;
-    border:3px solid black;
-    padding:10px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	direction: rtl;
+	padding: 10px;
+}
+.newPost-content h2 {
+	direction: ltr;
 }
 .posts {
+	direction: ltr;
 	width: 95%;
 	border: 2px solid black;
 	box-sizing: border-box;
 	margin: 25px;
 	padding: 20px;
 }
-.postInfo{
-    padding:10px;
-    line-height: 5px
+.postInfo {
+	padding: 10px;
+	line-height: 5px;
 }

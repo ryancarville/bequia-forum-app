@@ -1,6 +1,6 @@
 .navBar {
 	width: 100%;
-	background-color: lightgray;
+	background-color: rgb(4, 0, 255);
 	text-transform: uppercase;
 }
 .forumLogo img {
@@ -23,12 +23,22 @@
 	text-decoration: none;
 	color: white;
 }
+.navBar ul li p:hover {
+	color: green;
+}
 .siteNav ul {
 	list-style: none;
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	background-color: rgb(221, 255, 0);
+	padding: 5px;
+	margin: 0px;
 }
 .siteNav ul a {
 	text-decoration: none;
-	color: black;
+	color: rgb(0, 8, 255);
+}
+.siteNav ul li p:hover {
+	color: green;
 }
