@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router/Router';
+import ForumContext from './ForumContext';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: {
+				id: 1,
+				name: 'Test user'
+			}
+		};
+	}
+	static contextType = ForumContext;
+	render() {
+		const contextValue = {
+			state: this.state,
+			user: this.state.user
+		};
+		return (
+			<BrowserRouter>
+				<div className='App'>
+					<ForumContext.Provider value={contextValue}>
+						<Router />
+						<Footer />
+					</ForumContext.Provider>
+				</div>
+			</BrowserRouter>
+		);
+	}
 }
-
 export default App;

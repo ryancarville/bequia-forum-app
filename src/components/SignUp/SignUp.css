@@ -1,0 +1,38 @@
+.signUp-Page {
+	width: 100%;
+	background-color: blue;
+	height: auto;
+	padding-top: 25px;
+	padding-bottom: 100px;
+}
+.signUp-container {
+	width: 25%;
+	height: auto;
+	margin-top: 25px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.signUp-container h3 {
+	color: white;
+}
+.signUp-container form {
+	display: flex;
+	flex-direction: column;
+	border: 5px solid lightgreen;
+	padding: 20px;
+	background-color: yellow;
+}
+
+.signUp-container form input {
+	box-sizing: border-box;
+	height: 30px;
+	font-size: 18px;
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.signUp-container form button {
+	height: 30px;
+	margin-top: 10px;
+	cursor: pointer;
+}

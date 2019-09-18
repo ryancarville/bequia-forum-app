@@ -1,0 +1,17 @@
+.navBar {
+	width: 100%;
+	background-color: lightgray;
+	text-transform: uppercase;
+}
+.navBar ul {
+	padding: 10px;
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0px;
+}
+.navBar ul li a {
+	text-decoration: none;
+	color: white;
+}
