@@ -36,19 +36,23 @@ export default function ThisWeek() {
 			const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
 			return formatted_date;
 		}
-		let upcomingEvents = events.map(e => {
-			return (
-				<div className='event' key={e.eventId}>
-					<span key={e.eventId}>
-						<Link to={`/events/${e.eventId}`}>{e.title}</Link>
-						<p>Where: {e.location}</p>
-						<p>When: {formatDate(e.date)}</p>
-						<p>Time: {e.time}</p>
-					</span>
-					<p>{e.description}</p>
-				</div>
-			);
-		});
+		let upcomingEvents = events ? (
+			events.map(e => {
+				return (
+					<div className='event' key={e.eventId}>
+						<span key={e.eventId}>
+							<Link to={`/events/${e.eventId}`}>{e.title}</Link>
+							<p>Where: {e.location}</p>
+							<p>When: {formatDate(e.date)}</p>
+							<p>Time: {e.time}</p>
+						</span>
+						<p>{e.description}</p>
+					</div>
+				);
+			})
+		) : (
+			<p>Currently there are no events for this week.</p>
+		);
 
 		return upcomingEvents;
 	}

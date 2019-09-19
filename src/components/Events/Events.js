@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './Events.css';
 import ForumContext from '../../ForumContext';
 import Calendar from '../Calendar/Calendar';
 
-export default class Events extends Component {
+class Events extends Component {
 	render() {
 		return (
 			<div className='events-container'>
@@ -16,3 +17,4 @@ export default class Events extends Component {
 		);
 	}
 }
+export default withRouter(Events);

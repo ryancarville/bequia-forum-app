@@ -11,6 +11,8 @@ import Events from '../components/Events/Events';
 import EventPage from '../components/EventPage/EventPage';
 import Forum from '../components/Forum/Forum';
 import ForumContext from '../ForumContext';
+import Directory from '../components/Directory/Directory';
+import Jobs from '../components/Jobs/Jobs';
 export default class Router extends Component {
 	render() {
 		return (
@@ -22,10 +24,9 @@ export default class Router extends Component {
 							<Route path='/' component={LandingPage} exact />
 							<Route path='/signup' component={SingUp} exact />
 							<Route path='/login' component={LogIn} exact />
-							<Route path='/newPosts' component={NewPosts} exact />
-							<Route path='/events' component={Events} exact />
 							<Route path='/new-post' component={NewPosts} exact />
 							<Route path='/messageBoard' component={Forum} exact />
+							<Route path='/events' component={Events} exact />
 							<Route
 								path='/events/:eventId'
 								render={matchProps => (
@@ -33,6 +34,8 @@ export default class Router extends Component {
 								)}
 								exact
 							/>
+							<Route path='/directory' component={Directory} exact />
+							<Route path='/jobs' component={Jobs} exact />
 							<PrivateRoute path='/homePage' component={HomePage} exact />
 						</Switch>
 					)}

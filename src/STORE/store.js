@@ -80,6 +80,79 @@ const store = {
 			time: '16:00 - 00:00',
 			description: '1/2 price Hairouns all night!'
 		}
+	],
+	directory: [
+		{
+			userId: 23820,
+			userLName: 'Smith',
+			userFName: 'Sarah',
+			email: 'sSmith@gmail.com',
+			phone: '+1(708) 234-2434',
+			website: 'https://www.smithandsons.com'
+		},
+		{
+			userId: 223820,
+			userLName: 'Smith',
+			userFName: 'Tom',
+			email: 'tSmith@gmail.com',
+			phone: '+1(708) 234-0934',
+			website: 'https://www.smithandsons.com'
+		},
+		{
+			userId: 239020,
+			userLName: 'Duncan',
+			userFName: 'Billy',
+			email: 'sSmith@gmail.com',
+			phone: '+1(708) 234-2434',
+			website: 'https://www.smithandsons.com'
+		}
+	],
+	jobs: [
+		{
+			jobId: 1234,
+			datePosted: '2019-10-17',
+			title: 'Looking for a great bartender',
+			description:
+				'At the Fig Tree we are all about a good time and we want you to join that vibe! If you have no experierence or have served up on the high seas you are welc oem to apply.  Hours are from 6pm - 12am',
+			position: 'bartender',
+			location: 'Fig Tree',
+			catagory: 'service',
+			contact: {
+				name: 'Wendy Leighton',
+				phone: '+1(708)345-3346',
+				email: 'wendyL@aol.com'
+			}
+		},
+		{
+			jobId: 13434,
+			datePosted: '2019-7-3',
+			title: 'Need a good Handy Man',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
+			position: 'handy man',
+			location: 'The Sugar Reef',
+			catagory: 'service',
+			contact: {
+				name: 'James Mitchel',
+				phone: '+1(708)895-3326',
+				email: 'JamesTheMan@hotmail.com'
+			}
+		},
+		{
+			jobId: 2309823,
+			datePosted: '2019-3-23',
+			title: 'Ey Ey Capitian!',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna',
+			position: 'Second Mate',
+			location: 'Freindship Rose',
+			catagory: 'marine',
+			contact: {
+				name: 'Sarah Smith',
+				phone: '+1(708)655-9278',
+				email: 'sSmith@hotmail.com'
+			}
+		}
 	]
 };
 

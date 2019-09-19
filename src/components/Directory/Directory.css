@@ -1,0 +1,18 @@
+.directory-container {
+	width: 100%;
+}
+.directory-container h2 {
+	margin-left: 20px;
+}
+.directory-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.directory-listing h4 {
+	padding: 0px;
+	margin: 0px;
+}
+.directory-listing ul {
+	list-style: none;
+}

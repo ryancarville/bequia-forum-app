@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Calendar.css';
-import { Link, withRouter } from 'react-router-dom';
+import { BrowserRouter, Link, withRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
 class Calendar extends Component {
@@ -91,16 +91,12 @@ class Calendar extends Component {
 				//set events to cells
 
 				for (let i = 0; i < events.length; i++) {
-					const a = document.createElement('a');
-					const link = `/events/${events[i].eventId}`;
-					a.setAttribute('href', link);
-					a.innerHTML = `${events[i].title}`;
-					// const link = (
-					// 	<li>
-					// 		{day.toString()}
-					// 		<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
-					// 	</li>
-					// );
+					const link = (
+						<>
+							{day.toString()}
+							<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
+						</>
+					);
 
 					const eventDate = events[i].date.split('-');
 					const eventYear = eventDate[0];
@@ -111,8 +107,7 @@ class Calendar extends Component {
 						eventMonth === (month + 1).toString() &&
 						eventYear === year.toString()
 					) {
-						cell.appendChild(a);
-						// ReactDOM.render(link, cell);
+						ReactDOM.render(<BrowserRouter>{link}</BrowserRouter>, cell);
 					}
 				}
 			}

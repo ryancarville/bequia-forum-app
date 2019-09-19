@@ -16,7 +16,9 @@ class App extends Component {
 				lastLogin: '2019-05-23'
 			},
 			posts: STORE.posts,
-			events: STORE.events
+			events: STORE.events,
+			directory: STORE.directory,
+			jobs: STORE.jobs
 		};
 	}
 	static contextType = ForumContext;
@@ -53,13 +55,43 @@ class App extends Component {
 				posts: sortedPosts
 			});
 		}
+		if (e.target.value === 'dir-asc') {
+			let sortedDir = this.state.directory.sort((a, b) =>
+				a.userLName < b.userLName ? -1 : 1
+			);
+			this.setState({
+				directory: sortedDir
+			});
+		}
+		if (e.target.value === 'dir-dec') {
+			let sortedDir = this.state.directory.sort((a, b) =>
+				a.userLName > b.userLName ? -1 : 1
+			);
+			this.setState({
+				directory: sortedDir
+			});
+		}
 	};
+	componentDidMount() {
+		let sortedDir = this.state.directory.sort((a, b) =>
+			a.userLName < b.userLName ? -1 : 1
+		);
+		this.setState({
+			directory: sortedDir
+		});
+		this.setState({
+			directory: sortedDir
+		});
+	}
+
 	render() {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
 			posts: this.state.posts,
 			events: this.state.events,
+			directory: this.state.directory,
+			jobs: this.state.jobs,
 			sort: this.handleSort
 		};
 		return (

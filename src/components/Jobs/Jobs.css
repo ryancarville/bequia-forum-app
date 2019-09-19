@@ -1,0 +1,27 @@
+.jobs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    
+}
+.jobs-content {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.job-listing {
+    width: 100%;
+	border: 2px solid black;
+}
+.job-listing ul {
+	list-style: none;
+}
+.job-listing li {
+	padding: 10px;
+}
