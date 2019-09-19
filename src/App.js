@@ -15,7 +15,8 @@ class App extends Component {
 				name: 'Test user',
 				lastLogin: '2019-05-23'
 			},
-			posts: STORE.posts
+			posts: STORE.posts,
+			events: STORE.events
 		};
 	}
 	static contextType = ForumContext;
@@ -23,16 +24,17 @@ class App extends Component {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
-			posts: this.state.posts
+			posts: this.state.posts,
+			events: this.state.events
 		};
 		return (
 			<BrowserRouter>
-				<div className='App'>
-					<ForumContext.Provider value={contextValue}>
+				<ForumContext.Provider value={contextValue}>
+					<div className='App'>
 						<Router />
 						<Footer />
-					</ForumContext.Provider>
-				</div>
+					</div>
+				</ForumContext.Provider>
 			</BrowserRouter>
 		);
 	}

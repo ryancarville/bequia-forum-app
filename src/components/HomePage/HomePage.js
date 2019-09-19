@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ForumContext from '../../ForumContext';
 import './HomePage.css';
 import NewPost from '../NewPost/NewPost';
-import Calendar from '../Calendar/Calendar';
+import ThisWeek from '../ThisWeek/ThisWeek';
 
 export default class HomePage extends Component {
 	constructor(props) {
@@ -23,7 +23,7 @@ export default class HomePage extends Component {
 					<div className='homePage-container'>
 						<div className='homePage-content'>
 							<NewPost />
-							<Calendar />
+							<ThisWeek />
 						</div>
 					</div>
 				)}

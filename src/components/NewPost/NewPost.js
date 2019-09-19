@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
 import './NewPost.css';
 
@@ -7,8 +9,18 @@ export default function NewPost() {
 	const posts = context.posts.map(p => {
 		return (
 			<div className='posts' key={p.postId}>
-				<h4>{p.title}</h4>
-				<p>{p.content}</p>
+				<Link to={`/forum/${p.postId}`}>
+					<h4>{p.title}</h4>
+				</Link>
+				<Truncate
+					lines={1}
+					ellipsis={
+						<span>
+							...<Link to={`/forum/${p.postId}`}>Read more</Link>
+						</span>
+					}>
+					{p.content}
+				</Truncate>
 				<span className='postInfo'>
 					<p>Posted By: {p.author}</p>
 					<p>Posted On: {p.date}</p>

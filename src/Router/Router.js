@@ -8,6 +8,7 @@ import LogIn from '../components/LogIn/LogIn';
 import HomePage from '../components/HomePage/HomePage';
 import NewPosts from '../components/NewPost/NewPost';
 import Calendar from '../components/Calendar/Calendar';
+import Events from '../components/Events/Events';
 export default class Router extends Component {
 	render() {
 		return (
@@ -18,7 +19,7 @@ export default class Router extends Component {
 					<Route path='/signup' component={SingUp} exact />
 					<Route path='/login' component={LogIn} exact />
 					<Route path='/newPosts' component={NewPosts} exact />
-					<Route path='/events' component={Calendar} exact />
+					<Route path='/events' component={Events} exact />
 					<Route path='/new-post' component={NewPosts} exact />
 					<PrivateRoute path='/homePage' component={HomePage} exact />
 				</Switch>

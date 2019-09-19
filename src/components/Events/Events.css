@@ -1,8 +1,5 @@
-.events-container .events-content div {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	height: 1800px;
-	background-color: black;
+.events-content {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
