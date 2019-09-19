@@ -20,12 +20,47 @@ class App extends Component {
 		};
 	}
 	static contextType = ForumContext;
+	handleSort = e => {
+		if (e.target.value === 'newest') {
+			let sortedPosts = this.state.posts.sort((a, b) =>
+				a.date > b.date ? -1 : 1
+			);
+			this.setState({
+				posts: sortedPosts
+			});
+		}
+		if (e.target.value === 'oldest') {
+			let sortedPosts = this.state.posts.sort((a, b) =>
+				a.date < b.date ? -1 : 1
+			);
+			this.setState({
+				posts: sortedPosts
+			});
+		}
+		if (e.target.value === 'likes-asc') {
+			let sortedPosts = this.state.posts.sort((a, b) =>
+				a.likes > b.likes ? -1 : 1
+			);
+			this.setState({
+				posts: sortedPosts
+			});
+		}
+		if (e.target.value === 'likes-dec') {
+			let sortedPosts = this.state.posts.sort((a, b) =>
+				a.likes < b.likes ? -1 : 1
+			);
+			this.setState({
+				posts: sortedPosts
+			});
+		}
+	};
 	render() {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
 			posts: this.state.posts,
-			events: this.state.events
+			events: this.state.events,
+			sort: this.handleSort
 		};
 		return (
 			<BrowserRouter>

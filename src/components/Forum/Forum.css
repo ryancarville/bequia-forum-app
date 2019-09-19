@@ -1,0 +1,13 @@
+.forum-container {
+	width: 100%;
+}
+.forum-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 25px;
+}
+
+.post {
+	border-bottom: 2px solid black;
+}

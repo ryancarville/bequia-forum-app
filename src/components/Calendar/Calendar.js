@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Calendar.css';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
-export default class Calendar extends Component {
+class Calendar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -94,6 +95,13 @@ export default class Calendar extends Component {
 					const link = `/events/${events[i].eventId}`;
 					a.setAttribute('href', link);
 					a.innerHTML = `${events[i].title}`;
+					// const link = (
+					// 	<li>
+					// 		{day.toString()}
+					// 		<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
+					// 	</li>
+					// );
+
 					const eventDate = events[i].date.split('-');
 					const eventYear = eventDate[0];
 					const eventMonth = eventDate[1];
@@ -104,6 +112,7 @@ export default class Calendar extends Component {
 						eventYear === year.toString()
 					) {
 						cell.appendChild(a);
+						// ReactDOM.render(link, cell);
 					}
 				}
 			}
@@ -177,3 +186,5 @@ export default class Calendar extends Component {
 		);
 	}
 }
+
+export default withRouter(Calendar);

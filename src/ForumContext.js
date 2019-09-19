@@ -4,7 +4,8 @@ const ForumContext = React.createContext({
 	state: {},
 	user: {},
 	posts: [],
-	events: []
+	events: [],
+	sort: () => {}
 });
 
 export default ForumContext;

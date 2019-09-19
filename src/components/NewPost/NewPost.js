@@ -8,7 +8,7 @@ export default function NewPost() {
 	const context = useContext(ForumContext);
 	const posts = context.posts.map(p => {
 		return (
-			<div className='posts' key={p.postId}>
+			<div className='newest-posts' key={p.postId}>
 				<Link to={`/forum/${p.postId}`}>
 					<h4>{p.title}</h4>
 				</Link>

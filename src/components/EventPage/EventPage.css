@@ -1,0 +1,20 @@
+.event-page-container {
+	width: 100%;
+}
+.event-page-content {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.event-page-content h3 {
+	font-size: 30px;
+}
+.event-page-content p {
+	font-size: 20px;
+}
+#event-description {
+	font-size: 25px;
+}

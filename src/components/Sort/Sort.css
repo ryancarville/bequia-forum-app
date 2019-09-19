@@ -1,0 +1,8 @@
+.sortForm {
+    float: right;
+    position: relative;
+    margin:15px;
+}
+.sortForm select {
+    width: 100px;
+}

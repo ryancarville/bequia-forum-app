@@ -9,20 +9,7 @@ export default function ThisWeek() {
 	let dayInt = today.getDate();
 	let month = today.getMonth();
 	let year = today.getFullYear();
-	let months = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
+
 	function thisWeeksEvents() {
 		let events = [];
 
