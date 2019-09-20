@@ -1,0 +1,17 @@
+.market-listing-container {
+	width: 100%;
+}
+.market-listing-content {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+}
+
+.market-listing-item {
+	border: 1px solid black;
+	padding: 20px;
+}
+.market-listing-item h4 {
+	margin: 0;
+}

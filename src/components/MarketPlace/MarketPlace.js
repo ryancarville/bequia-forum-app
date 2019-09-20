@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ForumContext from '../../ForumContext';
 import './MarketPlace.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default class MarketPlace extends Component {
 	marketListings = listings =>
@@ -8,8 +9,18 @@ export default class MarketPlace extends Component {
 			<p>There are currently no listings</p>
 		) : (
 			listings.map(l => (
-				<div className='market-place-listing'>
-					<h4>{l.title}</h4>
+				<div className='market-place-listing' key={l.saleId}>
+					<h4>
+						<Link
+							to={{
+								pathname: `/marketplace/${l.saleId}`,
+								state: {
+									item: l
+								}
+							}}>
+							{l.title}
+						</Link>
+					</h4>
 					<p>{l.price}</p>
 					<p>{l.description}</p>
 					<span>

@@ -14,7 +14,7 @@ export default function JobPage(props) {
 				<h4>Where: {props.location.state.job.j.location}</h4>
 				<h4>Postition: {props.location.state.job.j.position}</h4>
 				<p>{props.location.state.job.j.description}</p>
-				<p>
+				<span>
 					Contact Information: <br />
 					<p>
 						Email:{' '}
@@ -23,7 +23,7 @@ export default function JobPage(props) {
 						</a>
 					</p>
 					<p>Phone: {props.location.state.job.j.contact.phone}</p>
-				</p>
+				</span>
 				<h5>
 					Posted By: {props.location.state.job.j.contact.name} on{' '}
 					{formatDate(props.location.state.job.j.datePosted)}

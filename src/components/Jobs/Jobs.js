@@ -14,7 +14,7 @@ export default class Jobs extends Component {
 	jobListings = jobs => {
 		const listing = jobs.map(j => {
 			return (
-				<div className='job-listing'>
+				<div className='job-listing' key={j.jobId}>
 					<ul>
 						<h4>
 							<Link

@@ -3,7 +3,6 @@ import './Sort.css';
 
 export default class Sort extends Component {
 	selectSort = () => {
-		console.log(this.props);
 		if (this.props.sortType === 'dir') {
 			return (
 				<form className='sortForm' onChange={this.props.handleSort}>
@@ -61,7 +60,6 @@ export default class Sort extends Component {
 		}
 	};
 	render() {
-		console.log(this.props);
 		return this.selectSort();
 	}
 }
