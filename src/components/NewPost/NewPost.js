@@ -6,6 +6,13 @@ import './NewPost.css';
 
 export default function NewPost() {
 	const context = useContext(ForumContext);
+
+	const formatDate = imageDate => {
+		const date = new Date(imageDate);
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
+		return formatted_date;
+	};
+
 	const posts = context.posts ? (
 		context.posts.map(p => {
 			return (
@@ -24,7 +31,7 @@ export default function NewPost() {
 					</Truncate>
 					<span className='postInfo'>
 						<p>Posted By: {p.author}</p>
-						<p>Posted On: {p.date}</p>
+						<p>Posted On: {formatDate(p.date)}</p>
 						<p>Likes: {p.likes}</p>
 					</span>
 				</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import STORE from './STORE/store';
 import Router from './Router/Router';
 import ForumContext from './ForumContext';
@@ -18,10 +19,12 @@ class App extends Component {
 			events: STORE.events,
 			directory: STORE.directory,
 			jobs: STORE.jobs,
-			rentals: STORE.rentals
+			rentals: STORE.rentals,
+			marketPlace: STORE.marketPlace
 		};
 	}
 	static contextType = ForumContext;
+
 	handleSort = e => {
 		if (e.target.value === 'newest-posts') {
 			let sortedPosts = this.state.posts.sort((a, b) =>
@@ -173,6 +176,7 @@ class App extends Component {
 			directory: this.state.directory,
 			jobs: this.state.jobs,
 			rentals: this.state.rentals,
+			marketPlace: this.state.marketPlace,
 			sort: this.handleSort
 		};
 		return (

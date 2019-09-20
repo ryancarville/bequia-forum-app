@@ -1,15 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ForumContext from '../../ForumContext';
 import './EventPage.css';
+
 function EventPage(props) {
 	function formatDate(imageDate) {
 		const date = new Date(imageDate);
 		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
 		return formatted_date;
 	}
-	const events = props.events;
 
-	function makeEvent() {
+	function makeEvent(events) {
 		let currEvent = [];
 		events.filter(e =>
 			e.eventId.toString() === props.match.params.eventId
@@ -30,7 +31,13 @@ function EventPage(props) {
 			);
 		});
 	}
-	return <div className='event-page-container'>{makeEvent()}</div>;
+	return (
+		<div className='event-page-container'>
+			<ForumContext.Consumer>
+				{context => makeEvent(context.events)}
+			</ForumContext.Consumer>
+		</div>
+	);
 }
 
 export default withRouter(EventPage);

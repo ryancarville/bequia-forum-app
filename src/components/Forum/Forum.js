@@ -10,7 +10,11 @@ export default class Forum extends Component {
 		super(props);
 		this.state = {};
 	}
-
+	formatDate = imageDate => {
+		const date = new Date(imageDate);
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
+		return formatted_date;
+	};
 	threads = posts =>
 		posts.map(p => (
 			<div className='post' key={p.postId}>
@@ -28,7 +32,7 @@ export default class Forum extends Component {
 				</Truncate>
 				<span className='postInfo'>
 					<p>Posted By: {p.author}</p>
-					<p>Posted On: {p.date}</p>
+					<p>Posted On: {this.formatDate(p.date)}</p>
 					<p>Likes: {p.likes}</p>
 				</span>
 			</div>

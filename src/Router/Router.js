@@ -16,6 +16,7 @@ import Jobs from '../components/Jobs/Jobs';
 import JobPage from '../components/JobPage/JobPage';
 import Rentals from '../components/Rentals/Rentals';
 import RentalPage from '../components/RentalPage/RentalPage';
+import MarketPlace from '../components/MarketPlace/MarketPlace';
 import NoPath from '../components/404/404';
 export default class Router extends Component {
 	render() {
@@ -37,6 +38,7 @@ export default class Router extends Component {
 							<Route path='/jobs/:jobId' component={JobPage} exact />
 							<Route path='/rentals' component={Rentals} exact />
 							<Route path='/rentals/:rentalId' component={RentalPage} exact />
+							<Route path='/marketplace' component={MarketPlace} exact />
 							<PrivateRoute path='/homePage' component={HomePage} exact />
 							<Route component={NoPath} />
 						</Switch>

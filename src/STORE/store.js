@@ -65,7 +65,7 @@ const store = {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna'
 		},
 		{
-			eventId: 2921232,
+			eventId: 292122902,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
 			date: '2019-9-30',
@@ -179,6 +179,34 @@ const store = {
 			},
 			datePosted: '2019-4-25',
 			catagory: 'marine'
+		}
+	],
+	marketPlace: [
+		{
+			saleId: 109230,
+			title: 'Boat for sale',
+			description:
+				'38 foot Catamaran.  1 owner.  Blue with white racing stripes',
+			price: '$22,039',
+			catagory: 'marine',
+			contact: {
+				name: 'Sam the sailor',
+				email: 'samS@hoee.com',
+				phone: '1(708)232-4532'
+			}
+		},
+		{
+			saleId: 1093450,
+			title: 'Swimsuit',
+			description:
+				'ladies binkis',
+			price: '$22',
+			catagory: 'apparel',
+			contact: {
+				name: 'Dani Collsion',
+				email: 'dani@bequia.com',
+				phone: '1(708)232-4302'
+			}
 		}
 	]
 };

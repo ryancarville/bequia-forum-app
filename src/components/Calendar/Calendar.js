@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Calendar.css';
-import { BrowserRouter, Link, withRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router-dom';
 
 class Calendar extends Component {
 	constructor(props) {
@@ -16,7 +15,6 @@ class Calendar extends Component {
 		let dayInt = today.getDate();
 		let month = today.getMonth();
 		let year = today.getFullYear();
-		let events = this.state.events;
 
 		let months = [
 			'January',
@@ -62,7 +60,6 @@ class Calendar extends Component {
 			calendarBody.innerHTML = '';
 			// checking the mount of days in this month to control the loop
 			let totalDays = daysInMonth(month, year);
-
 			// adding the blank boxes so that date start on correct day of the week
 			blankDates(firstDay);
 			// adding the dates to the calendar
@@ -88,25 +85,6 @@ class Calendar extends Component {
 				cell.classList.add('singleDay');
 				cell.appendChild(cellText);
 				calendarBody.appendChild(cell);
-				//set events to cells
-
-				for (let i = 0; i < events.length; i++) {
-					const link = (
-						<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
-					);
-
-					const eventDate = events[i].date.split('-');
-					const eventYear = eventDate[0];
-					const eventMonth = eventDate[1];
-					const eventDay = eventDate[2];
-					if (
-						eventDay === day.toString() &&
-						eventMonth === (month + 1).toString() &&
-						eventYear === year.toString()
-					) {
-						ReactDOM.render(link, cell);
-					}
-				}
 			}
 
 			// set month string value

@@ -5,6 +5,11 @@ import Sort from '../Sort/Sort';
 import './Rentals.css';
 
 export default class Rentals extends Component {
+	formatDate = imageDate => {
+		const date = new Date(imageDate);
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
+		return formatted_date;
+	};
 	rentalListings = rentals => {
 		const rentalListing = rentals ? (
 			rentals.map(r => (
@@ -13,7 +18,7 @@ export default class Rentals extends Component {
 						<Link to={`/rentals/${r.rentalId}`}>{r.title}</Link>
 					</h3>
 					<p>Description: {r.description}</p>
-					<p>Date Posted: {r.datePosted}</p>
+					<p>Date Posted: {this.formatDate(r.datePosted)}</p>
 				</div>
 			))
 		) : (

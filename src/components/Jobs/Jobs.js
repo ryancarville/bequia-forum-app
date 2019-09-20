@@ -6,6 +6,11 @@ import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
 
 export default class Jobs extends Component {
+	formatDate = imageDate => {
+		const date = new Date(imageDate);
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
+		return formatted_date;
+	};
 	jobListings = jobs => {
 		const listing = jobs.map(j => {
 			return (
@@ -44,7 +49,7 @@ export default class Jobs extends Component {
 								{j.description}
 							</Truncate>
 						</li>
-						<li>Posted: {j.datePosted}</li>
+						<li>Posted: {this.formatDate(j.datePosted)}</li>
 					</ul>
 				</div>
 			);
