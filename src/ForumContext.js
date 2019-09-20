@@ -7,6 +7,7 @@ const ForumContext = React.createContext({
 	events: [],
 	directory: [],
 	jobs: [],
+	rentals:[],
 	sort: () => {}
 });
 

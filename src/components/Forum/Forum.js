@@ -38,7 +38,7 @@ export default class Forum extends Component {
 			<ForumContext.Consumer>
 				{context => (
 					<div className='forum-container'>
-						<Sort handleSort={context.sort} />
+						<Sort sortType={'posts'} handleSort={context.sort} />
 						<div className='forum-content'>{this.threads(context.posts)}</div>
 					</div>
 				)}

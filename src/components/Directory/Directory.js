@@ -35,7 +35,7 @@ export default class Directory extends Component {
 				<ForumContext.Consumer>
 					{context => (
 						<>
-							<Sort handleSort={context.sort} dir={'dir'} />
+							<Sort handleSort={context.sort} sortType={'dir'} />
 							<div className='directory-content'>
 								{this.directory(context.directory)}
 							</div>

@@ -1,0 +1,9 @@
+.rental-page-container {
+	width: 100%;
+}
+.rental-page-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25px;
+}

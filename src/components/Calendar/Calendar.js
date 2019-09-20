@@ -92,10 +92,7 @@ class Calendar extends Component {
 
 				for (let i = 0; i < events.length; i++) {
 					const link = (
-						<>
-							{day.toString()}
-							<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
-						</>
+						<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
 					);
 
 					const eventDate = events[i].date.split('-');
@@ -107,7 +104,7 @@ class Calendar extends Component {
 						eventMonth === (month + 1).toString() &&
 						eventYear === year.toString()
 					) {
-						ReactDOM.render(<BrowserRouter>{link}</BrowserRouter>, cell);
+						ReactDOM.render(link, cell);
 					}
 				}
 			}

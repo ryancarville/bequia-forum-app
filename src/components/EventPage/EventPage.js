@@ -11,7 +11,7 @@ function EventPage(props) {
 
 	function makeEvent() {
 		let currEvent = [];
-		events.find(e =>
+		events.filter(e =>
 			e.eventId.toString() === props.match.params.eventId
 				? currEvent.push(e)
 				: null

@@ -153,6 +153,33 @@ const store = {
 				email: 'sSmith@hotmail.com'
 			}
 		}
+	],
+	rentals: [
+		{
+			rentalId: 3078954,
+			title: 'Beautiful Ocean views Home',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem.',
+			contact: {
+				name: 'Susan Lutz',
+				email: 'sLutz@gmail.com',
+				phone: '+1(708)453-3495'
+			},
+			datePosted: '2019-7-17',
+			catagory: 'housing'
+		},
+		{
+			rentalId: 303434,
+			title: 'Power boat',
+			description: 'Lorem ipsum dolor sit amet, tempor incididunt ut Lorem.',
+			contact: {
+				name: 'Ron James',
+				email: 'capitianRon@hotmail.com',
+				phone: '+1(708)564-5669'
+			},
+			datePosted: '2019-4-25',
+			catagory: 'marine'
+		}
 	]
 };
 

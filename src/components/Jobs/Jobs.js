@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Truncate from 'react-truncate';
+import { Link } from 'react-router-dom';
 import './Jobs.css';
 import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
@@ -9,15 +11,39 @@ export default class Jobs extends Component {
 			return (
 				<div className='job-listing'>
 					<ul>
-						<h4>{j.title}</h4>
+						<h4>
+							<Link
+								to={{
+									pathname: `/jobs/${j.jobId}`,
+									state: {
+										job: { j }
+									}
+								}}>
+								{j.title}
+							</Link>
+						</h4>
 						<li>Position: {j.position}</li>
 						<li>Location: {j.location}</li>
-						<li>Job Description: {j.description}</li>
-						<li>Contact: {j.contact.name}</li>
 						<li>
-							Email: <a href={`mailto:${j.contact.email}`}>{j.contact.email}</a>
+							<Truncate
+								lines={1}
+								ellipsis={
+									<span>
+										...
+										<Link
+											to={{
+												pathname: `/jobs/${j.jobId}`,
+												state: {
+													job: { j }
+												}
+											}}>
+											Read more
+										</Link>
+									</span>
+								}>
+								{j.description}
+							</Truncate>
 						</li>
-						<li>Phone: {j.contact.phone}</li>
 						<li>Posted: {j.datePosted}</li>
 					</ul>
 				</div>
@@ -30,7 +56,7 @@ export default class Jobs extends Component {
 			<ForumContext.Consumer>
 				{context => (
 					<div className='jobs-container'>
-						<Sort jobs={'jobs'} handleSort={context.sort} />
+						<Sort sortType={'jobs'} handleSort={context.sort} />
 						<div className='jobs-content'>{this.jobListings(context.jobs)}</div>
 					</div>
 				)}
