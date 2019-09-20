@@ -6,13 +6,6 @@ import './Nav.css';
 import ForumContext from '../../ForumContext';
 
 class Nav extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hover: false
-		};
-	}
-
 	render() {
 		const loggedIn = TokenServices.getAuthToken();
 		const siteNav = (
@@ -69,6 +62,7 @@ class Nav extends Component {
 								/>
 							</Link>
 						</li>
+						<h1>Bequia Forum</h1>
 						<div>
 							<li>
 								<Link to='/signup'>
@@ -98,7 +92,7 @@ class Nav extends Component {
 								/>
 							</Link>
 						</li>
-
+						<h1>Bequia Forum</h1>
 						<div className='rightNavInfo'>
 							<ForumContext.Consumer>
 								{context => (

@@ -3,13 +3,27 @@
 	background-color: rgb(4, 0, 255);
 	text-transform: uppercase;
 }
+.navBar h1 {
+	color: white;
+}
 .forumLogo img {
 	width: 100px;
+	padding: 0;
 }
 .rightNavInfo {
 	font-size: 15px;
 	line-height: 18px;
 	text-align: right;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.rightNavInfo p {
+	margin: 5px;
+}
+.userInfo {
+	width: 200px;
+	color: white;
 }
 .navBar ul {
 	padding: 10px;
