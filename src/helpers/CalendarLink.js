@@ -1,34 +1,17 @@
-export default function CalendarEventLink(events) {
-	const calendar = document.getElementById('days');
-	console.log(`${calendar}`.length);
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-	// for (let i = 0; i < events.length; i++) {
-	// 	const link = (
-	// 		<Link to={`/events/${events[i].eventId}`}>{events[i].title}</Link>
-	// 	);
+export default class CalendarEventLink extends Component {
+	render() {
+		const event = this.props.event;
+		const day = this.props.cell.innerHTML;
+		const link = (
+			<>
+				{day}
+				<Link to={`/events/${event.eventId}`}>{event.title}</Link>
+			</>
+		);
 
-	// }
-	return;
+		return link;
+	}
 }
-
-// for (let i = 0; i < events.length; i++) {
-// 	console.log('ran');
-// 	const eventDate = events[i].date.split('-');
-// 	const eventYear = eventDate[0];
-// 	const eventMonth = eventDate[1];
-// 	const eventDay = eventDate[2];
-// 	if (
-// 		eventDay === day.toString() &&
-// 		eventMonth === (month + 1).toString() &&
-// 		eventYear === year.toString()
-// 	) {
-// 		const link = (
-// 			<ForumContext.Consumer>
-// 				{context => context.eventsLink(events[i])}
-// 			</ForumContext.Consumer>
-// 		);
-
-// 		const test = document.createTextNode(link);
-// 		cell.appendChild(link);
-// 	}
-// }

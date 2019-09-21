@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Calendar.css';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link, Router } from 'react-router-dom';
+import CalendarLink from '../../helpers/CalendarLink';
 
 class Calendar extends Component {
 	constructor(props) {
@@ -15,6 +17,7 @@ class Calendar extends Component {
 		let dayInt = today.getDate();
 		let month = today.getMonth();
 		let year = today.getFullYear();
+		let events = this.props.events;
 
 		let months = [
 			'January',
@@ -84,7 +87,29 @@ class Calendar extends Component {
 				//appending li to body of calendar
 				cell.classList.add('singleDay');
 				cell.appendChild(cellText);
+
 				calendarBody.appendChild(cell);
+				for (let i = 0; i < events.length; i++) {
+					const eventDate = events[i].date.split('-');
+					const eventDay = eventDate[2];
+					const eventMonth = eventDate[1];
+					const eventYear = eventDate[0];
+					const cellDay = cell.getAttribute('data-day');
+					const cellMonth = parseInt(cell.getAttribute('data-month'));
+					const cellYear = cell.getAttribute('data-year');
+
+					if (
+						cellDay === eventDay &&
+						(cellMonth + 1).toString() === eventMonth &&
+						cellYear === eventYear
+					) {
+						let visibleEvent = events[i];
+						ReactDOM.hydrate(
+							<CalendarLink event={visibleEvent} cell={cell} />,
+							cell
+						);
+					}
+				}
 			}
 
 			// set month string value

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import Nav from '../components/Nav/Nav';
 import LandingPage from '../components/LandingPage/LandingPage';
@@ -19,6 +19,8 @@ import RentalPage from '../components/RentalPage/RentalPage';
 import MarketPlace from '../components/MarketPlace/MarketPlace';
 import MarketListingPage from '../components/MarketListingPage/MarketListingPage';
 import NoPath from '../components/404/404';
+import Calendar from '../components/Calendar/Calendar';
+
 export default class Router extends Component {
 	render() {
 		return (
@@ -32,7 +34,7 @@ export default class Router extends Component {
 							<Route path='/login' component={LogIn} exact />
 							<Route path='/new-post' component={NewPosts} exact />
 							<Route path='/messageBoard' component={Forum} exact />
-							<Route path='/events' component={Events} link={Link} exact />
+							<Route path='/events' component={Events} exact />
 							<Route path='/events/:eventId' component={EventPage} exact />
 							<Route path='/directory' component={Directory} exact />
 							<Route path='/jobs' component={Jobs} exact />

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Calendar from '../Calendar/Calendar';
 import './Events.css';
 import ForumContext from '../../ForumContext';
-import CalendarLink from '../../helpers/CalendarLink';
-import Calendar from '../Calendar/Calendar';
 
 class Events extends Component {
 	render() {
@@ -11,9 +10,7 @@ class Events extends Component {
 			<div className='events-container'>
 				<div className='events-content'>
 					<ForumContext.Consumer>
-						{context => (
-							<Calendar events={context.events} eventLink={CalendarLink} />
-						)}
+						{context => <Calendar events={context.events} />}
 					</ForumContext.Consumer>
 				</div>
 			</div>
