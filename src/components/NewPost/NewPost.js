@@ -17,14 +17,29 @@ export default function NewPost() {
 		context.posts.map(p => {
 			return (
 				<div className='newest-posts' key={p.postId}>
-					<Link to={`/forum/${p.postId}`}>
+					<Link
+						to={{
+							pathname: `/messageBoard/${p.postId}`,
+							state: {
+								post: p
+							}
+						}}>
 						<h4>{p.title}</h4>
 					</Link>
 					<Truncate
 						lines={1}
 						ellipsis={
 							<span>
-								...<Link to={`/forum/${p.postId}`}>Read more</Link>
+								...
+								<Link
+									to={{
+										pathname: `/messageBoard/${p.postId}`,
+										state: {
+											post: p
+										}
+									}}>
+									Read more
+								</Link>
 							</span>
 						}>
 						{p.content}

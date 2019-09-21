@@ -18,14 +18,29 @@ export default class Forum extends Component {
 	threads = posts =>
 		posts.map(p => (
 			<div className='post' key={p.postId}>
-				<Link to={`/messageBoard/${p.postId}`}>
+				<Link
+					to={{
+						pathname: `/messageBoard/${p.postId}`,
+						state: {
+							post: p
+						}
+					}}>
 					<h4>{p.title}</h4>
 				</Link>
 				<Truncate
 					lines={1}
 					ellipsis={
 						<span>
-							...<Link to={`/forum/${p.postId}`}>Read more</Link>
+							...
+							<Link
+								to={{
+									pathname: `/messageBoard/${p.postId}`,
+									state: {
+										post: p
+									}
+								}}>
+								Read more
+							</Link>
 						</span>
 					}>
 					{p.content}
