@@ -2,10 +2,29 @@
 	width: 100%;
 }
 .create-post-content {
-	width: 50%;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 25px;
+}
+.category-pop-up-container {
+	width: 100%;
+}
+.categoryPopUpForm {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+}
+.categoryPopUpForm input {
+	cursor: pointer;
+	transform: scale(2);
+	margin: 10px;
+}
+.categoryPopUpForm label {
+	vertical-align: middle;
+	margin: 10px;
 }
 .create-post-content form {
 	display: flex;
@@ -19,7 +38,7 @@
 	padding: 10px;
 }
 .create-post-content form select {
-	width: 50%;
+	width: 25%;
 	height: 25px;
 	margin: 10px;
 	padding: 10px;
@@ -33,4 +52,5 @@
 	width: 50%;
 	height: 35px;
 	margin: 10px;
+	cursor: pointer;
 }

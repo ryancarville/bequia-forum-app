@@ -7,11 +7,10 @@ export default class CreatePost extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			category: false,
-
+			showPostForm: false,
 			newPost: {
 				title: '',
-				catagory: '',
+				category: '',
 				content: '',
 				dateCreated: (
 					new Date().getFullYear() +
@@ -35,8 +34,21 @@ export default class CreatePost extends Component {
 	};
 	handleCatagory = e => {
 		this.setState({
-			catagory: e.target.value
+			newPost: {
+				category: e
+			},
+			showPostForm: true
 		});
+	};
+	handleCatagoryPostForm = e => {
+		this.setState({
+			newPost: {
+				category: e.target.value
+			}
+		});
+	};
+	handleCancel = () => {
+		this.props.history.goBack();
 	};
 	handleSubmit = e => {
 		e.preventDefault();
@@ -44,29 +56,55 @@ export default class CreatePost extends Component {
 	};
 	makeCategorys = () => {
 		let i = 0;
-		let links = [];
+		let categorys = [];
 		while (i < STORE.forum.length) {
-			console.log('count ' + i);
-			console.log(STORE.forum[i]);
-			links.push(
-				STORE.forum[i].map(item => (
-					<li>
-						<Link to={`/messageBoard/${item.path}`}>{item.title}</Link>
-					</li>
-				))
+			categorys.push(
+				STORE.forum[i].map(item => {
+					if (item.sectionTitle) {
+						return;
+					} else {
+						return (
+							<div>
+								<input
+									type='radio'
+									name='categoryRadio'
+									value={item.title}
+									className='categoryInput'
+									onClick={() => this.handleCatagory(item.title)}
+								/>
+								<label htmlFor='categoryRadio'>{item.title}</label>
+							</div>
+						);
+					}
+				})
 			);
-
 			i++;
 		}
-		return links;
+		return categorys;
 	};
-	componentDidMount() {}
+	makeSelectCategorys = () => {
+		let i = 0;
+		let categorys = [];
+		while (i < STORE.forum.length) {
+			categorys.push(
+				STORE.forum[i].map(item => {
+					if (item.sectionTitle) {
+						return;
+					} else {
+						return <option value={item.title}>{item.title}</option>;
+					}
+				})
+			);
+			i++;
+		}
+		return categorys;
+	};
 
 	render() {
 		const category = (
 			<section className='category-pop-up-container'>
-				<div className='category-pop-up-content'>
-					<ul>{this.makeCategorys()}</ul>{' '}
+				<div className='categoryPopUp'>
+					<div className='categoryPopUpForm'>{this.makeCategorys()}</div>
 				</div>
 			</section>
 		);
@@ -79,32 +117,32 @@ export default class CreatePost extends Component {
 					name='title'
 					id='post-title'
 					onChange={this.handleTitle}
+					autofocus
+					required
 				/>
 				<label htmlFor='catagory'>Catagory</label>
 				<select
 					name='catagory'
 					id='post-catagory'
-					onChange={this.handleCatagory}>
-					<optgroup label='Forum'>
-						<option value='bequia'>Bequia</option>
-						<option value='news'>News</option>
-					</optgroup>
-					<optgroup lable='Market Place'>
-						<option value='for-sale'>For Sale</option>
-					</optgroup>
-					<option value='rental'>Rental</option>
+					value={this.state.newPost.category}
+					onChange={this.handleCatagoryPostForm}
+					required>
+					{this.makeSelectCategorys()}
 				</select>
 				<label htmlFor='content'>Content</label>
 				<textarea
 					name='content'
 					id='post-content'
-					onChange={this.handleContent}></textarea>
+					onChange={this.handleContent}
+					required></textarea>
 				<button type='submit'>Create Post</button>
 				<button type='reset'>Clear Form</button>
-				<button type='button'>Cancel</button>
+				<button type='button' onClick={this.handleCancel}>
+					Cancel
+				</button>
 			</form>
 		);
-		const postFlow = !this.state.catagory ? category : postForm;
+		const postFlow = !this.state.showPostForm ? category : postForm;
 		return (
 			<section className='create-post-container'>
 				<div className='create-post-content'>{postFlow}</div>
