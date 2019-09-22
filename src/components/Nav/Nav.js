@@ -42,7 +42,7 @@ class Nav extends Component {
 						</Link>
 					</li>
 					<li>
-						<Link to='/marketplace'>
+						<Link to='/messageBoard/27'>
 							<p>Market Place</p>
 						</Link>
 					</li>
