@@ -1,8 +1,8 @@
 .thisWeek-container {
-	width: 40%;
+	width: 100%;
 }
 .thisWeek-content {
-	padding: 10px;
+	padding-right: 50px;
 }
 .event {
 	border: 2px black solid;

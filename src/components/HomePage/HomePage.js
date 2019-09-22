@@ -20,10 +20,14 @@ export default class HomePage extends Component {
 		return (
 			<ForumContext.Consumer>
 				{context => (
-					<div className='homePage-container'>
-						<div className='homePage-content'>
-							<NewPost />
-							<ThisWeek />
+					<div className='home-page-container'>
+						<div className='home-page-content'>
+							<section id='home-page-newest-post'>
+								<NewPost />
+							</section>
+							<section id='home-page-upcoming-events'>
+								<ThisWeek />
+							</section>
 						</div>
 					</div>
 				)}

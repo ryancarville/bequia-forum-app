@@ -1,8 +1,16 @@
-.homePage-container {
+.home-page-container {
+	width: 100%;
 	margin: 20px;
 }
-.homePage-content {
+.home-page-content {
+	width: 100%;
 	display: flex;
-	justify-content: center;
-	align-items: flex-start
+	justify-content: space-around;
+}
+#home-page-newest-post {
+	width: 100%;
+}
+#home-page-upcoming-events {
+	float: right;
+	width: 100%;
 }
