@@ -1,13 +1,37 @@
 .forum-container {
 	width: 100%;
 }
+.forum-container h3 {
+	margin: 0;
+	margin-left: 5%;
+	padding-top: 10px;
+}
+
 .forum-content {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	padding: 25px;
 }
-
+.forum-content ul {
+	list-style: none;
+}
+.forum-content ul h4 {
+	background-color: mediumblue;
+	color: white;
+	height: 50px;
+	margin: 0;
+	padding: 15px;
+}
+.forum-content li {
+	background-color: lightgray;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 0px;
+	height: 60px;
+	font-size: 14px;
+	line-height: 10px;
+}
 .post {
 	border-bottom: 2px solid black;
 }

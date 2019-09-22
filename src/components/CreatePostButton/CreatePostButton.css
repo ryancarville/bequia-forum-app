@@ -1,0 +1,11 @@
+#create-post-button {
+	width: 100px;
+	text-align: center;
+	float: right;
+	margin-right: 45px;
+	margin-top: 5px;
+	border: 1px solid black;
+}
+#create-post-button a {
+	text-decoration: none;
+}

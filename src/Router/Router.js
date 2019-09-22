@@ -8,7 +8,9 @@ import LogIn from '../components/LogIn/LogIn';
 import HomePage from '../components/HomePage/HomePage';
 import NewPosts from '../components/NewPost/NewPost';
 import Forum from '../components/Forum/Forum';
+import ForumSection from '../components/ForumSection/ForumSection';
 import PostPage from '../components/PostPage/PostPage';
+import CreatePost from '../components/CreatePost/CreatePost';
 import Events from '../components/Events/Events';
 import EventPage from '../components/EventPage/EventPage';
 import ForumContext from '../ForumContext';
@@ -34,7 +36,18 @@ export default class Router extends Component {
 							<Route path='/login' component={LogIn} exact />
 							<Route path='/new-post' component={NewPosts} exact />
 							<Route path='/messageBoard' component={Forum} exact />
-							<Route path='/messageBoard/:postId' component={PostPage} exact />
+							<Route
+								path='/messageBoard/:forumId/:postId'
+								component={PostPage}
+								exact
+							/>
+							<Route
+								path='/messageBoard/:forumId'
+								component={ForumSection}
+								exact
+							/>
+
+							<Route path='/createPost' component={CreatePost} exact />
 							<Route path='/events' component={Events} exact />
 							<Route path='/events/:eventId' component={EventPage} exact />
 							<Route path='/directory' component={Directory} exact />

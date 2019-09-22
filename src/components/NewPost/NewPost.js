@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
 import './NewPost.css';
+import CreatePostButton from '../CreatePostButton/CreatePostButton';
 
 export default function NewPost() {
 	const context = useContext(ForumContext);
@@ -60,6 +61,7 @@ export default function NewPost() {
 		<div className='newPost-container'>
 			<div className='newPost-content'>
 				<h2>Newest Posts</h2>
+				{CreatePostButton}
 				{posts}
 			</div>
 		</div>

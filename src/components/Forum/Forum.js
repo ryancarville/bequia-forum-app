@@ -4,6 +4,8 @@ import Truncate from 'react-truncate';
 import './Forum.css';
 import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
+import CreatePostButton from '../CreatePostButton/CreatePostButton';
+import STORE from '../../STORE/store';
 
 export default class Forum extends Component {
 	constructor(props) {
@@ -52,16 +54,45 @@ export default class Forum extends Component {
 				</span>
 			</div>
 		));
+
+	makeForum = () => {
+		let i = 0;
+		let links = [];
+		while (i < STORE.forum.length) {
+			links.push(
+				STORE.forum[i].map(item => {
+					if (item.sectionTitle) {
+						return <h4>{item.sectionTitle}</h4>;
+					} else {
+						return (
+							<li key={item.forumId}>
+								<Link
+									to={{
+										pathname: `/messageBoard/${item.forumId}`,
+										state: { forum: item }
+									}}>
+									{item.title}
+								</Link>
+								<p>{item.description}</p>
+							</li>
+						);
+					}
+				})
+			);
+
+			i++;
+		}
+		return links;
+	};
 	render() {
 		return (
-			<ForumContext.Consumer>
-				{context => (
-					<div className='forum-container'>
-						<Sort sortType={'posts'} handleSort={context.sort} />
-						<div className='forum-content'>{this.threads(context.posts)}</div>
-					</div>
-				)}
-			</ForumContext.Consumer>
+			<div className='forum-container'>
+				<span>{CreatePostButton}</span>
+				<h3>Fourm</h3>
+				<div className='forum-content'>
+					<ul>{this.makeForum()}</ul>
+				</div>
+			</div>
 		);
 	}
 }

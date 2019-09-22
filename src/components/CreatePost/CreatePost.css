@@ -1,0 +1,36 @@
+.create-post-container {
+	width: 100%;
+}
+.create-post-content {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+}
+.create-post-content form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.create-post-content form input {
+	width: 50%;
+	height: 25px;
+	margin: 10px;
+	padding: 10px;
+}
+.create-post-content form select {
+	width: 50%;
+	height: 25px;
+	margin: 10px;
+	padding: 10px;
+}
+.create-post-content form textarea {
+	width: 70%;
+	height: 200px;
+	margin: 10px;
+}
+.create-post-content form button {
+	width: 50%;
+	height: 35px;
+	margin: 10px;
+}
