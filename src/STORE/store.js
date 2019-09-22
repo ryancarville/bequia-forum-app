@@ -39,6 +39,34 @@ const store = {
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 7
+		},
+		{
+			saleId: 109230,
+			forumId: 27,
+			date: '2019-06-15',
+			title: 'Boat for sale',
+			content: '38 foot Catamaran.  1 owner.  Blue with white racing stripes',
+			price: '$22,039',
+			catagory: 'marine',
+			contact: {
+				name: 'Sam the sailor',
+				email: 'samS@hoee.com',
+				phone: '1(708)232-4532'
+			}
+		},
+		{
+			saleId: 1093450,
+			forumId: 27,
+			date: '2019-06-15',
+			title: 'Swimsuit',
+			content: 'ladies binkis',
+			price: '$22',
+			catagory: 'apparel',
+			contact: {
+				name: 'Dani Colesion',
+				email: 'dani@bequia.com',
+				phone: '1(708)232-4302'
+			}
 		}
 	],
 	events: [
@@ -188,6 +216,7 @@ const store = {
 	marketPlace: [
 		{
 			saleId: 109230,
+			forumId: 27,
 			title: 'Boat for sale',
 			description:
 				'38 foot Catamaran.  1 owner.  Blue with white racing stripes',
@@ -201,6 +230,7 @@ const store = {
 		},
 		{
 			saleId: 1093450,
+			forumId: 27,
 			title: 'Swimsuit',
 			description: 'ladies binkis',
 			price: '$22',
