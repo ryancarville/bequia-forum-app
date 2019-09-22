@@ -74,7 +74,7 @@ const store = {
 			eventId: 29032,
 			title: 'Fish Fry',
 			location: 'Kegans',
-			date: '2019-9-19',
+			date: '2019-9-24',
 			time: '20:00 - until late',
 			description:
 				'Come join us on the full moon by the ocean for freash fish and cold beers.  Kids under 5 free!'
@@ -83,7 +83,7 @@ const store = {
 			eventId: 2921232,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
-			date: '2019-9-21',
+			date: '2019-9-27',
 			time: '16:00 - 00:00',
 			description: '1/2 price Hairouns all night!'
 		},
@@ -91,7 +91,7 @@ const store = {
 			eventId: 28032,
 			title: 'Almond Tree Sing-a-Long',
 			location: 'Under The Almond Tree',
-			date: '2019-9-22',
+			date: '2019-9-20',
 			time: '16:00 - until late',
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna'

@@ -1,186 +1,142 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './Calendar.css';
-import { withRouter, Link, Router } from 'react-router-dom';
-import CalendarLink from '../../helpers/CalendarLink';
+import { withRouter, Link } from 'react-router-dom';
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
 
 class Calendar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dayInt: today.getDate(),
-			month: today.getMonth(),
-			year: today.getFullYear()
-		};
-	}
+  constructor(props) {
+    super(props);
 
-	renderCal = () => {
-		const today = new Date();
-		const { events } = this.props;
-		const { dayInt, month, year } = this.state;
-	};
-	showCalendar = (month, year) => {
-		let dayInt = this.state.dayInt;
 
-		let months = [
-			'January',
-			'February',
-			'March',
-			'April',
-			'May',
-			'June',
-			'July',
-			'August',
-			'September',
-			'October',
-			'November',
-			'December'
-		];
-		//body of the calendar
-		let calendarBody = document.getElementById('days');
-		// gets the day of the week for this date
-		let firstDay = new Date(year, month).getDay();
-		// clearing all previous cells
-		calendarBody.innerHTML = '';
-		// checking the mount of days in this month to control the loop
-		let totalDays = this.daysInMonth(month, year);
-		const calendarItems = [];
-		// adding the blank boxes so that date start on correct day of the week
-		this.blankDates(firstDay);
-		// adding the dates to the calendar
-		for (let day = 1; day <= totalDays; day++) {
-			// create li node with text content & apend to body
-			let today = this.state.today;
-			let cell = document.createElement('li');
-			let cellText = document.createTextNode(day);
-			// adding active class if day matches today
-			if (
-				dayInt === day &&
-				month === today.getMonth() &&
-				year === today.getFullYear()
-			) {
-				cell.classList.add('active');
-			}
+    const today = new Date();
+    this.state = {
+      dayInt: today.getDate(),
+      month: today.getMonth(),
+      year: today.getFullYear(),
+    };
+  }
 
-			// appending date attributes to single date li element
-			cell.setAttribute('data-day', day);
-			cell.setAttribute('data-month', month);
-			cell.setAttribute('data-year', year);
-			//appending li to body of calendar
-			cell.classList.add('singleDay');
-			cell.appendChild(cellText);
+  handleClickNext = () => {
+    this.setState(({ month, year }) => {
+      const newYear = year = month === 11 ? year + 1 : year;
+      const newMonth = (month + 1) % 12;
+      
+      return {
+        month: newMonth,
+        year: newYear,
+      };
+    });
+  };
 
-			calendarBody.appendChild(cell);
-			const isActive =
-				dayInt === day &&
-				month === today.getMonth() &&
-				year === today.getFullYear();
-			// we filter out all the vents on this day.
-			const eventsOnThisDay = events.filter(event => {
-				const eventDate = event.date.split('-');
-				const eventDay = eventDate[2];
-				const eventMonth = eventDate[1];
-				const eventYear = eventDate[0];
-				eventDay === day &&
-					eventMonth === today.getMonth() &&
-					eventYear === today.getFullYear();
-			});
+  handleClickPrev = () => {
+    this.setState(({ month, year }) => {
+      const newYear = month === 0 ? year - 1 : year;
+      const newMonth = month === 0 ? 11 : month - 1;
+      
+      return {
+        month: newMonth,
+        year: newYear,
+      };
+    });
+  };
 
-			for (let i = 0; i < events.length; i++) {
-				const eventDate = events[i].date.split('-');
-				const eventDay = eventDate[2];
-				const eventMonth = eventDate[1];
-				const eventYear = eventDate[0];
-				const cellDay = cell.getAttribute('data-day');
-				const cellMonth = parseInt(cell.getAttribute('data-month'));
-				const cellYear = cell.getAttribute('data-year');
+  renderCalendar = () => {
+    const today = new Date();
+    const { events } = this.props;
+    const { dayInt, month, year } = this.state;
+    const firstDay = new Date(year, month).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
 
-				if (
-					cellDay === eventDay &&
-					(cellMonth + 1).toString() === eventMonth &&
-					cellYear === eventYear
-				) {
-					let visibleEvent = events[i];
-					ReactDOM.hydrate(
-						<CalendarLink event={visibleEvent} cell={cell} />,
-						cell
-					);
-				}
-			}
-		}
+    const calendarItems = [];
 
-		// set month string value
-		document.getElementById('month').innerHTML = months[month];
-		// set year string value
-		document.getElementById('year').innerHTML = year;
-	};
-	daysInMonth = (month, year) => {
-		// day 0 here returns the last day of the PREVIOUS month
-		return new Date(year, month + 1, 0).getDate();
-	};
-	blankDates = count => {
-		let calendarItems = [];
-		// looping to add the correct amount of blank days to the calendar
-		for (let x = 0; x < count; x++) {
-			calendarItems.push(<li key={`blank-${x}`} />);
-		}
-	};
-	next = () => {
-		let month = this.state.month;
-		let year = this.state.year;
-		year = month === 11 ? year + 1 : year;
-		month = (month + 1) % 12;
-		this.showCalendar(month, year);
-	};
-	previous = () => {
-		let month = this.state.month;
-		let year = this.state.year;
-		year = month === 0 ? year - 1 : year;
-		month = month === 0 ? 11 : month - 1;
-		this.showCalendar(month, year);
-	};
-	componentDidMount() {
-		// init calendar
-		let month = this.state.month;
-		let year = this.state.year;
-		this.showCalendar(month, year);
-	}
+    // render blank days first 
+    for (let x = 0; x < firstDay; x++) {
+      calendarItems.push(<li key={`blank-${x}`} />);
+    }
 
-	render() {
-		return (
-			<div className='events-calendar-container'>
-				<div className='calendar-content'>
-					<h2>Events Calendar</h2>
-					<div id='calendar'>
-						<div className='month'>
-							<ul>
-								<li id='prev' onClick={this.previous()}>
-									&#10094;
-								</li>
-								<li id='month'></li>
-								<li id='year'></li>
-								<li id='next' onClick={this.next()}>
-									&#10095;
-								</li>
-							</ul>
-						</div>
+    // render rest 
+    for (let day = 1; day <= totalDays; day++) {
+      const isActive = dayInt === day && month === today.getMonth() && year === today.getFullYear();
 
-						<ul id='weekdays'>
-							<li>Su</li>
-							<li>Mo</li>
-							<li>Tu</li>
-							<li>We</li>
-							<li>Th</li>
-							<li>Fr</li>
-							<li>Sa</li>
-						</ul>
+      // we filter out all the events on this day.
+      const eventsOnThisDay = events.filter((event) => {
+        const eventDate = event.date.split('-');
+        const eventDay = eventDate[2];
+        const eventMonth = eventDate[1];
+        const eventYear = eventDate[0];
 
-						<ul id='days'></ul>
-					</div>
-				</div>
-			</div>
-		);
-	}
+        return (
+          day.toString() === eventDay &&
+          (month + 1).toString() === eventMonth &&
+          year.toString() === eventYear
+        );
+      });
+
+      calendarItems.push(
+        <li className={`singleDay ${isActive ? 'active' : ''}`} key={`day-${day}`}>
+          {day}
+          {eventsOnThisDay.map((event) => (
+            <Link
+              key={event.eventId}
+              to={`/events/${event.eventId}`}
+            >
+              {event.title}
+            </Link>
+          ))}
+        </li>
+      );
+    }
+
+    return calendarItems;
+  };
+
+  render() {
+    return (
+      <div className='events-calendar-container'>
+        <div className='calendar-content'>
+          <h2>Events Calendar</h2>
+          <div id='calendar'>
+            <div className='month'>
+              <ul>
+                <li id='prev' onClick={this.handleClickPrev}>&#10094;</li>
+                <li id='month'>{months[this.state.month]}</li>
+                <li id='year'>{this.state.year}</li>
+                <li id='next' onClick={this.handleClickNext}>&#10095;</li>
+              </ul>
+            </div>
+
+            <ul id='weekdays'>
+              <li>Su</li>
+              <li>Mo</li>
+              <li>Tu</li>
+              <li>We</li>
+              <li>Th</li>
+              <li>Fr</li>
+              <li>Sa</li>
+            </ul>
+
+            <ul id='days'>
+              {this.renderCalendar()}
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(Calendar);
