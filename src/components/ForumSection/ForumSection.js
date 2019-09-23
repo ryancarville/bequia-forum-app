@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import STORE from '../../STORE/store';
 import CreatePostButton from '../CreatePostButton/CreatePostButton';
 import './ForumSection.css';
 
-export default class ForumSection extends Component {
+class ForumSection extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -26,31 +26,15 @@ export default class ForumSection extends Component {
 		);
 		const visiblePosts = forumSectionPosts.map(p => {
 			return (
-				<li key={p.postId}>
-					<Link
-						to={{
-							pathname: `/messageBoard/${forumId}/${p.postId}`,
-							state: {
-								post: p
-							}
-						}}>
-						{p.title}
-					</Link>
+				<li key={p.id}>
+					<Link to={`/messageBoard/${forumId}/${p.id}`}>{p.title}</Link>
 					<br />
 					<Truncate
 						lines={1}
 						ellipsis={
 							<span>
 								...
-								<Link
-									to={{
-										pathname: `/messageBoard/${forumId}/${p.postId}`,
-										state: {
-											post: p
-										}
-									}}>
-									Read more
-								</Link>
+								<Link to={`/messageBoard/${forumId}/${p.id}`}>Read more</Link>
 							</span>
 						}>
 						{p.content}
@@ -84,3 +68,4 @@ export default class ForumSection extends Component {
 		);
 	}
 }
+export default withRouter(ForumSection);

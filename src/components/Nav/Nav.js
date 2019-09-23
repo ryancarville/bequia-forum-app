@@ -32,12 +32,28 @@ class Nav extends Component {
 						</Link>
 					</li>
 					<li>
-						<Link to='/jobs'>
+						<Link
+							to={{
+								pathname: '/messageBoard/28',
+								state: {
+									forum: {
+										title: 'Jobs'
+									}
+								}
+							}}>
 							<p>Jobs</p>
 						</Link>
 					</li>
 					<li>
-						<Link to='/rentals'>
+						<Link
+							to={{
+								pathname: '/messageBoard/29',
+								state: {
+									forum: {
+										title: 'Rentals'
+									}
+								}
+							}}>
 							<p>Rentals</p>
 						</Link>
 					</li>

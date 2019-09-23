@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import STORE from '../../STORE/store';
-import { Link } from 'react-router-dom';
+import ForumContext from '../../ForumContext';
 import './CreatePost.css';
 
 export default class CreatePost extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			id: Math.floor(Math.random() * 1000000),
 			showPostForm: false,
-			newPost: {
-				title: '',
-				category: '',
-				content: '',
-				dateCreated: (
-					new Date().getFullYear() +
-					'-' +
-					(new Date().getMonth + 1) +
-					'-' +
-					new Date().getDate()
-				).toString()
-			}
+			title: '',
+			forumId: '',
+			content: '',
+			date: new Date(),
+			redirectToPost: false
 		};
 	}
+	static contextType = ForumContext;
 	handleTitle = e => {
 		this.setState({
 			title: e.target.value
@@ -34,17 +30,13 @@ export default class CreatePost extends Component {
 	};
 	handleCatagory = e => {
 		this.setState({
-			newPost: {
-				category: e
-			},
+			forumId: e,
 			showPostForm: true
 		});
 	};
 	handleCatagoryPostForm = e => {
 		this.setState({
-			newPost: {
-				category: e.target.value
-			}
+			forumId: e.target.value
 		});
 	};
 	handleCancel = () => {
@@ -52,7 +44,14 @@ export default class CreatePost extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		window.alert('Submit');
+
+		const { id, title, content, forumId, date } = this.state;
+		const newPost = { id, title, content, forumId, date };
+		console.log(newPost);
+		this.context.createPost(newPost);
+		this.setState({
+			redirectToPost: true
+		});
 	};
 	makeCategorys = () => {
 		let i = 0;
@@ -61,16 +60,16 @@ export default class CreatePost extends Component {
 			categorys.push(
 				STORE.forum[i].map(item => {
 					if (item.sectionTitle) {
-						return;
+						return true;
 					} else {
 						return (
 							<div>
 								<input
 									type='radio'
 									name='categoryRadio'
-									value={item.title}
+									value={item.forumId}
 									className='categoryInput'
-									onClick={() => this.handleCatagory(item.title)}
+									onClick={() => this.handleCatagory(item.forumId)}
 								/>
 								<label htmlFor='categoryRadio'>{item.title}</label>
 							</div>
@@ -89,9 +88,9 @@ export default class CreatePost extends Component {
 			categorys.push(
 				STORE.forum[i].map(item => {
 					if (item.sectionTitle) {
-						return;
+						return true;
 					} else {
-						return <option value={item.title}>{item.title}</option>;
+						return <option value={item.forumId}>{item.title}</option>;
 					}
 				})
 			);
@@ -101,6 +100,20 @@ export default class CreatePost extends Component {
 	};
 
 	render() {
+		if (this.state.redirectToPost) {
+			const fourmId = this.state.forumId;
+			const postId = this.state.id;
+			const { id, title, content, forumId, date } = this.state;
+			const newPost = { id, title, content, forumId, date };
+			return (
+				<Redirect
+					to={{
+						pathname: `/messageBoard/${fourmId}/${postId}`,
+						state: { post: newPost }
+					}}
+				/>
+			);
+		}
 		const category = (
 			<section className='category-pop-up-container'>
 				<div className='categoryPopUp'>
@@ -124,7 +137,7 @@ export default class CreatePost extends Component {
 				<select
 					name='catagory'
 					id='post-catagory'
-					value={this.state.newPost.category}
+					value={this.state.forumId}
 					onChange={this.handleCatagoryPostForm}
 					required>
 					{this.makeSelectCategorys()}

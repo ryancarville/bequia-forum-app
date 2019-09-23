@@ -14,7 +14,7 @@ class App extends Component {
 				name: 'Test user',
 				lastLogin: '2019-05-23'
 			},
-			posts: STORE.posts,
+			posts: [],
 			events: STORE.events,
 			directory: STORE.directory,
 			jobs: STORE.jobs,
@@ -24,6 +24,16 @@ class App extends Component {
 	}
 	static contextType = ForumContext;
 
+	createPost = post => {
+		STORE.posts.push(post);
+	};
+	deletePost = postId => {
+		console.log('delete ran');
+		const newPosts = this.state.posts.filter(p => p.id !== postId);
+		this.setState({
+			posts: newPosts
+		});
+	};
 	handleSort = e => {
 		if (e.target.value === 'newest-posts') {
 			let sortedPosts = this.state.posts.sort((a, b) =>
@@ -155,12 +165,12 @@ class App extends Component {
 		}
 	};
 	componentDidMount() {
+		this.setState({
+			posts: STORE.posts
+		});
 		let sortedDir = this.state.directory.sort((a, b) =>
 			a.userLName < b.userLName ? -1 : 1
 		);
-		this.setState({
-			directory: sortedDir
-		});
 		this.setState({
 			directory: sortedDir
 		});
@@ -176,7 +186,9 @@ class App extends Component {
 			jobs: this.state.jobs,
 			rentals: this.state.rentals,
 			marketPlace: this.state.marketPlace,
-			sort: this.handleSort
+			sort: this.handleSort,
+			createPost: this.createPost,
+			deletePost: this.deletePost
 		};
 		return (
 			<ForumContext.Provider value={contextValue}>

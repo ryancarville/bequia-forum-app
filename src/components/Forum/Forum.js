@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import './Forum.css';
-import ForumContext from '../../ForumContext';
-import Sort from '../Sort/Sort';
 import CreatePostButton from '../CreatePostButton/CreatePostButton';
 import STORE from '../../STORE/store';
 
