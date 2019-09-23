@@ -12,6 +12,7 @@ import ForumSection from '../components/ForumSection/ForumSection';
 import PostPage from '../components/PostPage/PostPage';
 import CreatePost from '../components/CreatePost/CreatePost';
 import Events from '../components/Events/Events';
+import CreateEvent from '../components/CreateEvent/CreateEvent';
 import EventPage from '../components/EventPage/EventPage';
 import ForumContext from '../ForumContext';
 import Directory from '../components/Directory/Directory';
@@ -49,6 +50,7 @@ export default class Router extends Component {
 
 							<Route path='/createPost' component={CreatePost} exact />
 							<Route path='/events' component={Events} exact />
+							<Route path='/createEvent' component={CreateEvent} exact />
 							<Route path='/events/:eventId' component={EventPage} exact />
 							<Route path='/directory' component={Directory} exact />
 							<Route path='/jobs' component={Jobs} exact />

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import './PostPage.css';
 import ForumContext from '../../ForumContext';
-
+import TokenService from '../../services/TokenServices';
+import AddComment from '../AddComment/AddComment';
 class PostPage extends Component {
 	constructor(props) {
 		super(props);
@@ -27,15 +28,29 @@ class PostPage extends Component {
 		});
 	};
 	formatDate = imageDate => {
+		imageDate = '2019-9-1' || imageDate;
 		const date = new Date(imageDate);
+
 		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
 		return formatted_date;
+	};
+	handleComment = () => {
+		this.setState({
+			showAddComment: !this.state.showAddComment
+		});
+	};
+	handleCommentSubmit = e => {
+		e.preventDefault();
+	};
+	handleLike = e => {
+		this.setState({
+			p: { ...this.state.p, likes: this.state.p.likes + 1 }
+		});
 	};
 	componentWillMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
-		console.log(post);
 		this.setState({
 			p: post[0]
 		});
@@ -54,9 +69,28 @@ class PostPage extends Component {
 					<p>Posted On: {this.formatDate(p.date)}</p>
 					<p>Likes: {p.likes}</p>
 				</span>
-				<button type='button' onClick={this.showDeleteWindow}>
-					Delete
-				</button>
+				{TokenService.getAuthToken() ? (
+					<>
+						<button type='button' onClick={this.handleComment}>
+							Add Comment
+						</button>
+						<button type='button' onClick={this.handleLike}>
+							Like
+						</button>
+					</>
+				) : null}
+				{this.context.user.id === p.userId ? (
+					<button type='button' onClick={this.showDeleteWindow}>
+						Delete
+					</button>
+				) : null}
+				{this.state.showAddComment ? (
+					<AddComment
+						postId={this.state.p.id}
+						handleCommentSubmit={this.handleCommentSubmit}
+						closeAddComment={this.handleComment}
+					/>
+				) : null}
 			</>
 		);
 		const deleteWindow = (

@@ -11,7 +11,8 @@ const ForumContext = React.createContext({
 	marketPlace: [],
 	sort: () => {},
 	creatPost: () => {},
-	deletePost: () => {}
+	deletePost: () => {},
+	createEvent: () => {}
 });
 
 export default ForumContext;
