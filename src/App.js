@@ -25,6 +25,13 @@ class App extends Component {
 	createPost = post => {
 		STORE.posts.push(post);
 	};
+	updatePost = newPost => {
+		var currPosts = this.state.posts.filter(p => p.id !== newPost.id);
+		currPosts.push(newPost);
+		this.setState({
+			posts: currPosts
+		});
+	};
 	deletePost = postId => {
 		const newPosts = this.state.posts.filter(p => p.id !== postId);
 		this.setState({
@@ -206,6 +213,7 @@ class App extends Component {
 			directory: this.state.directory,
 			sort: this.handleSort,
 			createPost: this.createPost,
+			updatePost: this.updatePost,
 			deletePost: this.deletePost,
 			createEvent: this.createEvent,
 			deleteEvent: this.deleteEvent

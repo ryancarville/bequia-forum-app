@@ -9,6 +9,7 @@ const ForumContext = React.createContext({
 	directory: [],
 	sort: () => {},
 	creatPost: () => {},
+	updatePost: () => {},
 	deletePost: () => {},
 	addComment: () => {},
 	deleteComment: () => {},

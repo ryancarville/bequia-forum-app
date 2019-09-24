@@ -4,38 +4,50 @@ import './PostPage.css';
 import ForumContext from '../../ForumContext';
 import TokenService from '../../services/TokenServices';
 import AddComment from '../AddComment/AddComment';
+import EditPost from '../EditPost/EditPost';
 import Comments from '../Comments/Comments';
+
 class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			p: {},
+			title: '',
+			content: '',
 			didLike: false,
 			redirectToForum: false
 		};
 	}
 	static contextType = ForumContext;
+	userEditButtons = () => {
+		const { p } = this.state;
+		if (TokenService.getAuthToken()) {
+			if (this.context.user.id === p.userId) {
+				return (
+					<>
+						<button tupe='button' onClick={this.showPostEdit}>
+							Edit Post
+						</button>
+						<button type='button' onClick={this.showDeleteWindow}>
+							Delete
+						</button>
+					</>
+				);
+			}
+		}
+		return null;
+	};
 	showDeleteWindow = () => {
 		this.setState({
 			showDeleteWindow: !this.state.showDeleteWindow
 		});
 	};
-
-	handleSubmit = e => {
-		e.preventDefault();
-		const { p } = this.state;
-		this.context.deletePost(p.id);
+	showPostEdit = () => {
 		this.setState({
-			redirectToForum: true
+			showPostEdit: !this.state.showPostEdit
 		});
 	};
-	formatDate = imageDate => {
-		imageDate = '2019-9-1' || imageDate;
-		const date = new Date(imageDate);
 
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
 	handleComment = () => {
 		this.setState({
 			showAddComment: !this.state.showAddComment
@@ -56,6 +68,21 @@ class PostPage extends Component {
 		}
 	};
 
+	handleSubmit = e => {
+		e.preventDefault();
+		const { p } = this.state;
+		this.context.deletePost(p.id);
+		this.setState({
+			redirectToForum: true
+		});
+	};
+	formatDate = imageDate => {
+		imageDate = '2019-9-1' || imageDate;
+		const date = new Date(imageDate);
+
+		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
+		return formatted_date;
+	};
 	componentWillMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
@@ -64,19 +91,6 @@ class PostPage extends Component {
 			p: post[0]
 		});
 	}
-	deleteButton = () => {
-		const { p } = this.state;
-		if (TokenService.getAuthToken()) {
-			if (this.context.user.id === p.userId) {
-				return (
-					<button type='button' onClick={this.showDeleteWindow}>
-						Delete
-					</button>
-				);
-			}
-		}
-		return null;
-	};
 	render() {
 		if (this.state.redirectToForum) {
 			return <Redirect to={`/messageBoard`} />;
@@ -115,7 +129,7 @@ class PostPage extends Component {
 						</button>
 					</>
 				) : null}
-				{this.deleteButton()}
+				{this.userEditButtons()}
 				{this.state.showAddComment ? (
 					<AddComment
 						forumId={this.props.match.params.forumId}
@@ -140,10 +154,16 @@ class PostPage extends Component {
 				</button>
 			</form>
 		);
+
 		return (
 			<section className='post-container'>
 				<div className='post-content'>
-					{!this.state.showDeleteWindow ? post : deleteWindow}
+					{!this.state.showDeleteWindow ? null : deleteWindow}
+					{!this.state.showPostEdit ? (
+						post
+					) : (
+						<EditPost post={this.state.p} closeEdit={this.showPostEdit} />
+					)}
 				</div>
 			</section>
 		);
