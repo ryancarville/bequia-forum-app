@@ -1,79 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TokenServices from '../../services/TokenServices';
-import SearchInput from '../SearchInput/SearchInput';
+
 import './Nav.css';
 import ForumContext from '../../ForumContext';
-
+import MobileSiteNav from './mobileSiteNav';
+import desktopSiteNav from './desktopSiteNav';
 class Nav extends Component {
 	render() {
 		const loggedIn = TokenServices.getAuthToken();
-		const siteNav = (
-			<div className='siteNav'>
-				<ul>
-					<li>
-						<Link to='/messageBoard'>
-							<p>Forum</p>
-						</Link>
-					</li>
-					<li>
-						<Link to='/new-post'>
-							<p>New Posts</p>
-						</Link>
-					</li>
-					<li>
-						<Link to='/events'>
-							<p>Events</p>
-						</Link>
-					</li>
-					<li>
-						<Link to='/directory'>
-							<p>Directory</p>
-						</Link>
-					</li>
-					<li>
-						<Link
-							to={{
-								pathname: '/messageBoard/28',
-								state: {
-									forum: {
-										title: 'Jobs'
-									}
-								}
-							}}>
-							<p>Jobs</p>
-						</Link>
-					</li>
-					<li>
-						<Link
-							to={{
-								pathname: '/messageBoard/29',
-								state: {
-									forum: {
-										title: 'Rentals'
-									}
-								}
-							}}>
-							<p>Rentals</p>
-						</Link>
-					</li>
-					<li>
-						<Link
-							to={{
-								pathname: '/messageBoard/27',
-								state: {
-									forum: {
-										title: 'Market Place'
-									}
-								}
-							}}>
-							<p>Market Place</p>
-						</Link>
-					</li>
-					<SearchInput />
-				</ul>
-			</div>
-		);
+
 		const publicNav = (
 			<>
 				<div className='navBar'>
@@ -101,7 +37,8 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-				{siteNav}
+				{desktopSiteNav}
+				<MobileSiteNav />
 			</>
 		);
 		const privateNav = (
@@ -141,7 +78,8 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-				{siteNav}
+				{desktopSiteNav}
+				<MobileSiteNav />
 			</>
 		);
 		const navBar = loggedIn ? privateNav : publicNav;

@@ -1,20 +1,20 @@
 .forum-container {
 	width: 100%;
+	display: block;
 }
 .forum-container h3 {
-	margin: 0;
-	margin-left: 5%;
-	padding-top: 10px;
+	text-align: center;
 }
 
 .forum-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 25px;
+	width: 90%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 .forum-content ul {
 	list-style: none;
+	padding: 0px;
 }
 .forum-content ul h4 {
 	background-color: mediumblue;
@@ -22,16 +22,35 @@
 	height: 50px;
 	margin: 0;
 	padding: 15px;
+	text-align: center;
 }
 .forum-content li {
 	background-color: lightgray;
 	border: 1px solid black;
 	padding: 10px;
 	margin: 0px;
-	height: 60px;
-	font-size: 14px;
-	line-height: 10px;
+	height: auto;
+	font-size: 18px;
+	line-height: auto;
 }
-.post {
-	border-bottom: 2px solid black;
+.forum-content li a {
+	text-align: center;
+	text-decoration: none;
+}
+
+@media only screen and (min-width: 700px) {
+	.forum-container {
+		width: 100%;
+	}
+	.forum-container h3 {
+		margin: 0;
+		font-size: 25px;
+		margin-left: 5%;
+		padding-top: 15px;
+		text-align: left;
+	}
+
+	.forum-content li {
+		font-size: 15px;
+	}
 }

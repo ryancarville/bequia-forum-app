@@ -1,37 +1,38 @@
+/*top nav bar*/
 .navBar {
 	width: 100%;
 	background-color: rgb(4, 0, 255);
 	text-transform: uppercase;
 }
 .navBar h1 {
+	font-size: 20px;
 	color: white;
 }
 .forumLogo img {
 	width: 100px;
-	padding: 0;
+	padding: 10px;
+	cursor: pointer;
 }
 .rightNavInfo {
 	font-size: 15px;
-	line-height: 18px;
+	line-height: 15px;
 	text-align: right;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
 }
 .rightNavInfo p {
-	margin: 5px;
+	margin: 10px;
 }
 .userInfo {
 	width: 200px;
 	color: white;
+	line-height: 18px;
 }
 .navBar ul {
-	padding: 10px;
+	padding: 0px;
+	margin: 0px;
 	list-style: none;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	align-items: center;
-	margin: 0px;
 }
 .navBar ul li a {
 	text-decoration: none;
@@ -40,19 +41,144 @@
 .navBar ul li p:hover {
 	color: green;
 }
-.siteNav ul {
+/*site mobile nav*/
+.mobile-site-hamburger-closed {
+	font-size: 10px;
+	display: block;
+	animation: fadeIn 2s linear;
+	text-align: center;
+	width: 100%;
+	height: 45px;
+	background: yellow;
+	margin: 0;
+	padding: 5px;
+}
+.mobile-site-hamburger-open {
+	display: block;
+	animation: fadeIn 2s linear;
+	text-align: center;
+	width: 100%;
+	height: 45px;
+	background: yellow;
+	margin: 0;
+	padding: 5px;
+}
+.mobile-site-hamburger-open h3 {
+	margin: 0;
+	font-size: 25px;
+}
+.mobile-site-nav-closed {
+	display: none;
+}
+.mobile-site-nav-open {
+	display: block;
+	animation: fadeIn 2s linear;
+}
+.mobile-site-nav-open ul {
+	width: 100%;
 	list-style: none;
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: space-evenly;
 	align-items: center;
 	background-color: rgb(221, 255, 0);
 	padding: 5px;
 	margin: 0px;
 }
-.siteNav ul a {
+.mobile-site-nav-open ul a {
+	font-size: 25px;
 	text-decoration: none;
 	color: rgb(0, 8, 255);
 }
-.siteNav ul li p:hover {
+.mobile-site-nav-open ul li p:hover {
 	color: green;
+}
+.siteNav {
+	display: none;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.mobile-nav-container {
+		display: none;
+	}
+	.siteNav {
+		display: block;
+	}
+	.navBar {
+		width: 100%;
+		background-color: rgb(4, 0, 255);
+		text-transform: uppercase;
+	}
+	.navBar h1 {
+		color: white;
+	}
+	.forumLogo img {
+		width: 100px;
+		padding: 0;
+	}
+	.rightNavInfo {
+		font-size: 15px;
+		line-height: 18px;
+		text-align: right;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+	.rightNavInfo p {
+		margin: 5px;
+	}
+	.userInfo {
+		width: 200px;
+		color: white;
+	}
+	.navBar ul {
+		padding: 10px;
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0px;
+	}
+	.navBar ul li a {
+		text-decoration: none;
+		color: white;
+	}
+	.navBar ul li p:hover {
+		color: green;
+	}
+	.siteNav ul {
+		list-style: none;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background-color: rgb(221, 255, 0);
+		padding: 5px;
+		margin: 0px;
+	}
+	.siteNav ul a {
+		text-decoration: none;
+		color: rgb(0, 8, 255);
+	}
+	.siteNav ul li p:hover {
+		color: green;
+	}
 }

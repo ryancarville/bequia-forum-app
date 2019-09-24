@@ -1,16 +1,27 @@
 .home-page-container {
 	width: 100%;
-	margin: 20px;
 }
 .home-page-content {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
 }
-#home-page-newest-post {
-	width: 100%;
-}
-#home-page-upcoming-events {
-	float: right;
-	width: 100%;
+
+@media only screen and (min-width: 700px) {
+	.home-page-content {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: flex-start;
+	}
+	#home-page-newest-post {
+		width: 100%;
+		margin-left: 25px;
+	}
+	#home-page-upcoming-events {
+		width: 100%;
+	}
 }
