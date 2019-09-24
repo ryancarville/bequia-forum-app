@@ -1,12 +1,46 @@
 const store = {
+	comments: [
+		{
+			id: 9283023,
+			postId: 123078923,
+			userId: 1,
+			userName: 'Sam Smith',
+			date: '2019-09-23',
+			content: 'This is a amazing post!'
+		},
+		{
+			id: 678567856,
+			postId: 23908723490,
+			userId: 2,
+			userName: 'Anna Duncan',
+			date: '2019-08-13',
+			content: 'I wish I could post contnet as good as you'
+		},
+		{
+			id: 343478,
+			postId: 20893723,
+			userId: 1,
+			userName: 'Sam Smith',
+			date: '2019-09-20',
+			content: 'Really cool photos!'
+		},
+		{
+			id: 9064534,
+			postId: 20893723,
+			userId: 2,
+			userName: 'Anna Duncan',
+			date: '2019-08-13',
+			content: 'I agree.  Beautiful!'
+		}
+	],
 	posts: [
 		{
 			id: 23908723490,
 			forumId: 20,
 			userId: 1,
-			date: 'Mon Sep 23 2019 18:37:25 GMT+0200 (Central European Summer Time)',
+			date: '2019-09-24',
 			title: 'I am a new post!',
-			author: 'Test User',
+			author: 'Sam Smith',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 9
@@ -15,9 +49,9 @@ const store = {
 			id: 123078923,
 			forumId: 1,
 			userId: 1,
-			date: 'Mon Sep 23 2019 18:37:25 GMT+0200 (Central European Summer Time)',
+			date: '2019-09-24',
 			title: 'I am another new post!',
-			author: 'Test User4',
+			author: 'Sam Smith',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 9
@@ -28,7 +62,7 @@ const store = {
 			userId: 10982,
 			date: '2019-08-12',
 			title: 'Some cool underwater photos',
-			author: 'Test User6',
+			author: 'Jessica Dun',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 6
@@ -39,7 +73,7 @@ const store = {
 			userId: 10982,
 			date: '2019-06-15',
 			title: 'Easter Reggata',
-			author: 'Test User8',
+			author: 'Rachel Mathis',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 7
@@ -52,6 +86,7 @@ const store = {
 			date: '2019-06-15',
 			title: 'Boat for sale',
 			content: '38 foot Catamaran.  1 owner.  Blue with white racing stripes',
+			likes: 31,
 			price: '$22,039',
 			catagory: 'marine',
 			contact: {
@@ -68,6 +103,7 @@ const store = {
 			date: '2019-06-15',
 			title: 'Swimsuit',
 			content: 'ladies binkis',
+			likes: 9,
 			price: '$22',
 			catagory: 'apparel',
 			contact: {
@@ -85,6 +121,7 @@ const store = {
 			title: 'Looking for a great bartender',
 			content:
 				'At the Fig Tree we are all about a good time and we want you to join that vibe! If you have no experierence or have served up on the high seas you are welc oem to apply.  Hours are from 6pm - 12am',
+			likes: 4,
 			position: 'bartender',
 			location: 'Fig Tree',
 			catagory: 'service',
@@ -103,6 +140,7 @@ const store = {
 			title: 'Need a good Handy Man',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
+			likes: 9,
 			position: 'handy man',
 			location: 'The Sugar Reef',
 			catagory: 'service',
@@ -121,6 +159,7 @@ const store = {
 			title: 'Ey Ey Capitian!',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna',
+			likes: 4,
 			position: 'Second Mate',
 			location: 'Freindship Rose',
 			catagory: 'marine',
@@ -138,6 +177,7 @@ const store = {
 			title: 'Beautiful Ocean views Home',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem.',
+			likes: 2,
 			contact: {
 				name: 'Susan Lutz',
 				email: 'sLutz@gmail.com',
@@ -153,6 +193,7 @@ const store = {
 			userId: 10982,
 			title: 'Power boat',
 			content: 'Lorem ipsum dolor sit amet, tempor incididunt ut Lorem.',
+			likes: 0,
 			contact: {
 				name: 'Ron James',
 				email: 'capitianRon@hotmail.com',
@@ -165,32 +206,36 @@ const store = {
 	events: [
 		{
 			eventId: 29032,
+			userId: 1,
 			title: 'Fish Fry',
 			location: 'Kegans',
-			date: '2019-9-26',
+			date: '2019-09-26',
 			time: '20:00 - until late',
 			description:
 				'Come join us on the full moon by the ocean for freash fish and cold beers.  Kids under 5 free!'
 		},
 		{
 			eventId: 2921232,
+			userId: 1,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
-			date: '2019-9-27',
+			date: '2019-09-27',
 			time: '16:00 - 00:00',
 			description: '1/2 price Hairouns all night!'
 		},
 		{
 			eventId: 28032,
+			userId: 2,
 			title: 'Almond Tree Sing-a-Long',
 			location: 'Under The Almond Tree',
-			date: '2019-9-31',
+			date: '2019-09-30',
 			time: '16:00 - until late',
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna'
 		},
 		{
 			eventId: 292122902,
+			userId: 1,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
 			date: '2019-10-1',
@@ -199,6 +244,7 @@ const store = {
 		},
 		{
 			eventId: 22321232,
+			userId: 2,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
 			date: '2019-10-12',

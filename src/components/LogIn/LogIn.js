@@ -13,6 +13,7 @@ export default class LogIn extends Component {
 			error: null
 		};
 	}
+
 	handleEmail = e => {
 		this.setState(
 			{
@@ -33,6 +34,12 @@ export default class LogIn extends Component {
 			success: true
 		});
 	};
+	setTestUser = () => {
+		this.setState({
+			email: 'test@user.com',
+			password: 'Test User'
+		});
+	};
 	render() {
 		if (this.state.success) {
 			return <Redirect to='/homePage' />;
@@ -43,11 +50,15 @@ export default class LogIn extends Component {
 					<h3>Sign In</h3>
 					{this.state.error}
 					<form onSubmit={this.handleSubmit}>
+						<button type='button' onClick={this.setTestUser}>
+							Login as Test User
+						</button>
 						<label htmlFor='email'>Email Address</label>
 						<input
 							type='email'
 							name='email'
 							id='logIn-email'
+							value={this.state.email}
 							onChange={this.handleEmail}
 							required
 						/>
@@ -56,6 +67,7 @@ export default class LogIn extends Component {
 							type='password'
 							name='pass'
 							id='logIn-pass'
+							value={this.state.password}
 							onChange={this.handlePass}
 							required
 						/>

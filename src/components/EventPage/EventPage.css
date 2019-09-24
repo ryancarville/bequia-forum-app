@@ -15,6 +15,27 @@
 .event-page-content p {
 	font-size: 20px;
 }
+.event-page-content button {
+	cursor: pointer;
+	width: 150px;
+	height: 35px;
+	margin: 10px;
+	font-size: 20px;
+}
 #event-description {
 	font-size: 25px;
+}
+.delete-event-pop-up {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+}
+.delete-event-pop-up button {
+	cursor: pointer;
+	width: 150px;
+	height: 35px;
+	margin: 10px;
+	font-size: 20px;
 }

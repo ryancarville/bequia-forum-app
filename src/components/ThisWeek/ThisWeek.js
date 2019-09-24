@@ -5,9 +5,23 @@ import ForumContext from '../../ForumContext';
 
 export default function ThisWeek() {
 	const context = useContext(ForumContext);
+	const monthNums = [
+		'01',
+		'02',
+		'03',
+		'04',
+		'05',
+		'06',
+		'07',
+		'08',
+		'09',
+		'10',
+		'11',
+		'12'
+	];
 	const today = new Date();
 	let dayInt = today.getDate();
-	let month = today.getMonth();
+	let month = monthNums[today.getMonth()];
 	let year = today.getFullYear();
 
 	function thisWeeksEvents() {
@@ -22,7 +36,7 @@ export default function ThisWeek() {
 			if (
 				eventDay >= dayInt.toString() &&
 				eventDay <= (dayInt + 6).toString() &&
-				eventMonth === (month + 1).toString() &&
+				eventMonth === month &&
 				eventYear === year.toString()
 			) {
 				events.push(e);

@@ -16,12 +16,10 @@ import CreateEvent from '../components/CreateEvent/CreateEvent';
 import EventPage from '../components/EventPage/EventPage';
 import ForumContext from '../ForumContext';
 import Directory from '../components/Directory/Directory';
-import Jobs from '../components/Jobs/Jobs';
-import JobPage from '../components/JobPage/JobPage';
+
 import Rentals from '../components/Rentals/Rentals';
 import RentalPage from '../components/RentalPage/RentalPage';
-import MarketPlace from '../components/MarketPlace/MarketPlace';
-import MarketListingPage from '../components/MarketListingPage/MarketListingPage';
+
 import NoPath from '../components/404/404';
 
 export default class Router extends Component {
@@ -53,16 +51,10 @@ export default class Router extends Component {
 							<Route path='/createEvent' component={CreateEvent} exact />
 							<Route path='/events/:eventId' component={EventPage} exact />
 							<Route path='/directory' component={Directory} exact />
-							<Route path='/jobs' component={Jobs} exact />
-							<Route path='/jobs/:jobId' component={JobPage} exact />
+
 							<Route path='/rentals' component={Rentals} exact />
 							<Route path='/rentals/:rentalId' component={RentalPage} exact />
-							<Route path='/marketplace' component={MarketPlace} exact />
-							<Route
-								path='/marketplace/:saleId'
-								component={MarketListingPage}
-								exact
-							/>
+
 							<PrivateRoute path='/homePage' component={HomePage} exact />
 							<Route component={NoPath} />
 						</Switch>

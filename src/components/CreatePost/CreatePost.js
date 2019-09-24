@@ -70,6 +70,7 @@ export default class CreatePost extends Component {
 									value={item.forumId}
 									className='categoryInput'
 									onClick={() => this.handleCatagory(item.forumId)}
+									required
 								/>
 								<label htmlFor='categoryRadio'>{item.title}</label>
 							</div>
@@ -130,7 +131,7 @@ export default class CreatePost extends Component {
 					name='title'
 					id='post-title'
 					onChange={this.handleTitle}
-					autofocus
+					autoFocus
 					required
 				/>
 				<label htmlFor='catagory'>Catagory</label>

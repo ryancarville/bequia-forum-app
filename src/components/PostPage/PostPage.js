@@ -4,11 +4,13 @@ import './PostPage.css';
 import ForumContext from '../../ForumContext';
 import TokenService from '../../services/TokenServices';
 import AddComment from '../AddComment/AddComment';
+import Comments from '../Comments/Comments';
 class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			p: {},
+			didLike: false,
 			redirectToForum: false
 		};
 	}
@@ -39,14 +41,21 @@ class PostPage extends Component {
 			showAddComment: !this.state.showAddComment
 		});
 	};
-	handleCommentSubmit = e => {
-		e.preventDefault();
-	};
+
 	handleLike = e => {
-		this.setState({
-			p: { ...this.state.p, likes: this.state.p.likes + 1 }
-		});
+		if (this.state.didLike) {
+			this.setState({
+				didLike: !this.state.didLike,
+				p: { ...this.state.p, likes: this.state.p.likes - 1 }
+			});
+		} else {
+			this.setState({
+				didLike: !this.state.didLike,
+				p: { ...this.state.p, likes: this.state.p.likes + 1 }
+			});
+		}
 	};
+
 	componentWillMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
@@ -64,11 +73,25 @@ class PostPage extends Component {
 			<>
 				<h3>{p.title}</h3>
 				<p>{p.content}</p>
+				{p.contact ? (
+					<>
+						<h4>Contact Information</h4>
+						<p>
+							Email:{' '}
+							<a href={`mailto:${p.contact.email}`}> {p.contact.email}</a>
+							<br />
+							Phone: {p.contact.phone}
+							<br />
+							Website: {p.contact.website}
+						</p>
+					</>
+				) : null}
 				<span className='postInfo'>
-					<p>Posted By: {p.author}</p>
+					<p>Posted By: {p.author || p.contact.name}</p>
 					<p>Posted On: {this.formatDate(p.date)}</p>
 					<p>Likes: {p.likes}</p>
 				</span>
+
 				{TokenService.getAuthToken() ? (
 					<>
 						<button type='button' onClick={this.handleComment}>
@@ -86,11 +109,15 @@ class PostPage extends Component {
 				) : null}
 				{this.state.showAddComment ? (
 					<AddComment
-						postId={this.state.p.id}
-						handleCommentSubmit={this.handleCommentSubmit}
+						forumId={this.props.match.params.forumId}
+						postId={this.props.match.params.postId}
 						closeAddComment={this.handleComment}
 					/>
 				) : null}
+				<Comments
+					forumId={this.props.match.params.forumId}
+					postId={this.props.match.params.postId}
+				/>
 			</>
 		);
 		const deleteWindow = (

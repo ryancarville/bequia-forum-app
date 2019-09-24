@@ -40,7 +40,7 @@ class ForumSection extends Component {
 						{p.content}
 					</Truncate>
 					<span className='postInfo'>
-						<p>Posted By: {p.author}</p>
+						<p>Posted By: {p.author || p.contact.name}</p>
 						<p>Posted On: {this.formatDate(p.date)}</p>
 						<p>Likes: {p.likes}</p>
 					</span>

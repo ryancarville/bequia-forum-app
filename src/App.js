@@ -11,16 +11,17 @@ class App extends Component {
 		this.state = {
 			user: {
 				id: 1,
-				name: 'Test user',
+				name: 'Sam Smith',
 				lastLogin: '2019-05-23'
 			},
 			posts: [],
+			comments: [],
 			events: [],
 			directory: []
 		};
 	}
 	static contextType = ForumContext;
-	
+
 	createPost = post => {
 		STORE.posts.push(post);
 	};
@@ -31,12 +32,22 @@ class App extends Component {
 		});
 	};
 	createEvent = newEvent => {
-		console.log(newEvent);
 		STORE.events.push(newEvent);
+	};
+	deleteEvent = eventId => {
+		const newEvents = this.state.events.filter(e => e.eventId !== eventId);
 		this.setState({
-			events: [newEvent]
+			events: newEvents
 		});
-		console.log(STORE.events);
+	};
+	addComment = newComment => {
+		STORE.comments.push(newComment);
+	};
+	deleteComment = commentId => {
+		const newComments = this.state.comments.filter(c => c.id !== commentId);
+		this.setState({
+			comments: newComments
+		});
 	};
 	handleSort = e => {
 		if (e.target.value === 'newest-posts') {
@@ -171,15 +182,16 @@ class App extends Component {
 	componentDidMount() {
 		this.setState({
 			posts: STORE.posts,
+			comments: STORE.comments,
 			events: STORE.events,
 			directory: STORE.directory
 		});
-		let sortedDir = this.state.directory.sort((a, b) =>
-			a.userLName < b.userLName ? -1 : 1
-		);
-		this.setState({
-			directory: sortedDir
-		});
+		// let sortedDir = this.state.directory.sort((a, b) =>
+		// 	a.userLName < b.userLName ? -1 : 1
+		// );
+		// this.setState({
+		// 	directory: sortedDir
+		// });
 	}
 
 	render() {
@@ -187,15 +199,16 @@ class App extends Component {
 			state: this.state,
 			user: this.state.user,
 			posts: this.state.posts,
+			comments: this.state.comments,
+			addComment: this.addComment,
+			deleteComment: this.deleteComment,
 			events: this.state.events,
 			directory: this.state.directory,
-			jobs: this.state.jobs,
-			rentals: this.state.rentals,
-			marketPlace: this.state.marketPlace,
 			sort: this.handleSort,
 			createPost: this.createPost,
 			deletePost: this.deletePost,
-			createEvent: this.createEvent
+			createEvent: this.createEvent,
+			deleteEvent: this.deleteEvent
 		};
 		return (
 			<ForumContext.Provider value={contextValue}>
