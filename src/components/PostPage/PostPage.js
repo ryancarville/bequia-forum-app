@@ -64,6 +64,19 @@ class PostPage extends Component {
 			p: post[0]
 		});
 	}
+	deleteButton = () => {
+		const { p } = this.state;
+		if (TokenService.getAuthToken()) {
+			if (this.context.user.id === p.userId) {
+				return (
+					<button type='button' onClick={this.showDeleteWindow}>
+						Delete
+					</button>
+				);
+			}
+		}
+		return null;
+	};
 	render() {
 		if (this.state.redirectToForum) {
 			return <Redirect to={`/messageBoard`} />;
@@ -102,11 +115,7 @@ class PostPage extends Component {
 						</button>
 					</>
 				) : null}
-				{this.context.user.id === p.userId ? (
-					<button type='button' onClick={this.showDeleteWindow}>
-						Delete
-					</button>
-				) : null}
+				{this.deleteButton()}
 				{this.state.showAddComment ? (
 					<AddComment
 						forumId={this.props.match.params.forumId}
