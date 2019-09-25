@@ -1,0 +1,23 @@
+#create-event-button {
+	width: 150px;
+	text-align: center;
+	border: 1px solid black;
+	margin-bottom: 25px;
+	padding: 10px;
+}
+#create-event-button a {
+	text-decoration: none;
+}
+@media only screen and (min-width: 700px) {
+	#create-event-button {
+		width: 150px;
+		text-align: center;
+		float: right;
+		margin-right: 40px;
+		margin-top: -55px;
+		border: 1px solid black;
+	}
+	#create-event-button a {
+		text-decoration: none;
+	}
+}

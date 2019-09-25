@@ -1,0 +1,40 @@
+.comments-container {
+	width: 100%;
+}
+.comments-content {
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+	border: 1px solid black;
+	padding: 10px;
+}
+.comments-content button {
+	float: right;
+	cursor: pointer;
+	width: 30%;
+	height: 25px;
+	margin-top: -25px;
+	font-size: 14px;
+	border: 1px solid black;
+}
+@media only screen and (min-width: 700px) {
+	.comments-container {
+		width: 100%;
+	}
+	.comments-content {
+		width: 100%;
+		height: auto;
+		margin-top: 10px;
+		border: 1px solid black;
+		padding: 10px;
+	}
+	.comments-content button {
+		float: right;
+		cursor: pointer;
+		width: 10%;
+		height: 25px;
+		margin-top: -25px;
+		font-size: 14px;
+		border: 1px solid black;
+	}
+}

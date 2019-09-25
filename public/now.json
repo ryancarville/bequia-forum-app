@@ -1,0 +1,15 @@
+{
+	"version": 2,
+	"alias": "ryan-carvilles-bequia-forum",
+	"name": "bequia-forum",
+	"routes": [
+		{
+			"src": "^/static/(.*)",
+			"dest": "/static/$1"
+		},
+		{
+			"src": ".*",
+			"dest": "/index.html"
+		}
+	]
+}
