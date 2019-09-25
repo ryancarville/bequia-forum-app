@@ -1,15 +1,40 @@
-.home-page-container {
+.mobile-home-page-container h3 {
 	width: 100%;
+	height: 45px;
+	color: white;
+	padding: 10px;
+	border: 1px solid black;
+	background-color: blue;
+	text-align: center;
 }
-.home-page-content {
+.mobile-home-page-events-closed {
+	display: none;
+}
+.mobile-home-page-events-open {
 	width: 100%;
 	display: flex;
 	flex-direction: column-reverse;
 	justify-content: center;
 	align-items: center;
 }
+.mobile-home-page-new-posts-closed {
+	display: none;
+}
+.mobile-home-page-new-posts-open {
+	width: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+}
+.home-page-container {
+	display: none;
+}
 
 @media only screen and (min-width: 700px) {
+	.mobile-home-page-container {
+		display: none;
+	}
 	.home-page-content {
 		width: 100%;
 		display: flex;

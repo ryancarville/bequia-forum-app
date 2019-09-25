@@ -9,6 +9,7 @@ class Events extends Component {
 	render() {
 		return (
 			<div className='events-container'>
+				<h2>Events Calendar</h2>
 				{createEventButton}
 				<div className='events-content'>
 					<ForumContext.Consumer>

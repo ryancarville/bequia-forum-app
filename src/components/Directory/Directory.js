@@ -5,7 +5,6 @@ import Sort from '../Sort/Sort';
 
 export default class Directory extends Component {
 	directory = dir => {
-		console.log(dir);
 		const listings = dir.map(d => {
 			const userFullName = d.userFName + ' ' + d.userLName;
 			return (

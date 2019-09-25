@@ -1,5 +1,30 @@
+.events-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 .events-content {
-	width: 90%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+}
+.events-calendar {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+@media only screen and (min-width: 700px) {
+	.events-container {
+		display: block;
+	}
+	.events-content {
+		width: 95%;
+	}
+	.events-container h2 {
+		margin-left: 35px;
+	}
 }

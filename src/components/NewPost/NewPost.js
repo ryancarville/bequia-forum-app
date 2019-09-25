@@ -58,10 +58,7 @@ export default function NewPost() {
 
 	return (
 		<div className='newPost-container'>
-			<div className='newPost-content'>
-				<h3>Newest Posts</h3>
-				{recentPosts()}
-			</div>
+			<div className='newPost-content'>{recentPosts()}</div>
 		</div>
 	);
 }

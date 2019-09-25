@@ -73,10 +73,7 @@ export default function ThisWeek() {
 
 	return (
 		<div className='thisWeek-container'>
-			<div className='thisWeek-content'>
-				<h3>Upcoming Events</h3>
-				{thisWeeksEvents()}
-			</div>
+			<div className='thisWeek-content'>{thisWeeksEvents()}</div>
 		</div>
 	);
 }

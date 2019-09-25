@@ -58,9 +58,8 @@ class ForumSection extends Component {
 	render() {
 		return (
 			<div className='forum-section-container'>
-				<span>{CreatePostButton}</span>
 				<h3>{this.state.forumTitle}</h3>
-
+				<span>{CreatePostButton}</span>
 				<div className='forum-section-content'>
 					<ul>{this.getPosts()}</ul>
 				</div>

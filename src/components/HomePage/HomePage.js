@@ -3,12 +3,15 @@ import ForumContext from '../../ForumContext';
 import './HomePage.css';
 import NewPost from '../NewPost/NewPost';
 import ThisWeek from '../ThisWeek/ThisWeek';
+import { throwStatement } from '@babel/types';
 
 export default class HomePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: null
+			error: null,
+			showEvents: false,
+			showPosts: false
 		};
 	}
 	dateFormat = date => {
@@ -16,22 +19,59 @@ export default class HomePage extends Component {
 		const formatted_date = new Intl.DateTimeFormat('en-US').format(newDate);
 		return formatted_date;
 	};
+	showHomePageEvents = () => {
+		console.log('click');
+		this.setState({
+			showEvents: !this.state.showEvents
+		});
+	};
+	showNewPosts = () => {
+		this.setState({
+			showPosts: !this.state.showPosts
+		});
+	};
 	render() {
 		return (
-			<ForumContext.Consumer>
-				{context => (
-					<div className='home-page-container'>
-						<div className='home-page-content'>
-							<section id='home-page-newest-post'>
-								<NewPost />
-							</section>
-							<section id='home-page-upcoming-events'>
-								<ThisWeek />
-							</section>
+			<>
+				<section className='mobile-home-page-container'>
+					<div className='mobile-home-page-event-content'>
+						<h3 onClick={this.showHomePageEvents}>
+							{this.state.showEvents ? 'X' : 'Upcoming Events'}
+						</h3>
+						<div
+							className={`${
+								this.state.showEvents
+									? 'mobile-home-page-events-open'
+									: 'mobile-home-page-events-closed'
+							}`}>
+							<ThisWeek />
+						</div>
+						<div className='mobile-home-page-new-post-content'></div>
+
+						<h3 onClick={this.showNewPosts}>
+							{this.state.showPosts ? 'X' : 'New Posts'}
+						</h3>
+						<div
+							className={`${
+								this.state.showPosts
+									? 'mobile-home-page-new-posts-open'
+									: 'mobile-home-page-new-posts-closed'
+							}`}>
+							<NewPost />
 						</div>
 					</div>
-				)}
-			</ForumContext.Consumer>
+				</section>
+				<div className='home-page-container'>
+					<div className='home-page-content'>
+						<section id='home-page-newest-post'>
+							<NewPost />
+						</section>
+						<section id='home-page-upcoming-events'>
+							<ThisWeek />
+						</section>
+					</div>
+				</div>
+			</>
 		);
 	}
 }

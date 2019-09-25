@@ -43,8 +43,8 @@ export default class Forum extends Component {
 	render() {
 		return (
 			<div className='forum-container'>
-				<span>{CreatePostButton}</span>
 				<h3>Fourm</h3>
+				<span>{CreatePostButton}</span>
 				<div className='forum-content'>
 					<ul>{this.makeForum()}</ul>
 				</div>

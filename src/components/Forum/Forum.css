@@ -1,6 +1,10 @@
 .forum-container {
 	width: 100%;
-	display: block;
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .forum-container h3 {
 	text-align: center;
@@ -40,17 +44,31 @@
 
 @media only screen and (min-width: 700px) {
 	.forum-container {
-		width: 100%;
+		font-size: 18px;
+		display: inline-block;
 	}
 	.forum-container h3 {
-		margin: 0;
-		font-size: 25px;
-		margin-left: 5%;
-		padding-top: 15px;
-		text-align: left;
+		margin-left: 70px;
+		float: left;
 	}
-
+	.forum-content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 25px;
+	}
+	.forum-content ul {
+		list-style: none;
+	}
 	.forum-content li {
-		font-size: 15px;
+		background-color: lightgray;
+		border: 1px solid black;
+		padding: 10px;
+		padding-bottom: 0px;
+
+		height: auto;
+		font-size: 14px;
+		line-height: 1em;
 	}
 }

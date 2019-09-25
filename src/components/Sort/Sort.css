@@ -1,8 +1,11 @@
 .sortForm {
-    float: right;
-    position: relative;
-    margin:15px;
+	float: right;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	padding: 10px;
 }
 .sortForm select {
-    width: 100px;
+	width: 100px;
+	border: 1px solid black;
 }

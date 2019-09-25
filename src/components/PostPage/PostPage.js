@@ -24,14 +24,14 @@ class PostPage extends Component {
 		if (TokenService.getAuthToken()) {
 			if (this.context.user.id === p.userId) {
 				return (
-					<>
+					<div className='edit-button-container'>
 						<button tupe='button' onClick={this.showPostEdit}>
 							Edit Post
 						</button>
 						<button type='button' onClick={this.showDeleteWindow}>
 							Delete
 						</button>
-					</>
+					</div>
 				);
 			}
 		}
@@ -118,18 +118,18 @@ class PostPage extends Component {
 					<p>Posted On: {this.formatDate(p.date)}</p>
 					<p>Likes: {p.likes}</p>
 				</span>
-
+				{this.userEditButtons()}
 				{TokenService.getAuthToken() ? (
-					<>
+					<div className='comment-like-button-container'>
 						<button type='button' onClick={this.handleComment}>
 							Add Comment
 						</button>
 						<button type='button' onClick={this.handleLike}>
 							Like
 						</button>
-					</>
+					</div>
 				) : null}
-				{this.userEditButtons()}
+
 				{this.state.showAddComment ? (
 					<AddComment
 						forumId={this.props.match.params.forumId}

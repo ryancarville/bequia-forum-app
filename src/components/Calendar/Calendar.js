@@ -124,7 +124,6 @@ class Calendar extends Component {
 		return (
 			<div className='events-calendar-container'>
 				<div className='calendar-content'>
-					<h2>Events Calendar</h2>
 					<div id='calendar'>
 						<div className='month'>
 							<ul>
