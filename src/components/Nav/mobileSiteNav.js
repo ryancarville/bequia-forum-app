@@ -55,7 +55,8 @@ export default class MobileNav extends Component {
 									pathname: '/messageBoard/28',
 									state: {
 										forum: {
-											title: 'Jobs'
+											title: 'Jobs',
+											id: 28
 										}
 									}
 								}}>

@@ -11,15 +11,19 @@
 .comment-like-button-container {
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
-.comment-like-button-container button {
+#add-comment-btn {
 	cursor: pointer;
 	margin: 10px;
 	width: 50%;
 	height: 25px;
 	font-size: 13px;
-	border: 1px solid black;
+	border: none;
+}
+#comment-btn-img {
+	width: 30px;
+	vertical-align: middle;
 }
 .edit-button-container {
 	width: 100%;
@@ -33,6 +37,21 @@
 	height: 25px;
 	font-size: 13px;
 	border: 1px solid black;
+}
+#coconut-likes {
+	width: 30px;
+	padding: 5px;
+	vertical-align: middle;
+}
+#coconut-likes-btn {
+	cursor: pointer;
+	border: none;
+	font-size: 15px;
+}
+#coconut-likes-btn-img {
+	width: 20px;
+	border: none;
+	vertical-align: middle;
 }
 
 @media only screen and (min-width: 700px) {

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import STORE from '../../STORE/store';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
@@ -25,6 +26,9 @@ export default function NewPost() {
 		});
 		const visiblePosts = recentPosts ? (
 			context.posts.map(p => {
+				const numOfComments = STORE.comments.filter(
+					comment => comment.postId === p.id
+				).length;
 				return (
 					<div className='newest-posts' key={p.id}>
 						<Link to={`/messageBoard/${p.forumId}/${p.id}`}>
@@ -45,7 +49,26 @@ export default function NewPost() {
 						<span className='postInfo'>
 							<p>Posted By: {p.author}</p>
 							<p>Posted On: {formatDate(p.date)}</p>
-							<p>Likes: {p.likes}</p>
+							<span>
+								<p>
+									<img
+										src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
+										alt='coconut-likes'
+										id='coconut-likes-btn-img'
+									/>
+									{'   '}
+									{p.likes}
+								</p>
+								<p>
+									<img
+										src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
+										alt='coconut-likes'
+										id='coconut-likes-btn-img'
+									/>
+									{'   '}
+									{numOfComments}
+								</p>
+							</span>
 						</span>
 					</div>
 				);

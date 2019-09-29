@@ -11,7 +11,7 @@ export default class CreatePost extends Component {
 			id: Math.floor(Math.random() * 1000000),
 			showPostForm: false,
 			title: '',
-			forumId: '',
+			forumId: this.props.location.state.from || '',
 			content: '',
 			date: new Date(),
 			redirectToPost: false
@@ -28,12 +28,7 @@ export default class CreatePost extends Component {
 			content: e.target.value
 		});
 	};
-	handleCatagory = e => {
-		this.setState({
-			forumId: e,
-			showPostForm: true
-		});
-	};
+
 	handleCatagoryPostForm = e => {
 		this.setState({
 			forumId: e.target.value
@@ -53,35 +48,7 @@ export default class CreatePost extends Component {
 			redirectToPost: true
 		});
 	};
-	makeCategorys = () => {
-		let i = 0;
-		let categorys = [];
-		while (i < STORE.forum.length) {
-			categorys.push(
-				STORE.forum[i].map(item => {
-					if (item.sectionTitle) {
-						return true;
-					} else {
-						return (
-							<div>
-								<input
-									type='radio'
-									name='categoryRadio'
-									value={item.forumId}
-									className='categoryInput'
-									onClick={() => this.handleCatagory(item.forumId)}
-									required
-								/>
-								<label htmlFor='categoryRadio'>{item.title}</label>
-							</div>
-						);
-					}
-				})
-			);
-			i++;
-		}
-		return categorys;
-	};
+
 	makeSelectCategorys = () => {
 		let i = 0;
 		let categorys = [];
@@ -115,13 +82,6 @@ export default class CreatePost extends Component {
 				/>
 			);
 		}
-		const category = (
-			<section className='category-pop-up-container'>
-				<div className='categoryPopUp'>
-					<div className='categoryPopUpForm'>{this.makeCategorys()}</div>
-				</div>
-			</section>
-		);
 
 		const postForm = (
 			<form onSubmit={this.handleSubmit}>
@@ -156,10 +116,10 @@ export default class CreatePost extends Component {
 				</button>
 			</form>
 		);
-		const postFlow = !this.state.showPostForm ? category : postForm;
+
 		return (
 			<section className='create-post-container'>
-				<div className='create-post-content'>{postFlow}</div>
+				<div className='create-post-content'>{postForm}</div>
 			</section>
 		);
 	}

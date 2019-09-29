@@ -21,16 +21,24 @@ export default class Forum extends Component {
 					if (item.sectionTitle) {
 						return <h4 key={item}>{item.sectionTitle}</h4>;
 					} else {
+						const numOfThreads = STORE.posts.filter(
+							post => post.forumId === item.forumId
+						).length;
 						return (
 							<li key={'u-' + item.forumId}>
-								<Link
-									to={{
-										pathname: `/messageBoard/${item.forumId}`,
-										state: { forum: item }
-									}}>
-									{item.title}
-								</Link>
-								<p>{item.description}</p>
+								<div>
+									<Link
+										to={{
+											pathname: `/messageBoard/${item.forumId}`,
+											state: { forum: item }
+										}}>
+										{item.title}
+									</Link>
+									<p>{item.description}</p>
+								</div>
+								<sapn className='thread-count'>
+									<p>Threads</p> {numOfThreads}
+								</sapn>
 							</li>
 						);
 					}
@@ -45,7 +53,11 @@ export default class Forum extends Component {
 		return (
 			<div className='forum-container'>
 				<h3>Fourm</h3>
-				<span>{TokenServices.getAuthToken() ? CreatePostButton : null}</span>
+				<span>
+					{TokenServices.getAuthToken() ? (
+						<CreatePostButton page='forum' />
+					) : null}
+				</span>
 				<div className='forum-content'>
 					<ul>{this.makeForum()}</ul>
 				</div>

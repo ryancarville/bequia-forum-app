@@ -83,7 +83,7 @@ class PostPage extends Component {
 		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
 		return formatted_date;
 	};
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
@@ -116,16 +116,39 @@ class PostPage extends Component {
 				<span className='postInfo'>
 					<p>Posted By: {p.author || p.contact.name}</p>
 					<p>Posted On: {this.formatDate(p.date)}</p>
-					<p>Likes: {p.likes}</p>
+					<p>
+						<img
+							src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
+							alt='coconut-likes'
+							id='coconut-likes'
+						/>
+						{p.likes}
+					</p>
 				</span>
 				{this.userEditButtons()}
 				{TokenService.getAuthToken() ? (
 					<div className='comment-like-button-container'>
-						<button type='button' onClick={this.handleComment}>
-							Add Comment
-						</button>
-						<button type='button' onClick={this.handleLike}>
+						<button
+							type='button'
+							onClick={this.handleLike}
+							id='coconut-likes-btn'>
+							<img
+								src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
+								alt='coconut-likes'
+								id='coconut-likes-btn-img'
+							/>{' '}
 							Like
+						</button>
+						<button
+							type='button'
+							onClick={this.handleComment}
+							id='add-comment-btn'>
+							<img
+								src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
+								alt='comment-btn'
+								id='comment-btn-img'
+							/>{' '}
+							Comment
 						</button>
 					</div>
 				) : null}

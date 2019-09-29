@@ -31,11 +31,12 @@
 .forum-content li {
 	background-color: lightgray;
 	border: 1px solid black;
-	padding: 10px;
 	margin: 0px;
+	padding: 10px;
 	height: auto;
 	font-size: 18px;
 	line-height: auto;
+	display: block;
 }
 .forum-content li a {
 	text-align: center;
@@ -64,11 +65,20 @@
 	.forum-content li {
 		background-color: lightgray;
 		border: 1px solid black;
-		padding: 10px;
+		padding-top: 0px;
+		padding-left: 10px;
+		padding-right: 0px;
 		padding-bottom: 0px;
-
 		height: auto;
 		font-size: 14px;
 		line-height: 1em;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.thread-count {
+		text-align: center;
+		background-color: rgb(43, 255, 0);
+		padding: 13px;
 	}
 }

@@ -1,6 +1,14 @@
 .footer-container {
 	width: 100%;
-    font-size: 45px;
-    text-align: center;
-    padding-top: 25px;
+	font-size: 20px;
+	text-align: center;
+	padding-top: 200px;
+}
+.footer-content {
+	display: flex;
+	justify-content: space-around;
+}
+.footer-content a {
+	text-decoration: none;
+	color: green;
 }

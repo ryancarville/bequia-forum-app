@@ -15,6 +15,7 @@ export default class SearchInput extends Component {
 	};
 	handleSearch = e => {
 		e.preventDefault();
+		window.alert('This function is not wired up yet.');
 	};
 	render() {
 		return (

@@ -2,11 +2,26 @@
 	text-align: center;
 	padding: 15px;
 }
+.landingPage-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 .landingPage-content img {
 	width: 100%;
 }
 @media only screen and (min-width: 700px) {
 	.landingPage-container {
 		padding: 15px;
+	}
+	.landingPage-content {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.landingPage-content img {
+		width: 40%;
+		float: right;
+		padding: 25px;
 	}
 }

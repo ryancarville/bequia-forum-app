@@ -24,7 +24,11 @@ class ForumSection extends Component {
 		const forumSectionPosts = this.state.posts.filter(
 			p => p.forumId.toString() === forumId
 		);
+
 		const visiblePosts = forumSectionPosts.map(p => {
+			const numOfComments = STORE.comments.filter(
+				comment => comment.postId === p.id
+			).length;
 			return (
 				<li key={p.id}>
 					<Link to={`/messageBoard/${forumId}/${p.id}`}>{p.title}</Link>
@@ -42,7 +46,26 @@ class ForumSection extends Component {
 					<span className='postInfo'>
 						<p>Posted By: {p.author || p.contact.name}</p>
 						<p>Posted On: {this.formatDate(p.date)}</p>
-						<p>Likes: {p.likes}</p>
+						<span>
+							<p>
+								<img
+									src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
+									alt='coconut-likes'
+									id='coconut-likes-btn-img'
+								/>
+								{'   '}
+								{p.likes}
+							</p>
+							<p>
+								<img
+									src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
+									alt='coconut-likes'
+									id='coconut-likes-btn-img'
+								/>
+								{'   '}
+								{numOfComments}
+							</p>
+						</span>
 					</span>
 				</li>
 			);
@@ -56,11 +79,16 @@ class ForumSection extends Component {
 	};
 
 	render() {
-		console.log(this.state.forumTitle);
+		const forumId = this.props.match.params.forumId;
+
 		return (
 			<div className='forum-section-container'>
 				<h3>{this.props.location.state.forum.title}</h3>
-				<span>{TokenServices.getAuthToken() ? CreatePostButton : null}</span>
+				<span>
+					{TokenServices.getAuthToken() ? (
+						<CreatePostButton forumId={forumId} />
+					) : null}
+				</span>
 				<div className='forum-section-content'>
 					<ul>{this.getPosts()}</ul>
 				</div>

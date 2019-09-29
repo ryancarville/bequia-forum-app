@@ -42,7 +42,6 @@ export default class Comments extends Component {
 			com => com.postId.toString() === this.props.postId
 		);
 		const visibleComments = filteredComs.map(c => {
-			console.log(c.id);
 			return (
 				<div className='comments-content' key={c.id}>
 					<p>{c.content}</p>

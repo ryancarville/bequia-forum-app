@@ -1,6 +1,5 @@
 {
 	"version": 2,
-	"alias": "ryan-carvilles-bequia-forum",
 	"name": "bequia-forum",
 	"routes": [
 		{
