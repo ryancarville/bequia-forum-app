@@ -35,6 +35,9 @@
 	.mobile-home-page-container {
 		display: none;
 	}
+	.home-page-container {
+		display: block;
+	}
 	.home-page-content {
 		width: 100%;
 		display: flex;
@@ -45,6 +48,9 @@
 	#home-page-newest-post {
 		width: 100%;
 		margin-left: 25px;
+	}
+	#home-page-newest-post h3 {
+		margin-left: 40px;
 	}
 	#home-page-upcoming-events {
 		width: 100%;

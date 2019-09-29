@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import ForumContext from '../../ForumContext';
+
 import './HomePage.css';
 import NewPost from '../NewPost/NewPost';
 import ThisWeek from '../ThisWeek/ThisWeek';
-import { throwStatement } from '@babel/types';
 
 export default class HomePage extends Component {
 	constructor(props) {
@@ -67,6 +66,7 @@ export default class HomePage extends Component {
 							<NewPost />
 						</section>
 						<section id='home-page-upcoming-events'>
+							<h3>Upcoming Events</h3>
 							<ThisWeek />
 						</section>
 					</div>

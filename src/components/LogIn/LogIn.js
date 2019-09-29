@@ -42,7 +42,7 @@ export default class LogIn extends Component {
 	};
 	render() {
 		if (this.state.success) {
-			return <Redirect to='/homePage' />;
+			return <Redirect to={this.props.history.go(-1)} />;
 		}
 		return (
 			<div className='logIn-container'>

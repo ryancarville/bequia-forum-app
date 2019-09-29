@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import STORE from './STORE/store';
-import Router from './Router/Router';
 import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
 import './App.css';
+import Router from './Router/Router';
 
 class App extends Component {
 	constructor(props) {

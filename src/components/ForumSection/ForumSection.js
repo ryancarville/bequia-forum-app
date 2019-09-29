@@ -4,12 +4,12 @@ import Truncate from 'react-truncate';
 import STORE from '../../STORE/store';
 import CreatePostButton from '../CreatePostButton/CreatePostButton';
 import './ForumSection.css';
+import TokenServices from '../../services/TokenServices';
 
 class ForumSection extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			forumTitle: this.props.location.state.forum.title,
 			posts: STORE.posts
 		};
 	}
@@ -56,10 +56,11 @@ class ForumSection extends Component {
 	};
 
 	render() {
+		console.log(this.state.forumTitle);
 		return (
 			<div className='forum-section-container'>
-				<h3>{this.state.forumTitle}</h3>
-				<span>{CreatePostButton}</span>
+				<h3>{this.props.location.state.forum.title}</h3>
+				<span>{TokenServices.getAuthToken() ? CreatePostButton : null}</span>
 				<div className='forum-section-content'>
 					<ul>{this.getPosts()}</ul>
 				</div>

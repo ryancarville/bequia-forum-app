@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SearchInput from '../SearchInput/SearchInput';
 
 export default class MobileNav extends Component {
 	constructor(props) {

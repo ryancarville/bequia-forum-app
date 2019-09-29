@@ -22,7 +22,8 @@
 		width: 100%;
 	}
 	.directory-container h2 {
-		margin-left: 20px;
+		text-align: left;
+		margin-left: 70px;
 	}
 	.directory-content {
 		display: flex;

@@ -4,7 +4,7 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-.newPost-content h3 {
+.newPost-container h3 {
 	text-align: center;
 	font-size: 25px;
 }
@@ -32,10 +32,16 @@
 }
 
 @media only screen and (min-width: 700px) {
-	.newPost-content h3 {
+	.newPost-content {
+		display: flex;
+		flex-direction: column;
+		margin-top: 25px;
+	}
+	.newPost-container h3 {
 		text-align: left;
 		font-size: 20px;
 		margin-top: 35px;
+		margin-left: 75px;
 	}
 	.newest-posts {
 		width: 90%;

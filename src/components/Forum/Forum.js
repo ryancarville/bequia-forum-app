@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Forum.css';
 import CreatePostButton from '../CreatePostButton/CreatePostButton';
 import STORE from '../../STORE/store';
+import TokenServices from '../../services/TokenServices';
 
 export default class Forum extends Component {
 	formatDate = imageDate => {
@@ -44,7 +45,7 @@ export default class Forum extends Component {
 		return (
 			<div className='forum-container'>
 				<h3>Fourm</h3>
-				<span>{CreatePostButton}</span>
+				<span>{TokenServices.getAuthToken() ? CreatePostButton : null}</span>
 				<div className='forum-content'>
 					<ul>{this.makeForum()}</ul>
 				</div>

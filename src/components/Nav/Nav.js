@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TokenServices from '../../services/TokenServices';
-
+import SearchInput from '../SearchInput/SearchInput';
 import './Nav.css';
 import ForumContext from '../../ForumContext';
 import MobileSiteNav from './mobileSiteNav';
@@ -37,8 +37,9 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-				{desktopSiteNav}
+
 				<MobileSiteNav />
+				{desktopSiteNav}
 			</>
 		);
 		const privateNav = (
@@ -78,8 +79,8 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-				{desktopSiteNav}
 				<MobileSiteNav />
+				{desktopSiteNav}
 			</>
 		);
 		const navBar = loggedIn ? privateNav : publicNav;
