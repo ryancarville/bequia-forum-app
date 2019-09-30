@@ -4,6 +4,7 @@ import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import Router from './Router/Router';
+import Nav from '../src/components/Nav/Nav';
 
 class App extends Component {
 	constructor(props) {
@@ -221,6 +222,7 @@ class App extends Component {
 		return (
 			<ForumContext.Provider value={contextValue}>
 				<div className='App'>
+					<Nav />
 					<Router />
 					<Footer />
 				</div>

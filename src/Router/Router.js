@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
-import Nav from '../components/Nav/Nav';
 import LandingPage from '../components/LandingPage/LandingPage';
 import SingUp from '../components/SignUp/SignUp';
 import LogIn from '../components/LogIn/LogIn';
@@ -21,7 +20,6 @@ export default class Router extends Component {
 	render() {
 		return (
 			<>
-				<Nav />
 				<Switch>
 					<PrivateRoute path='/homePage' component={HomePage} exact />
 					<Route path='/' component={LandingPage} exact />

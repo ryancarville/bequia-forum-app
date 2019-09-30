@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Comments.css';
 import ForumContext from '../../ForumContext';
 import TokenServices from '../../services/TokenServices';
-
+import deleteIcon from '../Icons/delete';
 export default class Comments extends Component {
 	constructor(props) {
 		super(props);
@@ -29,7 +29,7 @@ export default class Comments extends Component {
 			if (this.context.user.id === userId) {
 				return (
 					<button type='button' onClick={() => this.showDeletePopUp(id)}>
-						Delete
+						{deleteIcon}
 					</button>
 				);
 			}

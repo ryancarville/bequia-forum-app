@@ -9,6 +9,8 @@ import Comments from '../Comments/Comments';
 import formatDate from '../../helpers/formatDate';
 import like from '../Icons/like';
 import comment from '../Icons/comment';
+import edit from '../Icons/edit';
+import deleteIcon from '../Icons/delete';
 
 class PostPage extends Component {
 	constructor(props) {
@@ -29,10 +31,10 @@ class PostPage extends Component {
 				return (
 					<div className='edit-button-container'>
 						<button tupe='button' onClick={this.showPostEdit}>
-							Edit Post
+							{edit}
 						</button>
 						<button type='button' onClick={this.showDeleteWindow}>
-							Delete
+							{deleteIcon}
 						</button>
 					</div>
 				);
