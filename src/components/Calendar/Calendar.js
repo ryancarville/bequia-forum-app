@@ -30,11 +30,9 @@ const monthsNums = [
 	'11',
 	'12'
 ];
-
 class Calendar extends Component {
 	constructor(props) {
 		super(props);
-
 		const today = new Date();
 		this.state = {
 			dayInt: today.getDate(),
@@ -48,7 +46,6 @@ class Calendar extends Component {
 		this.setState(({ month, year }) => {
 			const newYear = (year = month === 11 ? year + 1 : year);
 			const newMonth = (month + 1) % 12;
-
 			return {
 				month: newMonth,
 				year: newYear
@@ -60,7 +57,6 @@ class Calendar extends Component {
 		this.setState(({ month, year }) => {
 			const newYear = month === 0 ? year - 1 : year;
 			const newMonth = month === 0 ? 11 : month - 1;
-
 			return {
 				month: newMonth,
 				year: newYear
@@ -74,35 +70,29 @@ class Calendar extends Component {
 		const { dayInt, month, monthNum, year } = this.state;
 		const firstDay = new Date(year, month).getDay();
 		const totalDays = new Date(year, month + 1, 0).getDate();
-
 		const calendarItems = [];
-
 		// render blank days first
 		for (let x = 0; x < firstDay; x++) {
 			calendarItems.push(<li key={`blank-${x}`} />);
 		}
-
 		// render rest
 		for (let day = 1; day <= totalDays; day++) {
 			const isActive =
 				dayInt === day &&
 				month === today.getMonth() &&
 				year === today.getFullYear();
-
 			// we filter out all the events on this day.
 			const eventsOnThisDay = events.filter(event => {
 				const eventDate = event.date.split('-');
 				const eventDay = eventDate[2];
 				const eventMonth = eventDate[1];
 				const eventYear = eventDate[0];
-
 				return (
 					day.toString() === eventDay &&
 					monthNum[month] === eventMonth &&
 					year.toString() === eventYear
 				);
 			});
-
 			calendarItems.push(
 				<li
 					className={`singleDay ${isActive ? 'active' : ''}`}
@@ -116,7 +106,6 @@ class Calendar extends Component {
 				</li>
 			);
 		}
-
 		return calendarItems;
 	};
 
@@ -147,7 +136,6 @@ class Calendar extends Component {
 							<li>Fr</li>
 							<li>Sa</li>
 						</ul>
-
 						<ul id='days'>{this.renderCalendar()}</ul>
 					</div>
 				</div>

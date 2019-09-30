@@ -45,7 +45,6 @@ export default class Comments extends Component {
 			return (
 				<div className='comments-content' key={c.id}>
 					<p>{c.content}</p>
-
 					<h5>
 						Posted By: {c.userName}
 						<br />
@@ -57,14 +56,16 @@ export default class Comments extends Component {
 		});
 		const deletePopUp = (
 			<>
-				<section className='commet-delete-pop-up'>
+				<section className='comment-delete-pop-up'>
 					<h3>Are you sure you want to delete this comment?</h3>
-					<button type='button' onClick={this.handleDeleteComment}>
-						Yes
-					</button>
-					<button type='button' onClick={this.showDeletePopUp}>
-						No
-					</button>
+					<span>
+						<button type='button' onClick={this.handleDeleteComment}>
+							Yes
+						</button>
+						<button type='button' onClick={this.showDeletePopUp}>
+							No
+						</button>
+					</span>
 				</section>
 			</>
 		);

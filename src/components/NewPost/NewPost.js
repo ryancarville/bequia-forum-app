@@ -46,7 +46,7 @@ export default function NewPost() {
 						<span className='postInfo'>
 							<p>Posted By: {p.author}</p>
 							<p>Posted On: {formatDate(p.date)}</p>
-							<span>
+							<span className='post-icons'>
 								<p>
 									{like}
 									{'   '}

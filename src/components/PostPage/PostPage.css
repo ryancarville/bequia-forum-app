@@ -53,6 +53,34 @@
 	border: none;
 	vertical-align: middle;
 }
+.postInfo {
+	padding: 10px;
+	line-height: 5px;
+}
+.post-icons {
+	width: 15%;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+.post-delete-pop-up {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.post-delete-pop-up button {
+	cursor: pointer;
+	width: 150px;
+	padding: 10px;
+	font-size: 20px;
+	margin-left: 10px;
+}
+.post-delete-pop-up button:hover {
+	background-color: blue;
+	color: white;
+}
 
 @media only screen and (min-width: 700px) {
 	.comment-like-button-container {

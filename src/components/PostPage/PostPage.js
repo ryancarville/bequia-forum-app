@@ -150,13 +150,15 @@ class PostPage extends Component {
 		);
 		const deleteWindow = (
 			<form onSubmit={this.handleSubmit}>
-				<div>
+				<div className='post-delete-pop-up'>
 					<h3>Are you sure you want to delete post '{this.state.p.title}'?</h3>
+					<span>
+						<button type='submit'>Yes</button>
+						<button type='button' onClick={this.showDeleteWindow}>
+							No
+						</button>
+					</span>
 				</div>
-				<button type='submit'>Yes</button>
-				<button type='button' onClick={this.showDeleteWindow}>
-					No
-				</button>
 			</form>
 		);
 
