@@ -6,9 +6,24 @@
 }
 .footer-content {
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 .footer-content a {
 	text-decoration: none;
 	color: green;
+	padding: 10px;
+}
+.footer-content a:hover {
+	color: blue;
+}
+.footer-container p {
+	padding: 10px;
+}
+@media only screen and (min-width: 700px) {
+	.footer-content {
+		flex-direction: row;
+		justify-content: space-around;
+	}
 }
