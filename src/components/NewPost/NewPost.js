@@ -3,16 +3,13 @@ import STORE from '../../STORE/store';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
+import formatDate from '../../helpers/formatDate';
 import './NewPost.css';
+import like from '../Icons/like';
+import comment from '../Icons/comment';
 
 export default function NewPost() {
 	const context = useContext(ForumContext);
-
-	const formatDate = imageDate => {
-		const date = new Date(imageDate);
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
 
 	function recentPosts() {
 		let recentPosts = [];
@@ -51,20 +48,12 @@ export default function NewPost() {
 							<p>Posted On: {formatDate(p.date)}</p>
 							<span>
 								<p>
-									<img
-										src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
-										alt='coconut-likes'
-										id='coconut-likes-btn-img'
-									/>
+									{like}
 									{'   '}
 									{p.likes}
 								</p>
 								<p>
-									<img
-										src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
-										alt='coconut-likes'
-										id='coconut-likes-btn-img'
-									/>
+									{comment}
 									{'   '}
 									{numOfComments}
 								</p>

@@ -108,10 +108,13 @@ export default class CreateEvent extends Component {
 			'23:00',
 			'23:30'
 		];
-		return times.map(t => <option value={t}>{t}</option>);
+		return times.map(t => (
+			<option key={t} value={t}>
+				{t}
+			</option>
+		));
 	};
 	render() {
-		console.log(new Date().toISOString().slice(0, 10));
 		if (this.state.redirectToCalendar) {
 			return <Redirect to={'/events'} />;
 		}
@@ -147,16 +150,14 @@ export default class CreateEvent extends Component {
 				<label htmlFor='eventStartTime'>Event Start Time</label>
 				<select
 					name='eventStartTime'
-					id=''
-					event-start-time
+					id='event-start-time'
 					onChange={this.handleStartTime}>
 					{this.eventTimeSelect()}
 				</select>
 				<label htmlFor='eventEndTime'>Event End Time</label>
 				<select
 					name='eventEndTime'
-					id=''
-					event-end-time
+					id='event-end-time'
 					onChange={this.handleEndTime}>
 					{this.eventTimeSelect()}
 				</select>

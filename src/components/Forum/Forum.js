@@ -6,12 +6,6 @@ import STORE from '../../STORE/store';
 import TokenServices from '../../services/TokenServices';
 
 export default class Forum extends Component {
-	formatDate = imageDate => {
-		const date = new Date(imageDate);
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
-
 	makeForum = () => {
 		let i = 0;
 		let links = [];
@@ -36,9 +30,9 @@ export default class Forum extends Component {
 									</Link>
 									<p>{item.description}</p>
 								</div>
-								<sapn className='thread-count'>
+								<span className='thread-count'>
 									<p>Threads</p> {numOfThreads}
-								</sapn>
+								</span>
 							</li>
 						);
 					}

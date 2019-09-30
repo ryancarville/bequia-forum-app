@@ -6,6 +6,9 @@ import TokenService from '../../services/TokenServices';
 import AddComment from '../AddComment/AddComment';
 import EditPost from '../EditPost/EditPost';
 import Comments from '../Comments/Comments';
+import formatDate from '../../helpers/formatDate';
+import like from '../Icons/like';
+import comment from '../Icons/comment';
 
 class PostPage extends Component {
 	constructor(props) {
@@ -76,13 +79,7 @@ class PostPage extends Component {
 			redirectToForum: true
 		});
 	};
-	formatDate = imageDate => {
-		imageDate = '2019-9-1' || imageDate;
-		const date = new Date(imageDate);
 
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
 	UNSAFE_componentWillMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
@@ -115,14 +112,9 @@ class PostPage extends Component {
 				) : null}
 				<span className='postInfo'>
 					<p>Posted By: {p.author || p.contact.name}</p>
-					<p>Posted On: {this.formatDate(p.date)}</p>
+					<p>Posted On: {formatDate(p.date)}</p>
 					<p>
-						<img
-							src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
-							alt='coconut-likes'
-							id='coconut-likes'
-						/>
-						{p.likes}
+						{like} {'  '} {p.likes}
 					</p>
 				</span>
 				{this.userEditButtons()}
@@ -132,23 +124,13 @@ class PostPage extends Component {
 							type='button'
 							onClick={this.handleLike}
 							id='coconut-likes-btn'>
-							<img
-								src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
-								alt='coconut-likes'
-								id='coconut-likes-btn-img'
-							/>{' '}
-							Like
+							{like} Like
 						</button>
 						<button
 							type='button'
 							onClick={this.handleComment}
 							id='add-comment-btn'>
-							<img
-								src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
-								alt='comment-btn'
-								id='comment-btn-img'
-							/>{' '}
-							Comment
+							{comment} Comment
 						</button>
 					</div>
 				) : null}

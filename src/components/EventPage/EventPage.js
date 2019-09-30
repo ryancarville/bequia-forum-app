@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ForumContext from '../../ForumContext';
+import formatDate from '../../helpers/formatDate';
 import './EventPage.css';
 
 export default class EventPage extends Component {
@@ -11,11 +12,6 @@ export default class EventPage extends Component {
 		};
 	}
 	static contextType = ForumContext;
-	formatDate = imageDate => {
-		const date = new Date(imageDate);
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
 
 	handleDeleteEvent = () => {
 		this.setState({
@@ -33,7 +29,7 @@ export default class EventPage extends Component {
 					<span key={e.eventId}>
 						<h3>{e.title}</h3>
 						<p>Where: {e.location}</p>
-						<p>When: {this.formatDate(e.date)}</p>
+						<p>When: {formatDate(e.date)}</p>
 						<p>Time: {e.time}</p>
 					</span>
 					<p id='event-description'>{e.description}</p>

@@ -58,7 +58,11 @@ export default class CreatePost extends Component {
 					if (item.sectionTitle) {
 						return true;
 					} else {
-						return <option value={item.forumId}>{item.title}</option>;
+						return (
+							<option key={item.forumId} value={item.forumId}>
+								{item.title}
+							</option>
+						);
 					}
 				})
 			);

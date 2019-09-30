@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './ThisWeek.css';
 import ForumContext from '../../ForumContext';
+import formatDate from '../../helpers/formatDate';
 
 export default function ThisWeek() {
 	const context = useContext(ForumContext);
@@ -45,11 +46,6 @@ export default function ThisWeek() {
 			}
 		});
 
-		function formatDate(imageDate) {
-			const date = new Date(imageDate);
-			const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-			return formatted_date;
-		}
 		let upcomingEvents = events ? (
 			events.map(e => {
 				return (

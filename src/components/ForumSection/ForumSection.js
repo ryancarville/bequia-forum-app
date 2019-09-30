@@ -5,6 +5,9 @@ import STORE from '../../STORE/store';
 import CreatePostButton from '../CreatePostButton/CreatePostButton';
 import './ForumSection.css';
 import TokenServices from '../../services/TokenServices';
+import formatDate from '../../helpers/formatDate';
+import like from '../Icons/like';
+import comment from '../Icons/comment';
 
 class ForumSection extends Component {
 	constructor(props) {
@@ -14,11 +17,6 @@ class ForumSection extends Component {
 		};
 	}
 
-	formatDate = imageDate => {
-		const date = new Date(imageDate);
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(date);
-		return formatted_date;
-	};
 	getPosts = () => {
 		const forumId = this.props.match.params.forumId;
 		const forumSectionPosts = this.state.posts.filter(
@@ -45,23 +43,15 @@ class ForumSection extends Component {
 					</Truncate>
 					<span className='postInfo'>
 						<p>Posted By: {p.author || p.contact.name}</p>
-						<p>Posted On: {this.formatDate(p.date)}</p>
+						<p>Posted On: {formatDate(p.date)}</p>
 						<span>
 							<p>
-								<img
-									src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
-									alt='coconut-likes'
-									id='coconut-likes-btn-img'
-								/>
+								{like}
 								{'   '}
 								{p.likes}
 							</p>
 							<p>
-								<img
-									src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/comment.png'
-									alt='coconut-likes'
-									id='coconut-likes-btn-img'
-								/>
+								{comment}
 								{'   '}
 								{numOfComments}
 							</p>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './HomePage.css';
 import NewPost from '../NewPost/NewPost';
 import ThisWeek from '../ThisWeek/ThisWeek';
@@ -13,11 +12,7 @@ export default class HomePage extends Component {
 			showPosts: false
 		};
 	}
-	dateFormat = date => {
-		const newDate = new Date(date);
-		const formatted_date = new Intl.DateTimeFormat('en-US').format(newDate);
-		return formatted_date;
-	};
+
 	showHomePageEvents = () => {
 		console.log('click');
 		this.setState({
