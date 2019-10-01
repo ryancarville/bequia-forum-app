@@ -24,7 +24,6 @@ class ForumSection extends Component {
 		);
 
 		const visiblePosts = forumSectionPosts.map(p => {
-			console.log('log here', p);
 			const numOfComments = STORE.comments.filter(
 				comment => comment.postId === p.id
 			).length;

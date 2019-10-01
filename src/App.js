@@ -13,6 +13,7 @@ class App extends Component {
 			user: {
 				id: 1,
 				name: 'Sam Smith',
+				email: 'test@user.com',
 				lastLogin: '2019-05-23'
 			},
 			posts: [],

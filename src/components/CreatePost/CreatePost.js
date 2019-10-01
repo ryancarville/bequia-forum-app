@@ -10,10 +10,12 @@ export default class CreatePost extends Component {
 		this.state = {
 			id: Math.floor(Math.random() * 1000000),
 			showPostForm: false,
+			author: '',
+			email: '',
 			title: '',
 			forumId: this.props.location.state.from || '',
 			content: '',
-			date: new Date(),
+			date: '',
 			redirectToPost: false
 		};
 	}
@@ -40,14 +42,22 @@ export default class CreatePost extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 
-		const { id, title, content, forumId, date } = this.state;
-		const newPost = { id, title, content, forumId, date };
-		console.log(newPost);
+		const { id, title, content, forumId, date, author, email } = this.state;
+		const newPost = { id, title, content, forumId, date, author, email };
 		this.context.createPost(newPost);
 		this.setState({
 			redirectToPost: true
 		});
 	};
+	componentDidMount() {
+		const user = this.context.user;
+		const today = new Date().toISOString();
+		this.setState({
+			author: user.name,
+			email: user.email,
+			date: today.slice(0, 10)
+		});
+	}
 
 	makeSelectCategorys = () => {
 		let i = 0;

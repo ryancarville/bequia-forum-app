@@ -92,7 +92,7 @@ class PostPage extends Component {
 		});
 	};
 
-	UNSAFE_componentWillMount() {
+	componentDidlMount() {
 		const post = this.context.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
