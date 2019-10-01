@@ -14,6 +14,11 @@ import Events from '../components/Events/Events';
 import CreateEvent from '../components/CreateEvent/CreateEvent';
 import EventPage from '../components/EventPage/EventPage';
 import Directory from '../components/Directory/Directory';
+import aboutUs from '../components/AboutUs/aboutUs';
+import support from '../components/Support/support';
+import donate from '../components/Donate/donate';
+import contactUs from '../components/ContactUs/contactUs';
+import advertise from '../components/Advertise/advertise';
 import NoPath from '../components/404/404';
 
 export default class Router extends Component {
@@ -33,12 +38,16 @@ export default class Router extends Component {
 						component={PostPage}
 						exact
 					/>
-
 					<Route path='/createPost' component={CreatePost} exact />
 					<Route path='/events' component={Events} exact />
 					<Route path='/createEvent' component={CreateEvent} exact />
 					<Route path='/events/:eventId' component={EventPage} exact />
 					<Route path='/directory' component={Directory} exact />
+					<Route path='/about-us' component={aboutUs} exact />
+					<Route path='/help' component={support} exact />
+					<Route path='/donate' component={donate} exact />
+					<Route path='/contact-us' component={contactUs} exact />
+					<Route path='/advertising' component={advertise} exact />
 					<Route component={NoPath} />
 				</Switch>
 			</>

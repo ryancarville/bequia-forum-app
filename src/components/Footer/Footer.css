@@ -14,6 +14,7 @@
 	text-decoration: none;
 	color: green;
 	padding: 10px;
+	cursor: pointer;
 }
 .footer-content a:hover {
 	color: blue;

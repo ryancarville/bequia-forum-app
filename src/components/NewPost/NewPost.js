@@ -8,7 +8,7 @@ import './NewPost.css';
 import like from '../Icons/like';
 import comment from '../Icons/comment';
 
-export default function NewPost() {
+export default function NewPost(props) {
 	const context = useContext(ForumContext);
 
 	function recentPosts() {
@@ -70,7 +70,7 @@ export default function NewPost() {
 
 	return (
 		<div className='newPost-container'>
-			<h3>New Posts</h3>
+			{props.location ? <h3>New Posts</h3> : null}
 			<div className='newPost-content'>{recentPosts()}</div>
 		</div>
 	);

@@ -6,9 +6,9 @@ export default function Footer() {
 	return (
 		<section className='footer-container'>
 			<div className='footer-content'>
-				<Link to={'/about'}>About Us</Link>
+				<Link to={'/about-us'}>About Us</Link>
 				<Link to={'/help'}>Support</Link>
-				<Link to={'/contact'}>Contact Us</Link>
+				<Link to={'/contact-us'}>Contact Us</Link>
 				<Link to={'/donate'}>Donate</Link>
 				<Link to={'/advertising'}>Advertise with us</Link>
 			</div>
