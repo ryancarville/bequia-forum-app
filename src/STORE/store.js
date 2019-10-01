@@ -136,7 +136,7 @@ const store = {
 			jobId: 13434,
 			forumId: 28,
 			userId: 10982,
-			date: '2019-7-3',
+			date: '2019-07-30',
 			title: 'Need a good Handy Man',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
@@ -155,7 +155,7 @@ const store = {
 			jobId: 2309823,
 			forumId: 28,
 			userId: 10982,
-			date: '2019-3-23',
+			date: '2019-03-23',
 			title: 'Ey Ey Capitian!',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna',
@@ -183,7 +183,7 @@ const store = {
 				email: 'sLutz@gmail.com',
 				phone: '+1(708)453-3495'
 			},
-			date: '2019-7-17',
+			date: '2019-07-17',
 			catagory: 'housing'
 		},
 		{
@@ -199,7 +199,7 @@ const store = {
 				email: 'capitianRon@hotmail.com',
 				phone: '+1(708)564-5669'
 			},
-			date: '2019-4-25',
+			date: '2019-04-25',
 			catagory: 'marine'
 		}
 	],
@@ -238,7 +238,7 @@ const store = {
 			userId: 1,
 			title: 'Hairoun Beer Night',
 			location: 'Papas',
-			date: '2019-10-1',
+			date: '2019-10-10',
 			time: '16:00 - 00:00',
 			description: '1/2 price Hairouns all night!'
 		},
