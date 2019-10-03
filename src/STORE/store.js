@@ -111,96 +111,6 @@ const store = {
 				email: 'dani@bequia.com',
 				phone: '1(708)232-4302'
 			}
-		},
-		{
-			id: 208923,
-			jobId: 1234,
-			forumId: 28,
-			userId: 10982,
-			date: '2019-10-17',
-			title: 'Looking for a great bartender',
-			content:
-				'At the Fig Tree we are all about a good time and we want you to join that vibe! If you have no experierence or have served up on the high seas you are welc oem to apply.  Hours are from 6pm - 12am',
-			likes: 4,
-			position: 'bartender',
-			location: 'Fig Tree',
-			catagory: 'service',
-			contact: {
-				name: 'Wendy Leighton',
-				phone: '+1(708)345-3346',
-				email: 'wendyL@aol.com'
-			}
-		},
-		{
-			id: 2308972,
-			jobId: 13434,
-			forumId: 28,
-			userId: 10982,
-			date: '2019-07-30',
-			title: 'Need a good Handy Man',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
-			likes: 9,
-			position: 'handy man',
-			location: 'The Sugar Reef',
-			catagory: 'service',
-			contact: {
-				name: 'James Mitchel',
-				phone: '+1(708)895-3326',
-				email: 'JamesTheMan@hotmail.com'
-			}
-		},
-		{
-			id: 9283723,
-			jobId: 2309823,
-			forumId: 28,
-			userId: 10982,
-			date: '2019-03-23',
-			title: 'Ey Ey Capitian!',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna',
-			likes: 4,
-			position: 'Second Mate',
-			location: 'Freindship Rose',
-			catagory: 'marine',
-			contact: {
-				name: 'Sarah Smith',
-				phone: '+1(708)655-9278',
-				email: 'sSmith@hotmail.com'
-			}
-		},
-		{
-			id: 2349834923,
-			rentalId: 3078954,
-			forumId: 29,
-			userId: 10982,
-			title: 'Beautiful Ocean views Home',
-			content:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem.',
-			likes: 2,
-			contact: {
-				name: 'Susan Lutz',
-				email: 'sLutz@gmail.com',
-				phone: '+1(708)453-3495'
-			},
-			date: '2019-07-17',
-			catagory: 'housing'
-		},
-		{
-			id: 223,
-			rentalId: 303434,
-			forumId: 29,
-			userId: 10982,
-			title: 'Power boat',
-			content: 'Lorem ipsum dolor sit amet, tempor incididunt ut Lorem.',
-			likes: 0,
-			contact: {
-				name: 'Ron James',
-				email: 'capitianRon@hotmail.com',
-				phone: '+1(708)564-5669'
-			},
-			date: '2019-04-25',
-			catagory: 'marine'
 		}
 	],
 	events: [
@@ -483,6 +393,223 @@ const store = {
 				description: `Questions and information relating to the use of the forum`
 			}
 		]
+	],
+	jobs: [
+		{
+			id: 1,
+			title: 'Hospitality',
+			description: 'Jobs in Hotel, Resturant, Bar, Cartering services.'
+		},
+		{
+			id: 2,
+			title: 'Marine',
+			description: 'Jobs in anything sea/sailing related.'
+		},
+		{
+			id: 3,
+			title: 'Wellness/Beauty',
+			description: 'Jobs related to the body thearpies, beauty and/or health.'
+		},
+		{
+			id: 4,
+			title: 'Professional Services',
+			description:
+				'Jobs that require a high level of skill.  i.e. Architech, Finacial Services, Property Manager, etc.'
+		},
+		{
+			id: 5,
+			title: 'Construction',
+			description:
+				'Jobs in commercial and/or residential building. Labor skills only.'
+		},
+		{
+			id: 6,
+			title: 'Special Skills',
+			description: 'Jobs that do not fall under any other catagory.'
+		}
+	],
+	rentals: [
+		{
+			id: 1,
+			title: 'Apartment'
+		},
+		{
+			id: 2,
+			title: 'House'
+		},
+		{
+			id: 3,
+			title: 'Boat'
+		},
+		{
+			id: 4,
+			title: 'Car'
+		},
+		{
+			id: 5,
+			title: 'Event Space'
+		},
+		{
+			id: 6,
+			title: 'Tools'
+		},
+		{
+			id: 7,
+			title: 'Sporting/Beach Equipment'
+		}
+	],
+	jobPost: [
+		{
+			id: 208923,
+			jobForumId: 1,
+			userId: 10982,
+			date: '2019-10-17',
+			title: 'Looking for a great bartender',
+			description:
+				'At the Fig Tree we are all about a good time and we want you to join that vibe! If you have no experierence or have served up on the high seas you are welc oem to apply.  Hours are from 6pm - 12am',
+			likes: 2,
+			position: 'bartender',
+			location: 'Fig Tree',
+			catagory: 'service',
+			contact: {
+				name: 'Wendy Leighton',
+				phone: '+1(708)345-3346',
+				email: 'wendyL@aol.com'
+			}
+		},
+		{
+			id: 433423,
+			jobForumId: 1,
+			userId: 24231,
+			date: '2019-10-20',
+			title: 'Executive Chef Needed',
+			description: 'In home chef needed for Calabash Villa.',
+			likes: 9,
+			position: 'chef',
+			location: 'Calabash Villa',
+			catagory: 'food',
+			contact: {
+				name: 'Zeenath Khan',
+				phone: '+1(708)938-2892',
+				email: 'zkhan@gmail.com'
+			}
+		},
+		{
+			id: 2308972,
+			jobForumId: 5,
+			userId: 10982,
+			date: '2019-07-30',
+			title: 'Need a good Handy Man',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna',
+			likes: 7,
+			position: 'handy man',
+			location: 'The Sugar Reef',
+			catagory: 'service',
+			contact: {
+				name: 'James Mitchel',
+				phone: '+1(708)895-3326',
+				email: 'JamesTheMan@hotmail.com'
+			}
+		},
+		{
+			id: 9283723,
+			jobForumId: 2,
+			userId: 10982,
+			date: '2019-03-23',
+			title: 'Ey Ey Capitian!',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna',
+			likes: 4,
+			position: 'Second Mate',
+			location: 'Freindship Rose',
+			catagory: 'marine',
+			contact: {
+				name: 'Sarah Smith',
+				phone: '+1(708)655-9278',
+				email: 'sSmith@hotmail.com'
+			}
+		}
+	],
+	rentalPosts: [
+		{
+			id: 2349834923,
+			rentalTypeId: 2,
+			userId: 10982,
+			title: 'Beautiful Ocean views Home',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem.',
+			likes: 2,
+			contact: {
+				name: 'Susan Lutz',
+				email: 'sLutz@gmail.com',
+				phone: '+1(708)453-3495'
+			},
+			date: '2019-07-17',
+			bookingSites: [
+				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
+				{ title: 'Homeaway', site: null },
+				{ title: 'Other', site: 'https://www.google.com' }
+			]
+		},
+		{
+			id: 234920014923,
+			rentalTypeId: 2,
+			userId: 102922,
+			title: 'Small Bungaloo Overlook Lower bay',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem.',
+			likes: 2,
+			contact: {
+				name: 'Susan Lutz',
+				email: 'sLutz@gmail.com',
+				phone: '+1(708)453-3495'
+			},
+			date: '2019-07-17',
+			bookingSites: [
+				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
+				{ title: 'Homeaway', site: null },
+				{ title: 'Other', site: 'https://www.google.com' }
+			]
+		},
+		{
+			id: 223,
+			rentalTypeId: 3,
+			userId: 10982,
+			title: 'Power boat',
+			description: 'Lorem ipsum dolor sit amet, tempor incididunt ut Lorem.',
+			likes: 0,
+			contact: {
+				name: 'Ron James',
+				email: 'capitianRon@hotmail.com',
+				phone: '+1(708)564-5669'
+			},
+			date: '2019-04-25',
+			bookingSites: [
+				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
+				{ title: 'Homeaway', site: null },
+				{ title: 'Other', site: 'https://www.google.com' }
+			]
+		},
+		{
+			id: 29873,
+			rentalTypeId: 7,
+			userId: 121982,
+			title: 'SUP Board',
+			description: 'Lorem ipsum dolor sit amet, tempor incididunt ut Lorem.',
+			likes: 0,
+			contact: {
+				name: 'Ron James',
+				email: 'capitianRon@hotmail.com',
+				phone: '+1(708)564-5669'
+			},
+			date: '2019-08-25',
+			bookingSites: [
+				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
+				{ title: 'Homeaway', site: null },
+				{ title: 'Other', site: 'https://www.google.com' }
+			]
+		}
 	]
 };
 export default store;

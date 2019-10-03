@@ -13,7 +13,7 @@ export default class CreatePost extends Component {
 			author: '',
 			email: '',
 			title: '',
-			forumId: this.props.location.state.from || '',
+			forumId: this.props.location.state.from || this.props.from,
 			content: '',
 			date: '',
 			redirectToPost: false
@@ -115,6 +115,9 @@ export default class CreatePost extends Component {
 					value={this.state.forumId}
 					onChange={this.handleCatagoryPostForm}
 					required>
+					<option selected disabled value={0}>
+						Please Select a Forum
+					</option>
 					{this.makeSelectCategorys()}
 				</select>
 				<label htmlFor='content'>Content</label>

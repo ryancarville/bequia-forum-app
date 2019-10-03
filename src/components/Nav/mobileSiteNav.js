@@ -50,42 +50,17 @@ export default class MobileNav extends Component {
 							</Link>
 						</li>
 						<li onClick={this.openHamburger}>
-							<Link
-								to={{
-									pathname: '/messageBoard/28',
-									state: {
-										forum: {
-											title: 'Jobs',
-											id: 28
-										}
-									}
-								}}>
+							<Link to={'/jobs'}>
 								<p>Jobs</p>
 							</Link>
 						</li>
 						<li onClick={this.openHamburger}>
-							<Link
-								to={{
-									pathname: '/messageBoard/29',
-									state: {
-										forum: {
-											title: 'Rentals'
-										}
-									}
-								}}>
+							<Link to={'/rentals'}>
 								<p>Rentals</p>
 							</Link>
 						</li>
 						<li onClick={this.openHamburger}>
-							<Link
-								to={{
-									pathname: '/messageBoard/27',
-									state: {
-										forum: {
-											title: 'Market Place'
-										}
-									}
-								}}>
+							<Link to={'/marketPlace'}>
 								<p>Market Place</p>
 							</Link>
 						</li>

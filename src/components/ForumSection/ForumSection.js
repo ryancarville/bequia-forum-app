@@ -19,49 +19,48 @@ class ForumSection extends Component {
 
 	getPosts = () => {
 		const forumId = this.props.match.params.forumId;
-		const forumSectionPosts = this.state.posts.filter(
-			p => p.forumId.toString() === forumId
-		);
 
-		const visiblePosts = forumSectionPosts.map(p => {
-			const numOfComments = STORE.comments.filter(
-				comment => comment.postId === p.id
-			).length;
-			return (
-				<li key={p.id}>
-					<Link to={`/messageBoard/${forumId}/${p.id}`}>{p.title}</Link>
-					<br />
-					<Truncate
-						lines={1}
-						ellipsis={
-							<span>
-								...
-								<Link to={`/messageBoard/${forumId}/${p.id}`}>Read more</Link>
+		const visiblePosts = this.state.posts
+			.filter(p => p.forumId.toString() === forumId)
+			.map(p => {
+				const numOfComments = STORE.comments.filter(
+					comment => comment.postId === p.id
+				).length;
+				return (
+					<li key={p.id}>
+						<Link to={`/messageBoard/${forumId}/${p.id}`}>{p.title}</Link>
+						<br />
+						<Truncate
+							lines={1}
+							ellipsis={
+								<span>
+									...
+									<Link to={`/messageBoard/${forumId}/${p.id}`}>Read more</Link>
+								</span>
+							}>
+							{p.content}
+						</Truncate>
+						<span className='postInfo'>
+							<p>Posted By: {p.author || p.contact.name}</p>
+							<p>Posted On: {formatDate(p.date)}</p>
+							<span className='post-icons'>
+								<p>
+									{like}
+									{'   '}
+									{p.likes}
+								</p>
+								<p>
+									{comment}
+									{'   '}
+									{numOfComments}
+								</p>
 							</span>
-						}>
-						{p.content}
-					</Truncate>
-					<span className='postInfo'>
-						<p>Posted By: {p.author || p.contact.name}</p>
-						<p>Posted On: {formatDate(p.date)}</p>
-						<span className='post-icons'>
-							<p>
-								{like}
-								{'   '}
-								{p.likes}
-							</p>
-							<p>
-								{comment}
-								{'   '}
-								{numOfComments}
-							</p>
 						</span>
-					</span>
-				</li>
-			);
-		});
+					</li>
+				);
+			});
 
-		return forumSectionPosts.length === 0 ? (
+		return visiblePosts.length === 0 ? (
 			<p>There are currently no posts in this section. Be the first one!</p>
 		) : (
 			visiblePosts

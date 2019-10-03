@@ -19,6 +19,14 @@ import support from '../components/Support/support';
 import donate from '../components/Donate/donate';
 import contactUs from '../components/ContactUs/contactUs';
 import advertise from '../components/Advertise/advertise';
+import Jobs from '../components/Jobs/Jobs';
+import JobSection from '../components/JobSection/JobSection';
+import JobPage from '../components/JobPage/JobPage';
+import CreateJobListing from '../components/CreateJobListing/CreateJobListing';
+import Rentals from '../components/Rentals/Rentals';
+import RentalSection from '../components/RentalSection/RentalSection';
+import RentalPage from '../components/RentalPage/RentalPage';
+import CreateRentalListing from '../components/CreateRentalListing/CreateRentalListing';
 import NoPath from '../components/404/404';
 
 export default class Router extends Component {
@@ -38,11 +46,31 @@ export default class Router extends Component {
 						component={PostPage}
 						exact
 					/>
+					<Route path='/jobs' component={Jobs} exact />
+					<Route path='/jobs/:jobForumId' component={JobSection} exact />
+					<Route path='/jobs/:jobForumId/:jobId' component={JobPage} exact />
+					<Route path='/createJobListing' component={CreateJobListing} exact />
 					<Route path='/createPost' component={CreatePost} exact />
 					<Route path='/events' component={Events} exact />
 					<Route path='/createEvent' component={CreateEvent} exact />
 					<Route path='/events/:eventId' component={EventPage} exact />
 					<Route path='/directory' component={Directory} exact />
+					<Route path='/rentals' component={Rentals} exact />
+					<Route
+						path='/rentals/:rentalTypeId'
+						component={RentalSection}
+						exact
+					/>
+					<Route
+						path='/rentals/:rentalTypeId/:rentalId'
+						component={RentalPage}
+						exact
+					/>
+					<Route
+						path='/createRentalListing'
+						component={CreateRentalListing}
+						exact
+					/>
 					<Route path='/about-us' component={aboutUs} exact />
 					<Route path='/help' component={support} exact />
 					<Route path='/donate' component={donate} exact />
