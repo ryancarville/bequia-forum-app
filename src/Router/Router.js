@@ -27,7 +27,10 @@ import Rentals from '../components/Rentals/Rentals';
 import RentalSection from '../components/RentalSection/RentalSection';
 import RentalPage from '../components/RentalPage/RentalPage';
 import CreateRentalListing from '../components/CreateRentalListing/CreateRentalListing';
+import MarketPlace from '../components/MarketPlace/MarketPlace';
+import MarketPlaceSection from '../components/MarketPlaceSection/MarketPlaceSection';
 import NoPath from '../components/404/404';
+import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
 
 export default class Router extends Component {
 	render() {
@@ -69,6 +72,17 @@ export default class Router extends Component {
 					<Route
 						path='/createRentalListing'
 						component={CreateRentalListing}
+						exact
+					/>
+					<Route path='/marketPlace' component={MarketPlace} exact />
+					<Route
+						path='/marketPlace/:marketPlaceId'
+						component={MarketPlaceSection}
+						exact
+					/>
+					<Route
+						path='/marketPlace/:marketPlaceId/:marektPlaceListingId'
+						component={MarketPlacePage}
 						exact
 					/>
 					<Route path='/about-us' component={aboutUs} exact />

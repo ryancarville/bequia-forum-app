@@ -40,6 +40,15 @@ class App extends Component {
 			posts: newPosts
 		});
 	};
+	addComment = newComment => {
+		STORE.comments.push(newComment);
+	};
+	deleteComment = commentId => {
+		const newComments = this.state.comments.filter(c => c.id !== commentId);
+		this.setState({
+			comments: newComments
+		});
+	};
 	createEvent = newEvent => {
 		STORE.events.push(newEvent);
 	};
@@ -49,14 +58,8 @@ class App extends Component {
 			events: newEvents
 		});
 	};
-	addComment = newComment => {
-		STORE.comments.push(newComment);
-	};
-	deleteComment = commentId => {
-		const newComments = this.state.comments.filter(c => c.id !== commentId);
-		this.setState({
-			comments: newComments
-		});
+	createRentalListing = newRentalListing => {
+		STORE.rentalPosts.push(newRentalListing);
 	};
 	handleSort = e => {
 		if (e.target.value === 'newest-posts') {
@@ -218,7 +221,8 @@ class App extends Component {
 			updatePost: this.updatePost,
 			deletePost: this.deletePost,
 			createEvent: this.createEvent,
-			deleteEvent: this.deleteEvent
+			deleteEvent: this.deleteEvent,
+			createRentalListing: this.createRentalListing
 		};
 		return (
 			<ForumContext.Provider value={contextValue}>

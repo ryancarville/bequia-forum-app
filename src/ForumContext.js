@@ -14,7 +14,8 @@ const ForumContext = React.createContext({
 	addComment: () => {},
 	deleteComment: () => {},
 	createEvent: () => {},
-	deleteEvent: () => {}
+	deleteEvent: () => {},
+	createRentalListing: () => {}
 });
 
 export default ForumContext;

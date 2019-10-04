@@ -3,20 +3,26 @@ import { withRouter } from 'react-router-dom';
 import Calendar from '../Calendar/Calendar';
 import './Events.css';
 import ForumContext from '../../ForumContext';
-import createEventButton from '../CreateEventButton/CreateEventButton';
+import CreateContentButton from '../CreateContentButton/CreateContentButton';
+import TokenServices from '../../services/TokenServices';
 
 class Events extends Component {
 	render() {
 		return (
-			<div className='events-container'>
-				<h2>Events Calendar</h2>
-				{createEventButton}
-				<div className='events-content'>
-					<ForumContext.Consumer>
-						{context => <Calendar events={context.events} />}
-					</ForumContext.Consumer>
+			<>
+				{TokenServices.getAuthToken() ? (
+					<CreateContentButton forumType='events' />
+				) : null}
+				<div className='events-container'>
+					<h2>Events Calendar</h2>
+
+					<div className='events-content'>
+						<ForumContext.Consumer>
+							{context => <Calendar events={context.events} />}
+						</ForumContext.Consumer>
+					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 }

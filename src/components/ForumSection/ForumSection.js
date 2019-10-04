@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import STORE from '../../STORE/store';
-import CreatePostButton from '../CreatePostButton/CreatePostButton';
+import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import './ForumSection.css';
 import TokenServices from '../../services/TokenServices';
 import formatDate from '../../helpers/formatDate';
@@ -75,7 +75,7 @@ class ForumSection extends Component {
 				<h3>{this.props.location.state.forum.title}</h3>
 				<span>
 					{TokenServices.getAuthToken() ? (
-						<CreatePostButton forumId={forumId} />
+						<CreateContentButton forumId={forumId} />
 					) : null}
 				</span>
 				<div className='forum-section-content'>

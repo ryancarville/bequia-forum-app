@@ -77,40 +77,6 @@ const store = {
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			likes: 7
-		},
-		{
-			id: 2309872340,
-			saleId: 109230,
-			forumId: 27,
-			userId: 10982,
-			date: '2019-06-15',
-			title: 'Boat for sale',
-			content: '38 foot Catamaran.  1 owner.  Blue with white racing stripes',
-			likes: 31,
-			price: '$22,039',
-			catagory: 'marine',
-			contact: {
-				name: 'Sam the sailor',
-				email: 'samS@hoee.com',
-				phone: '1(708)232-4532'
-			}
-		},
-		{
-			id: 3978230,
-			saleId: 1093450,
-			forumId: 27,
-			userId: 10982,
-			date: '2019-06-15',
-			title: 'Swimsuit',
-			content: 'ladies binkis',
-			likes: 9,
-			price: '$22',
-			catagory: 'apparel',
-			contact: {
-				name: 'Dani Colesion',
-				email: 'dani@bequia.com',
-				phone: '1(708)232-4302'
-			}
 		}
 	],
 	events: [
@@ -428,36 +394,6 @@ const store = {
 			description: 'Jobs that do not fall under any other catagory.'
 		}
 	],
-	rentals: [
-		{
-			id: 1,
-			title: 'Apartment'
-		},
-		{
-			id: 2,
-			title: 'House'
-		},
-		{
-			id: 3,
-			title: 'Boat'
-		},
-		{
-			id: 4,
-			title: 'Car'
-		},
-		{
-			id: 5,
-			title: 'Event Space'
-		},
-		{
-			id: 6,
-			title: 'Tools'
-		},
-		{
-			id: 7,
-			title: 'Sporting/Beach Equipment'
-		}
-	],
 	jobPost: [
 		{
 			id: 208923,
@@ -531,6 +467,36 @@ const store = {
 			}
 		}
 	],
+	rentals: [
+		{
+			id: 1,
+			title: 'Apartment'
+		},
+		{
+			id: 2,
+			title: 'House'
+		},
+		{
+			id: 3,
+			title: 'Boat'
+		},
+		{
+			id: 4,
+			title: 'Car'
+		},
+		{
+			id: 5,
+			title: 'Event Space'
+		},
+		{
+			id: 6,
+			title: 'Tools'
+		},
+		{
+			id: 7,
+			title: 'Sporting/Beach Equipment'
+		}
+	],
 	rentalPosts: [
 		{
 			id: 2349834923,
@@ -567,9 +533,10 @@ const store = {
 			},
 			date: '2019-07-17',
 			bookingSites: [
-				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
-				{ title: 'Homeaway', site: null },
-				{ title: 'Other', site: 'https://www.google.com' }
+				{ title: 'Airbnb', site: null },
+				{ title: 'Homeaway', site: 'https://www.homeaway.com' },
+				{ title: 'Booking.com', site: 'https://www.booking.com' },
+				{ title: 'Other', site: null }
 			]
 		},
 		{
@@ -586,8 +553,9 @@ const store = {
 			},
 			date: '2019-04-25',
 			bookingSites: [
-				{ title: 'Airbnb', site: 'https://www.airbnb.com' },
-				{ title: 'Homeaway', site: null },
+				{ title: 'Airbnb', site: null },
+				{ title: 'Homeaway', site: 'https://www.homeaway.com' },
+				{ title: 'Booking.com', site: 'https://www.booking.com' },
 				{ title: 'Other', site: 'https://www.google.com' }
 			]
 		},
@@ -609,6 +577,89 @@ const store = {
 				{ title: 'Homeaway', site: null },
 				{ title: 'Other', site: 'https://www.google.com' }
 			]
+		}
+	],
+	marketPlace: [
+		{
+			id: 1,
+			title: 'Items For Sale',
+			description: 'Sell whatever you like.'
+		},
+		{
+			id: 2,
+			title: 'Items Wanted',
+			description: 'Looking to buy something? Post it here.'
+		},
+		{
+			id: 3,
+			title: 'Cars/Trucks/Boats/Bikes',
+			description: 'All engine based vheicles only.'
+		},
+		{
+			id: 4,
+			title: 'Free Stuff',
+			description: 'Not worth selling?  Just give it away.'
+		},
+		{
+			id: 5,
+			title: 'Property For Sale',
+			description: 'Properties for sale.'
+		},
+		{
+			id: 6,
+			title: 'Properties Wanted',
+			description: 'Looking to buy or rent a property? Look no further.'
+		}
+	],
+	marketPlacePosts: [
+		{
+			id: 2309872340,
+			marketPlaceId: 3,
+			userId: 10982,
+			date: '2019-06-15',
+			title: 'Boat for sale',
+			description:
+				'38 foot Catamaran.  1 owner.  Blue with white racing stripes',
+			likes: 31,
+			price: '$22,039',
+			catagory: 'marine',
+			contact: {
+				name: 'Sam the sailor',
+				email: 'samS@hoee.com',
+				phone: '1(708)232-4532'
+			}
+		},
+		{
+			id: 98239230,
+			marketPlaceId: 3,
+			userId: 10920,
+			date: '2019-09-23',
+			title: 'Jeep Wrangler: 2010',
+			description: '2010 JY Jeep Wrangler - Blue, rims, manual, soft top.',
+			location: 'Saint Vincent',
+			likes: 221,
+			price: '$45,039',
+			contact: {
+				name: 'James Turnberry',
+				email: 'jT@aol.com',
+				phone: '1(708)222-4327'
+			}
+		},
+		{
+			id: 3978230,
+			marketPlaceId: 1,
+			userId: 10982,
+			date: '2019-06-15',
+			title: 'Swimsuit',
+			description: 'ladies binkis',
+			likes: 9,
+			price: '$22',
+			catagory: 'apparel',
+			contact: {
+				name: 'Dani Colesion',
+				email: 'dani@bequia.com',
+				phone: '1(708)232-4302'
+			}
 		}
 	]
 };

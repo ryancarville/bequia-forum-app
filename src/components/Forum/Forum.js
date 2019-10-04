@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Forum.css';
-import CreatePostButton from '../CreatePostButton/CreatePostButton';
+import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import STORE from '../../STORE/store';
 import TokenServices from '../../services/TokenServices';
 
@@ -49,7 +49,7 @@ export default class Forum extends Component {
 				<h3>Fourm</h3>
 				<span>
 					{TokenServices.getAuthToken() ? (
-						<CreatePostButton page='forum' />
+						<CreateContentButton page='forum' />
 					) : null}
 				</span>
 				<div className='forum-content'>
