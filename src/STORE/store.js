@@ -622,7 +622,6 @@ const store = {
 				'38 foot Catamaran.  1 owner.  Blue with white racing stripes',
 			likes: 31,
 			price: '$22,039',
-			catagory: 'marine',
 			contact: {
 				name: 'Sam the sailor',
 				email: 'samS@hoee.com',
@@ -654,7 +653,6 @@ const store = {
 			description: 'ladies binkis',
 			likes: 9,
 			price: '$22',
-			catagory: 'apparel',
 			contact: {
 				name: 'Dani Colesion',
 				email: 'dani@bequia.com',

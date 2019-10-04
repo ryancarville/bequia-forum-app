@@ -10,19 +10,19 @@ import comment from '../Icons/comment';
 
 export default function NewPost(props) {
 	const context = useContext(ForumContext);
-
-	function recentPosts() {
+	const recentPosts = () => {
 		let recentPosts = [];
-		context.posts.forEach(post => {
+		context.state.posts.forEach(post => {
 			let today = new Date();
-			let lastWeek = today.getDate() + 7;
+			let lastWeek = today.getDate() - 7;
 			today = today.getDate();
-			if (post.date.slice(8) >= lastWeek || post.date.slice(8) <= today) {
+			if (post.date.slice(8) >= lastWeek && post.date.slice(8) <= today) {
 				recentPosts.push(post);
 			}
 		});
+
 		const visiblePosts = recentPosts ? (
-			context.posts.map(p => {
+			context.state.posts.map(p => {
 				const numOfComments = STORE.comments.filter(
 					comment => comment.postId === p.id
 				).length;
@@ -66,7 +66,7 @@ export default function NewPost(props) {
 			<p>Loading...</p>
 		);
 		return visiblePosts;
-	}
+	};
 
 	return (
 		<div className='newPost-container'>

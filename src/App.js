@@ -16,9 +16,16 @@ class App extends Component {
 				email: 'test@user.com',
 				lastLogin: '2019-05-23'
 			},
+			forum: [],
 			posts: [],
 			comments: [],
 			events: [],
+			jobs: [],
+			jobPosts: [],
+			rentals: [],
+			rentalPosts: [],
+			marketPlace: [],
+			marketPlacePosts: [],
 			directory: []
 		};
 	}
@@ -60,6 +67,12 @@ class App extends Component {
 	};
 	createRentalListing = newRentalListing => {
 		STORE.rentalPosts.push(newRentalListing);
+	};
+	deleteRentalListing = id => {
+		const newRentalListings = this.state.rentals.filter(l => l.id !== id);
+		this.setState({
+			rentals: newRentalListings
+		});
 	};
 	handleSort = e => {
 		if (e.target.value === 'newest-posts') {
@@ -193,10 +206,17 @@ class App extends Component {
 	};
 	componentDidMount() {
 		this.setState({
+			forum: STORE.forum,
 			posts: STORE.posts,
 			comments: STORE.comments,
 			events: STORE.events,
-			directory: STORE.directory
+			directory: STORE.directory,
+			jobs: STORE.jobs,
+			jobPosts: STORE.jobPost,
+			rentals: STORE.rentals,
+			rentalPosts: STORE.rentalPosts,
+			marketPlace: STORE.marketPlace,
+			marketPlacePosts: STORE.marketPlacePosts
 		});
 		// let sortedDir = this.state.directory.sort((a, b) =>
 		// 	a.userLName < b.userLName ? -1 : 1

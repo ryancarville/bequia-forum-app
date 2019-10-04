@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import STORE from '../../STORE/store';
@@ -8,22 +8,16 @@ import TokenServices from '../../services/TokenServices';
 import formatDate from '../../helpers/formatDate';
 import like from '../Icons/like';
 import comment from '../Icons/comment';
+import ForumContext from '../../ForumContext';
 
-class ForumSection extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			posts: STORE.posts
-		};
-	}
-
-	getPosts = () => {
-		const forumId = this.props.match.params.forumId;
-
-		const visiblePosts = this.state.posts
+export default function ForumSection(props) {
+	const context = useContext(ForumContext);
+	const forumId = props.match.params.forumId;
+	const getPosts = () => {
+		const visiblePosts = context.state.posts
 			.filter(p => p.forumId.toString() === forumId)
 			.map(p => {
-				const numOfComments = STORE.comments.filter(
+				const numOfComments = context.state.comments.filter(
 					comment => comment.postId === p.id
 				).length;
 				return (
@@ -67,22 +61,17 @@ class ForumSection extends Component {
 		);
 	};
 
-	render() {
-		const forumId = this.props.match.params.forumId;
-
-		return (
-			<div className='forum-section-container'>
-				<h3>{this.props.location.state.forum.title}</h3>
-				<span>
-					{TokenServices.getAuthToken() ? (
-						<CreateContentButton forumId={forumId} />
-					) : null}
-				</span>
-				<div className='forum-section-content'>
-					<ul>{this.getPosts()}</ul>
-				</div>
+	return (
+		<div className='forum-section-container'>
+			<h3>{props.location.state.forum.title}</h3>
+			<span>
+				{TokenServices.getAuthToken() ? (
+					<CreateContentButton forumId={forumId} />
+				) : null}
+			</span>
+			<div className='forum-section-content'>
+				<ul>{getPosts()}</ul>
 			</div>
-		);
-	}
+		</div>
+	);
 }
-export default withRouter(ForumSection);

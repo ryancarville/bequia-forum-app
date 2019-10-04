@@ -25,15 +25,13 @@ export default function ThisWeek() {
 	let month = monthNums[today.getMonth()];
 	let year = today.getFullYear();
 
-	function thisWeeksEvents() {
+	const thisWeeksEvents = () => {
 		let events = [];
-
-		context.events.forEach(e => {
+		context.state.events.forEach(e => {
 			const eventDate = e.date.split('-');
 			const eventYear = eventDate[0];
 			const eventMonth = eventDate[1];
 			const eventDay = eventDate[2];
-
 			if (
 				eventDay >= dayInt.toString() &&
 				eventDay <= (dayInt + 6).toString() &&
@@ -41,31 +39,30 @@ export default function ThisWeek() {
 				eventYear === year.toString()
 			) {
 				events.push(e);
-			} else {
-				return null;
 			}
 		});
 
-		let upcomingEvents = events ? (
-			events.map(e => {
-				return (
-					<div className='event' key={e.eventId}>
-						<span key={e.eventId}>
-							<Link to={`/events/${e.eventId}`}>{e.title}</Link>
-							<p>Where: {e.location}</p>
-							<p>When: {formatDate(e.date)}</p>
-							<p>Time: {e.time}</p>
-						</span>
-						<p>{e.description}</p>
-					</div>
-				);
-			})
-		) : (
-			<p>Currently there are no events for this week.</p>
-		);
+		let upcomingEvents =
+			events.length !== 0 ? (
+				events.map(e => {
+					return (
+						<div className='event' key={e.eventId}>
+							<span key={e.eventId}>
+								<Link to={`/events/${e.eventId}`}>{e.title}</Link>
+								<p>Where: {e.location}</p>
+								<p>When: {formatDate(e.date)}</p>
+								<p>Time: {e.time}</p>
+							</span>
+							<p>{e.description}</p>
+						</div>
+					);
+				})
+			) : (
+				<p>Currently there are no events for this week.</p>
+			);
 
 		return upcomingEvents;
-	}
+	};
 
 	return (
 		<div className='thisWeek-container'>

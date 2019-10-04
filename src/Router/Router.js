@@ -31,6 +31,7 @@ import MarketPlace from '../components/MarketPlace/MarketPlace';
 import MarketPlaceSection from '../components/MarketPlaceSection/MarketPlaceSection';
 import NoPath from '../components/404/404';
 import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
+import CreateMarketPlaceListing from '../components/CreateMarketPlaceListing/CreateMarketPlaceListing';
 
 export default class Router extends Component {
 	render() {
@@ -83,6 +84,11 @@ export default class Router extends Component {
 					<Route
 						path='/marketPlace/:marketPlaceId/:marektPlaceListingId'
 						component={MarketPlacePage}
+						exact
+					/>
+					<Route
+						path='/createMarketPlaceListing'
+						component={CreateMarketPlaceListing}
 						exact
 					/>
 					<Route path='/about-us' component={aboutUs} exact />
