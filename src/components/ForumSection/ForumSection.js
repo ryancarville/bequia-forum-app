@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
-import STORE from '../../STORE/store';
 import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import './ForumSection.css';
 import TokenServices from '../../services/TokenServices';

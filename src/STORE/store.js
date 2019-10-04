@@ -394,10 +394,10 @@ const store = {
 			description: 'Jobs that do not fall under any other catagory.'
 		}
 	],
-	jobPost: [
+	jobPosts: [
 		{
 			id: 208923,
-			jobForumId: 1,
+			jobTypeId: 1,
 			userId: 10982,
 			date: '2019-10-17',
 			title: 'Looking for a great bartender',
@@ -415,7 +415,7 @@ const store = {
 		},
 		{
 			id: 433423,
-			jobForumId: 1,
+			jobTypeId: 1,
 			userId: 24231,
 			date: '2019-10-20',
 			title: 'Executive Chef Needed',
@@ -432,7 +432,7 @@ const store = {
 		},
 		{
 			id: 2308972,
-			jobForumId: 5,
+			jobTypeId: 5,
 			userId: 10982,
 			date: '2019-07-30',
 			title: 'Need a good Handy Man',
@@ -450,7 +450,7 @@ const store = {
 		},
 		{
 			id: 9283723,
-			jobForumId: 2,
+			jobTypeId: 2,
 			userId: 10982,
 			date: '2019-03-23',
 			title: 'Ey Ey Capitian!',
@@ -625,7 +625,7 @@ const store = {
 			contact: {
 				name: 'Sam the sailor',
 				email: 'samS@hoee.com',
-				phone: '1(708)232-4532'
+				phone: '+1(708)232-4532'
 			}
 		},
 		{
@@ -641,7 +641,7 @@ const store = {
 			contact: {
 				name: 'James Turnberry',
 				email: 'jT@aol.com',
-				phone: '1(708)222-4327'
+				phone: '+1(708)222-4327'
 			}
 		},
 		{
@@ -656,7 +656,7 @@ const store = {
 			contact: {
 				name: 'Dani Colesion',
 				email: 'dani@bequia.com',
-				phone: '1(708)232-4302'
+				phone: '+1(708)232-4302'
 			}
 		}
 	]

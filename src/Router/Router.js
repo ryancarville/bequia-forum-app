@@ -51,8 +51,8 @@ export default class Router extends Component {
 						exact
 					/>
 					<Route path='/jobs' component={Jobs} exact />
-					<Route path='/jobs/:jobForumId' component={JobSection} exact />
-					<Route path='/jobs/:jobForumId/:jobId' component={JobPage} exact />
+					<Route path='/jobs/:jobTypeId' component={JobSection} exact />
+					<Route path='/jobs/:jobTypeId/:jobId' component={JobPage} exact />
 					<Route path='/createJobListing' component={CreateJobListing} exact />
 					<Route path='/createPost' component={CreatePost} exact />
 					<Route path='/events' component={Events} exact />

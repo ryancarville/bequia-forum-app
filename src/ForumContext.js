@@ -3,10 +3,10 @@ import React from 'react';
 const ForumContext = React.createContext({
 	state: {},
 	user: {},
-	posts: [],
-	comments: [],
-	events: [],
-	directory: [],
+	// posts: [],
+	// comments: [],
+	// events: [],
+	// directory: [],
 	sort: () => {},
 	creatPost: () => {},
 	updatePost: () => {},
@@ -15,7 +15,10 @@ const ForumContext = React.createContext({
 	deleteComment: () => {},
 	createEvent: () => {},
 	deleteEvent: () => {},
-	createRentalListing: () => {}
+	createJobListing: () => {},
+	createRentalListing: () => {},
+	createMarketPlaceListing: () => {},
+	deleteMarketPlaceListing: () => {}
 });
 
 export default ForumContext;

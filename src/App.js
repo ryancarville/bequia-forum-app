@@ -32,7 +32,9 @@ class App extends Component {
 	static contextType = ForumContext;
 
 	createPost = post => {
-		STORE.posts.push(post);
+		this.setState({
+			posts: [...this.state.posts, post]
+		});
 	};
 	updatePost = newPost => {
 		var currPosts = this.state.posts.filter(p => p.id !== newPost.id);
@@ -48,7 +50,9 @@ class App extends Component {
 		});
 	};
 	addComment = newComment => {
-		STORE.comments.push(newComment);
+		this.setState({
+			comments: [...this.state.comments, newComment]
+		});
 	};
 	deleteComment = commentId => {
 		const newComments = this.state.comments.filter(c => c.id !== commentId);
@@ -57,7 +61,9 @@ class App extends Component {
 		});
 	};
 	createEvent = newEvent => {
-		STORE.events.push(newEvent);
+		this.setState({
+			events: [...this.state.events, newEvent]
+		});
 	};
 	deleteEvent = eventId => {
 		const newEvents = this.state.events.filter(e => e.eventId !== eventId);
@@ -65,13 +71,36 @@ class App extends Component {
 			events: newEvents
 		});
 	};
+	createJobListing = newListing => {
+		this.setState(
+			{
+				jobPosts: [...this.state.jobPosts, newListing]
+			},
+			() => {
+				console.log(this.state.jobPosts);
+			}
+		);
+	};
 	createRentalListing = newRentalListing => {
-		STORE.rentalPosts.push(newRentalListing);
+		this.setState({
+			rentalPosts: [...this.state.rentalPosts, newRentalListing]
+		});
 	};
 	deleteRentalListing = id => {
 		const newRentalListings = this.state.rentals.filter(l => l.id !== id);
 		this.setState({
 			rentals: newRentalListings
+		});
+	};
+	createMarketPlaceListing = newListing => {
+		this.setState({
+			marketPlacePosts: [...this.state.marketPlacePosts, newListing]
+		});
+	};
+	deleteMarketPlaceListing = id => {
+		const newLisitngs = this.state.marketPlacePosts.filter(p => p.id !== id);
+		this.setState({
+			marketPlacePosts: newLisitngs
 		});
 	};
 	handleSort = e => {
@@ -212,7 +241,7 @@ class App extends Component {
 			events: STORE.events,
 			directory: STORE.directory,
 			jobs: STORE.jobs,
-			jobPosts: STORE.jobPost,
+			jobPosts: STORE.jobPosts,
 			rentals: STORE.rentals,
 			rentalPosts: STORE.rentalPosts,
 			marketPlace: STORE.marketPlace,
@@ -242,7 +271,10 @@ class App extends Component {
 			deletePost: this.deletePost,
 			createEvent: this.createEvent,
 			deleteEvent: this.deleteEvent,
-			createRentalListing: this.createRentalListing
+			createJobListing: this.createJobListing,
+			createRentalListing: this.createRentalListing,
+			createMarketPlaceListing: this.createMarketPlaceListing,
+			deleteMarketPlaceListing: this.deleteMarketPlaceListing
 		};
 		return (
 			<ForumContext.Provider value={contextValue}>
