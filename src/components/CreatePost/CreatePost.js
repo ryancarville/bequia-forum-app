@@ -66,7 +66,6 @@ export default class CreatePost extends Component {
 		var { forumId } = this.state;
 		forumId = parseInt(forumId);
 		const { id, title, content, date, author, email } = this.state;
-
 		const newPost = { id, title, content, forumId, date, author, email };
 		this.context.createPost(newPost);
 		this.setState({
@@ -78,17 +77,8 @@ export default class CreatePost extends Component {
 	render() {
 		if (this.state.redirectToPost) {
 			const fourmId = this.state.forumId;
-			const postId = this.state.id;
-			const { id, title, content, forumId, date } = this.state;
-			const newPost = { id, title, content, forumId, date };
-			return (
-				<Redirect
-					to={{
-						pathname: `/messageBoard/${fourmId}/${postId}`,
-						state: { post: newPost }
-					}}
-				/>
-			);
+			const { id } = this.state;
+			return <Redirect to={`/messageBoard/${fourmId}/${id}`} />;
 		}
 
 		return (

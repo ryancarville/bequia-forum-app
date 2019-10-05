@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Forum.css';
 import CreateContentButton from '../CreateContentButton/CreateContentButton';
-import STORE from '../../STORE/store';
 import TokenServices from '../../services/TokenServices';
 import ForumContext from '../../ForumContext';
 
@@ -17,7 +16,6 @@ export default function Forum(props) {
 					if (item.sectionTitle) {
 						return <h4 key={item}>{item.sectionTitle}</h4>;
 					} else {
-						console.log(context.state.posts);
 						const numOfThreads = context.state.posts.filter(
 							post => post.forumId === item.forumId
 						).length;
@@ -49,8 +47,8 @@ export default function Forum(props) {
 
 	return (
 		<div className='forum-container'>
-			<h3>Fourm</h3>
 			<span>
+				<h3>Fourm</h3>
 				{TokenServices.getAuthToken() ? (
 					<CreateContentButton page='forum' />
 				) : null}

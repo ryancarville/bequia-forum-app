@@ -10,12 +10,13 @@ class Events extends Component {
 	render() {
 		return (
 			<>
-				{TokenServices.getAuthToken() ? (
-					<CreateContentButton forumType='events' />
-				) : null}
 				<div className='events-container'>
-					<h2>Events Calendar</h2>
-
+					<span>
+						<h2>Events Calendar</h2>
+						{TokenServices.getAuthToken() ? (
+							<CreateContentButton forumType='events' />
+						) : null}
+					</span>
 					<div className='events-content'>
 						<ForumContext.Consumer>
 							{context => <Calendar events={context.events} />}

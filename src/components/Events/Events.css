@@ -3,6 +3,13 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
+}
+.events-container span {
+	margin-bottom: 25px;
+}
+.events-container span a {
+	font-size: 20px;
 }
 .events-content {
 	width: 100%;
@@ -19,12 +26,6 @@
 }
 @media only screen and (min-width: 700px) {
 	.events-container {
-		display: block;
-	}
-	.events-content {
-		width: 95%;
-	}
-	.events-container h2 {
-		margin-left: 35px;
+		padding: 20px;
 	}
 }

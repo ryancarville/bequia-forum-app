@@ -46,12 +46,12 @@
 @media only screen and (min-width: 700px) {
 	.forum-container {
 		font-size: 18px;
-		display: inline-block;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
-	.forum-container h3 {
-		margin-left: 70px;
-		float: left;
-	}
+
 	.forum-content {
 		width: 100%;
 		display: flex;
