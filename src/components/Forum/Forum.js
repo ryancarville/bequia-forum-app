@@ -13,10 +13,11 @@ export default function Forum(props) {
 		let links = [];
 		while (i < context.state.forum.length) {
 			links.push(
-				STORE.forum[i].map(item => {
+				context.state.forum[i].map(item => {
 					if (item.sectionTitle) {
 						return <h4 key={item}>{item.sectionTitle}</h4>;
 					} else {
+						console.log(context.state.posts);
 						const numOfThreads = context.state.posts.filter(
 							post => post.forumId === item.forumId
 						).length;

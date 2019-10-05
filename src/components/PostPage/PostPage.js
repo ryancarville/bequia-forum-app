@@ -16,17 +16,7 @@ class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			p: {
-				id: 23908723490,
-				forumId: 20,
-				userId: 1,
-				date: '2019-09-24',
-				title: 'I am a new post!',
-				author: 'Sam Smith',
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-				likes: 9
-			},
+			p: {},
 			title: '',
 			content: '',
 			didLike: false,
@@ -92,8 +82,8 @@ class PostPage extends Component {
 		});
 	};
 
-	componentDidlMount() {
-		const post = this.context.posts.filter(
+	componentWillMount() {
+		const post = this.context.state.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
 		this.setState({
@@ -109,21 +99,9 @@ class PostPage extends Component {
 			<>
 				<h3>{p.title}</h3>
 				<p>{p.content}</p>
-				{p.contact ? (
-					<>
-						<h4>Contact Information</h4>
-						<p>
-							Email:{' '}
-							<a href={`mailto:${p.contact.email}`}> {p.contact.email}</a>
-							<br />
-							Phone: {p.contact.phone}
-							<br />
-							Website: {p.contact.website}
-						</p>
-					</>
-				) : null}
+
 				<span className='postInfo'>
-					<p>Posted By: {p.author || p.contact.name}</p>
+					<p>Posted By: {p.author}</p>
 					<p>Posted On: {formatDate(p.date)}</p>
 					<p>
 						{like} {'  '} {p.likes}
