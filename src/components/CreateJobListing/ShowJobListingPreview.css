@@ -1,0 +1,14 @@
+.job-listing-preview {
+	width: 100%;
+	padding: 10px;
+}
+.job-listing-preview button {
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	padding: 5px;
+	text-align: center;
+	border: 1px solid black;
+	background-color: transparent;
+	margin-top: 25px;
+}

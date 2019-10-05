@@ -1,0 +1,25 @@
+.rentals-section-container {
+	width: 100%;
+}
+
+.rentals-section-content ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+.rentals-section-content ul li {
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+	padding: 10px;
+	border: 1px solid black;
+	background-color: lightgray;
+}
+@media only screen and (min-width: 700px) {
+	.rentals-section-content ul {
+		padding: 20px;
+	}
+}

@@ -1,0 +1,12 @@
+.market-place-page-container {
+	width: 100%;
+}
+.market-place-page-content {
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+.market-place-page-content span {
+	line-height: 10px;
+}

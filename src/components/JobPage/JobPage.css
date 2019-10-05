@@ -1,0 +1,15 @@
+.job-page-container {
+	width: 100%;
+}
+.job-page-content {
+	width: 100%;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.job-page-content span {
+	line-height: 10px;
+}
+.job-page-content h4 {
+	margin: 0;
+}

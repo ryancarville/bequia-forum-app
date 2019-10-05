@@ -1,0 +1,81 @@
+.job-listing-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25px;
+	padding: 15px;
+}
+.job-listing-form select {
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	border: 1px solid black;
+	margin-bottom: 25px;
+}
+
+.job-listing-form input {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	margin: 10px;
+	border: 1px solid black;
+	font-size: 20px;
+}
+
+.job-listing-form textarea {
+	width: 100%;
+	height: 200px;
+	border: 1px solid black;
+}
+.job-listing-form button {
+	cursor: pointer;
+	width: 100%;
+	height: 50px;
+	font-size: 20px;
+	margin-top: 20px;
+	border: 1px solid black;
+	background-color: transparent;
+}
+.job-listing-form button:hover {
+	background-color: blue;
+	color: white;
+}
+
+@media only screen and (min-width: 700px) {
+	.job-listing-form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.job-listing-form select {
+		width: 300px;
+		height: 35px;
+		font-size: 16px;
+	}
+
+	.job-listing-form input {
+		width: 300px;
+		height: 35px;
+		text-align: center;
+		margin: 10px;
+		border: 1px solid black;
+		font-size: 15px;
+	}
+	.job-listing-form textarea {
+		width: 500px;
+		height: 200px;
+	}
+	.job-listing-form button {
+		width: 250px;
+		height: 35px;
+		font-size: 16px;
+	}
+	.job-listing-form button:hover {
+		background-color: blue;
+		color: white;
+	}
+}

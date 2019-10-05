@@ -1,0 +1,30 @@
+.contact-form-container {
+	width: 100%;
+}
+.contact-form-container form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.contact-form-container form label {
+	margin: 10px;
+}
+.contact-form-container form input {
+	width: 20%;
+	padding: 5px;
+}
+.contact-form-container form select {
+	width: 20%;
+	height: 35px;
+}
+.contact-form-container form textarea {
+	width: 30%;
+	padding: 5px;
+}
+.contact-form-container form button {
+	width: 100px;
+	padding: 10px;
+	font-size: 14px;
+	margin: 5px;
+}

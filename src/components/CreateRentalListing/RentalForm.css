@@ -1,0 +1,56 @@
+.rental-listing-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 35px;
+}
+.rental-listing-form input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+	margin-top: 15px;
+	border: 1px solid black;
+	padding: 10px;
+}
+.rental-listing-form select {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+.rental-listing-form span {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.rental-listing-form span input {
+	vertical-align: middle;
+}
+.booking-site-checkbox {
+	-ms-transform: scale(0.5); /* IE */
+	-moz-transform: scale(0.5); /* FF */
+	-webkit-transform: scale(0.5); /* Safari and Chrome */
+	-o-transform: scale(0.5); /* Opera */
+	transform: scale(0.5);
+	vertical-align: middle;
+	padding: 0px;
+}
+
+.rental-listing-form textarea {
+	width: 400px;
+	height: 150px;
+	margin-top: 15px;
+}
+.rental-listing-form button {
+	width: 200px;
+	height: 35px;
+	font-size: 15px;
+	padding: 5px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.hide-lable {
+	display: none;
+}

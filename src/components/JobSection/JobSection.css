@@ -1,0 +1,43 @@
+.job-section-container {
+	width: 100%;
+}
+.job-section-content {
+	margin-right: auto;
+	margin-left: auto;
+}
+.job-section-content ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+.job-section-container ul li {
+	width: 90%;
+	height: auto;
+	margin-top: 15px;
+	border: 1px solid black;
+	background-color: lightgray;
+	padding: 15px;
+}
+@media only screen and (min-width: 700px) {
+	.job-section-container {
+		width: 100%;
+	}
+	.job-section-container ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.job-section-container ul li {
+		width: 90%;
+		height: auto;
+		margin-top: 15px;
+		border: 1px solid black;
+		background-color: lightgray;
+		padding: 15px;
+	}
+}

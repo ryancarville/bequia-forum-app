@@ -1,0 +1,16 @@
+.create-post-preview {
+	width: 100%;
+}
+.create-post-preview span {
+	display: flex;
+	flex-direction: column;
+}
+.create-post-preview button {
+	width: 100%;
+	height: 50px;
+	margin-top: 20px;
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid black;
+	background-color: transparent;
+}
