@@ -7,16 +7,17 @@ import ForumContext from '../../ForumContext';
 
 export default function MarketPlaceSections(props) {
 	const context = useContext(ForumContext);
+	const listings = context.state.marketPlacePosts
 	const marketPlaceId = props.match.params.marketPlaceId;
 	return (
 		<section className='market-place-section-container'>
 			<div className='market-place-section-content'>
 				<ul>
-					{context.state.marketPlacePosts.filter(
-						p => p.marketPlaceId.toString() === marketPlaceId
+					{listings.filter(
+						p => p.marketplacecat.toString() === marketPlaceId
 					).length !== 0 ? (
-						context.state.marketPlacePosts
-							.filter(p => p.marketPlaceId.toString() === marketPlaceId)
+						listings
+							.filter(p => p.marketplacecat.toString() === marketPlaceId)
 							.map(l => (
 								<li key={l.id}>
 									<Link
@@ -45,8 +46,8 @@ export default function MarketPlaceSections(props) {
 									{l.price ? <p>Price: {l.price}</p> : null}
 
 									<span className='postInfo'>
-										<p>Posted By: {l.contact.name}</p>
-										<p>Posted On: {formatDate(l.date)}</p>
+										<p>Posted By: {l.contactname}</p>
+										<p>Posted On: {formatDate(l.dateposted)}</p>
 									</span>
 								</li>
 							))

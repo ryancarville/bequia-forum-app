@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import './MarketPlacePage.css';
+import formatDate from '../../helpers/formatDate';
 
 export default function MarketPlacePage(props) {
 	const l = props.location.state.listing;
@@ -19,13 +20,14 @@ export default function MarketPlacePage(props) {
 				<p>{l.description}</p>
 				<span>
 					<h4>Contact Information</h4>
-					<p>{l.contact.name}</p>
+					<p>{l.contactname}</p>
 					<a
-						href={`mailto: ${l.contact.email}?subject=New Enquiry from you post on Bequia Forum: ${l.title}`}>
-						{l.contact.email}
+						href={`mailto: ${l.contactemail}?subject=New Enquiry from you post on Bequia Forum: ${l.title}`}>
+						{l.contactemail}
 					</a>
-					<p>Phone: {formatPhoneNumberIntl(l.contact.phone)}</p>
+					<p>Phone: {formatPhoneNumberIntl(l.contactphone)}</p>
 				</span>
+				<p>Posted on: {formatDate(l.dateposted)}</p>
 			</div>
 		</section>
 	);

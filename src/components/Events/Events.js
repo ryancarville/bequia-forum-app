@@ -19,7 +19,7 @@ class Events extends Component {
 					</span>
 					<div className='events-content'>
 						<ForumContext.Consumer>
-							{context => <Calendar events={context.events} />}
+							{context => <Calendar events={context.state.events} />}
 						</ForumContext.Consumer>
 					</div>
 				</div>

@@ -14,7 +14,7 @@ export default function ForumSection(props) {
 	const forumId = props.match.params.forumId;
 	const getPosts = () => {
 		const visiblePosts = context.state.posts
-			.filter(p => p.forumId.toString() === forumId)
+			.filter(p => p.boardid.toString() === forumId)
 			.map(p => {
 				const numOfComments = context.state.comments.filter(
 					comment => comment.postId === p.id
@@ -34,7 +34,7 @@ export default function ForumSection(props) {
 							{p.content}
 						</Truncate>
 						<span className='postInfo'>
-							<p>Posted By: {p.author || p.contact.name}</p>
+							<p>Posted By: {p.username}</p>
 							<p>Posted On: {formatDate(p.date)}</p>
 							<span className='post-icons'>
 								<p>

@@ -9,7 +9,7 @@ export default function JobPage(props) {
 	const context = useContext(ForumContext);
 	const jobTypeId = props.match.params.jobTypeId;
 	const jobPosts = context.state.jobPosts
-		.filter(job => job.jobTypeId.toString() === jobTypeId)
+		.filter(job => job.jobcat.toString() === jobTypeId)
 		.map(j => (
 			<li key={j.id}>
 				<Link
@@ -36,8 +36,8 @@ export default function JobPage(props) {
 					<p>{j.description}</p>
 				</Truncate>
 				<span className='postInfo'>
-					<p>Posted By: {j.contact.name}</p>
-					<p>Posted On: {formatDate(j.date)}</p>
+					<p>Posted By: {j.username}</p>
+					<p>Posted On: {formatDate(j.dateposted)}</p>
 				</span>
 			</li>
 		));

@@ -18,29 +18,27 @@ export default class EventPage extends Component {
 			showDeletePopUp: !this.state.showDeletePopUp
 		});
 	};
-	makeEvent = events => {
-		let currEvent = [];
-		events.filter(e =>
-			e.eventId.toString() === this.state.eventId ? currEvent.push(e) : null
-		);
-		return currEvent.map(e => {
-			return (
+	makeEvent = () => {
+		const events = this.context.state.events;
+		console.log(events);
+		return events
+			.filter(e => e.id.toString() === this.state.eventId)
+			.map(e => (
 				<div className='event-page-content' key={e.eventId}>
 					<span key={e.eventId}>
 						<h3>{e.title}</h3>
 						<p>Where: {e.location}</p>
-						<p>When: {formatDate(e.date)}</p>
-						<p>Time: {e.time}</p>
+						<p>When: {formatDate(e.eventdate)}</p>
+						<p>Time: {e.eventtime}</p>
 					</span>
 					<p id='event-description'>{e.description}</p>
-					{this.context.user.id === e.userId ? (
+					{this.context.user.id === e.userid ? (
 						<button type='button' onClick={this.handleDeleteEvent}>
 							Delete Event
 						</button>
 					) : null}
 				</div>
-			);
-		});
+			));
 	};
 	render() {
 		const deleteEventPopUp = (
@@ -58,13 +56,7 @@ export default class EventPage extends Component {
 		);
 		return (
 			<div className='event-page-container'>
-				{this.state.showDeletePopUp ? (
-					deleteEventPopUp
-				) : (
-					<ForumContext.Consumer>
-						{context => this.makeEvent(context.events)}
-					</ForumContext.Consumer>
-				)}
+				{this.state.showDeletePopUp ? deleteEventPopUp : this.makeEvent()}
 			</div>
 		);
 	}

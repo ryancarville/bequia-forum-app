@@ -83,7 +83,7 @@ class Calendar extends Component {
 				year === today.getFullYear();
 			// we filter out all the events on this day.
 			const eventsOnThisDay = events.filter(event => {
-				const eventDate = event.date.split('-');
+				const eventDate = event.eventdate.split('-');
 				const eventDay = eventDate[2];
 				const eventMonth = eventDate[1];
 				const eventYear = eventDate[0];
@@ -99,7 +99,7 @@ class Calendar extends Component {
 					key={`day-${day}`}>
 					{day}
 					{eventsOnThisDay.map(event => (
-						<Link key={event.eventId} to={`/events/${event.eventId}`}>
+						<Link key={event.id} to={`/events/${event.id}`}>
 							{event.title}
 						</Link>
 					))}

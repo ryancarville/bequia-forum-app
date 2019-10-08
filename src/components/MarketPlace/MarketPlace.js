@@ -7,6 +7,7 @@ import ForumContext from '../../ForumContext';
 
 export default function MarketPlace(props) {
 	const context = useContext(ForumContext);
+	console.log(context.state.marketPlaceCatagories);
 	return (
 		<section className='market-place-container'>
 			<span>
@@ -17,10 +18,10 @@ export default function MarketPlace(props) {
 			</span>
 			<div className='market-place-content'>
 				<ul>
-					{context.state.marketPlace.map(mp => (
+					{context.state.marketPlaceCatagories.map(mp => (
 						<Link key={`link-${mp.id}`} to={`/marketPlace/${mp.id}`}>
 							<li key={mp.id}>
-								<h4>{mp.title}</h4>
+								<h4>{mp.name}</h4>
 								<p>{mp.description}</p>
 							</li>
 						</Link>

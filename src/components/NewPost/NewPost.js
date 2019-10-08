@@ -11,18 +11,10 @@ import comment from '../Icons/comment';
 export default function NewPost(props) {
 	const context = useContext(ForumContext);
 	const recentPosts = () => {
-		let recentPosts = [];
-		context.state.posts.forEach(post => {
-			let today = new Date();
-			let lastWeek = today.getDate() - 7;
-			today = today.getDate();
-			if (post.date.slice(8) >= lastWeek && post.date.slice(8) <= today) {
-				recentPosts.push(post);
-			}
-		});
-
+		let recentPosts = context.state.newestPosts;
+		console.log(recentPosts);
 		const visiblePosts = recentPosts ? (
-			context.state.posts.map(p => {
+			recentPosts.map(p => {
 				const numOfComments = STORE.comments.filter(
 					comment => comment.postId === p.id
 				).length;
@@ -44,7 +36,7 @@ export default function NewPost(props) {
 							{p.content}
 						</Truncate>
 						<span className='postInfo'>
-							<p>Posted By: {p.author}</p>
+							<p>Posted By: {p.username}</p>
 							<p>Posted On: {formatDate(p.date)}</p>
 							<span className='post-icons'>
 								<p>

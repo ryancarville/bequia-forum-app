@@ -11,7 +11,7 @@ export default function RentalSection(props) {
 	const makeRentalListings = context.state.rentalPosts
 		.filter(
 			listing =>
-				listing.rentalTypeId.toString() === props.match.params.rentalTypeId
+				listing.rentalcat.toString() === props.match.params.rentalTypeId
 		)
 		.map(r => (
 			<li key={r.id}>
@@ -39,8 +39,8 @@ export default function RentalSection(props) {
 					<p>{r.description}</p>
 				</Truncate>
 				<span className='postInfo'>
-					<p>Posted By: {r.contact.name}</p>
-					<p>Posted On: {formatDate(r.date)}</p>
+					<p>Posted By: {r.contactname}</p>
+					<p>Posted On: {formatDate(r.datecreated)}</p>
 				</span>
 			</li>
 		));

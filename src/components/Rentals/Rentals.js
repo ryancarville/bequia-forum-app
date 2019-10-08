@@ -17,9 +17,9 @@ export default function Rentals(props) {
 				) : null}
 			</span>
 			<div className='rentals-content'>
-				{context.state.rentals.map(r => (
+				{context.state.rentalCatagories.map(r => (
 					<Link key={r.id} to={`/rentals/${r.id}`}>
-						<div className='rentals-card'>{r.title}</div>
+						<div className='rentals-card'>{r.name}</div>
 					</Link>
 				))}
 			</div>

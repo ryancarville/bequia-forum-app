@@ -4,6 +4,9 @@ import './JobPage.css';
 
 export default function JobPage(props) {
 	const j = props.location.state.job;
+	const name = [j.firstname, j.lastname];
+	const fullName = name.join(' ');
+	console.log(j);
 	return (
 		<section className='job-page-container'>
 			<div className='job-page-content'>
@@ -15,12 +18,12 @@ export default function JobPage(props) {
 				<p>{j.description}</p>
 				<span>
 					<h4>Contact Information</h4>
-					<p>{j.contact.name}</p>
+					<p>{fullName}</p>
 					<a
-						href={`mailto: ${j.contact.email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
-						{j.contact.email}
+						href={`mailto: ${j.email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
+						{j.email}
 					</a>
-					<p>Phone: {formatPhoneNumberIntl(j.contact.phone)}</p>
+					{j.phone ? <p>Phone: {formatPhoneNumberIntl(j.phone)}</p> : null}
 				</span>
 			</div>
 		</section>

@@ -3,21 +3,14 @@ import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import './RentalPage.css';
 
 export default function RentalPage(props) {
-	const bookingSites = (
-		<>
-			<h4>Booking Sites</h4>
-			{props.location.state.rental.bookingSites.map(booking =>
-				booking.site !== '' ? (
-					<>
-						<a href={booking.site} target='_blank' rel='noopener noreferrer'>
-							{booking.title}
-						</a>
-						<br />
-					</>
-				) : null
-			)}
-		</>
-	);
+	console.log(props.location.state.rental);
+	const {
+		airbnb,
+		homeaway,
+		bookingdotcom,
+		othersite
+	} = props.location.state.rental;
+	const bookingSites = [airbnb, homeaway, bookingdotcom, othersite];
 
 	return (
 		<section className='rental-page-container'>
@@ -26,16 +19,25 @@ export default function RentalPage(props) {
 				<p>{props.location.state.rental.description}</p>
 				<span>
 					<h4>Contact</h4>
-					<p>{props.location.state.rental.contact.name}</p>
-					<a href={`mailto:${props.location.state.rental.contact.email}`}>
-						{props.location.state.rental.contact.email}
+					<p>{props.location.state.rental.contactname}</p>
+					<a href={`mailto:${props.location.state.rental.contactemail}`}>
+						{props.location.state.rental.contactemail}
 					</a>
 					<p>
 						Phone:{' '}
-						{formatPhoneNumberIntl(props.location.state.rental.contact.phone)}
+						{formatPhoneNumberIntl(props.location.state.rental.contactphone)}
 					</p>
-
-					{bookingSites}
+					<h4>Booking Sites</h4>
+					{bookingSites
+						? bookingSites.map(b => (
+								<>
+									<a href={b} target='_blank' rel='noopener noreferrer'>
+										{b}
+									</a>
+									<br />
+								</>
+						  ))
+						: null}
 				</span>
 			</div>
 		</section>

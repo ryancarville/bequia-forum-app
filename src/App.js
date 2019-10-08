@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 import Router from './Router/Router';
 import Nav from '../src/components/Nav/Nav';
+import apiServices from './services/apiServices';
 
 class App extends Component {
 	constructor(props) {
@@ -18,13 +19,14 @@ class App extends Component {
 			},
 			forum: [],
 			posts: [],
+			newestPosts: [],
 			comments: [],
 			events: [],
-			jobs: [],
+			jobCatagories: [],
 			jobPosts: [],
-			rentals: [],
+			rentalCatagories: [],
 			rentalPosts: [],
-			marketPlace: [],
+			marketPlaceCatagories: [],
 			marketPlacePosts: [],
 			directory: []
 		};
@@ -103,169 +105,80 @@ class App extends Component {
 			marketPlacePosts: newLisitngs
 		});
 	};
-	handleSort = e => {
-		if (e.target.value === 'newest-posts') {
-			let sortedPosts = this.state.posts.sort((a, b) =>
-				a.date > b.date ? -1 : 1
-			);
-			this.setState({
-				posts: sortedPosts
-			});
-		}
-		if (e.target.value === 'oldest-posts') {
-			let sortedPosts = this.state.posts.sort((a, b) =>
-				a.date < b.date ? -1 : 1
-			);
-			this.setState({
-				posts: sortedPosts
-			});
-		}
-		if (e.target.value === 'likes-asc-posts') {
-			let sortedPosts = this.state.posts.sort((a, b) =>
-				a.likes > b.likes ? -1 : 1
-			);
-			this.setState({
-				posts: sortedPosts
-			});
-		}
-		if (e.target.value === 'likes-dec-posts') {
-			let sortedPosts = this.state.posts.sort((a, b) =>
-				a.likes < b.likes ? -1 : 1
-			);
-			this.setState({
-				posts: sortedPosts
-			});
-		}
-		if (e.target.value === 'all-posts') {
-			this.setState({
-				posts: STORE.posts
-			});
-		}
-		if (e.target.value === 'asc-dir') {
-			let sortedDir = this.state.directory.sort((a, b) =>
-				a.userLName < b.userLName ? -1 : 1
-			);
-			this.setState({
-				directory: sortedDir
-			});
-		}
-		if (e.target.value === 'dec-dir') {
-			let sortedDir = this.state.directory.sort((a, b) =>
-				a.userLName > b.userLName ? -1 : 1
-			);
-			this.setState({
-				directory: sortedDir
-			});
-		}
-		if (e.target.value === 'all-dir') {
-			this.setState({
-				directory: STORE.directory
-			});
-		}
-		if (e.target.value === 'newest-rent') {
-			let sortedRentals = this.state.rentals.sort((a, b) =>
-				a.datePosted < b.datePosted ? -1 : 1
-			);
-			this.setState({
-				rentals: sortedRentals
-			});
-		}
-		if (e.target.value === 'oldest-rent') {
-			let sortedRentals = this.state.rentals.sort((a, b) =>
-				a.datePosted > b.datePosted ? -1 : 1
-			);
-			this.setState({
-				rentals: sortedRentals
-			});
-		}
-		if (e.target.value === 'housing-rent') {
-			let sortedRentals = this.state.rentals.filter(
-				a => a.catagory === 'housing'
-			);
-			this.setState({
-				rentals: sortedRentals
-			});
-		}
-		if (e.target.value === 'marine-rent') {
-			let sortedRentals = this.state.rentals.filter(
-				a => a.catagory === 'marine'
-			);
-			this.setState({
-				rentals: sortedRentals
-			});
-		}
-		if (e.target.value === 'all-rent') {
-			this.setState({
-				rentals: STORE.rentals
-			});
-		}
-		if (e.target.value === 'newest-jobs') {
-			let sortedJobs = this.state.jobs.sort((a, b) =>
-				a.datePosted < b.datePosted ? -1 : 1
-			);
-			this.setState({
-				jobs: sortedJobs
-			});
-		}
-		if (e.target.value === 'oldest-jobs') {
-			let sortedJobs = this.state.jobs.sort((a, b) =>
-				a.datePosted > b.datePosted ? -1 : 1
-			);
-			this.setState({
-				jobs: sortedJobs
-			});
-		}
-		if (e.target.value === 'service-jobs') {
-			let sortedJobs = this.state.jobs.filter(a => a.catagory === 'service');
-			this.setState({
-				jobs: sortedJobs
-			});
-		}
-		if (e.target.value === 'marine-jobs') {
-			let sortedJobs = this.state.jobs.filter(a => a.catagory === 'marine');
-			this.setState({
-				jobs: sortedJobs
-			});
-		}
-		if (e.target.value === 'all-jobs') {
-			this.setState({
-				jobs: STORE.jobs
-			});
-		}
+
+	getForumSectionTitles = () => {
+		apiServices
+			.getFourmSectionTitles()
+			.then(data => this.setState({ forumTitles: data }));
+	};
+	getFourm = () => {
+		apiServices.getFourm().then(data => this.setState({ forum: data }));
+	};
+	getPosts = () => {
+		apiServices.getPosts().then(data => this.setState({ posts: data }));
+	};
+	getNewestPosts = () => {
+		apiServices
+			.getNewestPosts()
+			.then(data => this.setState({ newestPosts: data }));
+	};
+	getEvents = () => {
+		apiServices.getEvents().then(data => this.setState({ events: data }));
+	};
+	getJobCatagories = () => {
+		apiServices
+			.getJobCatagories()
+			.then(data => this.setState({ jobCatagories: data }));
+	};
+	getJobPosts = () => {
+		apiServices.getJobPosts().then(data => this.setState({ jobPosts: data }));
+	};
+	getRentalCatagories = () => {
+		apiServices
+			.getRentalCatagories()
+			.then(data => this.setState({ rentalCatagories: data }));
+	};
+	getRentalListing = () => {
+		apiServices
+			.getRentalListings()
+			.then(data => this.setState({ rentalPosts: data }));
+	};
+	getMarketPlaceCatagories = () => {
+		apiServices
+			.getMarketPlaceCatagories()
+			.then(data => this.setState({ marketPlaceCatagories: data }));
+	};
+	getMarketPlaceListings = () => {
+		apiServices
+			.getMarketPlacePosts()
+			.then(data => this.setState({ marketPlacePosts: data }));
 	};
 	componentDidMount() {
+		this.getForumSectionTitles();
+		this.getFourm();
+		this.getPosts();
+		this.getNewestPosts();
+		this.getEvents();
+		this.getJobCatagories();
+		this.getJobPosts();
+		this.getRentalCatagories();
+		this.getRentalListing();
+		this.getMarketPlaceCatagories();
+		this.getMarketPlaceListings();
 		this.setState({
-			forum: STORE.forum,
-			posts: STORE.posts,
 			comments: STORE.comments,
-			events: STORE.events,
-			directory: STORE.directory,
-			jobs: STORE.jobs,
-			jobPosts: STORE.jobPosts,
-			rentals: STORE.rentals,
-			rentalPosts: STORE.rentalPosts,
-			marketPlace: STORE.marketPlace,
-			marketPlacePosts: STORE.marketPlacePosts
+			directory: STORE.directory
 		});
-		// let sortedDir = this.state.directory.sort((a, b) =>
-		// 	a.userLName < b.userLName ? -1 : 1
-		// );
-		// this.setState({
-		// 	directory: sortedDir
-		// });
 	}
 
 	render() {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
-			posts: this.state.posts,
 			comments: this.state.comments,
 			addComment: this.addComment,
 			deleteComment: this.deleteComment,
-			events: this.state.events,
 			directory: this.state.directory,
-			sort: this.handleSort,
 			createPost: this.createPost,
 			updatePost: this.updatePost,
 			deletePost: this.deletePost,

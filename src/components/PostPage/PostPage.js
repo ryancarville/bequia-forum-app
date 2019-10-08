@@ -101,7 +101,7 @@ class PostPage extends Component {
 				<p>{p.content}</p>
 
 				<span className='postInfo'>
-					<p>Posted By: {p.author}</p>
+					<p>Posted By: {p.username}</p>
 					<p>Posted On: {formatDate(p.date)}</p>
 					<p>
 						{like} {'  '} {p.likes}

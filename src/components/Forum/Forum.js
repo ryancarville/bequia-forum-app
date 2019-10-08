@@ -10,21 +10,26 @@ export default function Forum(props) {
 	const makeForum = () => {
 		let i = 0;
 		let links = [];
-		while (i < context.state.forum.length) {
+		const forumTitles = context.state.forumTitles;
+		const forumSections = context.state.forum;
+		const posts = context.state.posts;
+		console.log(context.state.forumTitles);
+		console.log(context.state.forum);
+		while (i < forumTitles.length) {
+			const titleId = forumTitles[i].id;
+			links.push(<h4 key={forumTitles[i].id}>{forumTitles[i].name}</h4>);
 			links.push(
-				context.state.forum[i].map(item => {
-					if (item.sectionTitle) {
-						return <h4 key={item}>{item.sectionTitle}</h4>;
-					} else {
-						const numOfThreads = context.state.posts.filter(
-							post => post.forumId === item.forumId
-						).length;
+				forumSections
+					.filter(section => section.messageboardsection === titleId)
+					.map(item => {
+						const numOfThreads = posts.filter(post => post.boardid === item.id)
+							.length;
 						return (
 							<li key={'u-' + item.forumId}>
 								<div>
 									<Link
 										to={{
-											pathname: `/messageBoard/${item.forumId}`,
+											pathname: `/messageBoard/${item.id}`,
 											state: { forum: item }
 										}}>
 										{item.title}
@@ -36,9 +41,37 @@ export default function Forum(props) {
 								</span>
 							</li>
 						);
-					}
-				})
+					})
 			);
+
+			// links.push(
+			// 	context.state.forumTitles.map(item => {
+			// 		if (item.sectionTitle) {
+			// 			return <h4 key={item}>{item.sectionTitle}</h4>;
+			// 		} else {
+			// 			const numOfThreads = context.state.posts.filter(
+			// 				post => post.forumId === item.forumId
+			// 			).length;
+			// 			return (
+			// 				<li key={'u-' + item.forumId}>
+			// 					<div>
+			// 						<Link
+			// 							to={{
+			// 								pathname: `/messageBoard/${item.forumId}`,
+			// 								state: { forum: item }
+			// 							}}>
+			// 							{item.title}
+			// 						</Link>
+			// 						<p>{item.description}</p>
+			// 					</div>
+			// 					<span className='thread-count'>
+			// 						<p>Threads</p> {numOfThreads}
+			// 					</span>
+			// 				</li>
+			// 			);
+			// 		}
+			// 	})
+			// );
 
 			i++;
 		}
