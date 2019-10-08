@@ -40,7 +40,7 @@ export default function RentalSection(props) {
 				</Truncate>
 				<span className='postInfo'>
 					<p>Posted By: {r.contactname}</p>
-					<p>Posted On: {formatDate(r.datecreated)}</p>
+					<p>Posted On: {formatDate(r.dateposted)}</p>
 				</span>
 			</li>
 		));

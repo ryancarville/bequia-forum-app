@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import './JobPage.css';
+import formatDate from '../../helpers/formatDate';
 
 export default function JobPage(props) {
 	const j = props.location.state.job;
@@ -25,6 +26,7 @@ export default function JobPage(props) {
 					</a>
 					{j.phone ? <p>Phone: {formatPhoneNumberIntl(j.phone)}</p> : null}
 				</span>
+				<p>Posted on: {formatDate(j.dateposted)}</p>
 			</div>
 		</section>
 	);
