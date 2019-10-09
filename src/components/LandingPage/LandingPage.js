@@ -16,10 +16,7 @@ export default function LandingPage() {
 						most out of the platform. i.e. Create Posts, events, comments etc.
 					</p>
 				</div>
-				<img
-					src='https://media.giphy.com/media/l0HlUZNyQ8jHgYedy/source.gif'
-					alt='bequia-isalnd'
-				/>
+				<img src='../windy-palms.gif' alt='windy-palms' />
 			</div>
 		</div>
 	);

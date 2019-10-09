@@ -32,8 +32,9 @@ import MarketPlaceSection from '../components/MarketPlaceSection/MarketPlaceSect
 import NoPath from '../components/404/404';
 import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
 import CreateMarketPlaceListing from '../components/CreateMarketPlaceListing/CreateMarketPlaceListing';
-
+import ForumContext from '../ForumContext';
 export default class Router extends Component {
+	static contextType = ForumContext;
 	render() {
 		return (
 			<>
@@ -47,7 +48,7 @@ export default class Router extends Component {
 					<Route path='/messageBoard' component={Forum} exact />
 					<Route
 						path='/messageBoard/:forumId/:postId'
-						component={PostPage}
+						render={() => <PostPage posts={this.context.state.posts} />}
 						exact
 					/>
 					<Route path='/jobs' component={Jobs} exact />

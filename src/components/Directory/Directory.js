@@ -2,26 +2,37 @@ import React, { Component } from 'react';
 import './Directory.css';
 import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
+import { formatPhoneNumberIntl } from 'react-phone-number-input/commonjs/formatPhoneNumberDefaultMetadata';
 
 export default class Directory extends Component {
 	directory = dir => {
 		const listings = dir.map(d => {
-			const userFullName = d.userFName + ' ' + d.userLName;
+			const name = [d.firstname, d.lastname];
+			const fullName = name.join(' ');
 			return (
 				<div className='directory-listing' key={d.userId}>
 					<ul>
-						<h4>{userFullName}</h4>
-						<li>
-							Email: <a href={`mailto:${d.email}`}>{d.email}</a>
-						</li>
+						<h4>{fullName}</h4>
+						{d.address ? <li>Address: {d.address}</li> : null}
+						{d.city ? <li>City: {d.city}</li> : null}
+						{d.country ? <li>Country: {d.country}</li> : null}
+						{d.email ? (
+							<li>
+								Email: <a href={`mailto:${d.email}`}>{d.email}</a>
+							</li>
+						) : null}
 
-						<li>Telephone: {d.phone}</li>
-						<li>
-							Website:{' '}
-							<a href={d.website} target='_blank' rel='noopener noreferrer'>
-								{d.website}
-							</a>
-						</li>
+						{d.phone ? (
+							<li>Telephone: {formatPhoneNumberIntl(d.phone)}</li>
+						) : null}
+						{d.website ? (
+							<li>
+								Website:{' '}
+								<a href={d.website} target='_blank' rel='noopener noreferrer'>
+									{d.website}
+								</a>
+							</li>
+						) : null}
 					</ul>
 				</div>
 			);

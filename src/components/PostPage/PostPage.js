@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import './PostPage.css';
+import Post from '../Post/Post';
 import ForumContext from '../../ForumContext';
 import TokenService from '../../services/TokenServices';
 import AddComment from '../AddComment/AddComment';
 import EditPost from '../EditPost/EditPost';
 import Comments from '../Comments/Comments';
-import formatDate from '../../helpers/formatDate';
-import like from '../Icons/like';
-import comment from '../Icons/comment';
-import edit from '../Icons/edit';
-import deleteIcon from '../Icons/delete';
+import DeletePopUp from '../DeletePopUp/DeletePopUp';
+import LikeButtons from './likeButton';
+import CommentButton from './commentButton';
+import EditButtons from './editButtons';
 
 class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			p: {},
+			post: '',
 			title: '',
 			content: '',
 			didLike: false,
@@ -24,27 +24,10 @@ class PostPage extends Component {
 		};
 	}
 	static contextType = ForumContext;
-	userEditButtons = () => {
-		const { p } = this.state;
-		if (TokenService.getAuthToken()) {
-			if (this.context.user.id === p.userId) {
-				return (
-					<div className='edit-button-container'>
-						<button tupe='button' onClick={this.showPostEdit}>
-							{edit}
-						</button>
-						<button type='button' onClick={this.showDeleteWindow}>
-							{deleteIcon}
-						</button>
-					</div>
-				);
-			}
-		}
-		return null;
-	};
-	showDeleteWindow = () => {
+
+	showDeletePopUp = () => {
 		this.setState({
-			showDeleteWindow: !this.state.showDeleteWindow
+			showDeletePopUp: !this.state.showDeletePopUp
 		});
 	};
 	showPostEdit = () => {
@@ -58,17 +41,27 @@ class PostPage extends Component {
 			showAddComment: !this.state.showAddComment
 		});
 	};
-
+	handleDelete = () => {
+		const { id } = this.state.post;
+		this.context.deletePost(id);
+		this.setState({
+			redirectToForum: !this.state.redirectToForum
+		});
+	};
 	handleLike = e => {
+		const { id } = this.state.post;
+		const add = '+';
+		const subtract = '-';
 		if (this.state.didLike) {
+			this.context.handleLike(id, subtract);
 			this.setState({
-				didLike: !this.state.didLike,
-				p: { ...this.state.p, likes: this.state.p.likes - 1 }
+				didLike: !this.state.didLike
 			});
-		} else {
+		}
+		if (!this.state.didLike) {
+			this.context.handleLike(id, add);
 			this.setState({
-				didLike: !this.state.didLike,
-				p: { ...this.state.p, likes: this.state.p.likes + 1 }
+				didLike: !this.state.didLike
 			});
 		}
 	};
@@ -81,86 +74,67 @@ class PostPage extends Component {
 			redirectToForum: true
 		});
 	};
-
-	componentWillMount() {
-		const post = this.context.state.posts.filter(
+	componentDidMount() {
+		const post = this.props.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
 		this.setState({
-			p: post[0]
+			post: post[0]
 		});
 	}
+
 	render() {
+		const postInfo = this.props.posts.filter(
+			p => p.id.toString() === this.props.match.params.postId
+		);
+
 		if (this.state.redirectToForum) {
 			return <Redirect to={`/messageBoard`} />;
 		}
-		const { p } = this.state;
-		const post = (
-			<>
-				<h3>{p.title}</h3>
-				<p>{p.content}</p>
-
-				<span className='postInfo'>
-					<p>Posted By: {p.username}</p>
-					<p>Posted On: {formatDate(p.date)}</p>
-					<p>
-						{like} {'  '} {p.likes}
-					</p>
-				</span>
-				{this.userEditButtons()}
-				{TokenService.getAuthToken() ? (
-					<div className='comment-like-button-container'>
-						<button
-							type='button'
-							onClick={this.handleLike}
-							id='coconut-likes-btn'>
-							{like} Like
-						</button>
-						<button
-							type='button'
-							onClick={this.handleComment}
-							id='add-comment-btn'>
-							{comment} Comment
-						</button>
-					</div>
-				) : null}
-
-				{this.state.showAddComment ? (
-					<AddComment
-						forumId={this.props.match.params.forumId}
-						postId={this.props.match.params.postId}
-						closeAddComment={this.handleComment}
-					/>
-				) : null}
-				<Comments
-					forumId={this.props.match.params.forumId}
-					postId={this.props.match.params.postId}
-				/>
-			</>
-		);
-		const deleteWindow = (
-			<form onSubmit={this.handleSubmit}>
-				<div className='post-delete-pop-up'>
-					<h3>Are you sure you want to delete post '{this.state.p.title}'?</h3>
-					<span>
-						<button type='submit'>Yes</button>
-						<button type='button' onClick={this.showDeleteWindow}>
-							No
-						</button>
-					</span>
-				</div>
-			</form>
-		);
 
 		return (
 			<section className='post-container'>
 				<div className='post-content'>
-					{!this.state.showDeleteWindow ? null : deleteWindow}
-					{!this.state.showPostEdit ? (
-						post
+					{TokenService.getAuthToken() ? (
+						this.context.user.id === this.state.post.userid ? (
+							<EditButtons
+								showPostEdit={this.showPostEdit}
+								showDeletePopUp={this.showDeletePopUp}
+							/>
+						) : null
+					) : null}
+					{this.state.showDeletePopUp ? (
+						<DeletePopUp
+							showDeletePopUp={this.showDeletePopUp}
+							title={this.state.post.title}
+							handleDelete={this.handleDelete}
+						/>
+					) : null}
+					{this.state.showPostEdit ? (
+						<EditPost post={this.state.post} closeEdit={this.showPostEdit} />
 					) : (
-						<EditPost post={this.state.p} closeEdit={this.showPostEdit} />
+						<Post post={postInfo[0]} />
 					)}
+					{TokenService.getAuthToken() ? (
+						<span className='comment-like-button-container'>
+							<LikeButtons
+								didLike={this.state.didLike}
+								handleLike={this.handleLike}
+							/>
+							<CommentButton handleComment={this.handleComment} />
+						</span>
+					) : null}
+					{this.state.showAddComment ? (
+						<AddComment
+							forumId={this.props.match.params.forumId}
+							postId={this.props.match.params.postId}
+							closeAddComment={this.handleComment}
+						/>
+					) : null}
+					<Comments
+						forumId={this.props.match.params.forumId}
+						postId={this.props.match.params.postId}
+					/>
 				</div>
 			</section>
 		);

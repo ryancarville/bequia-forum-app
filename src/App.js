@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import STORE from './STORE/store';
 import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -13,7 +12,7 @@ class App extends Component {
 		this.state = {
 			user: {
 				id: 1,
-				name: 'Sam Smith',
+				name: 'Ryan Carville',
 				email: 'test@user.com',
 				lastLogin: '2019-05-23'
 			},
@@ -45,22 +44,14 @@ class App extends Component {
 			posts: currPosts
 		});
 	};
-	deletePost = postId => {
-		const newPosts = this.state.posts.filter(p => p.id !== postId);
-		this.setState({
-			posts: newPosts
-		});
+	deletePost = id => {
+		apiServices.deletePost(id).then(() => this.getPosts());
 	};
 	addComment = newComment => {
-		this.setState({
-			comments: [...this.state.comments, newComment]
-		});
+		apiServices.addComment(newComment).then(() => this.getComments());
 	};
-	deleteComment = commentId => {
-		const newComments = this.state.comments.filter(c => c.id !== commentId);
-		this.setState({
-			comments: newComments
-		});
+	deleteComment = id => {
+		apiServices.deleteComment(id).then(() => this.getComments());
 	};
 	createEvent = newEvent => {
 		this.setState({
@@ -115,12 +106,21 @@ class App extends Component {
 		apiServices.getFourm().then(data => this.setState({ forum: data }));
 	};
 	getPosts = () => {
+		console.log('get post ran');
 		apiServices.getPosts().then(data => this.setState({ posts: data }));
 	};
 	getNewestPosts = () => {
 		apiServices
 			.getNewestPosts()
 			.then(data => this.setState({ newestPosts: data }));
+	};
+	handleLike = (id, like) => {
+		apiServices.handleLike(id, like).then(() => {
+			this.getPosts();
+		});
+	};
+	getComments = () => {
+		apiServices.getComments().then(data => this.setState({ comments: data }));
 	};
 	getEvents = () => {
 		apiServices.getEvents().then(data => this.setState({ events: data }));
@@ -153,6 +153,9 @@ class App extends Component {
 			.getMarketPlacePosts()
 			.then(data => this.setState({ marketPlacePosts: data }));
 	};
+	getDirectory = () => {
+		apiServices.getDriectory().then(data => this.setState({ directory: data }));
+	};
 	componentDidMount() {
 		this.getForumSectionTitles();
 		this.getFourm();
@@ -165,16 +168,15 @@ class App extends Component {
 		this.getRentalListing();
 		this.getMarketPlaceCatagories();
 		this.getMarketPlaceListings();
-		this.setState({
-			comments: STORE.comments,
-			directory: STORE.directory
-		});
+		this.getDirectory();
+		this.getComments();
 	}
 
 	render() {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
+			handleLike: this.handleLike,
 			comments: this.state.comments,
 			addComment: this.addComment,
 			deleteComment: this.deleteComment,

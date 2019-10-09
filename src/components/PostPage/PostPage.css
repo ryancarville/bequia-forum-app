@@ -11,7 +11,8 @@
 .comment-like-button-container {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	align-items: center;
 	margin-top: 10px;
 }
 .comment-like-button-container button {
@@ -67,7 +68,7 @@
 
 @media only screen and (min-width: 700px) {
 	.comment-like-button-container {
-		width: 12%;
+		width: 13%;
 	}
 	.edit-button-container {
 		float: right;

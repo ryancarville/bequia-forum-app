@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import STORE from '../../STORE/store';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
@@ -15,8 +14,8 @@ export default function NewPost(props) {
 		console.log(recentPosts);
 		const visiblePosts = recentPosts ? (
 			recentPosts.map(p => {
-				const numOfComments = STORE.comments.filter(
-					comment => comment.postId === p.id
+				const numOfComments = context.state.comments.filter(
+					comment => comment.postid === p.id
 				).length;
 				return (
 					<div className='newest-posts' key={p.id}>
@@ -37,7 +36,7 @@ export default function NewPost(props) {
 						</Truncate>
 						<span className='postInfo'>
 							<p>Posted By: {p.username}</p>
-							<p>Posted On: {formatDate(p.date)}</p>
+							<p>Posted On: {formatDate(p.dateposted)}</p>
 							<span className='post-icons'>
 								<p>
 									{like}

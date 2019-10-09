@@ -5,7 +5,7 @@ import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import TokenServices from '../../services/TokenServices';
 import ForumContext from '../../ForumContext';
 
-export default function Forum(props) {
+export default function Forum() {
 	const context = useContext(ForumContext);
 	const makeForum = () => {
 		let i = 0;
@@ -13,11 +13,9 @@ export default function Forum(props) {
 		const forumTitles = context.state.forumTitles;
 		const forumSections = context.state.forum;
 		const posts = context.state.posts;
-		console.log(context.state.forumTitles);
-		console.log(context.state.forum);
 		while (i < forumTitles.length) {
 			const titleId = forumTitles[i].id;
-			links.push(<h4 key={forumTitles[i].id}>{forumTitles[i].name}</h4>);
+			links.push(<h4 key={titleId}>{forumTitles[i].name}</h4>);
 			links.push(
 				forumSections
 					.filter(section => section.messageboardsection === titleId)
@@ -25,17 +23,17 @@ export default function Forum(props) {
 						const numOfThreads = posts.filter(post => post.boardid === item.id)
 							.length;
 						return (
-							<li key={'u-' + item.forumId}>
-								<div>
+							<li key={item.id}>
+								<span>
 									<Link
 										to={{
 											pathname: `/messageBoard/${item.id}`,
-											state: { forum: item }
+											state: { forumTitle: item.name }
 										}}>
-										{item.title}
+										{item.name}
 									</Link>
 									<p>{item.description}</p>
-								</div>
+								</span>
 								<span className='thread-count'>
 									<p>Threads</p> {numOfThreads}
 								</span>
@@ -43,45 +41,16 @@ export default function Forum(props) {
 						);
 					})
 			);
-
-			// links.push(
-			// 	context.state.forumTitles.map(item => {
-			// 		if (item.sectionTitle) {
-			// 			return <h4 key={item}>{item.sectionTitle}</h4>;
-			// 		} else {
-			// 			const numOfThreads = context.state.posts.filter(
-			// 				post => post.forumId === item.forumId
-			// 			).length;
-			// 			return (
-			// 				<li key={'u-' + item.forumId}>
-			// 					<div>
-			// 						<Link
-			// 							to={{
-			// 								pathname: `/messageBoard/${item.forumId}`,
-			// 								state: { forum: item }
-			// 							}}>
-			// 							{item.title}
-			// 						</Link>
-			// 						<p>{item.description}</p>
-			// 					</div>
-			// 					<span className='thread-count'>
-			// 						<p>Threads</p> {numOfThreads}
-			// 					</span>
-			// 				</li>
-			// 			);
-			// 		}
-			// 	})
-			// );
-
 			i++;
 		}
 		return links;
 	};
-
 	return (
-		<div className='forum-container'>
-			<span>
+		<section className='forum-container'>
+			<header>
 				<h3>Fourm</h3>
+			</header>
+			<span>
 				{TokenServices.getAuthToken() ? (
 					<CreateContentButton page='forum' />
 				) : null}
@@ -89,6 +58,6 @@ export default function Forum(props) {
 			<div className='forum-content'>
 				<ul>{makeForum()}</ul>
 			</div>
-		</div>
+		</section>
 	);
 }
