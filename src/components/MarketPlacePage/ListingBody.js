@@ -18,14 +18,14 @@ export default function ListingBody(props) {
 			<p>{l.description}</p>
 			<span>
 				<h4>Contact Information</h4>
-				<p>{l.contactname}</p>
+				<p>{l.contact_name}</p>
 				<a
-					href={`mailto: ${l.contactemail}?subject=New Enquiry from you post on Bequia Forum: ${l.title}`}>
-					{l.contactemail}
+					href={`mailto: ${l.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${l.title}`}>
+					{l.contact_email}
 				</a>
-				<p>Phone: {formatPhoneNumberIntl(l.contactphone)}</p>
+				<p>Phone: {formatPhoneNumberIntl(l.contact_phone)}</p>
 			</span>
-			<p>Posted on: {formatDate(l.dateposted)}</p>
+			<p>Posted on: {formatDate(l.date_posted)}</p>
 		</>
 	);
 }

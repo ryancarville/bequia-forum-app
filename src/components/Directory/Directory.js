@@ -7,10 +7,10 @@ import { formatPhoneNumberIntl } from 'react-phone-number-input/commonjs/formatP
 export default class Directory extends Component {
 	directory = dir => {
 		const listings = dir.map(d => {
-			const name = [d.firstname, d.lastname];
+			const name = [d.first_name, d.last_name];
 			const fullName = name.join(' ');
 			return (
-				<div className='directory-listing' key={d.userId}>
+				<div className='directory-listing' key={d.user_id}>
 					<ul>
 						<h4>{fullName}</h4>
 						{d.address ? <li>Address: {d.address}</li> : null}
@@ -48,7 +48,7 @@ export default class Directory extends Component {
 						<>
 							<Sort handleSort={context.sort} sortType={'dir'} />
 							<div className='directory-content'>
-								{this.directory(context.directory)}
+								{this.directory(context.state.directory)}
 							</div>
 						</>
 					)}

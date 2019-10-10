@@ -6,9 +6,9 @@ import ForumContext from '../../ForumContext';
 export default function ShowPostPreview(props) {
 	const context = useContext(ForumContext);
 	const forumTitle = context.state.forum.find(
-		f => f.id === parseInt(props.state.boardid)
+		f => f.id === parseInt(props.state.board_id)
 	);
-	console.log(props.state.boardid);
+	console.log(props.state.board_id);
 	return (
 		<div className='create-post-preview'>
 			<h2>Posting in {forumTitle.name}</h2>
@@ -17,7 +17,7 @@ export default function ShowPostPreview(props) {
 			<p>{props.state.content}</p>
 
 			<p>Posted By: {props.state.author}</p>
-			<p>Posted On: {formatDate(props.state.date)}</p>
+			<p>Posted On: {formatDate(props.state.date_posted)}</p>
 			<span>
 				<button onClick={() => props.handleSubmit()}>Create Listing</button>
 				<button onClick={props.handleShowPreview}>Edit</button>

@@ -6,10 +6,10 @@ export default class AddComment extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			postid: this.props.postId,
-			userid: null,
+			post_id: this.props.postId,
+			user_id: null,
 			content: '',
-			dateposted: new Date().toISOString().slice(0, 10),
+			date_posted: new Date().toISOString().slice(0, 10),
 			posted: false
 		};
 	}
@@ -21,10 +21,10 @@ export default class AddComment extends Component {
 	};
 	handleCommentSubmit = e => {
 		e.preventDefault();
-		var { postid } = this.state;
-		postid = parseInt(postid);
-		const { userid, content, dateposted } = this.state;
-		const newComment = { userid, content, dateposted, postid };
+		var { post_id } = this.state;
+		post_id = parseInt(post_id);
+		const { user_id, content, date_posted } = this.state;
+		const newComment = { user_id, content, date_posted, post_id };
 		this.context.addComment(newComment);
 		this.setState({
 			posted: true
@@ -32,7 +32,7 @@ export default class AddComment extends Component {
 	};
 	componentDidMount() {
 		this.setState({
-			userid: this.context.user.id
+			user_id: this.context.user.id
 		});
 	}
 	render() {

@@ -103,7 +103,6 @@ class App extends Component {
 		apiServices.getFourm().then(data => this.setState({ forum: data }));
 	};
 	getPosts = () => {
-		console.log('get post ran');
 		apiServices.getPosts().then(data => this.setState({ posts: data }));
 	};
 	getNewestPosts = () => {

@@ -14,16 +14,16 @@ export default function ForumSection(props) {
 	const forumId = props.match.params.forumId;
 	const getPosts = () => {
 		const boardPosts = context.state.posts
-			.filter(p => p.boardid === parseInt(forumId))
+			.filter(p => p.board_id === parseInt(forumId))
 			.map(p => {
 				const numOfComments = context.state.comments.filter(
-					comment => comment.postid === p.id
+					comment => comment.post_id === p.id
 				).length;
 				return (
 					<li key={p.id}>
 						<Link
 							to={{
-								pathname: `/messageBoard/${p.boardid}/${p.id}`,
+								pathname: `/messageBoard/${p.board_id}/${p.id}`,
 								state: { id: p.id }
 							}}>
 							{p.title}
@@ -36,7 +36,7 @@ export default function ForumSection(props) {
 									...
 									<Link
 										to={{
-											pathname: `/messageBoard/${forumId}/${p.id}`,
+											pathname: `/messageBoard/${p.board_id}/${p.id}`,
 											state: { id: p.id }
 										}}>
 										Read more
@@ -46,8 +46,8 @@ export default function ForumSection(props) {
 							{p.content}
 						</Truncate>
 						<span className='postInfo'>
-							<p>Posted By: {p.username}</p>
-							<p>Posted On: {formatDate(p.dateposted)}</p>
+							<p>Posted By: {p.user_name}</p>
+							<p>Posted On: {formatDate(p.date_posted)}</p>
 							<span className='post-icons'>
 								<p>
 									{like}

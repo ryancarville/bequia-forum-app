@@ -3,8 +3,8 @@ import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import formatDate from '../../helpers/formatDate';
 export default function ListingBody(props) {
 	const r = props.state;
-	const { airbnb, homeaway, bookingdotcom, othersite } = r;
-	const bookingSites = [airbnb, homeaway, bookingdotcom, othersite];
+	const { airbnb, homeaway, booking_dot_com, other_site } = r;
+	const bookingSites = [airbnb, homeaway, booking_dot_com, other_site];
 	const listingsSites = [];
 	for (let i = 0; i < bookingSites.length; i++) {
 		if (bookingSites[i] !== null) {
@@ -19,9 +19,9 @@ export default function ListingBody(props) {
 			<p>{r.description}</p>
 			<span>
 				<h4>Contact</h4>
-				<p>{r.contactname}</p>
-				<a href={`mailto:${r.contactemail}`}>{r.contactemail}</a>
-				<p>Phone: {formatPhoneNumberIntl(r.contactphone)}</p>
+				<p>{r.contact_name}</p>
+				<a href={`mailto:${r.contact_email}`}>{r.contact_email}</a>
+				<p>Phone: {formatPhoneNumberIntl(r.contact_phone)}</p>
 				<h4>Booking Sites</h4>
 				{listingsSites
 					? listingsSites.map(b => (
@@ -35,7 +35,7 @@ export default function ListingBody(props) {
 					  ))
 					: null}
 			</span>
-			<p>Posted on: {formatDate(r.dateposted)}</p>
+			<p>Posted on: {formatDate(r.date_posted)}</p>
 		</>
 	);
 }

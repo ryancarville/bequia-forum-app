@@ -13,20 +13,20 @@ export default class RentalPage extends Component {
 		super(props);
 		this.state = {
 			id: '',
-			rentalcat: '',
-			userid: '',
+			rental_cat: '',
+			user_id: '',
 			title: '',
 			description: '',
 			location: '',
 			price: '',
-			contactname: '',
-			contactemail: '',
-			contactphone: '',
+			contact_name: '',
+			contact_email: '',
+			contact_phone: '',
 			airbnb: '',
 			homeaway: '',
-			bookingdotcom: '',
-			othersite: '',
-			dateposted: new Date().toISOString(),
+			booking_dot_com: '',
+			other_site: '',
+			date_posted: new Date().toISOString(),
 			showEditPopUp: false,
 			showDeletePopUp: false,
 			showAirbnb: false,
@@ -46,7 +46,7 @@ export default class RentalPage extends Component {
 	};
 	handleRentalType = e => {
 		this.setState({
-			rentalcat: e.target.value
+			rental_cat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -79,12 +79,12 @@ export default class RentalPage extends Component {
 	};
 	handleBooking_com = e => {
 		this.setState({
-			bookingcom: e.target.value
+			booking_dot_com: e.target.value
 		});
 	};
 	handleOtherSite = e => {
 		this.setState({
-			othersite: e.target.value
+			other_site: e.target.value
 		});
 	};
 	handleShowAirBnbSiteInput = e => {
@@ -109,17 +109,17 @@ export default class RentalPage extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contactname: e.target.value
+			contact_name: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contactemail: e.target.value
+			contact_email: e.target.value
 		});
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contactphone: e
+			contact_phone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -132,8 +132,8 @@ export default class RentalPage extends Component {
 		e.preventDefault();
 		var airbnb = '';
 		var homeaway = '';
-		var bookingdotcom = '';
-		var othersite = '';
+		var booking_dot_com = '';
+		var other_site = '';
 		if (this.state.showAirbnb) {
 			airbnb = this.state.airbnb;
 		}
@@ -141,41 +141,41 @@ export default class RentalPage extends Component {
 			homeaway = this.state.homeaway;
 		}
 		if (this.state.showBooking_com) {
-			bookingdotcom = this.state.bookingdotcom;
+			booking_dot_com = this.state.booking_dot_com;
 		}
 		if (this.state.showOther) {
-			othersite = this.state.othersite;
+			other_site = this.state.other_site;
 		}
 
 		const {
 			id,
-			rentalcat,
-			userid,
+			rental_cat,
+			user_id,
 			title,
 			description,
 			location,
 			price,
-			contactname,
-			contactemail,
-			contactphone,
-			dateposted
+			contact_name,
+			contact_email,
+			contact_phone,
+			date_posted
 		} = this.state;
 		const listingToUpdate = {
 			id,
-			rentalcat,
-			userid,
+			rental_cat,
+			user_id,
 			title,
 			description,
 			location,
 			price,
-			contactname,
-			contactemail,
-			contactphone,
+			contact_name,
+			contact_email,
+			contact_phone,
 			airbnb,
 			homeaway,
-			bookingdotcom,
-			othersite,
-			dateposted
+			booking_dot_com,
+			other_site,
+			date_posted
 		};
 		this.context.editRentalListing(listingToUpdate);
 		this.setState({
@@ -198,20 +198,20 @@ export default class RentalPage extends Component {
 		console.log(r);
 		this.setState({
 			id: r.id,
-			rentalcat: r.rentalcat,
-			userid: r.userid,
+			rental_cat: r.rental_cat,
+			user_id: r.user_id,
 			title: r.title,
 			description: r.description,
 			location: r.location,
 			price: r.price,
-			contactname: r.contactname,
-			contactemail: r.contactemail,
-			contactphone: r.contactphone,
+			contact_name: r.contact_name,
+			contact_email: r.contact_email,
+			contact_phone: r.contact_phone,
 			airbnb: r.airbnb,
 			homeaway: r.homeaway,
-			bookingdotcom: r.bookingdotcom,
-			othersite: r.othersite,
-			dateposted: r.dateposted
+			booking_dot_com: r.booking_dot_com,
+			other_site: r.other_site,
+			date_posted: r.date_posted
 		});
 	}
 	render() {
@@ -256,12 +256,12 @@ export default class RentalPage extends Component {
 						<ListingBody state={this.state} />
 					)}
 					{TokenServices.getAuthToken() ? (
-						this.context.user.id === this.state.userid ? (
+						this.context.user.id === this.state.user_id ? (
 							<DeleteButton showDeletePopUp={this.showDeletePopUp} />
 						) : null
 					) : null}
 					{TokenServices.getAuthToken() ? (
-						this.context.user.id === this.state.userid ? (
+						this.context.user.id === this.state.user_id ? (
 							<EditButton type={'rental'} showEditPopUp={this.showEditPopUp} />
 						) : null
 					) : null}

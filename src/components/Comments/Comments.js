@@ -31,19 +31,18 @@ export default class Comments extends Component {
 
 	render() {
 		const comments = this.context.state.comments
-			.filter(com => com.postid.toString() === this.props.postId)
+			.filter(com => com.post_id === this.props.postId)
 			.map(c => {
-				console.log(c);
 				return (
 					<div className='comments-content' key={c.id}>
 						<p>{c.content}</p>
 						<h5>
-							Posted By: {c.username}
+							Posted By: {c.user_name}
 							<br />
-							Posted on: {formatDate(c.dateposted)}
+							Posted on: {formatDate(c.date_posted)}
 						</h5>
 						{TokenServices.getAuthToken() ? (
-							this.context.user.id === c.userid ? (
+							this.context.user.id === c.user_id ? (
 								<DeleteButton
 									showDeletePopUp={this.showDeletePopUp}
 									id={c.id}
@@ -56,6 +55,7 @@ export default class Comments extends Component {
 
 		return this.state.showDeletePopUp ? (
 			<DeletePopUp
+				comment={true}
 				handleDelete={this.handleDelete}
 				showDeletePopUp={this.showDeletePopUp}
 			/>

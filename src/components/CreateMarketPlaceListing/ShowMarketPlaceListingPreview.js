@@ -24,14 +24,14 @@ export default function ShowMarketPlaceListingPreview(props) {
 			<h4>Contact Information</h4>
 
 			<span>
-				<p>{props.state.contactname}</p>
+				<p>{props.state.contact_name}</p>
 				<a
-					href={`mailto:${props.state.contactemail}?subject=New Enquiry on ${props.state.title}`}>
-					{props.state.contactemail}
+					href={`mailto:${props.state.contact_email}?subject=New Enquiry on ${props.state.title}`}>
+					{props.state.contact_email}
 				</a>
-				<p>Phone: {formatPhoneNumberIntl(props.state.contactphone)}</p>
+				<p>Phone: {formatPhoneNumberIntl(props.state.contact_phone)}</p>
 			</span>
-			<p>Posted on: {formatDate(props.state.dateposted)}</p>
+			<p>Posted on: {formatDate(props.state.date_posted)}</p>
 			<button onClick={props.handleSubmit}>Create Listing</button>
 			<button onClick={props.handleShowPreview}>Edit</button>
 			<button onClick={() => props.goBack()}>Cancel</button>

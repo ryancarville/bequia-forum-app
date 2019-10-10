@@ -12,15 +12,18 @@ export default function NewPost(props) {
 	const recentPosts = () => {
 		context.getNewestPosts();
 		let recentPosts = context.state.newestPosts;
-		console.log(recentPosts);
 		const visiblePosts = recentPosts ? (
 			recentPosts.map(p => {
 				const numOfComments = context.state.comments.filter(
-					comment => comment.postid === p.id
+					comment => comment.post_id === p.id
 				).length;
 				return (
 					<div className='newest-posts' key={p.id}>
-						<Link to={`/messageBoard/${p.forumId}/${p.id}`}>
+						<Link
+							to={{
+								pathname: `/messageBoard/${p.board_id}/${p.id}`,
+								state: { id: p.id }
+							}}>
 							<h4>{p.title}</h4>
 						</Link>
 						<Truncate
@@ -28,7 +31,11 @@ export default function NewPost(props) {
 							ellipsis={
 								<span>
 									...
-									<Link to={`/messageBoard/${p.forumId}/${p.id}`}>
+									<Link
+										to={{
+											pathname: `/messageBoard/${p.board_id}/${p.id}`,
+											state: { id: p.id }
+										}}>
 										Read more
 									</Link>
 								</span>
@@ -36,8 +43,8 @@ export default function NewPost(props) {
 							{p.content}
 						</Truncate>
 						<span className='postInfo'>
-							<p>Posted By: {p.username}</p>
-							<p>Posted On: {formatDate(p.dateposted)}</p>
+							<p>Posted By: {p.user_name}</p>
+							<p>Posted On: {formatDate(p.date_posted)}</p>
 							<span className='post-icons'>
 								<p>
 									{like}

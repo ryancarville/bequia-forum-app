@@ -20,7 +20,7 @@ export default function JobListingForm(props) {
 			<select
 				name='jobCatagory'
 				id='job-listing-catagory'
-				value={props.state.jobcat}
+				value={props.state.job_cat}
 				onChange={props.handleJobCatagory}
 				required>
 				<option selected disabled value=''>
@@ -70,7 +70,7 @@ export default function JobListingForm(props) {
 				type='text'
 				name='contact-name'
 				id='job-listing-contact-name'
-				value={props.state.contactname}
+				value={props.state.contact_name}
 				placeholder='Contact Name'
 				onChange={props.handleContactName}
 				required
@@ -79,7 +79,7 @@ export default function JobListingForm(props) {
 				type='email'
 				name='contact-email'
 				id='job-listing-contact-email'
-				value={props.state.contactemail}
+				value={props.state.contact_email}
 				placeholder='Contact Email Address'
 				onChange={props.handleContactEmail}
 				required
@@ -97,7 +97,7 @@ export default function JobListingForm(props) {
 				placeholder='Contact Phone Number'
 				country='VC'
 				id='job-phone-input'
-				value={props.state.contactphone}
+				value={props.state.contact_phone}
 				onChange={value => props.handleContactPhone(value)}
 			/>
 			{props.type === 'edit' ? (

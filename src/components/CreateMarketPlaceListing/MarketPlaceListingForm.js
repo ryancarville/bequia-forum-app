@@ -14,7 +14,7 @@ export default function MarketPlaceListingForm(props) {
 			<select
 				name='mp-catagories'
 				id='mp-lisitng-catagories'
-				value={props.state.marketplacecat}
+				value={props.state.market_place_cat}
 				onChange={props.handleMarketPlaceCat}
 				required>
 				<option selected disabled value=''>
@@ -59,7 +59,7 @@ export default function MarketPlaceListingForm(props) {
 				type='text'
 				name='contact-name'
 				id='mp-listing-contct-name'
-				value={props.state.contactname}
+				value={props.state.contact_name}
 				placeholder='Contact Name'
 				onChange={props.handleContactName}
 				required
@@ -68,7 +68,7 @@ export default function MarketPlaceListingForm(props) {
 				type='email'
 				name='contact-email'
 				id='mp-listing-contact-email'
-				value={props.state.contactemail}
+				value={props.state.contact_email}
 				placeholder='Contact Email Address'
 				onChange={props.handleContactEmail}
 				required
@@ -77,7 +77,7 @@ export default function MarketPlaceListingForm(props) {
 				type='tel'
 				placeholder='Contact Phone Number'
 				country='VC'
-				value={props.state.contactphone}
+				value={props.state.contact_phone}
 				onChange={value => props.handleContactPhone(value)}
 			/>
 			{props.type === 'edit' ? (

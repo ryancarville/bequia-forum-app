@@ -59,7 +59,6 @@ const apiServices = {
 								return rej(err);
 						  })
 						: res.json().then(data => {
-								console.log(data);
 								return resolve(data);
 						  })
 				)
@@ -106,7 +105,6 @@ const apiServices = {
 								return rej(err);
 						  })
 						: res.json().then(data => {
-								console.log(data);
 								return resolve(data);
 						  });
 				})
@@ -297,7 +295,6 @@ const apiServices = {
 								return rej(err);
 						  })
 						: res.json().then(data => {
-								console.log(data);
 								return resolve(data);
 						  });
 				})

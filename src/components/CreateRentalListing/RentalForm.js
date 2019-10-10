@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import STORE from '../../STORE/store';
 import PhoneInput from 'react-phone-number-input';
 import './RentalForm.css';
 import 'react-phone-number-input/style.css';
@@ -33,7 +32,7 @@ export default function RentalForm(props) {
 			<select
 				name='rental-type'
 				id='rental-lisitng-form-rental-type'
-				value={props.state.rentalcat}
+				value={props.state.rental_cat}
 				onChange={props.handleRentalType}
 				required>
 				<option selected disabled value=''>
@@ -79,7 +78,7 @@ export default function RentalForm(props) {
 				type='text'
 				name='contact-name'
 				id='rental-lisitng-form-contact-name'
-				value={props.state.contactname}
+				value={props.state.contact_name}
 				placeholder='Contact Name'
 				onChange={props.handleContactName}
 				required
@@ -88,7 +87,7 @@ export default function RentalForm(props) {
 				type='email'
 				name='contact-email'
 				id='rental-lisitng-form-contact-email'
-				value={props.state.contactemail}
+				value={props.state.contact_email}
 				placeholder='Contact Email Address'
 				onChange={props.handleContactEmail}
 				required
@@ -98,7 +97,7 @@ export default function RentalForm(props) {
 				id='rental-lisitng-form-contact-phone'
 				placeholder='Contact Phone Number'
 				country='VC'
-				value={props.state.contactphone}
+				value={props.state.contact_phone}
 				onChange={value => props.handleContactPhone(value)}
 				autoComplete
 			/>
@@ -161,7 +160,7 @@ export default function RentalForm(props) {
 					<input
 						className='booking-site-input'
 						type='url'
-						value={props.state.bookingdotcom}
+						value={props.state.booking_dot_com}
 						name='booking-com-site'
 						id='rental-lisitng-form-booking-com-site'
 						placeholder='Booking.com Website Address'
@@ -183,7 +182,7 @@ export default function RentalForm(props) {
 					<input
 						className='booking-site-input'
 						type='url'
-						value={props.state.othersite}
+						value={props.state.other_site}
 						name='other-site'
 						id='rental-lisitng-form-other-site'
 						placeholder='Website Address'

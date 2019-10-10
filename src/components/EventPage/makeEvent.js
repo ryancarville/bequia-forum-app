@@ -8,7 +8,6 @@ export default function MakeEvent(props) {
 	const context = useContext(ForumContext);
 	const events = context.state.events;
 	const eventId = props.eventId;
-	console.log(events);
 	return events
 		.filter(e => e.id.toString() === eventId)
 		.map(e => (
@@ -16,12 +15,12 @@ export default function MakeEvent(props) {
 				<span key={e.id}>
 					<h3>{e.title}</h3>
 					<p>Where: {e.location}</p>
-					<p>When: {formatDate(e.eventdate)}</p>
-					<p>Time: {e.eventtime}</p>
+					<p>When: {formatDate(e.event_date)}</p>
+					<p>Time: {e.event_time}</p>
 				</span>
 				<p id='event-description'>{e.description}</p>
 				{TokenServices.getAuthToken() ? (
-					context.user.id === e.userid ? (
+					context.user.id === e.user_id ? (
 						<>
 							<button type='button' onClick={props.showDeletePopUp}>
 								Delete Event

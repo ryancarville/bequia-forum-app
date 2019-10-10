@@ -18,9 +18,9 @@ export default function Forum() {
 			links.push(<h4 key={titleId}>{forumTitles[i].name}</h4>);
 			links.push(
 				forumSections
-					.filter(section => section.messageboardsection === titleId)
+					.filter(section => section.messageboard_section === titleId)
 					.map(item => {
-						const numOfThreads = posts.filter(post => post.boardid === item.id)
+						const numOfThreads = posts.filter(post => post.board_id === item.id)
 							.length;
 						return (
 							<li key={item.id}>

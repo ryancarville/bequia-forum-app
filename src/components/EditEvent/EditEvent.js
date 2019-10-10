@@ -10,9 +10,9 @@ export default class EditEvent extends Component {
 			title: this.props.event.title,
 			location: this.props.event.location,
 			description: this.props.event.description,
-			eventdate: this.props.event.eventdate,
-			startTime: '',
-			endTime: ''
+			event_date: this.props.event.event_date,
+			start_time: '',
+			end_time: ''
 		};
 	}
 	static contextType = ForumContext;
@@ -21,9 +21,9 @@ export default class EditEvent extends Component {
 			title: '',
 			location: '',
 			description: '',
-			eventdate: '',
-			startTime: '',
-			endTime: ''
+			event_date: '',
+			start_time: '',
+			end_time: ''
 		});
 	};
 	handleEventTitle = e => {
@@ -43,31 +43,31 @@ export default class EditEvent extends Component {
 	};
 	handleDate = e => {
 		this.setState({
-			eventdate: e.target.value
+			event_date: e.target.value
 		});
 	};
 	handleStartTime = e => {
 		this.setState({
-			startTime: e.target.value
+			start_time: e.target.value
 		});
 	};
 	handleEndTime = e => {
 		this.setState({
-			endTime: e.target.value
+			end_time: e.target.value
 		});
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		const { startTime, endTime } = this.state;
-		var eventtime = [startTime, endTime];
-		eventtime = eventtime.join(' - ');
-		const { id, title, location, eventdate, description } = this.state;
+		const { start_time, end_time } = this.state;
+		var event_time = [start_time, end_time];
+		event_time = event_time.join(' - ');
+		const { id, title, location, event_date, description } = this.state;
 		const eventToUpdate = {
 			id,
 			title,
 			location,
-			eventdate,
-			eventtime,
+			event_date,
+			event_time,
 			description
 		};
 		this.context.editEvent(eventToUpdate);
@@ -139,10 +139,10 @@ export default class EditEvent extends Component {
 		));
 	};
 	componentDidMount() {
-		const splitEventTime = this.props.event.eventtime.split(' - ');
+		const splitEventTime = this.props.event.event_time.split(' - ');
 		this.setState({
-			startTime: splitEventTime[0],
-			endTime: splitEventTime[1]
+			start_time: splitEventTime[0],
+			end_time: splitEventTime[1]
 		});
 	}
 
@@ -180,8 +180,8 @@ export default class EditEvent extends Component {
 							type='date'
 							name='eventDate'
 							id='event-date'
-							value={this.state.eventdate}
-							min={this.state.eventdate}
+							value={this.state.event_date}
+							min={this.state.event_date}
 							onChange={this.handleDate}
 							required
 						/>
@@ -189,7 +189,7 @@ export default class EditEvent extends Component {
 						<select
 							name='eventStartTime'
 							id='event-start-time'
-							value={this.state.startTime}
+							value={this.state.start_time}
 							onChange={this.handleStartTime}>
 							{this.eventTimeSelect()}
 						</select>
@@ -197,7 +197,7 @@ export default class EditEvent extends Component {
 						<select
 							name='eventEndTime'
 							id='event-end-time'
-							value={this.state.endTime}
+							value={this.state.end_time}
 							onChange={this.handleEndTime}>
 							{this.eventTimeSelect()}
 						</select>

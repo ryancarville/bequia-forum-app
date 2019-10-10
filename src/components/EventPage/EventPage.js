@@ -10,7 +10,7 @@ export default class EventPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			eventId: this.props.match.params.eventId,
+			id: this.props.match.params.eventId,
 			showEditPopUp: false,
 			showDeletePopUp: false,
 			redirect: false
@@ -28,8 +28,8 @@ export default class EventPage extends Component {
 		});
 	};
 	handleDelete = () => {
-		const { eventId } = this.state;
-		this.context.deleteEvent(eventId);
+		const { id } = this.state;
+		this.context.deleteEvent(id);
 		this.setState({
 			redirect: !this.state.redirect
 		});
@@ -37,29 +37,29 @@ export default class EventPage extends Component {
 
 	render() {
 		const event = this.context.state.events.filter(
-			e => e.id.toString() === this.state.eventId
+			e => e.id.toString() === this.state.id
 		);
 		if (this.state.redirect) {
 			return <Redirect to={'/events'} />;
 		}
 		return (
 			<div className='event-page-container'>
-				{this.state.showEditPopUp ? (
-					<EditEvent event={event[0]} showEditPopUp={this.showEditPopUp} />
-				) : (
-					<MakeEvent
-						eventId={this.state.eventId}
-						showEditPopUp={this.showEditPopUp}
-						showDeletePopUp={this.showDeletePopUp}
-					/>
-				)}
 				{this.state.showDeletePopUp ? (
 					<DeletePopUp
-						title={event[0].title}
+						eventTitle={event[0].title}
 						showDeletePopUp={this.showDeletePopUp}
 						handleDelete={this.handleDelete}
 					/>
 				) : null}
+				{this.state.showEditPopUp ? (
+					<EditEvent event={event[0]} showEditPopUp={this.showEditPopUp} />
+				) : (
+					<MakeEvent
+						eventId={this.state.id}
+						showEditPopUp={this.showEditPopUp}
+						showDeletePopUp={this.showDeletePopUp}
+					/>
+				)}
 			</div>
 		);
 	}

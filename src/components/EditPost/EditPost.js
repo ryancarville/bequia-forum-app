@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ForumContext from '../../ForumContext';
+import React from 'react';
 import './EditPost.css';
 
 export default function EditPost(props) {

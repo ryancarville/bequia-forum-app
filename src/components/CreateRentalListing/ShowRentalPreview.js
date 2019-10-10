@@ -6,7 +6,7 @@ import ForumContext from '../../ForumContext';
 export default function ShowRentalpreview(props) {
 	const context = useContext(ForumContext);
 	const rentalcat = context.state.rentalCatagories.filter(
-		c => c.id === parseInt(props.state.rentalcat)
+		c => c.id === parseInt(props.state.rental_cat)
 	);
 	return (
 		<section>
@@ -20,12 +20,12 @@ export default function ShowRentalpreview(props) {
 				<h4>Contact Information</h4>
 
 				<span>
-					<p>{props.state.contactname}</p>
+					<p>{props.state.contact_name}</p>
 					<a
-						href={`mailto:${props.state.contactemail}?subject=New Enquiry on ${props.state.title}`}>
-						{props.state.contactemail}
+						href={`mailto:${props.state.contact_email}?subject=New Enquiry on ${props.state.title}`}>
+						{props.state.contact_email}
 					</a>
-					<p>Phone: {formatPhoneNumberIntl(props.state.contactphone)}</p>
+					<p>Phone: {formatPhoneNumberIntl(props.state.contact_phone)}</p>
 				</span>
 				<section>
 					{props.state.showAirbnb ||
@@ -52,7 +52,7 @@ export default function ShowRentalpreview(props) {
 					) : null}
 					{props.state.showBooking_com ? (
 						<a
-							href={props.state.bookingdotcom}
+							href={props.state.booking_dot_com}
 							target='_blank'
 							rel='noopener noreferrer'>
 							Booking.com
@@ -60,7 +60,7 @@ export default function ShowRentalpreview(props) {
 					) : null}
 					{props.state.showOther ? (
 						<a
-							href={props.state.othersite}
+							href={props.state.other_site}
 							target='_blank'
 							rel='noopener noreferrer'>
 							{props.state.othersite}

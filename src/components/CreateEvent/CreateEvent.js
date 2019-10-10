@@ -9,11 +9,11 @@ export default class CreateEvent extends Component {
 			title: '',
 			location: '',
 			description: '',
-			eventdate: new Date().toISOString().slice(0, 10),
-			startTime: '',
-			endTime: '',
-			userid: '',
-			dateposted: new Date().toISOString()
+			event_date: new Date().toISOString().slice(0, 10),
+			start_ime: '',
+			end_ime: '',
+			user_id: '',
+			date_posted: new Date().toISOString()
 		};
 	}
 	static contextType = ForumContext;
@@ -34,40 +34,40 @@ export default class CreateEvent extends Component {
 	};
 	handleDate = e => {
 		this.setState({
-			eventdate: e.target.value
+			event_date: e.target.value
 		});
 	};
 	handleStartTime = e => {
 		this.setState({
-			startTime: e.target.value
+			start_time: e.target.value
 		});
 	};
 	handleEndTime = e => {
 		this.setState({
-			endTime: e.target.value
+			end_time: e.target.value
 		});
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		const { startTime, endTime } = this.state;
-		var eventtime = [startTime, endTime];
-		eventtime = eventtime.join(' - ');
+		const { start_time, end_time } = this.state;
+		var event_time = [start_time, end_time];
+		event_time = event_time.join(' - ');
 		const {
 			title,
 			location,
-			eventdate,
+			event_date,
 			description,
-			userid,
-			dateposted
+			user_id,
+			date_posted
 		} = this.state;
 		const newEvent = {
 			title,
 			location,
-			eventdate,
-			eventtime,
+			event_date,
+			event_time,
 			description,
-			userid,
-			dateposted
+			user_id,
+			date_posted
 		};
 		this.context.createEvent(newEvent);
 		this.setState({
@@ -138,7 +138,7 @@ export default class CreateEvent extends Component {
 		));
 	};
 	componentDidMount() {
-		this.setState({ userid: this.context.user.id });
+		this.setState({ user_id: this.context.user.id });
 	}
 
 	render() {
@@ -169,8 +169,8 @@ export default class CreateEvent extends Component {
 					type='date'
 					name='eventDate'
 					id='event-date'
-					value={this.state.eventdate}
-					min={this.state.eventdate}
+					value={this.state.event_date}
+					min={this.state.event_date}
 					onChange={this.handleDate}
 					required
 				/>

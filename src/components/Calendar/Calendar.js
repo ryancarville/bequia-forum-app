@@ -66,7 +66,7 @@ class Calendar extends Component {
 
 	renderCalendar = () => {
 		const today = new Date();
-		const { events } = this.props;
+		const { events } = this.props;		
 		const { dayInt, month, monthNum, year } = this.state;
 		const firstDay = new Date(year, month).getDay();
 		const totalDays = new Date(year, month + 1, 0).getDate();
@@ -83,7 +83,7 @@ class Calendar extends Component {
 				year === today.getFullYear();
 			// we filter out all the events on this day.
 			const eventsOnThisDay = events.filter(event => {
-				const eventDate = event.eventdate.split('-');
+				const eventDate = event.event_date.split('-');
 				const eventDay = eventDate[2];
 				const eventMonth = eventDate[1];
 				const eventYear = eventDate[0];

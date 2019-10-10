@@ -15,16 +15,16 @@ export default class JobPage extends Component {
 		super(props);
 		this.state = {
 			id: this.props.location.state.id,
-			userid: '',
-			jobcat: '',
+			user_id: '',
+			job_cat: '',
 			title: '',
 			location: '',
 			description: '',
 			employment: '',
-			contactname: '',
-			contactemail: '',
+			contact_name: '',
+			contact_email: '',
 			website: '',
-			contactphone: '',
+			contact_phone: '',
 			showEditPopUp: false,
 			showDeletePopUp: false
 		};
@@ -32,21 +32,21 @@ export default class JobPage extends Component {
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			userid: '',
-			jobcat: '',
+			user_id: '',
+			job_cat: '',
 			title: '',
 			location: '',
 			description: '',
 			employment: '',
-			contactname: '',
-			contactemail: '',
+			contact_name: '',
+			contact_email: '',
 			website: '',
-			contactphone: ''
+			contact_phone: ''
 		});
 	};
 	handleJobCatagory = e => {
 		this.setState({
-			jobcat: e.target.value
+			job_cat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -71,12 +71,12 @@ export default class JobPage extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contactname: e.target.value
+			contact_name: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contactemail: e.target.value
+			contact_email: e.target.value
 		});
 	};
 	handleWebsite = e => {
@@ -84,7 +84,7 @@ export default class JobPage extends Component {
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contactphone: e
+			contact_phone: e
 		});
 	};
 
@@ -92,31 +92,31 @@ export default class JobPage extends Component {
 		e.preventDefault();
 		const {
 			id,
-			userid,
-			jobcat,
+			user_id,
+			job_cat,
 			title,
 			location,
 			description,
-			contactname,
-			contactemail,
+			contact_name,
+			contact_email,
 			website,
-			contactphone,
+			contact_phone,
 			employment,
-			dateposted
+			date_posted
 		} = this.state;
 		const listingToUpdate = {
 			id,
-			userid,
-			jobcat,
+			user_id,
+			job_cat,
 			title,
 			location,
 			description,
-			contactname,
-			contactemail,
+			contact_name,
+			contact_email,
 			website,
-			contactphone,
+			contact_phone,
 			employment,
-			dateposted
+			date_posted
 		};
 		this.context.editJobListing(listingToUpdate);
 		this.setState({
@@ -144,18 +144,17 @@ export default class JobPage extends Component {
 		const { id } = this.state;
 		const currJob = this.context.state.jobPosts.filter(j => j.id === id);
 		this.setState({
-			userid: this.context.user.id,
-			jobcat: currJob[0].jobcat,
+			user_id: this.context.user.id,
+			job_cat: currJob[0].job_cat,
 			title: currJob[0].title,
 			description: currJob[0].description,
 			location: currJob[0].location,
 			employment: currJob[0].employment,
-			contactname: currJob[0].contactname,
-			contactemail: currJob[0].contactemail,
-			contactemail: currJob[0].contactemail,
-			contactphone: currJob[0].contactphone,
+			contact_name: currJob[0].contact_name,
+			contact_email: currJob[0].contact_email,
+			contact_phone: currJob[0].contact_phone,
 			website: currJob[0].website,
-			dateposted: currJob[0].dateposted
+			date_posted: currJob[0].date_posted
 		});
 	}
 
@@ -201,19 +200,19 @@ export default class JobPage extends Component {
 						<p>{j.description}</p>
 						<span>
 							<h4>Contact Information</h4>
-							<p>{j.contactname}</p>
+							<p>{j.contact_name}</p>
 							<a
-								href={`mailto: ${j.contactemail}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
-								{j.contactemail}
+								href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
+								{j.contact_email}
 							</a>
 							{j.contactphone ? (
-								<p>Phone: {formatPhoneNumberIntl(j.contactphone)}</p>
+								<p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
 							) : null}
-							<a href={j.website} target='_blank' ref='noopener noreferrer'>
+							<a href={j.website} target='_blank' rel='noopener noreferrer'>
 								{j.website}
 							</a>
 						</span>
-						<p>Posted on: {formatDate(j.dateposted)}</p>
+						<p>Posted on: {formatDate(j.date_posted)}</p>
 					</div>
 				)}
 				{!this.state.showDeletePopUp ? (

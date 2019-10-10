@@ -13,10 +13,10 @@ export default function MarketPlaceSections(props) {
 		<section className='market-place-section-container'>
 			<div className='market-place-section-content'>
 				<ul>
-					{listings.filter(p => p.marketplacecat.toString() === marketPlaceId)
+					{listings.filter(p => p.market_place_cat.toString() === marketPlaceId)
 						.length !== 0 ? (
 						listings
-							.filter(p => p.marketplacecat.toString() === marketPlaceId)
+							.filter(p => p.market_place_cat.toString() === marketPlaceId)
 							.map(l => (
 								<li key={l.id}>
 									<Link
@@ -45,8 +45,8 @@ export default function MarketPlaceSections(props) {
 									{l.price ? <p>Price: {l.price}</p> : null}
 
 									<span className='postInfo'>
-										<p>Posted By: {l.contactname}</p>
-										<p>Posted On: {formatDate(l.dateposted)}</p>
+										<p>Posted By: {l.contact_name}</p>
+										<p>Posted On: {formatDate(l.date_posted)}</p>
 									</span>
 								</li>
 							))

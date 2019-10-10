@@ -13,16 +13,16 @@ export default class MarketPlacePage extends Component {
 		super(props);
 		this.state = {
 			id: '',
-			userid: '',
-			marketplacecat: '',
+			user_id: '',
+			market_place_cat: '',
 			title: '',
 			description: '',
 			price: '',
 			location: '',
-			contactname: '',
-			contactemail: '',
-			contactphone: '',
-			dateposted: new Date().toISOString(),
+			contact_name: '',
+			contact_email: '',
+			contact_phone: '',
+			date_posted: new Date().toISOString(),
 			showEditPopUp: false,
 			showDeletePopUp: false,
 			success: false
@@ -31,20 +31,20 @@ export default class MarketPlacePage extends Component {
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			userId: '',
-			marketplacecat: '',
+			user_id: '',
+			market_place_cat: '',
 			title: '',
 			description: '',
 			price: '',
 			location: '',
-			contactname: '',
-			contactemail: '',
-			contactphone: ''
+			contact_name: '',
+			contact_email: '',
+			contact_phone: ''
 		});
 	};
 	handleMarketPlaceCat = e => {
 		this.setState({
-			marketplacecat: e.target.value
+			market_place_cat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -69,17 +69,17 @@ export default class MarketPlacePage extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contactname: e.target.value
+			contact_name: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contactemail: e.target.value
+			contact_email: e.target.value
 		});
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contactphone: e
+			contact_phone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -91,28 +91,28 @@ export default class MarketPlacePage extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const {
-			userid,
-			marketplacecat,
+			user_id,
+			market_place_cat,
 			title,
 			description,
 			price,
 			location,
-			contactname,
-			contactemail,
-			contactphone,
-			dateposted
+			contact_name,
+			contact_email,
+			contact_phone,
+			date_posted
 		} = this.state;
 		const newListing = {
-			userid,
-			marketplacecat,
+			user_id,
+			market_place_cat,
 			title,
 			description,
 			price,
 			location,
-			contactname,
-			contactemail,
-			contactphone,
-			dateposted
+			contact_name,
+			contact_email,
+			contact_phone,
+			date_posted
 		};
 		this.context.editMarketPlaceListing(newListing);
 		this.setState({
@@ -142,16 +142,16 @@ export default class MarketPlacePage extends Component {
 		l = l[0];
 		this.setState({
 			id: l.id,
-			userid: l.userid,
-			marketplacecat: l.marketplacecat,
+			user_id: l.user_id,
+			market_place_cat: l.market_placec_at,
 			title: l.title,
 			description: l.description,
 			price: l.price,
 			location: l.location,
-			contactname: l.contactname,
-			contactemail: l.contactemail,
-			contactphone: l.contactphone,
-			dateposted: l.dateposted
+			contact_name: l.contact_name,
+			contact_email: l.contact_email,
+			contact_phone: l.contact_phone,
+			date_posted: l.date_posted
 		});
 	}
 
@@ -188,12 +188,12 @@ export default class MarketPlacePage extends Component {
 						<ListingBody state={this.state} />
 					)}
 					{TokenServices.getAuthToken() ? (
-						this.state.userid === this.context.user.id ? (
+						this.state.user_id === this.context.user.id ? (
 							<DeleteButton showDeletePopUp={this.showDeletePopUp} />
 						) : null
 					) : null}
 					{TokenServices.getAuthToken() ? (
-						this.state.userid === this.context.user.id ? (
+						this.state.user_id === this.context.user.id ? (
 							<EditButton
 								type='marketPlace'
 								showEditPopUp={this.showEditPopUp}

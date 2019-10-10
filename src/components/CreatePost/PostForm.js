@@ -30,7 +30,7 @@ export default function PostForm(props) {
 			<select
 				name='catagory'
 				id='post-catagory'
-				value={props.state.boardid}
+				value={props.state.board_id}
 				onChange={props.handleCatagory}
 				required>
 				<option selected disabled value=''>

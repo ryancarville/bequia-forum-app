@@ -9,39 +9,39 @@ export default class CreateJobListing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userid: '',
-			jobcat: '',
+			user_id: '',
+			job_cat: '',
 			title: '',
 			location: '',
 			description: '',
 			employment: '',
-			contactname: '',
-			contactemail: '',
+			contact_name: '',
+			contact_email: '',
 			website: '',
-			contactphone: '',
-			dateposted: new Date().toISOString().slice(0, 10),
+			contact_phone: '',
+			date_posted: new Date().toISOString().slice(0, 10),
 			showPreview: false
 		};
 	}
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			userid: '',
-			jobcat: '',
+			user_id: '',
+			job_cat: '',
 			title: '',
 			location: '',
 			description: '',
 			employment: '',
-			contactname: null,
-			contactemail: null,
+			contact_name: null,
+			contact_email: null,
 			website: null,
-			contactphone: null,
+			contact_phone: null,
 			showPreview: false
 		});
 	};
 	handleJobCatagory = e => {
 		this.setState({
-			jobcat: e.target.value
+			job_cat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -66,12 +66,12 @@ export default class CreateJobListing extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contactname: e.target.value
+			contact_name: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contactemail: e.target.value
+			contact_email: e.target.value
 		});
 	};
 	handleWebsite = e => {
@@ -79,7 +79,7 @@ export default class CreateJobListing extends Component {
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contactphone: e
+			contact_phone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -90,30 +90,30 @@ export default class CreateJobListing extends Component {
 	};
 	handleSubmit = e => {
 		const {
-			userid,
-			jobcat,
+			user_id,
+			job_cat,
 			title,
 			location,
 			description,
-			contactname,
-			contactemail,
+			contact_name,
+			contact_email,
 			website,
-			contactphone,
+			contact_phone,
 			employment,
-			dateposted
+			date_posted
 		} = this.state;
 		const newListing = {
-			userid,
-			jobcat,
+			user_id,
+			job_cat,
 			title,
 			location,
 			description,
-			contactname,
-			contactemail,
+			contact_name,
+			contact_email,
 			website,
-			contactphone,
+			contact_phone,
 			employment,
-			dateposted
+			date_posted
 		};
 		this.context.createJobListing(newListing);
 		this.setState({
@@ -125,14 +125,14 @@ export default class CreateJobListing extends Component {
 	};
 	componentDidMount() {
 		this.setState({
-			userid: this.context.user.id
+			user_id: this.context.user.id
 		});
 	}
 
 	render() {
 		if (this.state.success) {
-			const { jobcat } = this.state;
-			return <Redirect to={`/jobs/${jobcat}`} />;
+			const { job_cat } = this.state;
+			return <Redirect to={`/jobs/${job_cat}`} />;
 		}
 		return (
 			<section className='create-job-lisitng-container'>

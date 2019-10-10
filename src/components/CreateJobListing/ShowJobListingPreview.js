@@ -21,21 +21,21 @@ export default function ShowJobListingPreview(props) {
 			<p>{props.state.description}</p>
 			<span>
 				<h4>Contact Information</h4>
-				<p>{props.state.contactname}</p>
+				<p>{props.state.contact_name}</p>
 				<a
-					href={`mailto: ${props.state.contactemail}?subject=New Enquiry from you post on Bequia Forum: ${props.state.title}`}>
-					{props.state.contactemail}
+					href={`mailto: ${props.state.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${props.state.title}`}>
+					{props.state.contact_email}
 				</a>
-				{props.state.contactphone ? (
-					<p>Phone: {formatPhoneNumberIntl(props.state.contactphone)}</p>
+				{props.state.contact_phone ? (
+					<p>Phone: {formatPhoneNumberIntl(props.state.contact_phone)}</p>
 				) : null}
 				{props.state.website ? (
-					<a href={props.state.website} target='_blank'>
+					<a href={props.state.website} target='_blank' rel="noopener noreferrer">
 						{props.state.website}
 					</a>
 				) : null}
 			</span>
-			<p>Posted on: {formatDate(props.state.dateposted)}</p>
+			<p>Posted on: {formatDate(props.state.date_posted)}</p>
 			<button onClick={() => props.handleSubmit()}>Create Listing</button>
 			<button onClick={props.handleShowPreview}>Edit</button>
 			<button onClick={() => props.goBack()}>Cancel</button>

@@ -11,13 +11,13 @@ export default function RentalSection(props) {
 
 	const makeRentalListings = context.state.rentalPosts
 		.filter(
-			listing => listing.rentalcat === parseInt(props.match.params.rentalTypeId)
+			listing => listing.rental_cat === parseInt(props.match.params.rentalTypeId)
 		)
 		.map(r => (
 			<li key={r.id}>
 				<Link
 					to={{
-						pathname: `/rentals/${r.rentalcat}/${r.id}`,
+						pathname: `/rentals/${r.rental_cat}/${r.id}`,
 						state: { id: r.id }
 					}}>
 					<h3>{r.title}</h3>
@@ -29,7 +29,7 @@ export default function RentalSection(props) {
 							...
 							<Link
 								to={{
-									pathname: `/rentals/${r.rentalcat}/${r.id}`,
+									pathname: `/rentals/${r.rental_cat}/${r.id}`,
 									state: { id: r.id }
 								}}>
 								Read more
@@ -39,8 +39,8 @@ export default function RentalSection(props) {
 					<p>{r.description}</p>
 				</Truncate>
 				<span className='postInfo'>
-					<p>Posted By: {r.contactname}</p>
-					<p>Posted On: {formatDate(r.dateposted)}</p>
+					<p>Posted By: {r.contact_name}</p>
+					<p>Posted On: {formatDate(r.date_posted)}</p>
 				</span>
 			</li>
 		));

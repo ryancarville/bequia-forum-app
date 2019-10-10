@@ -10,10 +10,10 @@ export default class CreatePost extends Component {
 		super(props);
 		this.state = {
 			title: '',
-			boardid: this.props.location.state.forumId,
-			userid: 0,
+			board_id: this.props.location.state.forumId,
+			user_id: 0,
 			content: '',
-			dateposted: new Date().toISOString(),
+			date_posted: new Date().toISOString(),
 			showPreview: false,
 			redirectToPost: false
 		};
@@ -22,7 +22,7 @@ export default class CreatePost extends Component {
 	resetState = () => {
 		this.setState({
 			title: '',
-			boardid: this.props.location.state.forumId,
+			board_id: this.props.location.state.forumId,
 			content: '',
 			showPreview: false,
 			redirectToPost: false
@@ -40,33 +40,24 @@ export default class CreatePost extends Component {
 	};
 
 	handleCatagory = e => {
-		this.setState(
-			{
-				boardid: e.target.value
-			},
-			() => {
-				console.log(this.state.boardid);
-			}
-		);
+		this.setState({
+			board_id: e.target.value
+		});
 	};
 	goBack = () => {
 		this.props.history.goBack();
 	};
 	handleShowPreview = e => {
 		e.preventDefault();
-		const user = this.context.user;
 		this.setState({
-			author: user.name,
-			email: user.email,
-			date: new Date().toISOString().slice(0, 10),
 			showPreview: !this.state.showPreview
 		});
 	};
 	handleSubmit = e => {
-		var { boardid } = this.state;
-		boardid = parseInt(boardid);
-		const { userid, title, content, dateposted } = this.state;
-		const newPost = { boardid, userid, title, content, dateposted };
+		var { board_id } = this.state;
+		board_id = parseInt(board_id);
+		const { user_id, title, content, date_posted } = this.state;
+		const newPost = { board_id, user_id, title, content, date_posted };
 		this.context.createPost(newPost);
 
 		this.setState({
@@ -75,14 +66,14 @@ export default class CreatePost extends Component {
 	};
 	componentDidMount() {
 		this.setState({
-			userid: this.context.user.id
+			user_id: this.context.user.id
 		});
 	}
 
 	render() {
 		if (this.state.redirectToPost) {
-			const boardid = this.state.boardid;
-			return <Redirect to={`/messageBoard/${boardid}`} />;
+			const { board_id } = this.state;
+			return <Redirect to={`/messageBoard/${board_id}`} />;
 		}
 
 		return (

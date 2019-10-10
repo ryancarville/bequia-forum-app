@@ -17,11 +17,11 @@ class PostPage extends Component {
 		super(props);
 		this.state = {
 			id: '',
-			userid: '',
+			user_id: '',
 			title: '',
 			content: '',
-			username: '',
-			dateposted: '',
+			user_name: '',
+			date_posted: new Date(),
 			likes: '',
 			didLike: false,
 			redirectToForum: false
@@ -84,8 +84,8 @@ class PostPage extends Component {
 	handleEditSubmit = e => {
 		e.preventDefault();
 		const { id, title, content } = this.state;
-		const newPost = { id, title, content };
-		this.context.updatePost(newPost);
+		const postToUpdate = { id, title, content };
+		this.context.updatePost(postToUpdate);
 		this.setState({
 			showPostEdit: !this.state.showPostEdit
 		});
@@ -97,12 +97,12 @@ class PostPage extends Component {
 		post = post[0];
 		this.setState({
 			id: post.id,
-			userid: post.userid,
-			boardid: post.boardid,
+			user_id: post.user_id,
+			board_id: post.board_id,
 			title: post.title,
 			content: post.content,
-			username: post.username,
-			dateposted: post.dateposted,
+			user_name: post.user_name,
+			date_posted: post.date_posted,
 			likes: post.likes
 		});
 	}
@@ -116,7 +116,7 @@ class PostPage extends Component {
 			<section className='post-container'>
 				<div className='post-content'>
 					{TokenService.getAuthToken() ? (
-						this.context.user.id === this.state.userid ? (
+						this.context.user.id === this.state.user_id ? (
 							<EditButtons
 								showPostEdit={this.showPostEdit}
 								showDeletePopUp={this.showDeletePopUp}
@@ -138,10 +138,8 @@ class PostPage extends Component {
 							handleEditSubmit={this.handleEditSubmit}
 							closeEdit={this.showPostEdit}
 						/>
-					) : this.state.dateposted ? (
-						<Post post={this.state} />
 					) : (
-						<p>Loading...</p>
+						<Post post={this.state} />
 					)}
 					{TokenService.getAuthToken() ? (
 						<span className='comment-like-button-container'>
@@ -159,7 +157,7 @@ class PostPage extends Component {
 							closeAddComment={this.handleComment}
 						/>
 					) : null}
-					<Comments forumId={this.state.boardid} postId={this.state.d} />
+					<Comments forumId={this.state.board_id} postId={this.state.id} />
 				</div>
 			</section>
 		);
