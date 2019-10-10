@@ -79,15 +79,17 @@ export default function ForumSection(props) {
 			boardPosts
 		);
 	};
-	const { forumTitle } = props.location.state;
+	const id = props.match.params.forumId;
+	const name = context.state.forum.filter(f => f.id.toString() === id);
+	console.log(name);
 	return (
 		<section className='forum-section-container'>
 			<header>
-				<h3>{forumTitle}</h3>
+				<h3>{name[0].name}</h3>
 			</header>
 			<span>
 				{TokenServices.getAuthToken() ? (
-					<CreateContentButton forumId={forumId} />
+					<CreateContentButton forumId={id} />
 				) : null}
 			</span>
 			<div className='forum-section-content'>

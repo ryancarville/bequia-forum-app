@@ -5,22 +5,13 @@ import ForumContext from '../../ForumContext';
 
 export default function ShowPostPreview(props) {
 	const context = useContext(ForumContext);
-	const fourmTitle = () => {
-		let i = 0;
-		while (i < context.state.forum.length) {
-			var sectionArr = context.state.forum[i].find(
-				f => f.forumId === parseInt(props.state.forumId)
-			);
-			if (sectionArr) {
-				return sectionArr.title;
-			}
-			i++;
-		}
-	};
-
+	const forumTitle = context.state.forum.find(
+		f => f.id === parseInt(props.state.boardid)
+	);
+	console.log(props.state.boardid);
 	return (
 		<div className='create-post-preview'>
-			<h2>Posting in {fourmTitle()}</h2>
+			<h2>Posting in {forumTitle.name}</h2>
 			<h3>{props.state.title}</h3>
 
 			<p>{props.state.content}</p>

@@ -329,6 +329,31 @@ const apiServices = {
 				});
 		});
 	},
+	createPost(newPost) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/forum/addPost', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newPost),
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => {
+								return rej(err);
+						  })
+						: res.json().then(data => {
+								return resolve(data);
+						  });
+				})
+				.catch(err => {
+					console.log(err);
+					return err;
+				});
+		});
+	},
 	deletePost(id) {
 		return new Promise((resolve, rej) => {
 			fetch(config.API_ENDPOINT + `/forum/posts/${id}`, {

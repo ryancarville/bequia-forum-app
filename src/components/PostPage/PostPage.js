@@ -87,9 +87,9 @@ class PostPage extends Component {
 		const postInfo = this.props.posts.filter(
 			p => p.id.toString() === this.props.match.params.postId
 		);
-
+		const boardid = this.state.post.boardid;
 		if (this.state.redirectToForum) {
-			return <Redirect to={`/messageBoard`} />;
+			return <Redirect to={`/messageBoard/${boardid}`} />;
 		}
 
 		return (

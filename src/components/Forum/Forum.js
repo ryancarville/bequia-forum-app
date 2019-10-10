@@ -28,7 +28,7 @@ export default function Forum() {
 									<Link
 										to={{
 											pathname: `/messageBoard/${item.id}`,
-											state: { forumTitle: item.name }
+											state: { id: item.id, name: item.name }
 										}}>
 										{item.name}
 									</Link>

@@ -9,13 +9,11 @@ export default class CreatePost extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: Math.floor(Math.random() * 1000000),
-			author: '',
-			email: '',
 			title: '',
-			forumId: '',
+			boardid: this.props.location.state.forumId,
+			userid: 0,
 			content: '',
-			date: '',
+			dateposted: new Date().toISOString(),
 			showPreview: false,
 			redirectToPost: false
 		};
@@ -23,12 +21,9 @@ export default class CreatePost extends Component {
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			author: '',
-			email: '',
 			title: '',
-			forumId: '',
+			boardid: this.props.location.state.forumId,
 			content: '',
-			date: '',
 			showPreview: false,
 			redirectToPost: false
 		});
@@ -44,10 +39,15 @@ export default class CreatePost extends Component {
 		});
 	};
 
-	handleCatagoryPostForm = e => {
-		this.setState({
-			forumId: e.target.value
-		});
+	handleCatagory = e => {
+		this.setState(
+			{
+				boardid: e.target.value
+			},
+			() => {
+				console.log(this.state.boardid);
+			}
+		);
 	};
 	goBack = () => {
 		this.props.history.goBack();
@@ -63,22 +63,26 @@ export default class CreatePost extends Component {
 		});
 	};
 	handleSubmit = e => {
-		var { forumId } = this.state;
-		forumId = parseInt(forumId);
-		const { id, title, content, date, author, email } = this.state;
-		const newPost = { id, title, content, forumId, date, author, email };
+		var { boardid } = this.state;
+		boardid = parseInt(boardid);
+		const { userid, title, content, dateposted } = this.state;
+		const newPost = { boardid, userid, title, content, dateposted };
 		this.context.createPost(newPost);
+
 		this.setState({
 			redirectToPost: true
 		});
 	};
-	componentDidMount() {}
+	componentDidMount() {
+		this.setState({
+			userid: this.context.user.id
+		});
+	}
 
 	render() {
 		if (this.state.redirectToPost) {
-			const fourmId = this.state.forumId;
-			const { id } = this.state;
-			return <Redirect to={`/messageBoard/${fourmId}/${id}`} />;
+			const boardid = this.state.boardid;
+			return <Redirect to={`/messageBoard/${boardid}`} />;
 		}
 
 		return (
@@ -96,7 +100,7 @@ export default class CreatePost extends Component {
 							state={this.state}
 							handleTitle={this.handleTitle}
 							handleContent={this.handleContent}
-							handleCatagoryPostForm={this.handleCatagoryPostForm}
+							handleCatagory={this.handleCatagory}
 							handleShowPreview={this.handleShowPreview}
 							resetState={this.resetState}
 							goBack={this.goBack}

@@ -5,26 +5,15 @@ import ForumContext from '../../ForumContext';
 export default function PostForm(props) {
 	const context = useContext(ForumContext);
 	const makeSelectCategorys = () => {
-		let i = 0;
-		let categorys = [];
-		while (i < context.state.forum.length) {
-			categorys.push(
-				context.state.forum[i].map(item => {
-					if (item.sectionTitle) {
-						return true;
-					} else {
-						return (
-							<option key={item.forumId} value={item.forumId}>
-								{item.title}
-							</option>
-						);
-					}
-				})
+		return context.state.forum.map(item => {
+			return (
+				<option key={item.id} value={item.id}>
+					{item.name}
+				</option>
 			);
-			i++;
-		}
-		return categorys;
+		});
 	};
+
 	return (
 		<form onSubmit={props.handleShowPreview}>
 			<label htmlFor='title'>Title</label>
@@ -41,8 +30,8 @@ export default function PostForm(props) {
 			<select
 				name='catagory'
 				id='post-catagory'
-				value={props.state.forumId}
-				onChange={props.handleCatagoryPostForm}
+				value={props.state.boardid}
+				onChange={props.handleCatagory}
 				required>
 				<option selected disabled value=''>
 					Please Select a Forum
@@ -57,7 +46,7 @@ export default function PostForm(props) {
 				onChange={props.handleContent}
 				required></textarea>
 			<button type='submit'>Preview Post</button>
-			<button onClick={props.resetState}>Clear Form</button>
+			<button onClick={props.resetState}>Reset Form</button>
 			<button type='button' onClick={() => props.goBack()}>
 				Cancel
 			</button>

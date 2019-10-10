@@ -32,10 +32,8 @@ class App extends Component {
 	}
 	static contextType = ForumContext;
 
-	createPost = post => {
-		this.setState({
-			posts: [...this.state.posts, post]
-		});
+	createPost = newPost => {
+		apiServices.createPost(newPost).then(() => this.getPosts());
 	};
 	updatePost = newPost => {
 		var currPosts = this.state.posts.filter(p => p.id !== newPost.id);

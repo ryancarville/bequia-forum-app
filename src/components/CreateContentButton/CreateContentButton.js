@@ -33,7 +33,8 @@ export default function AddPost(props) {
 	} else {
 		return (
 			<span className='create-post-button' id='create-forum-post-button'>
-				<Link to={{ pathname: `/createPost`, state: { from: props.forumId } }}>
+				<Link
+					to={{ pathname: `/createPost`, state: { forumId: props.forumId } }}>
 					Create Post
 				</Link>
 			</span>

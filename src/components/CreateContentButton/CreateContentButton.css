@@ -1,17 +1,17 @@
-/* .create-post-button {
+.create-post-button {
 	width: 150px;
 	text-align: center;
-	padding: 10px;
-	border: 1px solid black;
 	cursor: pointer;
 	margin-top: 10px;
 	margin-bottom: 30px;
 	font-size: 20px;
-} */
+}
 .create-post-button a {
 	text-decoration: none;
 }
 
 @media only screen and (min-width: 700px) {
-	
+	.create-post-button{
+		float: right;
+	}
 }
