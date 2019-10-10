@@ -7,15 +7,14 @@ import ForumContext from '../../ForumContext';
 
 export default function MarketPlaceSections(props) {
 	const context = useContext(ForumContext);
-	const listings = context.state.marketPlacePosts
+	const listings = context.state.marketPlacePosts;
 	const marketPlaceId = props.match.params.marketPlaceId;
 	return (
 		<section className='market-place-section-container'>
 			<div className='market-place-section-content'>
 				<ul>
-					{listings.filter(
-						p => p.marketplacecat.toString() === marketPlaceId
-					).length !== 0 ? (
+					{listings.filter(p => p.marketplacecat.toString() === marketPlaceId)
+						.length !== 0 ? (
 						listings
 							.filter(p => p.marketplacecat.toString() === marketPlaceId)
 							.map(l => (
@@ -23,7 +22,7 @@ export default function MarketPlaceSections(props) {
 									<Link
 										to={{
 											pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
-											state: { listing: l }
+											state: { id: l.id }
 										}}>
 										<h4>{l.title}</h4>
 									</Link>
@@ -35,7 +34,7 @@ export default function MarketPlaceSections(props) {
 												<Link
 													to={{
 														pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
-														state: { listing: l }
+														state: { id: l.id }
 													}}>
 													Read more
 												</Link>

@@ -21,6 +21,7 @@ const ForumContext = React.createContext({
 	editRentalListing: () => {},
 	deleteRentalListing: () => {},
 	createMarketPlaceListing: () => {},
+	editMarketPlaceListing: () => {},
 	deleteMarketPlaceListing: () => {}
 });
 

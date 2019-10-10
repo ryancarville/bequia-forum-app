@@ -59,6 +59,7 @@ const apiServices = {
 								return rej(err);
 						  })
 						: res.json().then(data => {
+								console.log(data);
 								return resolve(data);
 						  })
 				)
@@ -355,6 +356,31 @@ const apiServices = {
 				});
 		});
 	},
+	editPost(postToUpdate) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/forum/edit', {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(postToUpdate),
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => {
+								return rej(err);
+						  })
+						: res.json().then(data => {
+								return resolve(data);
+						  });
+				})
+				.catch(err => {
+					console.log(err);
+					return err;
+				});
+		});
+	},
 	deletePost(id) {
 		return new Promise((resolve, rej) => {
 			fetch(config.API_ENDPOINT + `/forum/posts/${id}`, {
@@ -577,6 +603,62 @@ const apiServices = {
 	deleteRentalListing(id) {
 		return new Promise((resolve, rej) => {
 			fetch(config.API_ENDPOINT + `/rentals/delete/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	addMarketPlaceListing(newListing) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/marketPlace/addListing', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newListing),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	editMarketPlaceListing(listingToUpdate) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/marketPlace/edit', {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(listingToUpdate),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	deleteMarketPlaceListing(id) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + `/marketPlace/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
 					'content-type': 'application/json'

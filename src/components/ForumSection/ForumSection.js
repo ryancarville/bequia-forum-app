@@ -14,7 +14,7 @@ export default function ForumSection(props) {
 	const forumId = props.match.params.forumId;
 	const getPosts = () => {
 		const boardPosts = context.state.posts
-			.filter(p => p.boardid.toString() === forumId)
+			.filter(p => p.boardid === parseInt(forumId))
 			.map(p => {
 				const numOfComments = context.state.comments.filter(
 					comment => comment.postid === p.id
@@ -23,8 +23,8 @@ export default function ForumSection(props) {
 					<li key={p.id}>
 						<Link
 							to={{
-								pathname: `/messageBoard/${forumId}/${p.id}`,
-								state: { post: p }
+								pathname: `/messageBoard/${p.boardid}/${p.id}`,
+								state: { id: p.id }
 							}}>
 							{p.title}
 						</Link>
@@ -37,7 +37,7 @@ export default function ForumSection(props) {
 									<Link
 										to={{
 											pathname: `/messageBoard/${forumId}/${p.id}`,
-											state: { postId: p.id }
+											state: { id: p.id }
 										}}>
 										Read more
 									</Link>

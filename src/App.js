@@ -35,12 +35,8 @@ class App extends Component {
 	createPost = newPost => {
 		apiServices.createPost(newPost).then(() => this.getPosts());
 	};
-	updatePost = newPost => {
-		var currPosts = this.state.posts.filter(p => p.id !== newPost.id);
-		currPosts.push(newPost);
-		this.setState({
-			posts: currPosts
-		});
+	updatePost = postToUpdate => {
+		apiServices.editPost(postToUpdate).then(() => this.getPosts());
 	};
 	deletePost = id => {
 		apiServices.deletePost(id).then(() => this.getPosts());
@@ -83,15 +79,19 @@ class App extends Component {
 		apiServices.deleteRentalListing(id).then(() => this.getRentalListings());
 	};
 	createMarketPlaceListing = newListing => {
-		this.setState({
-			marketPlacePosts: [...this.state.marketPlacePosts, newListing]
-		});
+		apiServices
+			.addMarketPlaceListing(newListing)
+			.then(() => this.getMarketPlaceListings());
+	};
+	editMarketPlaceListing = listingToUpdate => {
+		apiServices
+			.editMarketPlaceListing(listingToUpdate)
+			.then(() => this.getMarketPlaceListings());
 	};
 	deleteMarketPlaceListing = id => {
-		const newLisitngs = this.state.marketPlacePosts.filter(p => p.id !== id);
-		this.setState({
-			marketPlacePosts: newLisitngs
-		});
+		apiServices
+			.deleteMarketPlaceListing(id)
+			.then(() => this.getMarketPlaceListings(0));
 	};
 
 	getForumSectionTitles = () => {
@@ -194,6 +194,7 @@ class App extends Component {
 			editRentalListing: this.editRentalListing,
 			deleteRentalListing: this.deleteRentalListing,
 			createMarketPlaceListing: this.createMarketPlaceListing,
+			editMarketPlaceListing: this.editMarketPlaceListing,
 			deleteMarketPlaceListing: this.deleteMarketPlaceListing
 		};
 		return (

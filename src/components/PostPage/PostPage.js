@@ -16,9 +16,13 @@ class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			post: '',
+			id: '',
+			userid: '',
 			title: '',
 			content: '',
+			username: '',
+			dateposted: '',
+			likes: '',
 			didLike: false,
 			redirectToForum: false
 		};
@@ -42,61 +46,77 @@ class PostPage extends Component {
 		});
 	};
 	handleDelete = () => {
-		const { id } = this.state.post;
+		const { id } = this.state;
 		this.context.deletePost(id);
 		this.setState({
 			redirectToForum: !this.state.redirectToForum
 		});
 	};
-	handleLike = e => {
-		const { id } = this.state.post;
+	handleLike = () => {
+		const { id } = this.state;
 		const add = '+';
 		const subtract = '-';
 		if (this.state.didLike) {
 			this.context.handleLike(id, subtract);
 			this.setState({
+				likes: this.state.likes - 1,
 				didLike: !this.state.didLike
 			});
 		}
 		if (!this.state.didLike) {
 			this.context.handleLike(id, add);
 			this.setState({
+				likes: this.state.likes + 1,
 				didLike: !this.state.didLike
 			});
 		}
 	};
-
-	handleSubmit = e => {
-		e.preventDefault();
-		const { p } = this.state;
-		this.context.deletePost(p.id);
+	handleTitle = e => {
 		this.setState({
-			redirectToForum: true
+			title: e.target.value
 		});
 	};
-	componentDidMount() {
-		const post = this.props.posts.filter(
-			p => p.id.toString() === this.props.match.params.postId
-		);
+	handleContent = e => {
 		this.setState({
-			post: post[0]
+			content: e.target.value
+		});
+	};
+	handleEditSubmit = e => {
+		e.preventDefault();
+		const { id, title, content } = this.state;
+		const newPost = { id, title, content };
+		this.context.updatePost(newPost);
+		this.setState({
+			showPostEdit: !this.state.showPostEdit
+		});
+	};
+
+	componentDidMount() {
+		const { id } = this.props.location.state;
+		var post = this.context.state.posts.filter(p => p.id === id);
+		post = post[0];
+		this.setState({
+			id: post.id,
+			userid: post.userid,
+			boardid: post.boardid,
+			title: post.title,
+			content: post.content,
+			username: post.username,
+			dateposted: post.dateposted,
+			likes: post.likes
 		});
 	}
 
 	render() {
-		const postInfo = this.props.posts.filter(
-			p => p.id.toString() === this.props.match.params.postId
-		);
-		const boardid = this.state.post.boardid;
 		if (this.state.redirectToForum) {
+			const boardid = this.state.boardid;
 			return <Redirect to={`/messageBoard/${boardid}`} />;
 		}
-
 		return (
 			<section className='post-container'>
 				<div className='post-content'>
 					{TokenService.getAuthToken() ? (
-						this.context.user.id === this.state.post.userid ? (
+						this.context.user.id === this.state.userid ? (
 							<EditButtons
 								showPostEdit={this.showPostEdit}
 								showDeletePopUp={this.showDeletePopUp}
@@ -106,14 +126,22 @@ class PostPage extends Component {
 					{this.state.showDeletePopUp ? (
 						<DeletePopUp
 							showDeletePopUp={this.showDeletePopUp}
-							title={this.state.post.title}
+							postTitle={this.state.title}
 							handleDelete={this.handleDelete}
 						/>
 					) : null}
 					{this.state.showPostEdit ? (
-						<EditPost post={this.state.post} closeEdit={this.showPostEdit} />
+						<EditPost
+							state={this.state}
+							handleTitle={this.handleTitle}
+							handleContent={this.handleContent}
+							handleEditSubmit={this.handleEditSubmit}
+							closeEdit={this.showPostEdit}
+						/>
+					) : this.state.dateposted ? (
+						<Post post={this.state} />
 					) : (
-						<Post post={postInfo[0]} />
+						<p>Loading...</p>
 					)}
 					{TokenService.getAuthToken() ? (
 						<span className='comment-like-button-container'>
@@ -131,10 +159,7 @@ class PostPage extends Component {
 							closeAddComment={this.handleComment}
 						/>
 					) : null}
-					<Comments
-						forumId={this.props.match.params.forumId}
-						postId={this.props.match.params.postId}
-					/>
+					<Comments forumId={this.state.boardid} postId={this.state.d} />
 				</div>
 			</section>
 		);

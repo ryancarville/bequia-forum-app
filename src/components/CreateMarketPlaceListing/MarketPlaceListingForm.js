@@ -4,9 +4,9 @@ import PhoneInput from 'react-phone-number-input';
 import ForumContext from '../../ForumContext';
 export default function MarketPlaceListingForm(props) {
 	const context = useContext(ForumContext);
-	const makeSelectMenu = context.state.marketPlace.map(mp => (
+	const makeSelectMenu = context.state.marketPlaceCatagories.map(mp => (
 		<option key={mp.id} value={mp.id}>
-			{mp.title}
+			{mp.name}
 		</option>
 	));
 	return (
@@ -14,7 +14,7 @@ export default function MarketPlaceListingForm(props) {
 			<select
 				name='mp-catagories'
 				id='mp-lisitng-catagories'
-				value={props.state.marketPlaceId}
+				value={props.state.marketplacecat}
 				onChange={props.handleMarketPlaceCat}
 				required>
 				<option selected disabled value=''>
@@ -59,7 +59,7 @@ export default function MarketPlaceListingForm(props) {
 				type='text'
 				name='contact-name'
 				id='mp-listing-contct-name'
-				value={props.state.contact.name}
+				value={props.state.contactname}
 				placeholder='Contact Name'
 				onChange={props.handleContactName}
 				required
@@ -68,7 +68,7 @@ export default function MarketPlaceListingForm(props) {
 				type='email'
 				name='contact-email'
 				id='mp-listing-contact-email'
-				value={props.state.contact.email}
+				value={props.state.contactemail}
 				placeholder='Contact Email Address'
 				onChange={props.handleContactEmail}
 				required
@@ -77,12 +77,20 @@ export default function MarketPlaceListingForm(props) {
 				type='tel'
 				placeholder='Contact Phone Number'
 				country='VC'
-				value={props.state.contact.phone}
+				value={props.state.contactphone}
 				onChange={value => props.handleContactPhone(value)}
 			/>
-			<button type='submit'>Preview Listing</button>
+			{props.type === 'edit' ? (
+				<button type='submit'>Save Edits</button>
+			) : (
+				<button type='submit'>Preview Listing</button>
+			)}
 			<button onClick={props.resetState}>Clear Form</button>
-			<button onClick={props.goBack}>Cancel</button>
+			{props.type === 'edit' ? (
+				<button onClick={props.showEditPopUp}>Cancel</button>
+			) : (
+				<button onClick={() => props.goBack()}>Cancel</button>
+			)}
 		</form>
 	);
 }

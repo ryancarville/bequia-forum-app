@@ -9,19 +9,16 @@ export default class CreateMarketPlaceListing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userId: null,
-			id: Math.floor(Math.random() * 10000000),
-			marketPlaceId: null,
+			userId: '',
+			marketplacecat: '',
 			title: '',
 			description: '',
-			price: null,
-			location: null,
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			},
-			date: new Date().toISOString().slice(0, 10),
+			price: '',
+			location: '',
+			contactname: '',
+			contactemail: '',
+			contactphone: '',
+			dateposted: new Date().toISOString().slice(0, 10),
 			showPreview: false,
 			success: false
 		};
@@ -29,21 +26,20 @@ export default class CreateMarketPlaceListing extends Component {
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			marketPlaceId: '',
+			userId: '',
+			marketplacecat: '',
 			title: '',
 			description: '',
-			price: null,
+			price: '',
 			location: '',
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			}
+			contactname: '',
+			contactemail: '',
+			contactphone: ''
 		});
 	};
 	handleMarketPlaceCat = e => {
 		this.setState({
-			marketPlaceId: e.target.value
+			marketplacecat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -68,29 +64,17 @@ export default class CreateMarketPlaceListing extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contact: {
-				name: e.target.value,
-				email: this.state.contact.email,
-				phone: this.state.contact.phone
-			}
+			contactname: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: e.target.value,
-				phone: this.state.contact.phone
-			}
+			contactemail: e.target.value
 		});
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: this.state.contact.email,
-				phone: e
-			}
+			contactphone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -99,26 +83,31 @@ export default class CreateMarketPlaceListing extends Component {
 			showPreview: !this.state.showPreview
 		});
 	};
-	handleSubmit = () => {
+	handleSubmit = e => {
+		e.preventDefault();
 		const {
-			id,
-			marketPlaceId,
+			userid,
+			marketplacecat,
 			title,
 			description,
 			price,
 			location,
-			contact,
-			date
+			contactname,
+			contactemail,
+			contactphone,
+			dateposted
 		} = this.state;
 		const newListing = {
-			id,
-			marketPlaceId,
+			userid,
+			marketplacecat,
 			title,
 			description,
 			price,
 			location,
-			contact,
-			date
+			contactname,
+			contactemail,
+			contactphone,
+			dateposted
 		};
 		this.context.createMarketPlaceListing(newListing);
 		this.setState({
@@ -128,10 +117,16 @@ export default class CreateMarketPlaceListing extends Component {
 	goBack = () => {
 		this.props.history.goBack();
 	};
+	componentDidMount() {
+		this.setState({
+			userid: this.context.user.id
+		});
+	}
+
 	render() {
 		if (this.state.success) {
-			const mpId = this.state.marketPlaceId;
-			return <Redirect to={`/marketPlace/${mpId}`} />;
+			const id = this.state.marketplacecat;
+			return <Redirect to={`/marketPlace/${id}`} />;
 		}
 		return (
 			<section className='create-mp-listing-container'>
