@@ -8,17 +8,17 @@ import ForumContext from '../../ForumContext';
 
 export default function RentalSection(props) {
 	const context = useContext(ForumContext);
+
 	const makeRentalListings = context.state.rentalPosts
 		.filter(
-			listing =>
-				listing.rentalcat.toString() === props.match.params.rentalTypeId
+			listing => listing.rentalcat === parseInt(props.match.params.rentalTypeId)
 		)
 		.map(r => (
 			<li key={r.id}>
 				<Link
 					to={{
-						pathname: `/rentals/${props.match.params.rentalTypeId}/${r.id}`,
-						state: { rental: r }
+						pathname: `/rentals/${r.rentalcat}/${r.id}`,
+						state: { id: r.id }
 					}}>
 					<h3>{r.title}</h3>
 				</Link>
@@ -29,8 +29,8 @@ export default function RentalSection(props) {
 							...
 							<Link
 								to={{
-									pathname: `/rentals/${props.match.params.rentalTypeId}/${r.id}`,
-									state: { rental: r }
+									pathname: `/rentals/${r.rentalcat}/${r.id}`,
+									state: { id: r.id }
 								}}>
 								Read more
 							</Link>

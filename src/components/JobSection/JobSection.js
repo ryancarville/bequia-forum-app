@@ -15,7 +15,7 @@ export default function JobPage(props) {
 				<Link
 					to={{
 						pathname: `/jobs/${jobTypeId}/${j.id}`,
-						state: { job: j }
+						state: { id: j.id }
 					}}>
 					<h3>{j.title}</h3>
 				</Link>
@@ -27,7 +27,7 @@ export default function JobPage(props) {
 							<Link
 								to={{
 									pathname: `/jobs/${jobTypeId}/${j.id}`,
-									state: { job: j }
+									state: { id: j.id }
 								}}>
 								Read more
 							</Link>

@@ -52,36 +52,35 @@ class App extends Component {
 		apiServices.deleteComment(id).then(() => this.getComments());
 	};
 	createEvent = newEvent => {
-		this.setState({
-			events: [...this.state.events, newEvent]
-		});
+		apiServices.addEvent(newEvent).then(() => this.getEvents());
 	};
-	deleteEvent = eventId => {
-		const newEvents = this.state.events.filter(e => e.eventId !== eventId);
-		this.setState({
-			events: newEvents
-		});
+	editEvent = eventToUpdate => {
+		apiServices.editEvent(eventToUpdate).then(() => this.getEvents());
+	};
+	deleteEvent = id => {
+		apiServices.deleteEvent(id).then(() => this.getEvents());
 	};
 	createJobListing = newListing => {
-		this.setState(
-			{
-				jobPosts: [...this.state.jobPosts, newListing]
-			},
-			() => {
-				console.log(this.state.jobPosts);
-			}
-		);
+		apiServices.addJobListing(newListing).then(() => this.getJobPosts());
 	};
-	createRentalListing = newRentalListing => {
-		this.setState({
-			rentalPosts: [...this.state.rentalPosts, newRentalListing]
-		});
+	editJobListing = listingToUpdate => {
+		apiServices.editJobListing(listingToUpdate).then(() => this.getJobPosts());
+	};
+	deleteJobListing = id => {
+		apiServices.deleteJobListing(id).then(() => this.getJobPosts());
+	};
+	createRentalListing = newListing => {
+		apiServices
+			.addRentalListing(newListing)
+			.then(() => this.getRentalListings());
+	};
+	editRentalListing = listingToUpdate => {
+		apiServices
+			.editRentalListing(listingToUpdate)
+			.then(() => this.getRentalListings());
 	};
 	deleteRentalListing = id => {
-		const newRentalListings = this.state.rentals.filter(l => l.id !== id);
-		this.setState({
-			rentals: newRentalListings
-		});
+		apiServices.deleteRentalListing(id).then(() => this.getRentalListings());
 	};
 	createMarketPlaceListing = newListing => {
 		this.setState({
@@ -136,7 +135,7 @@ class App extends Component {
 			.getRentalCatagories()
 			.then(data => this.setState({ rentalCatagories: data }));
 	};
-	getRentalListing = () => {
+	getRentalListings = () => {
 		apiServices
 			.getRentalListings()
 			.then(data => this.setState({ rentalPosts: data }));
@@ -163,7 +162,7 @@ class App extends Component {
 		this.getJobCatagories();
 		this.getJobPosts();
 		this.getRentalCatagories();
-		this.getRentalListing();
+		this.getRentalListings();
 		this.getMarketPlaceCatagories();
 		this.getMarketPlaceListings();
 		this.getDirectory();
@@ -174,6 +173,9 @@ class App extends Component {
 		const contextValue = {
 			state: this.state,
 			user: this.state.user,
+			getFourm: this.getFourm,
+			getPosts: this.getPosts,
+			getNewestPosts: this.getNewestPosts,
 			handleLike: this.handleLike,
 			comments: this.state.comments,
 			addComment: this.addComment,
@@ -183,9 +185,14 @@ class App extends Component {
 			updatePost: this.updatePost,
 			deletePost: this.deletePost,
 			createEvent: this.createEvent,
+			editEvent: this.editEvent,
 			deleteEvent: this.deleteEvent,
 			createJobListing: this.createJobListing,
+			editJobListing: this.editJobListing,
+			deleteJobListing: this.deleteJobListing,
 			createRentalListing: this.createRentalListing,
+			editRentalListing: this.editRentalListing,
+			deleteRentalListing: this.deleteRentalListing,
 			createMarketPlaceListing: this.createMarketPlaceListing,
 			deleteMarketPlaceListing: this.deleteMarketPlaceListing
 		};

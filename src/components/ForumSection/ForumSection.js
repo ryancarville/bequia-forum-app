@@ -81,7 +81,7 @@ export default function ForumSection(props) {
 	};
 	const id = props.match.params.forumId;
 	const name = context.state.forum.filter(f => f.id.toString() === id);
-	console.log(name);
+
 	return (
 		<section className='forum-section-container'>
 			<header>

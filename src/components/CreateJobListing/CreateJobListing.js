@@ -9,44 +9,39 @@ export default class CreateJobListing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: Math.floor(Math.random() * 1000000),
-			jobTypeId: '',
+			userid: '',
+			jobcat: '',
 			title: '',
 			location: '',
 			description: '',
 			employment: '',
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			},
-			date: new Date().toISOString().slice(0, 10),
+			contactname: '',
+			contactemail: '',
+			website: '',
+			contactphone: '',
+			dateposted: new Date().toISOString().slice(0, 10),
 			showPreview: false
 		};
 	}
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			jobTypeId: null,
+			userid: '',
+			jobcat: '',
 			title: '',
 			location: '',
 			description: '',
-			fullTime: false,
-			partTime: false,
-			contract: false,
-			seasonal: false,
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			},
-			date: new Date().toISOString().slice(0, 10),
+			employment: '',
+			contactname: null,
+			contactemail: null,
+			website: null,
+			contactphone: null,
 			showPreview: false
 		});
 	};
 	handleJobCatagory = e => {
 		this.setState({
-			jobTypeId: e.target.value
+			jobcat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -71,29 +66,20 @@ export default class CreateJobListing extends Component {
 	};
 	handleContactName = e => {
 		this.setState({
-			contact: {
-				name: e.target.value,
-				email: this.state.contact.email,
-				phone: this.state.contact.phone
-			}
+			contactname: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: e.target.value,
-				phone: this.state.contact.phone
-			}
+			contactemail: e.target.value
 		});
+	};
+	handleWebsite = e => {
+		this.setState({ website: e.target.value });
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: this.state.contact.email,
-				phone: e
-			}
+			contactphone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -104,24 +90,30 @@ export default class CreateJobListing extends Component {
 	};
 	handleSubmit = e => {
 		const {
-			id,
-			jobTypeId,
+			userid,
+			jobcat,
 			title,
 			location,
 			description,
-			contact,
+			contactname,
+			contactemail,
+			website,
+			contactphone,
 			employment,
-			date
+			dateposted
 		} = this.state;
 		const newListing = {
-			id,
-			jobTypeId,
+			userid,
+			jobcat,
 			title,
 			location,
 			description,
-			contact,
+			contactname,
+			contactemail,
+			website,
+			contactphone,
 			employment,
-			date
+			dateposted
 		};
 		this.context.createJobListing(newListing);
 		this.setState({
@@ -131,10 +123,16 @@ export default class CreateJobListing extends Component {
 	goBack = e => {
 		this.props.history.goBack();
 	};
+	componentDidMount() {
+		this.setState({
+			userid: this.context.user.id
+		});
+	}
+
 	render() {
 		if (this.state.success) {
-			const { jobTypeId } = this.state;
-			return <Redirect to={`/jobs/${jobTypeId}`} />;
+			const { jobcat } = this.state;
+			return <Redirect to={`/jobs/${jobcat}`} />;
 		}
 		return (
 			<section className='create-job-lisitng-container'>
@@ -142,7 +140,7 @@ export default class CreateJobListing extends Component {
 				{this.state.showPreview ? (
 					<ShowJobListingPreview
 						state={this.state}
-						goBack={this.goBack}
+						goBack={this.showPreview}
 						handleShowPreview={this.handleShowPreview}
 						handleSubmit={this.handleSubmit}
 					/>
@@ -156,8 +154,9 @@ export default class CreateJobListing extends Component {
 						handleLocation={this.handleLocation}
 						handleContactName={this.handleContactName}
 						handleContactEmail={this.handleContactEmail}
+						handleWebsite={this.handleWebsite}
 						handleContactPhone={this.handleContactPhone}
-						handleShowPreview={this.handleShowPreview}
+						handleSubmit={this.handleShowPreview}
 						resetState={this.resetState}
 						goBack={this.goBack}
 					/>

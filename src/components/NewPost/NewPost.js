@@ -10,6 +10,7 @@ import comment from '../Icons/comment';
 export default function NewPost(props) {
 	const context = useContext(ForumContext);
 	const recentPosts = () => {
+		context.getNewestPosts();
 		let recentPosts = context.state.newestPosts;
 		console.log(recentPosts);
 		const visiblePosts = recentPosts ? (

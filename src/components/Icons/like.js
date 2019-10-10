@@ -2,7 +2,7 @@ import React from 'react';
 import './like.css';
 const like = (
 	<img
-		src='https://beardystudios.com/Bloc_Capstone/bequia-forum/images/coconut.png'
+		src='../../coconut.png'
 		alt='coconut-likes'
 		id='coconut-likes-btn-img'
 	/>

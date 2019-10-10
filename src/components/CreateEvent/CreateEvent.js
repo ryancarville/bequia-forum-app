@@ -6,14 +6,14 @@ export default class CreateEvent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			eventId: Math.floor(Math.random() * 10000000),
 			title: '',
-			date: new Date().toISOString().slice(0, 10),
-			startTime: '',
-			endTime: '',
 			location: '',
 			description: '',
-			postedBy: ''
+			eventdate: new Date().toISOString().slice(0, 10),
+			startTime: '',
+			endTime: '',
+			userid: '',
+			dateposted: new Date().toISOString()
 		};
 	}
 	static contextType = ForumContext;
@@ -34,7 +34,7 @@ export default class CreateEvent extends Component {
 	};
 	handleDate = e => {
 		this.setState({
-			date: e.target.value
+			eventdate: e.target.value
 		});
 	};
 	handleStartTime = e => {
@@ -49,9 +49,26 @@ export default class CreateEvent extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		const time = this.state.startTime + ' - ' + this.state.endTime;
-		const { eventId, title, location, date, description } = this.state;
-		const newEvent = { eventId, title, location, date, time, description };
+		const { startTime, endTime } = this.state;
+		var eventtime = [startTime, endTime];
+		eventtime = eventtime.join(' - ');
+		const {
+			title,
+			location,
+			eventdate,
+			description,
+			userid,
+			dateposted
+		} = this.state;
+		const newEvent = {
+			title,
+			location,
+			eventdate,
+			eventtime,
+			description,
+			userid,
+			dateposted
+		};
 		this.context.createEvent(newEvent);
 		this.setState({
 			redirectToCalendar: true
@@ -59,6 +76,12 @@ export default class CreateEvent extends Component {
 	};
 	eventTimeSelect = () => {
 		const times = [
+			'All Day',
+			'Morning',
+			'Mid Day',
+			'Afternoon',
+			'Evening',
+			'Until Late',
 			'00:00',
 			'00:30',
 			'01:00',
@@ -114,6 +137,10 @@ export default class CreateEvent extends Component {
 			</option>
 		));
 	};
+	componentDidMount() {
+		this.setState({ userid: this.context.user.id });
+	}
+
 	render() {
 		if (this.state.redirectToCalendar) {
 			return <Redirect to={'/events'} />;
@@ -142,8 +169,8 @@ export default class CreateEvent extends Component {
 					type='date'
 					name='eventDate'
 					id='event-date'
-					value={this.state.date}
-					min={this.state.date}
+					value={this.state.eventdate}
+					min={this.state.eventdate}
 					onChange={this.handleDate}
 					required
 				/>

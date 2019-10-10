@@ -4,11 +4,26 @@ import './DeletePopUp.css';
 export default function DeletePopUp(props) {
 	return (
 		<div className='post-delete-pop-up'>
-			{props.title ? (
-				<h3>Are you sure you want to delete post '{props.title}'?</h3>
-			) : (
-				<h3>Are you sure you want to delete this comment?</h3>
-			)}
+			{props.postTitle ? (
+				<h3>Are you sure you want to delete post '{props.postTitle}'?</h3>
+			) : null}
+			{props.jobTitle ? (
+				<h3>
+					Are you sure you want to delete the job listing '{props.jobTitle}'?
+				</h3>
+			) : null}
+			{props.rentalTitle ? (
+				<h3>
+					Are you sure you want to delete the rental listing '
+					{props.rentalTitle}'?
+				</h3>
+			) : null}
+			{props.marketPlaceTitle ? (
+				<h3>
+					Are you sure you want to delete the market place listing '
+					{props.marketPlaceTitle}'?
+				</h3>
+			) : null}
 			<span>
 				<button type='button' onClick={props.handleDelete}>
 					Yes

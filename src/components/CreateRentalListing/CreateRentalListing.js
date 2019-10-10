@@ -9,24 +9,24 @@ export default class CreateRentalListings extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			rentalTypeId: null,
-			id: Math.floor(Math.random() * 1000000),
+			rentalcat: '',
+			userid: '',
 			title: '',
 			description: '',
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			},
-			date: new Date().toISOString().slice(0, 10),
-			airbnb: false,
-			airbnbSite: 'https://www.airbnb.com/',
-			homeAway: false,
-			homeAwaySite: 'https://www.homeaway.com/',
-			booking_com: false,
-			booking_comSite: 'https://www.booking.com/',
-			other: false,
-			otherSite: 'https://www.your-site.com',
+			location: '',
+			price: '',
+			contactname: '',
+			contactemail: '',
+			contactphone: '',
+			showAirbnb: false,
+			airbnb: 'https://www.airbnb.com/',
+			showHomeAway: false,
+			homeaway: 'https://www.homeaway.com/',
+			showBooking_com: false,
+			bookingdotcom: 'https://www.booking.com/',
+			showOther: false,
+			othersite: 'https://www.your-site-here.com',
+			dateposted: new Date().toISOString().slice(0, 10),
 			showPreview: false,
 			sucess: false
 		};
@@ -34,31 +34,31 @@ export default class CreateRentalListings extends Component {
 	static contextType = ForumContext;
 	resetState = () => {
 		this.setState({
-			rentalTypeId: null,
-			id: Math.floor(Math.random() * 1000000),
+			rentalcat: '',
+			userid: '',
 			title: '',
 			description: '',
-			contact: {
-				name: '',
-				email: '',
-				phone: ''
-			},
-			date: new Date().toISOString().slice(0, 10),
-			airbnb: false,
-			airbnbSite: 'https://www.airbnb.com/',
-			homeAway: false,
-			homeAwaySite: 'https://www.homeaway.com/',
-			booking_com: false,
-			booking_comSite: 'https://www.booking.com/',
-			other: false,
-			otherSite: 'https://www.your-site.com',
+			location: '',
+			price: '',
+			contactname: '',
+			contactemail: '',
+			contactphone: '',
+			showAirbnb: false,
+			airbnb: 'https://www.airbnb.com/',
+			showHomeAway: false,
+			homeaway: 'https://www.homeaway.com/',
+			showBooking_com: false,
+			bookingcom: 'https://www.booking.com/',
+			showOther: false,
+			othersite: 'https://www.your-site.com',
+			dateposted: new Date().toISOString().slice(0, 10),
 			showPreview: false,
 			sucess: false
 		});
 	};
 	handleRentalType = e => {
 		this.setState({
-			rentalTypeId: e.target.value
+			rentalcat: e.target.value
 		});
 	};
 	handleTitle = e => {
@@ -71,71 +71,67 @@ export default class CreateRentalListings extends Component {
 			description: e.target.value
 		});
 	};
+	handleLocation = e => {
+		this.setState({ location: e.target.value });
+	};
+	handlePrice = e => {
+		this.setState({
+			price: e.target.value
+		});
+	};
 	handleAirbnb = e => {
 		this.setState({
-			airbnbSite: e.target.value
+			airbnb: e.target.value
 		});
 	};
 	handleHomeAway = e => {
 		this.setState({
-			homeAwaySite: e.target.value
+			homeaway: e.target.value
 		});
 	};
 	handleBooking_com = e => {
 		this.setState({
-			booking_comSite: e.target.value
+			bookingcom: e.target.value
 		});
 	};
 	handleOtherSite = e => {
 		this.setState({
-			otherSite: e.target.value
+			othersite: e.target.value
 		});
 	};
 	handleShowAirBnbSiteInput = e => {
 		this.setState({
-			airbnb: !this.state.airbnb
+			showAirbnb: !this.state.showAirbnb
 		});
 	};
 	handleShowHomeAwaySiteInput = e => {
 		this.setState({
-			homeAway: !this.state.homeAway
+			showHomeAway: !this.state.showHomeAway
 		});
 	};
 	handleShowBookingSiteInput = e => {
 		this.setState({
-			booking_com: !this.state.booking_com
+			showBooking_com: !this.state.showBooking_com
 		});
 	};
 	handleShowOtherSiteInput = e => {
 		this.setState({
-			other: !this.state.other
+			showOther: !this.state.showOther
 		});
 	};
 	handleContactName = e => {
 		this.setState({
-			contact: {
-				name: e.target.value,
-				email: this.state.contact.email,
-				phone: this.state.contact.phone
-			}
+			contactname: e.target.value
 		});
 	};
 	handleContactEmail = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: e.target.value,
-				phone: this.state.contact.phone
-			}
+			contactemail: e.target.value
 		});
 	};
 	handleContactPhone = e => {
 		this.setState({
-			contact: {
-				name: this.state.contact.name,
-				email: this.state.contact.email,
-				phone: e
-			}
+			contactphone: e
 		});
 	};
 	handleShowPreview = e => {
@@ -145,37 +141,50 @@ export default class CreateRentalListings extends Component {
 		});
 	};
 	handleSubmit = e => {
-		var airbnbSite = '';
-		var homeAwaySite = '';
-		var booking_comSite = '';
-		var otherSite = '';
-		if (this.state.airbnb) {
-			airbnbSite = this.state.airbnbSite;
+		var airbnb = '';
+		var homeaway = '';
+		var bookingdotcom = '';
+		var othersite = '';
+		if (this.state.showAirbnb) {
+			airbnb = this.state.airbnb;
 		}
-		if (this.state.homeAway) {
-			homeAwaySite = this.state.homeAwaySite;
+		if (this.state.showHomeaway) {
+			homeaway = this.state.homeaway;
 		}
-		if (this.state.booking_com) {
-			booking_comSite = this.state.booking_comSite;
+		if (this.state.showBooking_com) {
+			bookingdotcom = this.state.bookingdotcom;
 		}
-		if (this.state.other) {
-			otherSite = this.state.otherSite;
+		if (this.state.showOther) {
+			othersite = this.state.othersite;
 		}
 
-		const { id, rentalTypeId, title, description, contact, date } = this.state;
-		const newRentalListing = {
-			id,
-			rentalTypeId,
+		const {
+			rentalcat,
+			userid,
 			title,
 			description,
-			contact,
-			bookingSites: [
-				{ title: 'AirBnb', site: airbnbSite },
-				{ title: 'HomeAway', site: homeAwaySite },
-				{ title: 'Booking.com', site: booking_comSite },
-				{ title: 'Other Site', site: otherSite }
-			],
-			date
+			location,
+			price,
+			contactname,
+			contactemail,
+			contactphone,
+			dateposted
+		} = this.state;
+		const newRentalListing = {
+			rentalcat,
+			userid,
+			title,
+			description,
+			location,
+			price,
+			contactname,
+			contactemail,
+			contactphone,
+			airbnb,
+			homeaway,
+			bookingdotcom,
+			othersite,
+			dateposted
 		};
 		this.context.createRentalListing(newRentalListing);
 		this.setState({
@@ -185,18 +194,16 @@ export default class CreateRentalListings extends Component {
 	goBack = () => {
 		this.props.history.goBack();
 	};
+	componentDidMount() {
+		this.setState({
+			userid: this.context.user.id
+		});
+	}
 
 	render() {
 		if (this.state.sucess) {
-			const { rentalTypeId } = this.state;
-
-			return (
-				<Redirect
-					to={{
-						pathname: `/rentals/${rentalTypeId}`
-					}}
-				/>
-			);
+			const { rentalcat } = this.state;
+			return <Redirect to={`/rentals/${rentalcat}`} />;
 		}
 		return (
 			<section>
@@ -213,6 +220,8 @@ export default class CreateRentalListings extends Component {
 						handleRentalType={this.handleRentalType}
 						handleTitle={this.handleTitle}
 						handleDescription={this.handleDescription}
+						handleLocation={this.handleLocation}
+						handlePrice={this.handlePrice}
 						handleShowAirBnbSiteInput={this.handleShowAirBnbSiteInput}
 						handleShowHomeAwaySiteInput={this.handleShowHomeAwaySiteInput}
 						handleShowBookingSiteInput={this.handleShowBookingSiteInput}

@@ -1,4 +1,5 @@
 import config from '../config';
+
 const apiServices = {
 	getFourmSectionTitles() {
 		return new Promise((resolve, rej) => {
@@ -408,6 +409,174 @@ const apiServices = {
 	deleteComment(id) {
 		return new Promise((resolve, rej) => {
 			fetch(config.API_ENDPOINT + `/comments/delete/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	addEvent(newEvent) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/events/addEvent', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newEvent),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	editEvent(eventToUpdate) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/events/edit', {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(eventToUpdate),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	deleteEvent(id) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + `/events/delete/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	addJobListing(newEvent) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/jobs/addJob', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newEvent),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	editJobListing(listingToUpdate) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/jobs/edit', {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(listingToUpdate),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	deleteJobListing(id) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + `/jobs/delete/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	addRentalListing(newRental) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/rentals/addListing', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newRental),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	editRentalListing(listingToUpdate) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + '/rentals/edit', {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(listingToUpdate),
+				mode: 'cors'
+			}).then(res => {
+				!res.ok
+					? res.json().then(err => rej(err))
+					: res.json().then(data => resolve(data));
+			});
+		}).catch(err => {
+			console.log(err);
+			return err;
+		});
+	},
+	deleteRentalListing(id) {
+		return new Promise((resolve, rej) => {
+			fetch(config.API_ENDPOINT + `/rentals/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
 					'content-type': 'application/json'

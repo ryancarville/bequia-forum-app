@@ -7,16 +7,20 @@ import './JobListingForm.css';
 export default function JobListingForm(props) {
 	const context = useContext(ForumContext);
 	const makeCatagoryMenu = () => {
-		return context.state.jobs.map(j => {
-			return <option value={j.id}>{j.title}</option>;
+		return context.state.jobCatagories.map(j => {
+			return (
+				<option key={j.id} value={j.id}>
+					{j.name}
+				</option>
+			);
 		});
 	};
 	return (
-		<form className='job-listing-form' onSubmit={props.handleShowPreview}>
+		<form className='job-listing-form' onSubmit={props.handleSubmit}>
 			<select
 				name='jobCatagory'
 				id='job-listing-catagory'
-				value={props.state.jobTypeId}
+				value={props.state.jobcat}
 				onChange={props.handleJobCatagory}
 				required>
 				<option selected disabled value=''>
@@ -27,7 +31,7 @@ export default function JobListingForm(props) {
 			<select
 				name='emploment-type'
 				id='job-listing-employment-type'
-				value={props.state.employmentType}
+				value={props.state.employment}
 				onChange={props.handleEmploymentType}>
 				<option selected disabled value=''>
 					Employment Type
@@ -37,7 +41,6 @@ export default function JobListingForm(props) {
 				<option value='Contract'>Contract</option>
 				<option value='Seasonal'>Seasonl</option>
 			</select>
-
 			<input
 				type='text'
 				name='title'
@@ -67,7 +70,7 @@ export default function JobListingForm(props) {
 				type='text'
 				name='contact-name'
 				id='job-listing-contact-name'
-				value={props.state.contact.name}
+				value={props.state.contactname}
 				placeholder='Contact Name'
 				onChange={props.handleContactName}
 				required
@@ -76,22 +79,38 @@ export default function JobListingForm(props) {
 				type='email'
 				name='contact-email'
 				id='job-listing-contact-email'
-				value={props.state.contact.email}
+				value={props.state.contactemail}
 				placeholder='Contact Email Address'
 				onChange={props.handleContactEmail}
 				required
+			/>
+			<input
+				type='text'
+				name='website'
+				id='job-listing-website'
+				value={props.state.website}
+				placeholder='Website'
+				onChange={props.handleWebsite}
 			/>
 			<PhoneInput
 				type='tel'
 				placeholder='Contact Phone Number'
 				country='VC'
 				id='job-phone-input'
-				value={props.state.contact.phone}
+				value={props.state.contactphone}
 				onChange={value => props.handleContactPhone(value)}
 			/>
-			<button type='submit'>Preview Listing</button>
+			{props.type === 'edit' ? (
+				<button type='submit'>Save Edits</button>
+			) : (
+				<button type='submit'>Preview Listing</button>
+			)}
 			<button onClick={props.resetState}>Clear Form</button>
-			<button onClick={() => props.goBack()}>Cancel</button>
+			{props.type === 'edit' ? (
+				<button onClick={props.showEditPopUp}>Cancel</button>
+			) : (
+				<button onClick={() => props.goBack()}>Cancel</button>
+			)}
 		</form>
 	);
 }
