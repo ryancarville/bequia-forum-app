@@ -5,13 +5,15 @@ import Truncate from 'react-truncate';
 import formatDate from '../../helpers/formatDate';
 import './RentalSection.css';
 import ForumContext from '../../ForumContext';
+import Sort from '../Sort/Sort';
 
 export default function RentalSection(props) {
 	const context = useContext(ForumContext);
 
 	const makeRentalListings = context.state.rentalPosts
 		.filter(
-			listing => listing.rental_cat === parseInt(props.match.params.rentalTypeId)
+			listing =>
+				listing.rental_cat === parseInt(props.match.params.rentalTypeId)
 		)
 		.map(r => (
 			<li key={r.id}>
@@ -39,6 +41,8 @@ export default function RentalSection(props) {
 					<p>{r.description}</p>
 				</Truncate>
 				<span className='postInfo'>
+					{r.price ? <p>Price: {r.price}</p> : null}
+					{r.location ? <p>Location: {r.location}</p> : null}
 					<p>Posted By: {r.contact_name}</p>
 					<p>Posted On: {formatDate(r.date_posted)}</p>
 				</span>
@@ -47,6 +51,7 @@ export default function RentalSection(props) {
 
 	return (
 		<section className='rentals-section-container'>
+			<Sort sortType='rentals' />
 			<div className='rentals-section-content'>
 				<ul>
 					{makeRentalListings.length !== 0 ? (

@@ -4,11 +4,10 @@ import TokenServices from '../../services/TokenServices';
 import './Nav.css';
 import ForumContext from '../../ForumContext';
 import MobileSiteNav from './mobileSiteNav';
-import desktopSiteNav from './desktopSiteNav';
+import DesktopSiteNav from './desktopSiteNav';
 class Nav extends Component {
 	render() {
 		const loggedIn = TokenServices.getAuthToken();
-
 		const publicNav = (
 			<>
 				<div className='navBar'>
@@ -36,9 +35,8 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-
 				<MobileSiteNav />
-				{desktopSiteNav}
+				<DesktopSiteNav />
 			</>
 		);
 		const privateNav = (
@@ -79,7 +77,7 @@ class Nav extends Component {
 					</ul>
 				</div>
 				<MobileSiteNav />
-				{desktopSiteNav}
+				<DesktopSiteNav />
 			</>
 		);
 		const navBar = loggedIn ? privateNav : publicNav;

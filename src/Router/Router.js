@@ -33,6 +33,7 @@ import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
 import CreateMarketPlaceListing from '../components/CreateMarketPlaceListing/CreateMarketPlaceListing';
 import ForumContext from '../ForumContext';
 import Dashboard from '../components/Dashboard/Dashboard';
+import SearchResults from '../components/SearchResults/SearchResults'
 export default class Router extends Component {
 	static contextType = ForumContext;
 	render() {
@@ -92,6 +93,7 @@ export default class Router extends Component {
 						component={CreateMarketPlaceListing}
 						exact
 					/>
+					<Route path='/searchResults' component={SearchResults} exact />
 					<Route path='/about-us' component={aboutUs} exact />
 					<Route path='/help' component={support} exact />
 					<Route path='/donate' component={donate} exact />

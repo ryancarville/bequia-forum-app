@@ -4,6 +4,7 @@ import formatDate from '../../helpers/formatDate';
 import './MarketPlaceSection.css';
 import Truncate from 'react-truncate';
 import ForumContext from '../../ForumContext';
+import Sort from '../Sort/Sort';
 
 export default function MarketPlaceSections(props) {
 	const context = useContext(ForumContext);
@@ -11,6 +12,7 @@ export default function MarketPlaceSections(props) {
 	const marketPlaceId = props.match.params.marketPlaceId;
 	return (
 		<section className='market-place-section-container'>
+			<Sort sortType='marketPlace' />
 			<div className='market-place-section-content'>
 				<ul>
 					{listings.filter(p => p.market_place_cat.toString() === marketPlaceId)
@@ -42,9 +44,9 @@ export default function MarketPlaceSections(props) {
 										}>
 										<p>{l.description}</p>
 									</Truncate>
-									{l.price ? <p>Price: {l.price}</p> : null}
-
 									<span className='postInfo'>
+										{l.price ? <p>Price: {l.price}</p> : null}
+										{l.location ? <p>Location: {l.location}</p> : null}
 										<p>Posted By: {l.contact_name}</p>
 										<p>Posted On: {formatDate(l.date_posted)}</p>
 									</span>

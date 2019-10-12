@@ -8,6 +8,7 @@ import ForumContext from '../../ForumContext';
 import comment from '../Icons/comment';
 import like from '../Icons/like';
 import './ForumSection.css';
+import Sort from '../Sort/Sort';
 
 export default function ForumSection(props) {
 	const getForumName = forum => {
@@ -96,6 +97,7 @@ export default function ForumSection(props) {
 					<header>
 						<h3>{getForumName(context.state.forum)}</h3>
 					</header>
+					<Sort sortType='posts' />
 					<span>
 						{TokenServices.getAuthToken() ? (
 							<CreateContentButton forumId={id} />

@@ -186,6 +186,34 @@ class App extends Component {
 	getDirectory = () => {
 		apiServices.getDriectory().then(data => this.setState({ directory: data }));
 	};
+	searchResults = posts => {
+		this.setState({
+			posts: posts
+		});
+	};
+	setDirectoryState = dir => {
+		this.setState({ directory: dir });
+	};
+	setJobsState = jobs => {
+		this.setState({
+			jobPosts: jobs
+		});
+	};
+	setRentalsState = rentals => {
+		this.setState({
+			rentalPosts: rentals
+		});
+	};
+	setMarketPlaceState = listings => {
+		this.setState({
+			marketPlacePosts: listings
+		});
+	};
+	setForumPostsState = posts => {
+		this.setState({
+			posts: posts
+		});
+	};
 	setAppState = () => {
 		this.getForumSectionTitles();
 		this.getForum();
@@ -243,9 +271,11 @@ class App extends Component {
 			handleDeleteFromLikesTracker: this.handleDeleteFromLikesTracker,
 			getLikesTracker: this.getLikesTracker,
 			comments: this.state.comments,
+			searchResults: this.searchResults,
 			addComment: this.addComment,
 			deleteComment: this.deleteComment,
 			getDirectory: this.getDirectory,
+			setDirectoryState: this.setDirectoryState,
 			directory: this.state.directory,
 			createPost: this.createPost,
 			updatePost: this.updatePost,
@@ -253,6 +283,8 @@ class App extends Component {
 			createEvent: this.createEvent,
 			editEvent: this.editEvent,
 			deleteEvent: this.deleteEvent,
+			setJobsState: this.setJobsState,
+			setRentalsState: this.setRentalsState,
 			createJobListing: this.createJobListing,
 			editJobListing: this.editJobListing,
 			deleteJobListing: this.deleteJobListing,
@@ -261,7 +293,9 @@ class App extends Component {
 			deleteRentalListing: this.deleteRentalListing,
 			createMarketPlaceListing: this.createMarketPlaceListing,
 			editMarketPlaceListing: this.editMarketPlaceListing,
-			deleteMarketPlaceListing: this.deleteMarketPlaceListing
+			deleteMarketPlaceListing: this.deleteMarketPlaceListing,
+			setMarketPlaceState: this.setMarketPlaceState,
+			setForumPostsState: this.setForumPostsState
 		};
 		return (
 			<ForumContext.Provider value={contextValue}>

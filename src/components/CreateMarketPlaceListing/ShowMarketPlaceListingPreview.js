@@ -6,7 +6,7 @@ import ForumContext from '../../ForumContext';
 export default function ShowMarketPlaceListingPreview(props) {
 	const context = useContext(ForumContext);
 	const marketPlaceCat = context.state.marketPlaceCatagories.filter(
-		mp => mp.id === parseInt(props.state.marketplacecat)
+		mp => mp.id === parseInt(props.state.market_place_cat)
 	);
 	return (
 		<div className='mp-listing-preview'>

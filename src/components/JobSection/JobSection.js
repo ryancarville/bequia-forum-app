@@ -4,6 +4,7 @@ import Truncate from 'react-truncate';
 import formatDate from '../../helpers/formatDate';
 import './JobSection.css';
 import ForumContext from '../../ForumContext';
+import Sort from '../Sort/Sort';
 
 export default function JobPage(props) {
 	const context = useContext(ForumContext);
@@ -36,6 +37,8 @@ export default function JobPage(props) {
 					<p>{j.description}</p>
 				</Truncate>
 				<span className='postInfo'>
+					{j.location ? <p>Location: {j.location}</p> : null}
+					{j.employment ? <p>Employment: {j.employment}</p> : null}
 					<p>Posted By: {j.user_name}</p>
 					<p>Posted On: {formatDate(j.date_posted)}</p>
 				</span>
@@ -43,6 +46,7 @@ export default function JobPage(props) {
 		));
 	return (
 		<section className='job-section-container'>
+			<Sort sortType='jobs' />
 			<div className='job-section-content'>
 				<ul>
 					{jobPosts.length !== 0 ? (

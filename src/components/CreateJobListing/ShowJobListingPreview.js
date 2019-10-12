@@ -7,7 +7,7 @@ import ForumContext from '../../ForumContext';
 export default function ShowJobListingPreview(props) {
 	const context = useContext(ForumContext);
 	const jobcat = context.state.jobCatagories.filter(
-		cat => cat.id === parseInt(props.state.jobcat)
+		cat => cat.id === parseInt(props.state.job_cat)
 	);
 	console.log(jobcat);
 	return (

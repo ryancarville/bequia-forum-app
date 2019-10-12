@@ -156,6 +156,52 @@ const apiServices = {
 				});
 		});
 	},
+	searchPosts(search) {
+		if (search.board_id !== null) {
+			return new Promise(resolve => {
+				fetch(
+					config.API_ENDPOINT +
+						`/forum/search/posts/${search.board_id}/${search.term}`,
+					{
+						method: 'GET',
+						headers: {
+							'content-type': 'application/json'
+						},
+
+						mode: 'cors'
+					}
+				)
+					.then(res => {
+						!res.ok
+							? res.json().then(err => Promise.reject(resolve(err)))
+							: res.json().then(data => resolve(data));
+					})
+					.catch(err => {
+						return err;
+					});
+			});
+		} else {
+			return new Promise(resolve => {
+				fetch(config.API_ENDPOINT + `/forum/search/posts/${search.term}`, {
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+
+					mode: 'cors'
+				})
+					.then(res => {
+						!res.ok
+							? res.json().then(err => Promise.reject(resolve(err)))
+							: res.json().then(data => resolve(data));
+					})
+					.catch(err => {
+						return err;
+					});
+			});
+		}
+	},
+
 	getLikesTracker() {
 		return new Promise(resolve => {
 			fetch(config.API_ENDPOINT + '/forum/likesTracker', {
@@ -375,6 +421,117 @@ const apiServices = {
 				},
 				mode: 'cors'
 			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	sortDirectory(sort) {
+		return new Promise(resolve => {
+			fetch(
+				config.API_ENDPOINT + `/directory/sort/${sort.column}/${sort.sortType}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	sortJobs(sort) {
+		return new Promise(resolve => {
+			fetch(
+				config.API_ENDPOINT + `/jobs/sort/${sort.column}/${sort.sortType}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	sortRentals(sort) {
+		return new Promise(resolve => {
+			fetch(
+				config.API_ENDPOINT + `/rentals/sort/${sort.column}/${sort.sortType}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	sortMarketPlace(sort) {
+		return new Promise(resolve => {
+			fetch(
+				config.API_ENDPOINT +
+					`/marketPlace/sort/${sort.column}/${sort.sortType}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	sortForumPosts(sort) {
+		return new Promise(resolve => {
+			fetch(
+				config.API_ENDPOINT + `/forum/sort/${sort.column}/${sort.sortType}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
 				.then(res => {
 					!res.ok
 						? res.json().then(err => Promise.reject(resolve(err)))
