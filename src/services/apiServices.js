@@ -41,6 +41,26 @@ const apiServices = {
 				});
 		});
 	},
+	verifyToken(token) {
+		return new Promise(resolve => {
+			fetch(config.API_ENDPOINT + `/login/verifyToken/${token}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
 	getUserData(id) {
 		return new Promise(resolve => {
 			fetch(config.API_ENDPOINT + `/users/${id}`, {
@@ -311,6 +331,45 @@ const apiServices = {
 		return new Promise(resolve => {
 			fetch(config.API_ENDPOINT + '/directory', {
 				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	addDirectoryListing(newListing) {
+		return new Promise(resolve => {
+			fetch(config.API_ENDPOINT + '/directory/addListing', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(newListing),
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	deleteDirectoryListing(id) {
+		return new Promise(resolve => {
+			fetch(config.API_ENDPOINT + `/directory/delete/${id}`, {
+				method: 'DELETE',
 				headers: {
 					'content-type': 'application/json'
 				},

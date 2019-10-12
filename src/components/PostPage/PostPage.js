@@ -93,23 +93,20 @@ class PostPage extends Component {
 			showPostEdit: !this.state.showPostEdit
 		});
 	};
-	postLiked = (post, user_id) => {
-		this.context.getLikesTracker();
-		console.log(this.context.state.likesTracker);
-
-		const postAlreadyLiked = this.context.state.likesTracker.filter(
+	postLiked = (post, user_id, context) => {
+		context.getLikesTracker();
+		const postAlreadyLiked = context.state.likesTracker.filter(
 			p => p.user_id === user_id && p.post_id === post.id
 		);
-		console.log(postAlreadyLiked);
 		if (postAlreadyLiked.length === 1) {
 			this.setState({
 				didLike: true
 			});
 		}
 	};
-	getPost = () => {
+	getPost = context => {
 		const { postId } = this.props.match.params;
-		var post = this.context.state.posts.filter(p => p.id.toString() === postId);
+		var post = context.state.posts.filter(p => p.id.toString() === postId);
 		post = post[0];
 		if (post) {
 			this.setState({
@@ -123,13 +120,10 @@ class PostPage extends Component {
 				likes: post.likes
 			});
 		}
+		return post;
 	};
 
 	render() {
-		if (!this.state.title) {
-			const user_id = this.context.user.id;
-			this.postLiked(this.getPost(), user_id);
-		}
 		if (this.state.redirectToForum) {
 			const boardid = this.state.boardid;
 			return <Redirect to={`/messageBoard/${boardid}`} />;
@@ -137,6 +131,17 @@ class PostPage extends Component {
 		return (
 			<section className='post-container'>
 				<div className='post-content'>
+					<ForumContext.Consumer>
+						{context =>
+							!this.state.title
+								? this.postLiked(
+										this.getPost(context),
+										context.user.id,
+										context
+								  )
+								: null
+						}
+					</ForumContext.Consumer>
 					{TokenService.getAuthToken() ? (
 						this.context.user.id === this.state.user_id ? (
 							<EditButtons

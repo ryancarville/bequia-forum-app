@@ -6,10 +6,7 @@ import TokenServices from '../../services/TokenServices';
 import ForumContext from '../../ForumContext';
 
 export default class Forum extends Component {
-	constructor(props) {
-		super(props);
-	}
-
+	
 	makeForum = (forumTitles, forumSections, posts) => {
 		let i = 0;
 		let links = [];

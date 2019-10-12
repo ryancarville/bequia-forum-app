@@ -7,6 +7,9 @@ export default function DeletePopUp(props) {
 			{props.postTitle ? (
 				<h3>Are you sure you want to delete post '{props.postTitle}'?</h3>
 			) : null}
+			{props.directoryListing ? (
+				<h3>Are you sure you want to delete your listing?</h3>
+			) : null}
 			{props.eventTitle ? (
 				<h3>Are you sure you want to delete post '{props.eventTitle}'?</h3>
 			) : null}

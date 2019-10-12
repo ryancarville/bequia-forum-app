@@ -39,7 +39,6 @@ export default class LogIn extends Component {
 		}
 		let token;
 		apiServices.login(creds).then(data => {
-			console.log(data);
 			if (data.error) {
 				this.setState({
 					error: data.error
@@ -47,6 +46,7 @@ export default class LogIn extends Component {
 			} else {
 				token = data.authToken;
 				TokenServices.saveAuthToken(token);
+				this.context.getUserData(data.user_id);
 				this.setState({
 					success: true
 				});
@@ -74,7 +74,6 @@ export default class LogIn extends Component {
 							Login as Test User
 						</button>
 						{this.state.error}
-
 						<input
 							type='text'
 							name='email'

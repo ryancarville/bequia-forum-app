@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -35,11 +34,11 @@ class App extends Component {
 		};
 	}
 
-	getUserData = () => {
-		apiServices.getUserData(this.state.user.id).then(data => {
+	getUserData = id => {
+		apiServices.getUserData(id).then(data => {
 			this.setState({
 				user: {
-					id: this.state.user.id,
+					id: id,
 					name: data.first_name + ' ' + data.last_name,
 					email: data.email,
 					lastLogin: data.last_login
@@ -204,7 +203,6 @@ class App extends Component {
 		this.getComments();
 	};
 	componentDidMount() {
-		//this.getUserData(this.state.user.id);
 		this.getForumSectionTitles();
 		this.getForum();
 		this.getPosts();
@@ -219,6 +217,12 @@ class App extends Component {
 		this.getMarketPlaceListings();
 		this.getDirectory();
 		this.getComments();
+		const token = TokenServices.getAuthToken();
+		if (token) {
+			apiServices
+				.verifyToken(token)
+				.then(data => this.getUserData(data.user_id));
+		}
 	}
 
 	render() {
@@ -226,6 +230,7 @@ class App extends Component {
 			setAppState: this.setAppState,
 			signUp: this.signUp,
 			login: this.login,
+			getUserData: this.getUserData,
 			state: this.state,
 			user: this.state.user,
 			getForumSectionTitles: this.getForumSectionTitles,
@@ -240,6 +245,7 @@ class App extends Component {
 			comments: this.state.comments,
 			addComment: this.addComment,
 			deleteComment: this.deleteComment,
+			getDirectory: this.getDirectory,
 			directory: this.state.directory,
 			createPost: this.createPost,
 			updatePost: this.updatePost,
