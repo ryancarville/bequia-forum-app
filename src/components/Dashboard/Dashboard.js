@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './HomePage.css';
+import './Dashboard.css';
 import NewPost from '../NewPost/NewPost';
 import ThisWeek from '../ThisWeek/ThisWeek';
 
-export default class HomePage extends Component {
+export default class Dashboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {

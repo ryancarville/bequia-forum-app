@@ -53,18 +53,21 @@ class PostPage extends Component {
 		});
 	};
 	handleLike = () => {
-		const { id } = this.state;
-		const add = '+';
-		const subtract = '-';
+		const post_id = this.state.id;
+		const user_id = this.context.user.id;
+		const info = { post_id, user_id };
+		console.log(info);
 		if (this.state.didLike) {
-			this.context.handleLike(id, subtract);
+			this.context.handleMinusLike(post_id);
+			this.context.handleDeleteFromLikesTracker(info);
 			this.setState({
 				likes: this.state.likes - 1,
 				didLike: !this.state.didLike
 			});
 		}
 		if (!this.state.didLike) {
-			this.context.handleLike(id, add);
+			this.context.handleAddLike(post_id);
+			this.context.handleAddToLikesTracker(info);
 			this.setState({
 				likes: this.state.likes + 1,
 				didLike: !this.state.didLike
@@ -90,24 +93,43 @@ class PostPage extends Component {
 			showPostEdit: !this.state.showPostEdit
 		});
 	};
+	postLiked = (post, user_id) => {
+		this.context.getLikesTracker();
+		console.log(this.context.state.likesTracker);
 
-	componentDidMount() {
-		const { id } = this.props.location.state;
-		var post = this.context.state.posts.filter(p => p.id === id);
+		const postAlreadyLiked = this.context.state.likesTracker.filter(
+			p => p.user_id === user_id && p.post_id === post.id
+		);
+		console.log(postAlreadyLiked);
+		if (postAlreadyLiked.length === 1) {
+			this.setState({
+				didLike: true
+			});
+		}
+	};
+	getPost = () => {
+		const { postId } = this.props.match.params;
+		var post = this.context.state.posts.filter(p => p.id.toString() === postId);
 		post = post[0];
-		this.setState({
-			id: post.id,
-			user_id: post.user_id,
-			board_id: post.board_id,
-			title: post.title,
-			content: post.content,
-			user_name: post.user_name,
-			date_posted: post.date_posted,
-			likes: post.likes
-		});
-	}
+		if (post) {
+			this.setState({
+				id: post.id,
+				user_id: post.user_id,
+				board_id: post.board_id,
+				title: post.title,
+				content: post.content,
+				user_name: post.user_name,
+				date_posted: post.date_posted,
+				likes: post.likes
+			});
+		}
+	};
 
 	render() {
+		if (!this.state.title) {
+			const user_id = this.context.user.id;
+			this.postLiked(this.getPost(), user_id);
+		}
 		if (this.state.redirectToForum) {
 			const boardid = this.state.boardid;
 			return <Redirect to={`/messageBoard/${boardid}`} />;

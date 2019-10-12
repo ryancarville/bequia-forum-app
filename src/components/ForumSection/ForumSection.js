@@ -10,13 +10,20 @@ import like from '../Icons/like';
 import './ForumSection.css';
 
 export default function ForumSection(props) {
-	const context = useContext(ForumContext);
-	const forumId = props.match.params.forumId;
-	const getPosts = () => {
-		const boardPosts = context.state.posts
+	const getForumName = forum => {
+		const forumSection = forum.filter(f => f.id.toString() === id);
+		const name = forumSection[0];
+		if (!name) {
+			return 'Loading...';
+		}
+		return name.name;
+	};
+	const getPosts = (posts, comments) => {
+		const forumId = props.match.params.forumId;
+		const boardPosts = posts
 			.filter(p => p.board_id === parseInt(forumId))
 			.map(p => {
-				const numOfComments = context.state.comments.filter(
+				const numOfComments = comments.filter(
 					comment => comment.post_id === p.id
 				).length;
 				return (
@@ -30,7 +37,7 @@ export default function ForumSection(props) {
 						</Link>
 						<br />
 						<Truncate
-							lines={2}
+							lines={1}
 							ellipsis={
 								<span>
 									...
@@ -79,22 +86,27 @@ export default function ForumSection(props) {
 			boardPosts
 		);
 	};
+
 	const id = props.match.params.forumId;
-	const name = context.state.forum.filter(f => f.id.toString() === id);
 
 	return (
-		<section className='forum-section-container'>
-			<header>
-				<h3>{name[0].name}</h3>
-			</header>
-			<span>
-				{TokenServices.getAuthToken() ? (
-					<CreateContentButton forumId={id} />
-				) : null}
-			</span>
-			<div className='forum-section-content'>
-				<ul>{getPosts()}</ul>
-			</div>
-		</section>
+		<ForumContext.Consumer>
+			{context => (
+				<section className='forum-section-container'>
+					<header>
+						<h3>{getForumName(context.state.forum)}</h3>
+					</header>
+					<span>
+						{TokenServices.getAuthToken() ? (
+							<CreateContentButton forumId={id} />
+						) : null}
+					</span>
+
+					<div className='forum-section-content'>
+						<ul>{getPosts(context.state.posts, context.state.comments)}</ul>
+					</div>
+				</section>
+			)}
+		</ForumContext.Consumer>
 	);
 }

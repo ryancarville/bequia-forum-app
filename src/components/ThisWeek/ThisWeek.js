@@ -28,7 +28,7 @@ export default function ThisWeek() {
 	const thisWeeksEvents = () => {
 		let events = [];
 		context.state.events.forEach(e => {
-			const eventDate = e.date.split('-');
+			const eventDate = e.event_date.split('-');
 			const eventYear = eventDate[0];
 			const eventMonth = eventDate[1];
 			const eventDay = eventDate[2];
@@ -48,9 +48,9 @@ export default function ThisWeek() {
 					return (
 						<div className='event' key={e.eventId}>
 							<span key={e.eventId}>
-								<Link to={`/events/${e.eventId}`}>{e.title}</Link>
+								<Link to={`/events/${e.id}`}>{e.title}</Link>
 								<p>Where: {e.location}</p>
-								<p>When: {formatDate(e.date)}</p>
+								<p>When: {formatDate(e.event_date)}</p>
 								<p>Time: {e.time}</p>
 							</span>
 							<p>{e.description}</p>

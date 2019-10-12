@@ -12,7 +12,8 @@ export default class EditEvent extends Component {
 			description: this.props.event.description,
 			event_date: this.props.event.event_date,
 			start_time: '',
-			end_time: ''
+			end_time: '',
+			today: new Date().toISOString()
 		};
 	}
 	static contextType = ForumContext;
@@ -181,7 +182,7 @@ export default class EditEvent extends Component {
 							name='eventDate'
 							id='event-date'
 							value={this.state.event_date}
-							min={this.state.event_date}
+							min={this.state.today}
 							onChange={this.handleDate}
 							required
 						/>

@@ -171,7 +171,7 @@ export default class MarketPlacePage extends Component {
 					) : null}
 					{this.state.showEditPopUp ? (
 						<MarketPlaceListingForm
-							type='edit'
+							edit={true}
 							state={this.state}
 							handleMarketPlaceCat={this.handleMarketPlaceCat}
 							handleTitle={this.handleTitle}
@@ -182,6 +182,7 @@ export default class MarketPlacePage extends Component {
 							handleContactEmail={this.handleContactEmail}
 							handleContactPhone={this.handleContactPhone}
 							handleShowPreview={this.handleSubmit}
+							showEditPopUp={this.showEditPopUp}
 							resetState={this.resetState}
 						/>
 					) : (

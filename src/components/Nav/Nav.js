@@ -66,7 +66,7 @@ class Nav extends Component {
 								)}
 							</ForumContext.Consumer>
 							<li>
-								<Link to='/homePage'>
+								<Link to='/dashboard'>
 									<p>Dashboard</p>
 								</Link>
 							</li>

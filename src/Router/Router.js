@@ -4,7 +4,6 @@ import { PrivateRoute } from './PrivateRoute';
 import LandingPage from '../components/LandingPage/LandingPage';
 import SingUp from '../components/SignUp/SignUp';
 import LogIn from '../components/LogIn/LogIn';
-import HomePage from '../components/HomePage/HomePage';
 import NewPosts from '../components/NewPost/NewPost';
 import Forum from '../components/Forum/Forum';
 import ForumSection from '../components/ForumSection/ForumSection';
@@ -33,13 +32,14 @@ import NoPath from '../components/404/404';
 import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
 import CreateMarketPlaceListing from '../components/CreateMarketPlaceListing/CreateMarketPlaceListing';
 import ForumContext from '../ForumContext';
+import Dashboard from '../components/Dashboard/Dashboard';
 export default class Router extends Component {
 	static contextType = ForumContext;
 	render() {
 		return (
 			<>
 				<Switch>
-					<PrivateRoute path='/homePage' component={HomePage} exact />
+					<PrivateRoute path='/dashboard' component={Dashboard} exact />
 					<Route path='/' component={LandingPage} exact />
 					<Route path='/signup' component={SingUp} exact />
 					<Route path='/login' component={LogIn} exact />

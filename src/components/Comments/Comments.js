@@ -10,15 +10,15 @@ export default class Comments extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: 0,
+			showDeletePopUp: false,
 			commentDeleted: false
 		};
 	}
 	static contextType = ForumContext;
 	showDeletePopUp = id => {
 		this.setState({
-			showDeletePopUp: !this.state.showDeletePopUp,
-			id: id
+			id: id,
+			showDeletePopUp: !this.state.showDeletePopUp
 		});
 	};
 	handleDelete = () => {

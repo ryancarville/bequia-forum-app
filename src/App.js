@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
 import './App.css';
 import Router from './Router/Router';
 import Nav from '../src/components/Nav/Nav';
 import apiServices from './services/apiServices';
+import TokenServices from './services/TokenServices';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			user: {
-				id: 1,
-				name: 'Ryan Carville',
-				email: 'test@user.com',
-				lastLogin: '2019-05-23'
+				id: null,
+				name: '',
+				email: '',
+				lastLogin: ''
 			},
+			forumTitles: [],
 			forum: [],
 			posts: [],
+			likesTracker: [],
 			newestPosts: [],
 			comments: [],
 			events: [],
@@ -30,8 +34,19 @@ class App extends Component {
 			directory: []
 		};
 	}
-	static contextType = ForumContext;
 
+	getUserData = () => {
+		apiServices.getUserData(this.state.user.id).then(data => {
+			this.setState({
+				user: {
+					id: this.state.user.id,
+					name: data.first_name + ' ' + data.last_name,
+					email: data.email,
+					lastLogin: data.last_login
+				}
+			});
+		});
+	};
 	createPost = newPost => {
 		apiServices.createPost(newPost).then(() => this.getPosts());
 	};
@@ -99,7 +114,7 @@ class App extends Component {
 			.getFourmSectionTitles()
 			.then(data => this.setState({ forumTitles: data }));
 	};
-	getFourm = () => {
+	getForum = () => {
 		apiServices.getFourm().then(data => this.setState({ forum: data }));
 	};
 	getPosts = () => {
@@ -110,10 +125,30 @@ class App extends Component {
 			.getNewestPosts()
 			.then(data => this.setState({ newestPosts: data }));
 	};
-	handleLike = (id, like) => {
-		apiServices.handleLike(id, like).then(() => {
+	handleAddLike = post_id => {
+		apiServices.addLike(post_id).then(() => {
 			this.getPosts();
 		});
+	};
+	handleAddToLikesTracker = info => {
+		apiServices.addToLikesTracker(info).then(() => {
+			this.getLikesTracker();
+		});
+	};
+	handleMinusLike = post_id => {
+		apiServices.minusLike(post_id).then(() => {
+			this.getPosts();
+		});
+	};
+	handleDeleteFromLikesTracker = info => {
+		apiServices.deleteFromLikesTracker(info).then(() => {
+			this.getLikesTracker();
+		});
+	};
+	getLikesTracker = () => {
+		apiServices
+			.getLikesTracker()
+			.then(data => this.setState({ likesTracker: data }));
 	};
 	getComments = () => {
 		apiServices.getComments().then(data => this.setState({ comments: data }));
@@ -152,10 +187,28 @@ class App extends Component {
 	getDirectory = () => {
 		apiServices.getDriectory().then(data => this.setState({ directory: data }));
 	};
-	componentDidMount() {
+	setAppState = () => {
 		this.getForumSectionTitles();
-		this.getFourm();
+		this.getForum();
 		this.getPosts();
+		this.getLikesTracker();
+		this.getNewestPosts();
+		this.getEvents();
+		this.getJobCatagories();
+		this.getJobPosts();
+		this.getRentalCatagories();
+		this.getRentalListings();
+		this.getMarketPlaceCatagories();
+		this.getMarketPlaceListings();
+		this.getDirectory();
+		this.getComments();
+	};
+	componentDidMount() {
+		//this.getUserData(this.state.user.id);
+		this.getForumSectionTitles();
+		this.getForum();
+		this.getPosts();
+		this.getLikesTracker();
 		this.getNewestPosts();
 		this.getEvents();
 		this.getJobCatagories();
@@ -170,12 +223,20 @@ class App extends Component {
 
 	render() {
 		const contextValue = {
+			setAppState: this.setAppState,
+			signUp: this.signUp,
+			login: this.login,
 			state: this.state,
 			user: this.state.user,
-			getFourm: this.getFourm,
+			getForumSectionTitles: this.getForumSectionTitles,
+			getForum: this.getForum,
 			getPosts: this.getPosts,
 			getNewestPosts: this.getNewestPosts,
-			handleLike: this.handleLike,
+			handleAddLike: this.handleAddLike,
+			handleAddToLikesTracker: this.handleAddToLikesTracker,
+			handleMinusLike: this.handleMinusLike,
+			handleDeleteFromLikesTracker: this.handleDeleteFromLikesTracker,
+			getLikesTracker: this.getLikesTracker,
 			comments: this.state.comments,
 			addComment: this.addComment,
 			deleteComment: this.deleteComment,
