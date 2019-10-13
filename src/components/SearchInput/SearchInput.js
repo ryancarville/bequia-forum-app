@@ -8,7 +8,7 @@ export default class SearchInput extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			board_id: '',
+			board_id: 100,
 			term: '',
 			showResults: false
 		};
@@ -68,11 +68,12 @@ export default class SearchInput extends Component {
 				{context => (
 					<form onSubmit={this.handleSearch}>
 						{this.state.noResults ? (
-							<p>There are no posts with that term.</p>
+							<p>There are no posts with {this.state.term} in them.</p>
 						) : null}
 						<input
-							type='search'
+							type='text'
 							name='search'
+							placeholder='Enter search keywords'
 							onChange={this.handleSearchTerm}
 						/>
 						<select
@@ -80,10 +81,10 @@ export default class SearchInput extends Component {
 							id='search-catagories'
 							value={this.state.board_id}
 							onChange={this.handleCat}>
-							<option value='all'>Entire Forum</option>
+							<option value='all'>Search Entire Forum</option>
 							{this.makeOptions(context.state.forum)}
 						</select>
-						<button type='submit'>Search</button>
+						<button type='submit' value='Search'>Search</button>
 					</form>
 				)}
 			</ForumContext.Consumer>

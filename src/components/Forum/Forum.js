@@ -5,9 +5,16 @@ import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import TokenServices from '../../services/TokenServices';
 import ForumContext from '../../ForumContext';
 
+import apiServices from '../../services/apiServices';
 export default class Forum extends Component {
-	
-	makeForum = (forumTitles, forumSections, posts) => {
+	count = id => {
+		apiServices.getNumOfThreads(id).then(numOfThreads => {
+			document.getElementById(`thread-count-${id}`).innerText =
+				numOfThreads[0].count;
+			return true;
+		});
+	};
+	makeForum = (forumTitles, forumSections) => {
 		let i = 0;
 		let links = [];
 		while (i < forumTitles.length) {
@@ -17,8 +24,6 @@ export default class Forum extends Component {
 				forumSections
 					.filter(section => section.messageboard_section === titleId)
 					.map(item => {
-						const numOfThreads = posts.filter(post => post.board_id === item.id)
-							.length;
 						return (
 							<li key={item.id}>
 								<span>
@@ -32,7 +37,9 @@ export default class Forum extends Component {
 									<p>{item.description}</p>
 								</span>
 								<span className='thread-count'>
-									<p>Threads</p> {numOfThreads}
+									<p>Threads</p>
+									<p id={`thread-count-${item.id}`}>counting...</p>
+									{this.count(item.id)}
 								</span>
 							</li>
 						);
@@ -42,6 +49,7 @@ export default class Forum extends Component {
 		}
 		return links;
 	};
+
 	render() {
 		return (
 			<section className='forum-container'>

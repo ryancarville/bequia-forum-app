@@ -118,6 +118,25 @@ const apiServices = {
 				});
 		});
 	},
+	getNumOfThreads(board_id) {
+		return new Promise(resolve => {
+			fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
 	getPosts() {
 		return new Promise(resolve => {
 			fetch(config.API_ENDPOINT + '/forum/posts', {
@@ -157,7 +176,7 @@ const apiServices = {
 		});
 	},
 	searchPosts(search) {
-		if (search.board_id !== null) {
+		if (search.board_id !== 100) {
 			return new Promise(resolve => {
 				fetch(
 					config.API_ENDPOINT +
