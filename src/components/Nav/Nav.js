@@ -37,8 +37,8 @@ class Nav extends Component {
 					</ul>
 				</div>
 
-				{/* <MobileSiteNav /> */}
-				{/* <DesktopSiteNav /> */}
+				<MobileSiteNav />
+				<DesktopSiteNav />
 			</>
 		);
 		const privateNav = (
