@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import LandingPage from '../components/LandingPage/LandingPage';
 import SingUp from '../components/SignUp/SignUp';
@@ -33,17 +33,22 @@ import MarketPlacePage from '../components/MarketPlacePage/MarketPlacePage';
 import CreateMarketPlaceListing from '../components/CreateMarketPlaceListing/CreateMarketPlaceListing';
 import ForumContext from '../ForumContext';
 import Dashboard from '../components/Dashboard/Dashboard';
-import SearchResults from '../components/SearchResults/SearchResults'
+import SearchResults from '../components/SearchResults/SearchResults';
 export default class Router extends Component {
 	static contextType = ForumContext;
+
 	render() {
 		return (
 			<>
+				{this.props.searchResults ? <Redirect to={'/searchResults'} /> : null}
 				<Switch>
 					<PrivateRoute path='/dashboard' component={Dashboard} exact />
 					<Route path='/' component={LandingPage} exact />
 					<Route path='/signup' component={SingUp} exact />
 					<Route path='/login' component={LogIn} exact />
+
+					<Route path='/searchResults' component={SearchResults} exact />
+
 					<Route path='/new-post' component={NewPosts} exact />
 					<Route path='/messageBoard/:forumId' component={ForumSection} exact />
 					<Route path='/messageBoard' component={Forum} exact />
@@ -93,7 +98,7 @@ export default class Router extends Component {
 						component={CreateMarketPlaceListing}
 						exact
 					/>
-					<Route path='/searchResults' component={SearchResults} exact />
+
 					<Route path='/about-us' component={aboutUs} exact />
 					<Route path='/help' component={support} exact />
 					<Route path='/donate' component={donate} exact />

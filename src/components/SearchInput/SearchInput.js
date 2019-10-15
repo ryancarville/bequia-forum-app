@@ -8,7 +8,7 @@ export default class SearchInput extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			board_id: 100,
+			board_id: 'null',
 			term: '',
 			showResults: false
 		};
@@ -21,7 +21,7 @@ export default class SearchInput extends Component {
 	};
 	handleCat = e => {
 		this.setState({
-			board_id: parseInt(e.target.value)
+			board_id: e.target.value
 		});
 	};
 	handleSearch = e => {
@@ -33,15 +33,17 @@ export default class SearchInput extends Component {
 		const { board_id, term } = this.state;
 		const searchCreds = { board_id, term };
 		apiServices.searchPosts(searchCreds).then(data => {
+			console.log(data);
 			if (data.length !== 0) {
-				this.context.searchResults(data);
 				this.setState({
-					showResults: !this.state.showResults
+					term: ''
+				});
+				this.context.searchResults(data);
+			} else {
+				this.setState({
+					noResults: true
 				});
 			}
-			this.setState({
-				noResults: true
-			});
 		});
 	};
 	makeOptions = catagories => {
@@ -60,9 +62,7 @@ export default class SearchInput extends Component {
 				});
 			}, 5000);
 		}
-		if (this.state.showResults) {
-			return <Redirect to={'/searchResults'} />;
-		}
+
 		return (
 			<ForumContext.Consumer>
 				{context => (
@@ -74,6 +74,7 @@ export default class SearchInput extends Component {
 							type='text'
 							name='search'
 							placeholder='Enter search keywords'
+							value={this.state.term}
 							onChange={this.handleSearchTerm}
 						/>
 						<select
@@ -81,10 +82,12 @@ export default class SearchInput extends Component {
 							id='search-catagories'
 							value={this.state.board_id}
 							onChange={this.handleCat}>
-							<option value='all'>Search Entire Forum</option>
+							<option value='null'>Search Entire Forum</option>
 							{this.makeOptions(context.state.forum)}
 						</select>
-						<button type='submit' value='Search'>Search</button>
+						<button type='submit' value='Search'>
+							Search
+						</button>
 					</form>
 				)}
 			</ForumContext.Consumer>

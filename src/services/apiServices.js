@@ -176,7 +176,7 @@ const apiServices = {
 		});
 	},
 	searchPosts(search) {
-		if (search.board_id !== 100) {
+		if (search.board_id !== 'null') {
 			return new Promise(resolve => {
 				fetch(
 					config.API_ENDPOINT +

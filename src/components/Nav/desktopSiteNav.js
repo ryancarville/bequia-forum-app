@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
+
 function DesktopSiteNav() {
 	return (
 		<div className='siteNav'>
@@ -40,7 +41,9 @@ function DesktopSiteNav() {
 						<p>Market Place</p>
 					</Link>
 				</li>
-				<SearchInput />
+				<li>
+					<SearchInput />
+				</li>
 			</ul>
 		</div>
 	);

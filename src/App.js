@@ -20,6 +20,7 @@ class App extends Component {
 			forumTitles: [],
 			forum: [],
 			posts: [],
+			searchResults: null,
 			likesTracker: [],
 			newestPosts: [],
 			comments: [],
@@ -188,7 +189,7 @@ class App extends Component {
 	};
 	searchResults = posts => {
 		this.setState({
-			posts: posts
+			searchResults: posts
 		});
 	};
 	setDirectoryState = dir => {
@@ -301,7 +302,7 @@ class App extends Component {
 			<ForumContext.Provider value={contextValue}>
 				<div className='App'>
 					<Nav />
-					<Router />
+					<Router searchResults={this.state.searchResults} />
 					<Footer />
 				</div>
 			</ForumContext.Provider>

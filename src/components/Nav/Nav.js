@@ -5,6 +5,7 @@ import './Nav.css';
 import ForumContext from '../../ForumContext';
 import MobileSiteNav from './mobileSiteNav';
 import DesktopSiteNav from './desktopSiteNav';
+
 class Nav extends Component {
 	render() {
 		const loggedIn = TokenServices.getAuthToken();
@@ -35,8 +36,9 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
-				<MobileSiteNav />
-				<DesktopSiteNav />
+
+				{/* <MobileSiteNav /> */}
+				{/* <DesktopSiteNav /> */}
 			</>
 		);
 		const privateNav = (
@@ -76,6 +78,7 @@ class Nav extends Component {
 						</div>
 					</ul>
 				</div>
+
 				<MobileSiteNav />
 				<DesktopSiteNav />
 			</>
