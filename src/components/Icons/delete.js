@@ -2,7 +2,7 @@ import React from 'react';
 import './delete.css';
 const deleteIcon = (
 	<img
-		src='../../trash-can.png'
+		src='../../../icons/trash-can.png'
 		alt='deleteIcon'
 		id='deleteIcon-btn-img'
 	/>

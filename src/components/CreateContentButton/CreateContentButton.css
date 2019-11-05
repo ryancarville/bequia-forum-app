@@ -1,17 +1,23 @@
 .create-post-button {
-	width: 150px;
-	text-align: center;
-	cursor: pointer;
-	margin-top: 10px;
-	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
 	font-size: 20px;
+	background-color: transparent;
 }
 .create-post-button a {
+	width: 100px;
 	text-decoration: none;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+#create-forum-post-button {
+	width: 150px;
 }
 
 @media only screen and (min-width: 700px) {
-	.create-post-button{
-		float: right;
+	#create-forum-post-button {
+		width: 100px;
 	}
 }

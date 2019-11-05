@@ -6,6 +6,7 @@ import SingUp from '../components/SignUp/SignUp';
 import LogIn from '../components/LogIn/LogIn';
 import NewPosts from '../components/NewPost/NewPost';
 import Forum from '../components/Forum/Forum';
+import ForumCatSections from '../components/ForumCatSections/ForumCatSections';
 import ForumSection from '../components/ForumSection/ForumSection';
 import PostPage from '../components/PostPage/PostPage';
 import CreatePost from '../components/CreatePost/CreatePost';
@@ -50,13 +51,30 @@ export default class Router extends Component {
 					<Route path='/searchResults' component={SearchResults} exact />
 
 					<Route path='/new-post' component={NewPosts} exact />
-					<Route path='/messageBoard/:forumId' component={ForumSection} exact />
-					<Route path='/messageBoard' component={Forum} exact />
+
 					<Route
-						path='/messageBoard/:forumId/:postId'
+						path='/messageBoard/:forumCatId'
+						render={props => (
+							<ForumCatSections
+								{...props}
+								forumTitles={this.context.state.forumTitles}
+								sections={this.context.state.forum}
+							/>
+						)}
+						exact
+					/>
+					<Route
+						path='/messageBoard/:forumCatId/:forumId'
+						component={ForumSection}
+						exact
+					/>
+					<Route
+						path='/messageBoard/:forumCatId/:forumId/:postId'
 						render={() => <PostPage posts={this.context.state.posts} />}
 						exact
 					/>
+					<Route path='/messageBoard' component={Forum} exact />
+
 					<Route path='/jobs' component={Jobs} exact />
 					<Route path='/jobs/:jobTypeId' component={JobSection} exact />
 					<Route path='/jobs/:jobTypeId/:jobId' component={JobPage} exact />

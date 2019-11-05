@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import './JobPage.css';
 import formatDate from '../../helpers/formatDate';
@@ -10,11 +10,11 @@ import EditButton from '../Buttons/Edit';
 import JobListingForm from '../CreateJobListing/JobListingForm';
 import ForumContext from '../../ForumContext';
 
-export default class JobPage extends Component {
+class JobPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: this.props.location.state.id,
+			id: this.props.match.params.jobId,
 			user_id: '',
 			job_cat: '',
 			title: '',
@@ -140,11 +140,14 @@ export default class JobPage extends Component {
 			rediect: true
 		});
 	};
-	componentWillMount() {
-		const { id } = this.state;
+	componentDidMount() {
+		var { id } = this.state;
+		id = parseInt(id);
 		const currJob = this.context.state.jobPosts.filter(j => j.id === id);
+		console.log(this.context.state.jobPosts);
+		console.log(currJob[0]);
 		this.setState({
-			user_id: this.context.user.id,
+			user_id: currJob[0].user_id,
 			job_cat: currJob[0].job_cat,
 			title: currJob[0].title,
 			description: currJob[0].description,
@@ -154,8 +157,12 @@ export default class JobPage extends Component {
 			contact_email: currJob[0].contact_email,
 			contact_phone: currJob[0].contact_phone,
 			website: currJob[0].website,
-			date_posted: currJob[0].date_posted
+			date_posted: currJob[0].date_posted,
+			loaded: true
 		});
+	}
+	componentWillUnmount() {
+		this.setState({ loaded: false });
 	}
 
 	render() {
@@ -164,66 +171,81 @@ export default class JobPage extends Component {
 		}
 		const j = this.state;
 
-		return (
-			<section className='job-page-container'>
-				{this.state.showDeletePopUp ? (
-					<DeletePopUp
-						jobTitle={j.title}
-						showDeletePopUp={this.showDeletePopUp}
-						handleDelete={this.handleDelete}
-					/>
-				) : null}
-				{this.state.showEditPopUp ? (
-					<JobListingForm
-						type={'edit'}
-						state={this.state}
-						handleJobCatagory={this.handleJobCatagory}
-						handleTitle={this.handleTitle}
-						handleEmploymentType={this.handleEmploymentType}
-						handleDescription={this.handleDescription}
-						handleLocation={this.handleLocation}
-						handleContactName={this.handleContactName}
-						handleContactEmail={this.handleContactEmail}
-						handleWebsite={this.handleWebsite}
-						handleContactPhone={this.handleContactPhone}
-						resetState={this.resetState}
-						showEditPopUp={this.showEditPopUp}
-						handleSubmit={this.handleEditSubmit}
-					/>
-				) : (
-					<div className='job-page-content'>
-						<h3>{j.title}</h3>
-						<p>Employment Type: {j.employment}</p>
+		return this.state.loaded ? (
+			<ForumContext.Consumer>
+				{context => (
+					<section className='job-page-container'>
+						{this.state.showDeletePopUp ? (
+							<DeletePopUp
+								jobTitle={j.title}
+								showDeletePopUp={this.showDeletePopUp}
+								handleDelete={this.handleDelete}
+							/>
+						) : null}
+						{this.state.showEditPopUp ? (
+							<JobListingForm
+								type={'edit'}
+								state={this.state}
+								handleJobCatagory={this.handleJobCatagory}
+								handleTitle={this.handleTitle}
+								handleEmploymentType={this.handleEmploymentType}
+								handleDescription={this.handleDescription}
+								handleLocation={this.handleLocation}
+								handleContactName={this.handleContactName}
+								handleContactEmail={this.handleContactEmail}
+								handleWebsite={this.handleWebsite}
+								handleContactPhone={this.handleContactPhone}
+								resetState={this.resetState}
+								showEditPopUp={this.showEditPopUp}
+								handleSubmit={this.handleEditSubmit}
+							/>
+						) : (
+							<div className='job-page-content'>
+								<h3>{j.title}</h3>
+								<p>Employment Type: {j.employment}</p>
 
-						<p>Where: {j.location}</p>
-						<h4>Job Description</h4>
-						<p>{j.description}</p>
-						<span>
-							<h4>Contact Information</h4>
-							<p>{j.contact_name}</p>
-							<a
-								href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
-								{j.contact_email}
-							</a>
-							{j.contactphone ? (
-								<p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
-							) : null}
-							<a href={j.website} target='_blank' rel='noopener noreferrer'>
-								{j.website}
-							</a>
-						</span>
-						<p>Posted on: {formatDate(j.date_posted)}</p>
-					</div>
+								<p>Where: {j.location}</p>
+								<h4>Job Description</h4>
+								<p>{j.description}</p>
+								<span>
+									<h4>Contact Information</h4>
+									<p>{j.contact_name}</p>
+									<a
+										href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
+										{j.contact_email}
+									</a>
+									{j.contactphone ? (
+										<p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
+									) : null}
+									<a href={j.website} target='_blank' rel='noopener noreferrer'>
+										{j.website}
+									</a>
+								</span>
+								<p>Posted on: {formatDate(j.date_posted)}</p>
+								{TokenServices.getAuthToken() ? (
+									context.user.id === j.user_id ? (
+										<DeleteButton
+											id={j.id}
+											showDeletePopUp={this.showDeletePopUp}
+										/>
+									) : null
+								) : null}
+								{TokenServices.getAuthToken() ? (
+									context.user.id === j.user_id ? (
+										<EditButton
+											type={'job'}
+											showEditPopUp={this.showEditPopUp}
+										/>
+									) : null
+								) : null}
+							</div>
+						)}
+					</section>
 				)}
-				{!this.state.showDeletePopUp ? (
-					TokenServices.getAuthToken() ? (
-						<DeleteButton id={j.id} showDeletePopUp={this.showDeletePopUp} />
-					) : null
-				) : null}
-				{TokenServices.getAuthToken() ? (
-					<EditButton type={'job'} showEditPopUp={this.showEditPopUp} />
-				) : null}
-			</section>
+			</ForumContext.Consumer>
+		) : (
+			<h4>Loading...</h4>
 		);
 	}
 }
+export default withRouter(JobPage);

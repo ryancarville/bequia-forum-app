@@ -147,24 +147,25 @@ export default class CreateEvent extends Component {
 		}
 		const eventForm = (
 			<form onSubmit={this.handleSubmit}>
-				<label htmlFor='eventTitle'>Event Title</label>
 				<input
 					type='text'
 					name='eventTitle'
 					id='event-title'
+					placeholder='Event Title'
 					onChange={this.handleEventTitle}
 					autoFocus
 					required
 				/>
-				<label htmlFor='eventLocation'>Event Location</label>
+
 				<input
 					type='text'
 					name='eventLocation'
 					id='event-location'
+					placeholder='Event Location'
 					onChange={this.handleLocation}
 					required
 				/>
-				<label htmlFor='eventDate'>Event Date</label>
+
 				<input
 					type='date'
 					name='eventDate'
@@ -174,31 +175,34 @@ export default class CreateEvent extends Component {
 					onChange={this.handleDate}
 					required
 				/>
-				<label htmlFor='eventStartTime'>Event Start Time</label>
+				<label htmlFor='eventStartTime'>Start Time</label>
 				<select
 					name='eventStartTime'
 					id='event-start-time'
 					onChange={this.handleStartTime}>
 					{this.eventTimeSelect()}
 				</select>
-				<label htmlFor='eventEndTime'>Event End Time</label>
+				<label htmlFor='eventEndTime'>End Time</label>
 				<select
 					name='eventEndTime'
 					id='event-end-time'
 					onChange={this.handleEndTime}>
 					{this.eventTimeSelect()}
 				</select>
-				<label htmlFor='eventDescription'>Event Description</label>
+
 				<textarea
 					name='eventDescritption'
 					id='event-description'
+					placeholder='Event Description'
 					onChange={this.handleDescription}
 				/>
-				<button type='submit'>Create Event</button>
-				<button type='reset'>Clear Form</button>
-				<button type='button' onClick={() => this.props.history.goBack()}>
-					Cancel
-				</button>
+				<span id='event-form-buttons'>
+					<button type='submit'>Create Event</button>
+					<button type='reset'>Clear Form</button>
+					<button type='button' onClick={() => this.props.history.goBack()}>
+						Cancel
+					</button>
+				</span>
 			</form>
 		);
 		return (

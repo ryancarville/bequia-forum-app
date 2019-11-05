@@ -13,11 +13,7 @@ export default function JobPage(props) {
 		.filter(job => job.job_cat.toString() === jobTypeId)
 		.map(j => (
 			<li key={j.id}>
-				<Link
-					to={{
-						pathname: `/jobs/${jobTypeId}/${j.id}`,
-						state: { id: j.id }
-					}}>
+				<Link to={`/jobs/${jobTypeId}/${j.id}`}>
 					<h3>{j.title}</h3>
 				</Link>
 				<Truncate
@@ -25,13 +21,7 @@ export default function JobPage(props) {
 					ellipsis={
 						<span>
 							...
-							<Link
-								to={{
-									pathname: `/jobs/${jobTypeId}/${j.id}`,
-									state: { id: j.id }
-								}}>
-								Read more
-							</Link>
+							<Link to={`/jobs/${jobTypeId}/${j.id}`}>Read more</Link>
 						</span>
 					}>
 					<p>{j.description}</p>
@@ -39,7 +29,6 @@ export default function JobPage(props) {
 				<span className='postInfo'>
 					{j.location ? <p>Location: {j.location}</p> : null}
 					{j.employment ? <p>Employment: {j.employment}</p> : null}
-					<p>Posted By: {j.user_name}</p>
 					<p>Posted On: {formatDate(j.date_posted)}</p>
 				</span>
 			</li>
@@ -48,11 +37,15 @@ export default function JobPage(props) {
 		<section className='job-section-container'>
 			<Sort sortType='jobs' />
 			<div className='job-section-content'>
-				<ul>
-					{jobPosts.length !== 0 ? (
-						jobPosts
+				<ul className='job-section-ul'>
+					{jobPosts ? (
+						jobPosts.length !== 0 ? (
+							jobPosts
+						) : (
+							<p>Currently there are no job postings.</p>
+						)
 					) : (
-						<p>Currently there are no job postings.</p>
+						<p>Loading...</p>
 					)}
 				</ul>
 			</div>

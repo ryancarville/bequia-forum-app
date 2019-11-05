@@ -166,7 +166,11 @@ class PostPage extends Component {
 							closeEdit={this.showPostEdit}
 						/>
 					) : (
-						<Post post={this.state} />
+						<ForumContext.Consumer>
+							{context => (
+								<Post post={this.state} comments={context.state.comments} />
+							)}
+						</ForumContext.Consumer>
 					)}
 					{TokenService.getAuthToken() ? (
 						<span className='comment-like-button-container'>

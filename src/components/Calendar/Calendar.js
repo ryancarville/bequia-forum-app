@@ -66,7 +66,7 @@ class Calendar extends Component {
 
 	renderCalendar = () => {
 		const today = new Date();
-		const { events } = this.props;		
+		const { events } = this.props;
 		const { dayInt, month, monthNum, year } = this.state;
 		const firstDay = new Date(year, month).getDay();
 		const totalDays = new Date(year, month + 1, 0).getDate();
@@ -99,7 +99,10 @@ class Calendar extends Component {
 					key={`day-${day}`}>
 					{day}
 					{eventsOnThisDay.map(event => (
-						<Link key={event.id} to={`/events/${event.id}`}>
+						<Link
+							key={event.id}
+							to={`/events/${event.id}`}
+							className='event-link'>
 							{event.title}
 						</Link>
 					))}

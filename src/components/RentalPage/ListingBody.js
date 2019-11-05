@@ -25,13 +25,16 @@ export default function ListingBody(props) {
 				<h4>Booking Sites</h4>
 				{listingsSites
 					? listingsSites.map(b => (
-							<a
-								key={b.id}
-								href={b.site}
-								target='_blank'
-								rel='noopener noreferrer'>
-								{b.site}
-							</a>
+							<>
+								<a
+									key={b.id}
+									href={b.site}
+									target='_blank'
+									rel='noopener noreferrer'>
+									{b.site}
+								</a>
+								<br />
+							</>
 					  ))
 					: null}
 			</span>

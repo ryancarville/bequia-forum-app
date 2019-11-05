@@ -1,6 +1,7 @@
 .landingPage-container {
 	text-align: center;
 	padding: 15px;
+	animation: fadeIn 2s ease-in;
 }
 .landingPage-content {
 	display: flex;

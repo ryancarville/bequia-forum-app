@@ -16,11 +16,11 @@ export default function PostForm(props) {
 
 	return (
 		<form onSubmit={props.handleShowPreview}>
-			<label htmlFor='title'>Title</label>
 			<input
 				type='text'
 				name='title'
 				id='post-title'
+				placeholder='Title'
 				value={props.state.title}
 				onChange={props.handleTitle}
 				autoFocus
@@ -38,10 +38,11 @@ export default function PostForm(props) {
 				</option>
 				{makeSelectCategorys()}
 			</select>
-			<label htmlFor='content'>Content</label>
+
 			<textarea
 				name='content'
 				id='post-content'
+				placeholder='Enter contet here...'
 				value={props.state.content}
 				onChange={props.handleContent}
 				required></textarea>

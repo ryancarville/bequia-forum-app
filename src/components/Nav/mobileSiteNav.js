@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import CreateContentButton from '../CreateContentButton/CreateContentButton';
+import TokenServices from '../../services/TokenServices';
 export default class MobileNav extends Component {
 	constructor(props) {
 		super(props);
@@ -20,7 +21,7 @@ export default class MobileNav extends Component {
 					className='mobile-site-hamburger'
 					id='mobile-hamburger'
 					onClick={this.openHamburger}>
-					<h3>{this.state.isOpen ? 'X' : 'Menu'}</h3>
+					<h3>{this.state.isOpen ? 'X' : <i className='fas fa-bars'></i>}</h3>
 				</div>
 				<div
 					className={` ${
@@ -63,6 +64,11 @@ export default class MobileNav extends Component {
 							<Link to={'/marketPlace'}>
 								<p>Market Place</p>
 							</Link>
+						</li>
+						<li onClick={this.openHamburger}>
+							{TokenServices.getAuthToken() ? (
+								<CreateContentButton page='forum' />
+							) : null}
 						</li>
 					</ul>
 				</div>

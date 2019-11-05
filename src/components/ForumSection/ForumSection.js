@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
-import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import TokenServices from '../../services/TokenServices';
 import formatDate from '../../helpers/formatDate';
 import ForumContext from '../../ForumContext';
@@ -12,12 +11,14 @@ import Sort from '../Sort/Sort';
 
 export default function ForumSection(props) {
 	const getForumName = forum => {
-		const forumSection = forum.filter(f => f.id.toString() === id);
-		const name = forumSection[0];
+		const name = forum.filter(
+			f => f.id.toString() === props.match.params.forumId
+		);
+		console.log(name);
 		if (!name) {
 			return 'Loading...';
 		}
-		return name.name;
+		return name[0].name;
 	};
 	const getPosts = (posts, comments) => {
 		const forumId = props.match.params.forumId;
@@ -31,20 +32,21 @@ export default function ForumSection(props) {
 					<li key={p.id}>
 						<Link
 							to={{
-								pathname: `/messageBoard/${p.board_id}/${p.id}`,
+								pathname: `/messageBoard/${props.match.params.forumCatId}/${p.board_id}/${p.id}`,
 								state: { id: p.id }
 							}}>
 							{p.title}
 						</Link>
 						<br />
+
 						<Truncate
-							lines={1}
+							lines={2}
 							ellipsis={
 								<span>
 									...
 									<Link
 										to={{
-											pathname: `/messageBoard/${p.board_id}/${p.id}`,
+											pathname: `/messageBoard/${props.match.params.forumCatId}/${p.board_id}/${p.id}`,
 											state: { id: p.id }
 										}}>
 										Read more
@@ -53,7 +55,7 @@ export default function ForumSection(props) {
 							}>
 							{p.content}
 						</Truncate>
-						<span className='postInfo'>
+						<span className='post-info'>
 							<p>Posted By: {p.user_name}</p>
 							<p>Posted On: {formatDate(p.date_posted)}</p>
 							<span className='post-icons'>
@@ -87,9 +89,6 @@ export default function ForumSection(props) {
 			boardPosts
 		);
 	};
-
-	const id = props.match.params.forumId;
-
 	return (
 		<ForumContext.Consumer>
 			{context => (
@@ -97,13 +96,8 @@ export default function ForumSection(props) {
 					<header>
 						<h3>{getForumName(context.state.forum)}</h3>
 					</header>
-					<Sort sortType='posts' />
-					<span>
-						{TokenServices.getAuthToken() ? (
-							<CreateContentButton forumId={id} />
-						) : null}
-					</span>
 
+					<Sort sortType='posts' />
 					<div className='forum-section-content'>
 						<ul>{getPosts(context.state.posts, context.state.comments)}</ul>
 					</div>

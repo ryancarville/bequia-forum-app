@@ -1,42 +1,62 @@
 /*top nav bar*/
 .navBar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	background-color: rgb(4, 0, 255);
+	padding: 10px;
 	text-transform: uppercase;
 }
 .navBar h1 {
-	font-size: 20px;
-	color: white;
+	font-size: 18px;
+	margin: 0;
+}
+.forumLogo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 .forumLogo img {
-	width: 100px;
+	width: 70px;
 	padding: 10px;
 	cursor: pointer;
 }
+.forumLogo a {
+	text-decoration: none;
+	margin-left: 5px;
+}
 .rightNavInfo {
+	display: block;
+	width: 100%;
 	font-size: 15px;
-	line-height: 15px;
 	text-align: right;
 }
-.rightNavInfo p {
-	margin: 10px;
+.rightNavInfo a {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	color: blue;
+}
+.rightNavInfo a:hover {
+	color: lime;
 }
 .userInfo {
-	width: 200px;
-	color: white;
-	line-height: 18px;
+	width: 100%;
+	height: auto;
+	line-height: 20px;
 }
 .navBar ul {
 	padding: 0px;
 	margin: 0px;
 	list-style: none;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 }
 .navBar ul li a {
 	text-decoration: none;
-	color: white;
+	color: rgb(34, 0, 255);
 }
 .navBar ul li p:hover {
 	color: green;
@@ -45,23 +65,54 @@
 .mobile-site-hamburger {
 	display: block;
 	animation: fadeIn 2s linear;
-	text-align: center;
+	text-align: left;
 	width: 100%;
 	height: 50px;
-	background: yellow;
 	padding: 5px;
 }
 .mobile-site-hamburger h3 {
 	margin: 5px;
-	font-size: 25px;
+	font-size: 18px;
 }
 .mobile-site-nav-closed {
-	display: none;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 700px;
+	background-color: white;
+	transform: translateX(-400px);
+	animation: moveLeft 1s ease-in;
+}
+.mobile-site-nav-closed ul {
+	width: 100%;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.mobile-site-nav-closed ul a {
+	font-size: 25px;
+	text-decoration: none;
+	color: rgb(0, 8, 255);
+}
+.mobile-site-nav-closed p {
+	margin: 0;
+	margin-bottom: 20px;
+}
+.mobile-site-nav-closed ul li p:hover {
+	color: green;
 }
 .mobile-site-nav-open {
 	display: block;
-	animation: fadeIn 2s linear;
+	position: absolute;
+	background-color: white;
+	width: 100%;
+	height: 700px;
+	animation: moveRight 1s 0s ease-out;
+	overflow: hidden;
 }
+
 .mobile-site-nav-open ul {
 	width: 100%;
 	list-style: none;
@@ -69,14 +120,15 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: yellow;
-	padding: 5px;
-	margin: 0px;
 }
 .mobile-site-nav-open ul a {
 	font-size: 25px;
 	text-decoration: none;
 	color: rgb(0, 8, 255);
+}
+.mobile-site-nav-open p {
+	margin: 0;
+	margin-bottom: 20px;
 }
 .mobile-site-nav-open ul li p:hover {
 	color: green;
@@ -85,45 +137,27 @@
 	display: none;
 }
 
-@-webkit-keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
 @media only screen and (min-width: 700px) {
 	.mobile-nav-container {
 		display: none;
 	}
 	.siteNav {
-		display: block;
+		width: 100%;
+		display: flex;
 	}
 	.navBar {
 		width: 100%;
-		background-color: rgb(4, 0, 255);
 		text-transform: uppercase;
 	}
 	.navBar h1 {
-		color: white;
+		color: rgb(43, 255, 0);
 	}
 	.forumLogo img {
 		width: 100px;
 		padding: 0;
 	}
 	.rightNavInfo {
+		width: 100px;
 		font-size: 15px;
 		line-height: 18px;
 		text-align: right;
@@ -136,7 +170,6 @@
 	}
 	.userInfo {
 		width: 200px;
-		color: white;
 	}
 	.navBar ul {
 		padding: 10px;
@@ -147,25 +180,23 @@
 		margin: 0px;
 	}
 	.navBar ul li a {
+		font-size: 13px;
 		text-decoration: none;
-		color: white;
+		color: blue;
 	}
 	.navBar ul li p:hover {
 		color: green;
 	}
 	.siteNav ul {
+		width: 100%;
 		list-style: none;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		background-color: rgb(221, 255, 0);
 		padding: 5px;
 		margin: 0px;
 	}
-	.siteNav ul a {
-		text-decoration: none;
-		color: rgb(0, 8, 255);
-	}
+
 	.siteNav ul li p:hover {
 		color: green;
 	}

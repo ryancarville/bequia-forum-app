@@ -1,6 +1,6 @@
 .events-calendar-container {
 	margin: 0;
-	width: 100%;
+	width: 95%;
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
@@ -57,10 +57,10 @@
 #days li {
 	list-style-type: none;
 	text-align: center;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgb(0, 0, 0);
 	padding: 5px;
-	width: 100%;
+	width: 50px;
 	height: auto;
 	border: 1px solid rgb(76, 0, 255);
 	display: flex;
@@ -68,6 +68,10 @@
 	justify-content: flex-start;
 	align-items: flex-end;
 	margin: 0;
+}
+
+.event-link {
+	font-size: 10px;
 }
 
 #days li.active {
@@ -133,7 +137,7 @@
 		color: rgb(0, 0, 0);
 		padding: 5px;
 		width: 100%;
-		height: auto;
+		height: 75px;
 		border: 1px solid rgb(76, 0, 255);
 		display: flex;
 		flex-direction: column;
@@ -143,6 +147,7 @@
 	}
 	#days li a {
 		width: 100%;
+		font-size: 18px;
 	}
 
 	#days li.active {

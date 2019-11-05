@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import './SearchInput.css';
 import apiServices from '../../services/apiServices';
 import ForumContext from '../../ForumContext';
@@ -26,6 +25,10 @@ export default class SearchInput extends Component {
 	};
 	handleSearch = e => {
 		e.preventDefault();
+		if (this.state.term === '') {
+			this.props.closeNavSearch();
+			return true;
+		}
 		this.setState({
 			noResults: false
 		});
@@ -66,28 +69,31 @@ export default class SearchInput extends Component {
 		return (
 			<ForumContext.Consumer>
 				{context => (
-					<form onSubmit={this.handleSearch}>
+					<form className='search-form' onSubmit={this.handleSearch}>
 						{this.state.noResults ? (
 							<p>There are no posts with {this.state.term} in them.</p>
 						) : null}
 						<input
 							type='text'
 							name='search'
+							id='search-input'
 							placeholder='Enter search keywords'
 							value={this.state.term}
 							onChange={this.handleSearchTerm}
 						/>
-						<select
-							name='catagories'
-							id='search-catagories'
-							value={this.state.board_id}
-							onChange={this.handleCat}>
-							<option value='null'>Search Entire Forum</option>
-							{this.makeOptions(context.state.forum)}
-						</select>
-						<button type='submit' value='Search'>
-							Search
-						</button>
+						<span>
+							<select
+								name='catagories'
+								id='search-catagories'
+								value={this.state.board_id}
+								onChange={this.handleCat}>
+								<option value='null'>Search Entire Forum</option>
+								{this.makeOptions(context.state.forum)}
+							</select>
+							<button id='search-submit' type='submit' value='Search'>
+								<i class='fas fa-search'></i>
+							</button>
+						</span>
 					</form>
 				)}
 			</ForumContext.Consumer>

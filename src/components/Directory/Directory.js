@@ -49,6 +49,7 @@ export default class Directory extends Component {
 							<DeletePopUp
 								directoryListing={true}
 								handleDelete={() => this.handleDelete(context)}
+								showDeletePopUp={this.handleShowDeletePopUp}
 							/>
 						) : (
 							<>
@@ -58,11 +59,15 @@ export default class Directory extends Component {
 								) : null}
 								<Sort handleSort={context.sort} sortType={'dir'} />
 								<div className='directory-content'>
-									<Listings
-										directory={context.state.directory}
-										user_id={context.user.id}
-										showDeletePopUp={this.handleShowDeletePopUp}
-									/>
+									<div className='directory-listings'>
+										<ul>
+											<Listings
+												directory={context.state.directory}
+												user_id={context.user.id}
+												showDeletePopUp={this.handleShowDeletePopUp}
+											/>
+										</ul>
+									</div>
 								</div>
 							</>
 						)

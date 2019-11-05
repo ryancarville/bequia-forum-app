@@ -1,5 +1,9 @@
 .market-place-section-container {
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	animation: moveRight 1s ease-in-out;
 }
 .market-place-section-content {
 	width: 100%;
@@ -7,17 +11,15 @@
 .market-place-section-content ul {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	list-style: none;
 	padding: 0;
 }
 .market-place-section-content ul li {
 	width: 100%;
-	height: 250px;
-	background-color: lightgray;
+	height: auto;
+	border-bottom: 1px solid black;
 	padding: 15px;
-	border: 1px solid black;
 	margin-bottom: 20px;
 }
 .market-place-section-content a {

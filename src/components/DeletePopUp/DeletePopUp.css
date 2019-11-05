@@ -1,0 +1,13 @@
+.post-delete-pop-up {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding: 10px;
+}
+.post-delete-pop-up button {
+	border: 1px solid blue;
+	border-radius: 25px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}

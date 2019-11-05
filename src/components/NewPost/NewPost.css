@@ -3,21 +3,26 @@
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
+	animation: fadeIn 1s ease-in;
 }
+
 .newPost-container h3 {
 	text-align: center;
 	font-size: 25px;
 }
 
 .newest-posts {
-	width: 95%;
-	height: auto;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
+	border: 1px solid blue;
+	border-radius: 25px;
 	padding: 15px;
-	font-size: 18px;
-	border: 1px solid black;
+	padding-top: 0;
 	margin-bottom: 20px;
+	height: auto;
+	font-size: 18px;
+	line-height: 1.5em;
 }
 .newest-posts a {
 	margin: 0;
@@ -40,9 +45,6 @@
 		margin-left: 75px;
 	}
 	.newest-posts {
-		width: 90%;
-		padding: 15px;
 		font-size: 16px;
-		float: left;
 	}
 }

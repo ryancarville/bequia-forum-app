@@ -57,11 +57,13 @@ export default class Sort extends Component {
 						<form
 							className='sortForm'
 							onChange={() => this.handleSort(context)}>
-							<label htmlFor='sort'>Sort: </label>
 							<select
 								name='sort'
 								id='selectSort'
 								onChange={this.handleSortType}>
+								<option selected disabled value=''>
+									Sort By...
+								</option>
 								<option value='asc-last_name'>Last Name A-Z</option>
 								<option value='desc-last_name'>Last NameZ-A</option>
 								<option value='asc-first_name'>First Name A-Z</option>
@@ -82,11 +84,13 @@ export default class Sort extends Component {
 						<form
 							className='sortForm'
 							onChange={() => this.handleSort(context)}>
-							<label htmlFor='sort'>Sort: </label>
 							<select
 								name='sort'
 								id='selectSort'
 								onChange={this.handleSortType}>
+								<option selected disabled value=''>
+									Sort By...
+								</option>
 								<option value='desc-date_posted'>Date Posted new-old</option>
 								<option value='asc-date_posted'>Date Posted old-new</option>
 								<option value='asc-price'>Price low-high</option>
@@ -105,11 +109,13 @@ export default class Sort extends Component {
 						<form
 							className='sortForm'
 							onChange={() => this.handleSort(context)}>
-							<label htmlFor='sort'>Sort: </label>
 							<select
 								name='sort'
 								id='selectSort'
 								onChange={this.handleSortType}>
+								<option selected disabled value=''>
+									Sort By...
+								</option>
 								<option value='asc-title'>Title A-Z</option>
 								<option value='desc-title'>Title Z-A</option>
 								<option value='asc-price'>Price low-high</option>
@@ -130,11 +136,13 @@ export default class Sort extends Component {
 						<form
 							className='sortForm'
 							onChange={() => this.handleSort(context)}>
-							<label htmlFor='sort'>Sort: </label>
 							<select
 								name='sort'
 								id='selectSort'
 								onChange={this.handleSortType}>
+								<option selected disabled value=''>
+									Sort By...
+								</option>
 								<option value='asc-title'>Title A-Z</option>
 								<option value='desc-title'>Title Z-A</option>
 								<option value='asc-location'>Location A-Z</option>
@@ -155,11 +163,13 @@ export default class Sort extends Component {
 						<form
 							className='sortForm'
 							onChange={() => this.handleSort(context)}>
-							<label htmlFor='sort'>Sort: </label>
 							<select
 								name='sort'
 								id='selectSort'
 								onChange={this.handleSortType}>
+								<option selected disabled value=''>
+									Sort By...
+								</option>
 								<option value='asc-title'>Title A-Z</option>
 								<option value='desc-title'>Title Z-A</option>
 								<option value='asc-date_posted'>Date Posted old-new</option>

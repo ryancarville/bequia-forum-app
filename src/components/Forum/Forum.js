@@ -1,52 +1,104 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Forum.css';
-import CreateContentButton from '../CreateContentButton/CreateContentButton';
-import TokenServices from '../../services/TokenServices';
+
 import ForumContext from '../../ForumContext';
 
-import apiServices from '../../services/apiServices';
 export default class Forum extends Component {
-	count = id => {
-		apiServices.getNumOfThreads(id).then(numOfThreads => {
-			document.getElementById(`thread-count-${id}`).innerText =
-				numOfThreads[0].count;
-			return true;
-		});
-	};
-	makeForum = (forumTitles, forumSections) => {
-		let i = 0;
+	makeForum = forumTitles => {
 		let links = [];
-		while (i < forumTitles.length) {
-			const titleId = forumTitles[i].id;
-			links.push(<h4 key={titleId}>{forumTitles[i].name}</h4>);
-			links.push(
-				forumSections
-					.filter(section => section.messageboard_section === titleId)
-					.map(item => {
-						return (
-							<li key={item.id}>
-								<span>
-									<Link
-										to={{
-											pathname: `/messageBoard/${item.id}`,
-											state: { id: item.id, name: item.name }
-										}}>
-										{item.name}
-									</Link>
-									<p>{item.description}</p>
-								</span>
-								<span className='thread-count'>
-									<p>Threads</p>
-									<p id={`thread-count-${item.id}`}>counting...</p>
-									{this.count(item.id)}
-								</span>
-							</li>
-						);
-					})
-			);
-			i++;
-		}
+		forumTitles.forEach(title => {
+			if (title.name === 'Jobs') {
+				links.push(
+					<Link to={'/jobs'} className='section-menu-link' key={title.id}>
+						{title.name}
+						<i className='fas fa-briefcase'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Marekt Place') {
+				links.push(
+					<Link
+						className='section-menu-link'
+						to={'/marketPlace'}
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-store'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Rentals') {
+				links.push(
+					<Link to={'/rentals'} className='section-menu-link' key={title.id}>
+						{title.name}
+						<i className='fas fa-home'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Events') {
+				links.push(
+					<Link to={'/events'} className='section-menu-link' key={title.id}>
+						{title.name}
+						<i className='far fa-calendar-alt'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Life on Bequia') {
+				links.push(
+					<Link
+						to={`/messageBoard/${title.id}`}
+						className='section-menu-link'
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-umbrella-beach'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Help & Tips') {
+				links.push(
+					<Link
+						to={`/messageBoard/${title.id}`}
+						className='section-menu-link'
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-people-carry'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Activites') {
+				links.push(
+					<Link
+						to={`/messageBoard/${title.id}`}
+						className='section-menu-link'
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-hiking'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Off-Topic') {
+				links.push(
+					<Link
+						to={`/messageBoard/${title.id}`}
+						className='section-menu-link'
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-question'></i>
+					</Link>
+				);
+			}
+			if (title.name === 'Support') {
+				links.push(
+					<Link
+						to={`/messageBoard/${title.id}`}
+						className='section-menu-link'
+						key={title.id}>
+						{title.name}
+						<i className='fas fa-info'></i>
+					</Link>
+				);
+			}
+		});
 		return links;
 	};
 
@@ -56,20 +108,12 @@ export default class Forum extends Component {
 				<header>
 					<h3>Fourm</h3>
 				</header>
-				<span>
-					{TokenServices.getAuthToken() ? (
-						<CreateContentButton page='forum' />
-					) : null}
-				</span>
+
 				<ForumContext.Consumer>
 					{context => (
 						<div className='forum-content'>
-							<ul>
-								{this.makeForum(
-									context.state.forumTitles,
-									context.state.forum,
-									context.state.posts
-								)}
+							<ul className='sectionMenu'>
+								{this.makeForum(context.state.forumTitles)}
 							</ul>
 						</div>
 					)}

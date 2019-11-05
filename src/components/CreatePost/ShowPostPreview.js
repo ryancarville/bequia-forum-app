@@ -13,11 +13,7 @@ export default function ShowPostPreview(props) {
 		<div className='create-post-preview'>
 			<h2>Posting in {forumTitle.name}</h2>
 			<h3>{props.state.title}</h3>
-
 			<p>{props.state.content}</p>
-
-			<p>Posted By: {props.state.author}</p>
-			<p>Posted On: {formatDate(props.state.date_posted)}</p>
 			<span>
 				<button onClick={() => props.handleSubmit()}>Create Listing</button>
 				<button onClick={props.handleShowPreview}>Edit</button>

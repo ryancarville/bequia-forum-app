@@ -8,6 +8,7 @@ import ForumContext from '../../ForumContext';
 
 export default function Rentals(props) {
 	const context = useContext(ForumContext);
+
 	return (
 		<section className='rentals-container'>
 			<span>
@@ -18,8 +19,9 @@ export default function Rentals(props) {
 			</span>
 			<div className='rentals-content'>
 				{context.state.rentalCatagories.map(r => (
-					<Link key={r.id} to={`/rentals/${r.id}`}>
-						<div className='rentals-card'>{r.name}</div>
+					<Link key={r.id} to={`/rentals/${r.id}`} className='rentals-card'>
+						<img src={r.img_path} alt={r.name} className='rental-cat-img' />
+						<span className='rentals-card-text'>{r.name}</span>
 					</Link>
 				))}
 			</div>

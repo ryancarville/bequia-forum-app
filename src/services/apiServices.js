@@ -80,6 +80,25 @@ const apiServices = {
 				});
 		});
 	},
+	getUserName(id) {
+		return new Promise(resolve => {
+			fetch(config.API_ENDPOINT + `/users/userName/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => Promise.reject(resolve(err)))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
 	getFourmSectionTitles() {
 		return new Promise(resolve => {
 			fetch(config.API_ENDPOINT + '/forum/catagories', {

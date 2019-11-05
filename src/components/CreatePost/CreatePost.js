@@ -65,6 +65,7 @@ export default class CreatePost extends Component {
 		});
 	};
 	componentDidMount() {
+		console.log(this.context.user.id);
 		this.setState({
 			user_id: this.context.user.id
 		});

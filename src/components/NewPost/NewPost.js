@@ -26,7 +26,7 @@ export default function NewPost(props) {
 							<h4>{p.title}</h4>
 						</Link>
 						<Truncate
-							lines={1}
+							lines={2}
 							ellipsis={
 								<span>
 									...
@@ -41,7 +41,7 @@ export default function NewPost(props) {
 							}>
 							{p.content}
 						</Truncate>
-						<span className='postInfo'>
+						<span className='post-info'>
 							<p>Posted By: {p.user_name}</p>
 							<p>Posted On: {formatDate(p.date_posted)}</p>
 							<span className='post-icons'>

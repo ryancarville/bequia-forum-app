@@ -16,6 +16,9 @@ export default class LogIn extends Component {
 	}
 	static contextType = ForumContext;
 	handleLoginName = e => {
+		if (this.state.error) {
+			this.setState({ error: null });
+		}
 		this.setState({
 			loginName: e.target.value
 		});
@@ -93,7 +96,9 @@ export default class LogIn extends Component {
 							onChange={this.handlePass}
 							required
 						/>
-						<button type='submit'>Log In</button>
+						<button type='submit' onKeyDownCapture={this.handleSubmit}>
+							Log In
+						</button>
 						<button type='reset'>Clear Form</button>
 					</form>
 				</div>

@@ -19,12 +19,19 @@ export default function MarketPlace(props) {
 			<div className='market-place-content'>
 				<ul>
 					{context.state.marketPlaceCatagories.map(mp => (
-						<Link key={`link-${mp.id}`} to={`/marketPlace/${mp.id}`}>
-							<li key={mp.id}>
-								<h4>{mp.name}</h4>
-								<p>{mp.description}</p>
-							</li>
-						</Link>
+						<li key={mp.id} className='market-place-card'>
+							<Link key={`link-${mp.id}`} to={`/marketPlace/${mp.id}`}>
+								<span className='market-place-card-text'>
+									<h4>{mp.name}</h4>
+									<p>{mp.description}</p>
+								</span>
+								<img
+									src={mp.img_path}
+									alt={mp.name}
+									className='market-place-img'
+								/>
+							</Link>
+						</li>
 					))}
 				</ul>
 			</div>

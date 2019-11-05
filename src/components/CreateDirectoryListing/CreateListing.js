@@ -12,6 +12,7 @@ export default class CreateListing extends Component {
 			last_name: '',
 			address: '',
 			city: '',
+			state:'',
 			country: '',
 			email: '',
 			phone: '',

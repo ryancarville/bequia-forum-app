@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ForumContext from './ForumContext';
 import Footer from './components/Footer/Footer';
+import './Animations/Animations.css';
 import './App.css';
 import Router from './Router/Router';
 import Nav from '../src/components/Nav/Nav';

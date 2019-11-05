@@ -1,13 +1,12 @@
 .logIn-container {
 	width: 100%;
 	height: auto;
-	padding-top: 5px;
 	padding-bottom: 50px;
-	background-color: blue;
+	animation: fadeIn 2s ease-in;
 }
 .logIn-content {
 	width: 100%;
-	padding: 25px;
+	padding: 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -17,11 +16,11 @@
 	text-align: center;
 }
 .logIn-content form {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 	display: flex;
 	flex-direction: column;
-	border: 5px solid lightgreen;
-	padding: 20px;
-	background-color: yellow;
 }
 .logIn-content form input {
 	margin-top: 10px;
@@ -29,7 +28,8 @@
 	height: 35px;
 	font-size: 18px;
 	padding: 5px;
-	border: 1px solid black;
+	border: none;
+	border-bottom: 1px solid black;
 }
 .logIn-content form button {
 	height: 35px;
@@ -41,6 +41,7 @@
 	border: 1px solid black;
 	background-color: blue;
 	color: white;
+	border-radius: 20px;
 }
 
 @media only screen and (min-width: 700px) {

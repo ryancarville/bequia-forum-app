@@ -1,5 +1,8 @@
 .rentals-section-container {
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	animation: moveRight 1s ease-in-out;
 }
 
 .rentals-section-content ul {
@@ -15,8 +18,7 @@
 	height: auto;
 	margin-top: 15px;
 	padding: 10px;
-	border: 1px solid black;
-	background-color: lightgray;
+	border-bottom: 1px solid black;
 }
 .rentals-section-content a {
 	text-decoration: none;

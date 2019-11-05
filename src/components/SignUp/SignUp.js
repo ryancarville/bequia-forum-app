@@ -135,7 +135,9 @@ export default class SingUp extends Component {
 									onChange={this.handleConfirmPass}
 									required
 								/>
-								<button type='submit'>Create Account</button>
+								<button type='submit' onKeyDownCapture={this.handleSubmit}>
+									Create Account
+								</button>
 								<button type='reset'>Clear Form</button>
 							</form>
 						</div>
