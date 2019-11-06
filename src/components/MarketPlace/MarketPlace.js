@@ -28,7 +28,6 @@ export default function MarketPlace(props) {
 								/>
 								<span className='market-place-card-text'>
 									<h4>{mp.name}</h4>
-									<p>{mp.description}</p>
 								</span>
 							</Link>
 						</li>

@@ -41,10 +41,10 @@ export default class AddComment extends Component {
 				{this.state.posted ? this.props.closeAddComment() : null}
 				<section className='add-comment-container'>
 					<form onSubmit={this.handleCommentSubmit}>
-						<label htmlFor='addComment'>Comment</label>
 						<textarea
 							name='addComment'
 							id='add-comment'
+							placeholder='Enter comment here...'
 							autoFocus
 							required
 							onChange={this.handleComment}

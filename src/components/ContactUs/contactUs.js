@@ -35,18 +35,31 @@ export default class ContactUs extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-
 		this.setState({ success: true });
 	};
 	render() {
 		const contactForm = (
 			<form onSubmit={this.handleSubmit}>
-				<label htmlFor='fullName'>Full Name</label>
-				<input type='text' name='fullName' id='fullName-contact' required />
-				<label htmlFor='email'>Email</label>
-				<input type='email' name='email' id='email-contact' required />
-				<label htmlFor='contact-reason'>What can we help you with?</label>
+				<input
+					type='text'
+					name='fullName'
+					id='fullName-contact'
+					placeholder='Full Name'
+					required
+				/>
+
+				<input
+					type='email'
+					name='email'
+					id='email-contact'
+					placeholder='Email Address'
+					required
+				/>
+
 				<select name='contact-reason' id='reason-contact'>
+					<option selected disabled value=''>
+						What can we help you with?
+					</option>
 					<option value='general'>General Question</option>
 					<option value='technical'>Technical</option>
 					<option value='ads'>Advertise with Us</option>
@@ -56,12 +69,13 @@ export default class ContactUs extends Component {
 						Have an idea to make the site better
 					</option>
 				</select>
-				<label htmlFor='comment'>Comment</label>
+
 				<textarea
 					name='comment'
 					id='comment-contact'
-					cols='30'
-					rows='10'></textarea>
+					placeholder='Enter comments here...'
+					required
+				/>
 				<span>
 					<button type='submit'>Send</button>
 					<button type='reset'>Clear Form</button>
@@ -72,15 +86,15 @@ export default class ContactUs extends Component {
 			</form>
 		);
 		const sucessMsg = (
-			<section>
-				<div>
+			<article>
+				<header>
 					<h3>Message Received!</h3>
-					<p>Thank you for your message. We will respond within 24 hours.</p>
-					<button type='button' onClick={() => this.props.history.go(-2)}>
-						Exit Contact Form
-					</button>
-				</div>
-			</section>
+				</header>
+				<p>Thank you for your message. We will respond within 24 hours.</p>
+				<button type='button' onClick={() => this.props.history.go(-2)}>
+					Exit Contact Form
+				</button>
+			</article>
 		);
 		return (
 			<section className='contact-form-container'>

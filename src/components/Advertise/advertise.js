@@ -4,13 +4,16 @@ import './advertise.css';
 export default function advertise(props) {
 	return (
 		<section className='advertise-container'>
-			<div>
+			<header>
 				<h3>Advertise With Us</h3>
-				<p>
-					This is a placeholder for a advertising seciton of the site. Will be
-					created at a later time.
-				</p>
-			</div>
+			</header>
+			<p>
+				Would you like to adversite your buisness, property or products with us?{' '}
+				<br /> <br /> If so, send us an email at <br />{' '}
+				<a href='mailto: advertise@bequiaforum.com?subject=New Advertising Enquire'>
+					advertise@bequiaforum.com
+				</a>
+			</p>
 		</section>
 	);
 }

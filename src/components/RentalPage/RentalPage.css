@@ -1,5 +1,6 @@
 .rental-page-container {
 	width: 100%;
+	animation: fadeIn 1s ease-in-out;
 }
 .rental-page-content {
 	width: 95%;

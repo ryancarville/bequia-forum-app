@@ -34,7 +34,7 @@ export default class Comments extends Component {
 			.filter(com => com.post_id === this.props.postId)
 			.map(c => {
 				return (
-					<div className='comments-content' key={c.id}>
+					<article className='comments-content' key={c.id}>
 						<p>{c.content}</p>
 						<h5>
 							Posted By: {c.user_name}
@@ -49,7 +49,7 @@ export default class Comments extends Component {
 								/>
 							) : null
 						) : null}
-					</div>
+					</article>
 				);
 			});
 

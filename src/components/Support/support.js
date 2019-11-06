@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './support.css';
 
 export default function support(props) {
@@ -7,8 +8,12 @@ export default function support(props) {
 			<div>
 				<h2>Support Page</h2>
 				<p>
-					This is a place holder for some form of a support or FAQ page that
-					will be created at a later time
+					Please check the <Link to={'/messageBoard/9'}>Support</Link> messageboard for
+					FAQ's. Should you not find what you are looking for there you can
+					email us at{' '}
+					<a href='mailto: support@bequiaforum.com?subjust=New Support Ticket'>
+						support@bequiaforum.com
+					</a>
 				</p>
 			</div>
 		</section>

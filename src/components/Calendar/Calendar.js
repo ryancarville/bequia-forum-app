@@ -114,7 +114,7 @@ class Calendar extends Component {
 
 	render() {
 		return (
-			<div className='events-calendar-container'>
+			<section className='events-calendar-container'>
 				<div className='calendar-content'>
 					<div id='calendar'>
 						<div className='month'>
@@ -142,7 +142,7 @@ class Calendar extends Component {
 						<ul id='days'>{this.renderCalendar()}</ul>
 					</div>
 				</div>
-			</div>
+			</section>
 		);
 	}
 }

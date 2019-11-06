@@ -5,23 +5,25 @@
 
 .jobs-content {
 	display: grid;
-	grid-template-columns: auto;
-	grid-gap: 1em;
+	grid-template-columns: repeat(2, 1fr);
 	width: 100%;
-	margin-top: 45px;
 }
 .job-card {
-	width: 100%;
 	height: auto;
-	margin-bottom: 50px;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 20px;
+	padding: 10px;
+}
+.job-card h3 {
+	margin: 0;
+}
+.job-card p {
+	margin: 0;
 }
 .job-cat-icon {
 	cursor: pointer;
-	width: 200px;
+	width: 70px;
 	height: auto;
 }
 .jobs-content a {

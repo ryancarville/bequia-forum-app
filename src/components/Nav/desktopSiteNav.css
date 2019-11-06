@@ -1,0 +1,22 @@
+@media only screen and (min-width: 700px) {
+	.siteNav {
+		width: 100%;
+		display: block;
+    }
+    .siteNav ul {
+		width: 100%;
+		list-style: none;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 5px;
+		margin: 0px;
+	}
+
+	.siteNav ul li p:hover {
+		color: green;
+	}
+	.fa-search {
+		cursor: pointer;
+	}
+}

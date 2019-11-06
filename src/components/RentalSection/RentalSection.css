@@ -2,7 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	animation: moveRight 1s ease-in-out;
+	animation: fadeIn 1s ease-in-out;
 }
 
 .rentals-section-content ul {

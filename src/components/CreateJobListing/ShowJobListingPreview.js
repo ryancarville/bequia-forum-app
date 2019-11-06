@@ -11,8 +11,10 @@ export default function ShowJobListingPreview(props) {
 	);
 	console.log(jobcat);
 	return (
-		<div className='job-listing-preview'>
-			<h2>Posting in {jobcat[0].name}</h2>
+		<section className='job-listing-preview'>
+			<header>
+				<h2>Posting in {jobcat[0].name}</h2>
+			</header>
 			<h3>{props.state.title}</h3>
 			<p>Employment Type: {props.state.employment}</p>
 
@@ -30,7 +32,10 @@ export default function ShowJobListingPreview(props) {
 					<p>Phone: {formatPhoneNumberIntl(props.state.contact_phone)}</p>
 				) : null}
 				{props.state.website ? (
-					<a href={props.state.website} target='_blank' rel="noopener noreferrer">
+					<a
+						href={props.state.website}
+						target='_blank'
+						rel='noopener noreferrer'>
 						{props.state.website}
 					</a>
 				) : null}
@@ -39,6 +44,6 @@ export default function ShowJobListingPreview(props) {
 			<button onClick={() => props.handleSubmit()}>Create Listing</button>
 			<button onClick={props.handleShowPreview}>Edit</button>
 			<button onClick={() => props.goBack()}>Cancel</button>
-		</div>
+		</section>
 	);
 }
