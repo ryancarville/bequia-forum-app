@@ -108,7 +108,6 @@ export default class Forum extends Component {
 				<header>
 					<h3>Fourm</h3>
 				</header>
-
 				<ForumContext.Consumer>
 					{context => (
 						<div className='forum-content'>

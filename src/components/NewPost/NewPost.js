@@ -13,6 +13,10 @@ export default function NewPost(props) {
 		let recentPosts = context.state.newestPosts;
 		const visiblePosts = recentPosts ? (
 			recentPosts.map(p => {
+				const forum = context.state.forum.filter(
+					forum => forum.id === p.board_id
+				);
+
 				const numOfComments = context.state.comments.filter(
 					comment => comment.post_id === p.id
 				).length;
@@ -20,7 +24,7 @@ export default function NewPost(props) {
 					<div className='newest-posts' key={p.id}>
 						<Link
 							to={{
-								pathname: `/messageBoard/${p.board_id}/${p.id}`,
+								pathname: `/messageBoard/${forum.messageboard_sections}/${p.board_id}/${p.id}`,
 								state: { id: p.id }
 							}}>
 							<h4>{p.title}</h4>

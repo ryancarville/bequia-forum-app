@@ -19,17 +19,16 @@
 }
 
 .market-place-img {
-	width: 70px;
+	width: 100px;
 }
+
 .market-place-card-text h4 {
 	margin: 0;
 }
 .market-place-card-text {
 	color: limegreen;
-	font-size: 18px;
+	font-size: 20px;
 	text-align: center;
-}
-.market-place-card-text p {
 	margin: 0;
 }
 

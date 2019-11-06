@@ -45,7 +45,7 @@
 	.navBar {
 		width: 100%;
 		text-transform: uppercase;
-		border-bottom: 5px solid green;
+		border-bottom: 2px solid green;
 		border-radius: 25px;
 	}
 	.navBar h1 {

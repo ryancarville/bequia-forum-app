@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import formatDate from '../../helpers/formatDate';
 import './ShowPostPreview.css';
 import ForumContext from '../../ForumContext';
 

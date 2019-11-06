@@ -54,13 +54,7 @@ export default class Router extends Component {
 
 					<Route
 						path='/messageBoard/:forumCatId'
-						render={props => (
-							<ForumCatSections
-								{...props}
-								forumTitles={this.context.state.forumTitles}
-								sections={this.context.state.forum}
-							/>
-						)}
+						component={ForumCatSections}
 						exact
 					/>
 					<Route

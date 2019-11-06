@@ -14,11 +14,12 @@ export default function ForumSection(props) {
 		const name = forum.filter(
 			f => f.id.toString() === props.match.params.forumId
 		);
-		console.log(name);
-		if (!name) {
-			return 'Loading...';
+		if (!name[0]) {
+			return localStorage.getItem('forumTitle');
+		} else {
+			localStorage.setItem('forumTitle', name[0].name);
+			return name[0].name;
 		}
-		return name[0].name;
 	};
 	const getPosts = (posts, comments) => {
 		const forumId = props.match.params.forumId;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TokenServices from '../../services/TokenServices';
 import './Nav.css';
-import ForumContext from '../../ForumContext';
 import MobileSiteNav from './mobileSiteNav';
 import DesktopSiteNav from './desktopSiteNav';
 
@@ -21,11 +20,11 @@ class Nav extends Component {
 					<DesktopSiteNav />
 					<div className='rightNavInfo'>
 						<Link to='/signup'>
-							<i class='fas fa-user-plus'></i>
+							<i className='fas fa-user-plus'></i>
 						</Link>
 
 						<Link to='/login'>
-							<i class='fas fa-sign-in-alt'></i>
+							<i className='fas fa-sign-in-alt'></i>
 						</Link>
 					</div>
 				</div>
