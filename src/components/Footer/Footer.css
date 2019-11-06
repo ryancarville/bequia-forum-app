@@ -1,14 +1,12 @@
 .footer-container {
 	width: 100%;
-	font-size: 20px;
+	font-size: 16px;
 	text-align: center;
-	padding-top: 200px;
+	padding-top: 100px;
 }
 .footer-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(5, 0.5fr);
 }
 .footer-content a {
 	text-decoration: none;
@@ -16,15 +14,8 @@
 	padding: 10px;
 	cursor: pointer;
 }
-.footer-content a:hover {
-	color: blue;
-}
+
 .footer-container p {
+	font-size: 12px;
 	padding: 10px;
-}
-@media only screen and (min-width: 700px) {
-	.footer-content {
-		flex-direction: row;
-		justify-content: space-around;
-	}
 }

@@ -37,16 +37,28 @@ export default function AddPost(props) {
 				</Link>
 			</span>
 		);
-	} else {
+	} else if (props.forumType === 'desktop') {
 		return (
-			<span className='create-post-button'>
+			<li>
+				<span className='create-post-button'>
+					<Link
+						to={{ pathname: `/createPost`, state: { forumId: props.forumId } }}
+						id='create-forum-post-button'>
+						<i className='fas fa-plus'></i>Thread
+					</Link>
+				</span>
+			</li>
+		);
+	} else if (props.forumType === 'mobile') {
+		return (
+			<li>
 				<Link
 					to={{ pathname: `/createPost`, state: { forumId: props.forumId } }}
-					id='create-forum-post-button'>
-					<i className='fas fa-plus'></i>
-					Thread
+					id='create-forum-post-button'
+					className='mobile-nav-link'>
+					<i className='far fa-plus-square'></i>
 				</Link>
-			</span>
+			</li>
 		);
 	}
 }

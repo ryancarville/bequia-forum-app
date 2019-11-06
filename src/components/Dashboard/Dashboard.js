@@ -30,7 +30,11 @@ export default class Dashboard extends Component {
 				<section className='mobile-home-page-container'>
 					<div className='mobile-home-page-event-content'>
 						<h3 onClick={this.showHomePageEvents}>
-							{this.state.showEvents ? 'X' : 'Upcoming Events'}
+							{this.state.showEvents ? (
+								<i class='far fa-times-circle'></i>
+							) : (
+								'Upcoming Events'
+							)}
 						</h3>
 						<div
 							className={`${
@@ -43,7 +47,11 @@ export default class Dashboard extends Component {
 						<div className='mobile-home-page-new-post-content'></div>
 
 						<h3 onClick={this.showNewPosts}>
-							{this.state.showPosts ? 'X' : 'New Posts'}
+							{this.state.showPosts ? (
+								<i class='far fa-times-circle'></i>
+							) : (
+								'New Posts'
+							)}
 						</h3>
 						<div
 							className={`${

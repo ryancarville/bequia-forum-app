@@ -6,9 +6,7 @@
 	text-align: center;
 	animation: fadeIn 2s ease-in;
 }
-.events-container span {
-	margin-bottom: 25px;
-}
+
 .events-container span h2 {
 	margin-bottom: 0px;
 }

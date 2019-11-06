@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import TokenServices from '../../services/TokenServices';
+import './desktopSiteNav.css';
 export default class DesktopSiteNav extends Component {
 	constructor(props) {
 		super(props);
@@ -39,16 +40,11 @@ export default class DesktopSiteNav extends Component {
 							<p>Directory</p>
 						</Link>
 					</li>
-
-					<li>
-						{TokenServices.getAuthToken() ? (
-							<CreateContentButton page='forum' />
-						) : null}
-					</li>
+					{TokenServices.getAuthToken() ? <CreateContentButton forumType='desktop'/> : null}
 					<li>
 						{!this.state.showSearchForm ? (
 							<i
-								class='fas fa-search'
+								className='fas fa-search'
 								onClick={() => this.showSearchForm()}></i>
 						) : null}
 						{this.state.showSearchForm ? (

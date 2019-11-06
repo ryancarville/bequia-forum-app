@@ -17,7 +17,7 @@ export default function JobPage(props) {
 					<h3>{j.title}</h3>
 				</Link>
 				<Truncate
-					lines={1}
+					lines={2}
 					ellipsis={
 						<span>
 							...
@@ -26,7 +26,7 @@ export default function JobPage(props) {
 					}>
 					<p>{j.description}</p>
 				</Truncate>
-				<span className='postInfo'>
+				<span className='post-info'>
 					{j.location ? <p>Location: {j.location}</p> : null}
 					{j.employment ? <p>Employment: {j.employment}</p> : null}
 					<p>Posted On: {formatDate(j.date_posted)}</p>

@@ -21,11 +21,11 @@ class Nav extends Component {
 					<DesktopSiteNav />
 					<div className='rightNavInfo'>
 						<Link to='/signup'>
-							<p>Sign Up</p>
+							<i class='fas fa-user-plus'></i>
 						</Link>
 
 						<Link to='/login'>
-							<p>Log in</p>
+							<i class='fas fa-sign-in-alt'></i>
 						</Link>
 					</div>
 				</div>

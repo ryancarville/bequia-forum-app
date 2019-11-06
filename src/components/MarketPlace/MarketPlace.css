@@ -10,34 +10,34 @@
 .market-place-content ul {
 	display: grid;
 	grid-template-columns: auto;
-	grid-gap: 1em;
 	list-style: none;
 	padding: 0;
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 100%;
 }
 .market-place-content a {
+	width: 100%;
 	text-decoration: none;
+	border-bottom: 1px solid limegreen;
+	border-radius: 25px;
+	margin-bottom: 30px;
 }
 
 .market-place-img {
-	width: 175px;
+	width: 200px;
 }
 
 .market-place-card {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
 }
 .market-place-card-text {
-	display: none;
-	position: absolute;
+	display: block;
+	position: relative;
 	color: blue;
-	font-size: 18px;
+	font-size: 20px;
 	text-align: center;
-	width: 175px;
+	width: 100%;
 }
 
 .market-place-card:hover .market-place-card-text {
@@ -50,6 +50,27 @@
 @media only screen and (min-width: 700px) {
 	.market-place-content ul {
 		width: 100%;
-		grid-template-columns: auto auto auto;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.market-place-content a {
+		border: none;
+		margin-bottom: 0px;
+	}
+	.market-place-card-text {
+		display: none;
+		position: absolute;
+		margin-top: -150px;
+		margin-left: 160px;
+		color: blue;
+
+		font-size: 18px;
+
+		width: 175px;
+	}
+	.market-place-card:hover .market-place-card-text {
+		display: block;
+	}
+	.market-place-card:hover .market-place-img {
+		opacity: 0.1;
 	}
 }
