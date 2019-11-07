@@ -8,13 +8,13 @@ import './Jobs.css';
 export default function Jobs(props) {
 	const context = useContext(ForumContext);
 	const jobCatagories = context.state.jobCatagories.map(j => (
-		<Link key={j.id} to={`/jobs/${j.id}`}>
-			<div className='job-card'>
+		<div className='job-card'>
+			<Link key={j.id} to={`/jobs/${j.id}`}>
 				<img className='job-cat-icon' src={j.img_url} alt={j.name + '-icon'} />
 				<h3>{j.name}</h3>
 				<p>{j.description}</p>
-			</div>
-		</Link>
+			</Link>
+		</div>
 	));
 	return (
 		<>

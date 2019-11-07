@@ -55,7 +55,13 @@ export default class ForumCatSections extends Component {
 													</div>
 													<span className='thread-count'>
 														<i className='far fa-file-alt'></i>
-														<p id={`thread-count-${item.id}`}>counting...</p>
+														<p id={`thread-count-${item.id}`}>
+															<img
+																src='../../icons/JPEG/wave-loader.svg'
+																alt='wave-loader'
+																id='wave-loader-gif'
+															/>
+														</p>
 													</span>
 												</Link>
 											</li>

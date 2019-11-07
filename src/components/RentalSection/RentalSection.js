@@ -25,7 +25,7 @@ export default function RentalSection(props) {
 					<h3>{r.title}</h3>
 				</Link>
 				<Truncate
-					lines={1}
+					lines={2}
 					ellipsis={
 						<span>
 							...

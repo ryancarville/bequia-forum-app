@@ -36,7 +36,7 @@ export default function NewPost(props) {
 									...
 									<Link
 										to={{
-											pathname: `/messageBoard/${p.board_id}/${p.id}`,
+											pathname: `/messageBoard/${forum.messageboard_sections}/${p.board_id}/${p.id}`,
 											state: { id: p.id }
 										}}>
 										Read more

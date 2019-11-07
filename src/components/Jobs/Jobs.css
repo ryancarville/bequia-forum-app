@@ -6,24 +6,21 @@
 .jobs-content {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	width: 100%;
 }
 .job-card {
-	height: auto;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 10px;
+	padding: 20px;
 }
 .job-card h3 {
 	margin: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .job-card p {
 	margin: 0;
 }
 .job-cat-icon {
 	cursor: pointer;
-	width: 70px;
+	width: 100px;
 	height: auto;
 }
 .jobs-content a {
@@ -31,17 +28,11 @@
 }
 
 @media only screen and (min-width: 700px) {
-	.jobs-container {
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		align-items: center;
-	}
 	.jobs-content {
+		width: 70%;
+		margin-left: auto;
+		margin-right: auto;
 		grid-template-columns: auto auto auto;
-		grid-gap: 0em;
-		width: 100%;
-		margin-top: 30px;
 	}
 	.job-card {
 		width: 200px;
@@ -49,9 +40,11 @@
 		padding: 0px;
 		text-align: center;
 		margin-bottom: 20px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.job-cat-icon {
-		width: 100px;
+		width: 150px;
 		height: auto;
 	}
 	.job-card:hover {

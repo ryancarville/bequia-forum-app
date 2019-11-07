@@ -9,22 +9,28 @@
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	padding: 0;
+	margin: 0;
 }
 .rentals-section-content ul li {
-	width: 100%;
+	width: 90%;
 	height: auto;
-	margin-top: 15px;
+	margin-top: 5px;
 	padding: 10px;
-	border-bottom: 1px solid black;
+	border: 1px solid blue;
+	border-radius: 25px;
+	font-size: 18px;
 }
 .rentals-section-content a {
 	text-decoration: none;
+	margin: 0;
 }
 @media only screen and (min-width: 700px) {
 	.rentals-section-content ul {
 		padding: 20px;
+	}
+	.rentals-section-content ul li {
+		font-size: 16px;
 	}
 }
