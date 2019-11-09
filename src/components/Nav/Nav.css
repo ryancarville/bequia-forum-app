@@ -1,5 +1,6 @@
 /*top nav bar*/
 .navBar {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -8,6 +9,8 @@
 	text-transform: uppercase;
 	border-bottom: 1px solid green;
 	border-radius: 25px;
+	z-index: 1;
+	background-color: white;
 }
 .forumLogo {
 	display: flex;

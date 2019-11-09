@@ -6,17 +6,16 @@ export default function LandingPage() {
 	return (
 		<div className='landingPage-container'>
 			<div className='landingPage-content'>
-				<div>
+				<div id='landing-page-text'>
 					<h1>Welcome to Bequia Forum!</h1>
 					<h4>A place to connect with locals, travelers and the world.</h4>
 					<p>
-						You will find events calenders, message boards on a number of topics
-						and job listings.
+						You will find message boards on a number of topics, a events
+						calender, job listings, market place and rentals section.
 						<br /> <Link to='/signup'>Create an account</Link> today to get the
 						most out of the platform. i.e. Create Posts, events, comments etc.
 					</p>
 				</div>
-				<img src='../icons/windy-palms.gif' alt='windy-palms' />
 			</div>
 		</div>
 	);

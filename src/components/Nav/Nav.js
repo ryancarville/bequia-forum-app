@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TokenServices from '../../services/TokenServices';
 import './Nav.css';
 import MobileSiteNav from './mobileSiteNav';
@@ -61,4 +61,4 @@ class Nav extends Component {
 	}
 }
 
-export default withRouter(Nav);
+export default Nav;
