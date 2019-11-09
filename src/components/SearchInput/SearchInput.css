@@ -21,6 +21,8 @@
 	color: black;
 	margin-left: -50px;
 	z-index: 5;
+	background: transparent;
+	border: none;
 }
 @media only screeen and (min-width: 700px) {
 	.search-form {
