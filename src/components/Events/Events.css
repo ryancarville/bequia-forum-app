@@ -5,6 +5,7 @@
 	align-items: center;
 	text-align: center;
 	animation: fadeIn 2s ease-in;
+	margin-top: 60px;
 }
 
 .events-container span h2 {
@@ -29,5 +30,6 @@
 @media only screen and (min-width: 700px) {
 	.events-container {
 		padding: 20px;
+		margin-top: 0px;
 	}
 }

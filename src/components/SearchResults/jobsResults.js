@@ -11,7 +11,7 @@ export default function JobSearchResults(props) {
 						pathname: `/jobs/${j.job_cat}/${j.id}`,
 						state: { id: j.id }
 					}}>
-					<h3>{j.title}</h3>
+					<p>{j.title}</p>
 				</Link>
 				<Truncate
 					lines={1}

@@ -11,7 +11,7 @@ export default function RentalsSearchResults(props) {
 						pathname: `/rentals/${r.rental_cat}/${r.id}`,
 						state: { id: r.id }
 					}}>
-					<h3>{r.title}</h3>
+					<p>{r.title}</p>
 				</Link>
 				<br />
 				<Truncate

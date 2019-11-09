@@ -1,59 +1,131 @@
-.forum-section-content {
-	width: 100%;
-}
 .forum-search-content {
 	width: 100%;
-	padding: 20px;
+	margin-top: 75px;
 }
-.forum-search-content ul {
+.forum-search-content h2 {
+	text-align: center;
+}
+.search-results-section {
 	list-style: none;
+	padding: 0px;
 }
-.forum-search-content ul li {
+.forum-search-content h3 {
+	margin-left: 20px;
+}
+.search-results-section li {
 	border: 1px solid black;
 	padding: 10px;
-	width: 100%;
-	background-color: lightgreen;
+	margin-bottom: 15px;
+	width: 90%;
+	height: auto;
+	background-color: limegreen;
+	font-size: 18px;
+	line-height: 1.5em;
 }
 
-.forum-search-results {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-gap: 1em;
+.search-results-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .market-place-search-results {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-gap: 1em;
-}
-.market-place-search-results li {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+}
+.market-place-search-results li {
+	border: 1px solid black;
 	padding: 10px;
-	float: left;
+	margin-bottom: 15px;
+	width: 90%;
 	height: auto;
+	background-color: limegreen;
+	font-size: 18px;
+	line-height: 1.5em;
 }
 .rentals-search-results {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-gap: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .rentals-search-results li {
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
+	margin-bottom: 15px;
 	float: left;
 	height: auto;
 }
 .jobs-search-results {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-gap: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .jobs-search-results li {
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
-	float: left;
+	margin-bottom: 15px;
+	font-size: 10px;
 	height: auto;
+}
+
+@media only screen and (min-width: 700px) {
+	.forum-search-content {
+		width: 100%;
+		padding: 20px;
+	}
+	.forum-search-content ul {
+		list-style: none;
+	}
+	.forum-search-content ul li {
+		border: 1px solid black;
+		padding: 10px;
+		width: 100%;
+		background-color: lightgreen;
+	}
+
+	.forum-search-results {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 1em;
+	}
+
+	.market-place-search-results {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 1em;
+	}
+	.market-place-search-results li {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		float: left;
+		height: auto;
+	}
+	.rentals-search-results {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 1em;
+	}
+	.rentals-search-results li {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		float: left;
+		height: auto;
+	}
+	.jobs-search-results {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 1em;
+	}
+	.jobs-search-results li {
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		float: left;
+		height: auto;
+	}
 }

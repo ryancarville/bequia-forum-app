@@ -20,7 +20,7 @@ export default class SearchResults extends Component {
 							<header>
 								<h2>Search Results</h2>
 							</header>
-							<ul className='forum-search-results'>
+							<ul className='search-results-section' id='forum-search-results'>
 								{context.state.searchResults.specificBoard ? (
 									context.state.searchResults.specificBoard.length !== 0 ? (
 										<ForumSearchResults
@@ -38,7 +38,7 @@ export default class SearchResults extends Component {
 							{context.state.searchResults.mbPosts ? (
 								<h3>Messageboards</h3>
 							) : null}
-							<ul className='forum-search-results'>
+							<ul className='search-results-section' id='forum-search-results'>
 								{context.state.searchResults.mbPosts ? (
 									<ForumSearchResults
 										posts={context.state.searchResults.mbPosts}
@@ -50,7 +50,9 @@ export default class SearchResults extends Component {
 							{context.state.searchResults.mpPosts ? (
 								<h3>Market Place</h3>
 							) : null}
-							<ul className='market-place-search-results'>
+							<ul
+								className='search-results-section'
+								id='market-place-search-results'>
 								{context.state.searchResults.mpPosts ? (
 									<MarketPlaceSearchResults
 										posts={context.state.searchResults.mpPosts}
@@ -58,7 +60,9 @@ export default class SearchResults extends Component {
 								) : null}
 							</ul>
 							{context.state.searchResults.rPosts ? <h3>Rentals</h3> : null}
-							<ul className='rentals-search-results'>
+							<ul
+								className='search-results-section'
+								id='rentals-search-results'>
 								{context.state.searchResults.rPosts ? (
 									<RentalsSearchResults
 										posts={context.state.searchResults.rPosts}
@@ -66,7 +70,7 @@ export default class SearchResults extends Component {
 								) : null}
 							</ul>
 							{context.state.searchResults.jPosts ? <h3>Jobs</h3> : null}
-							<ul className='jobs-search-results'>
+							<ul className='search-results-section' id='jobs-search-results'>
 								{context.state.searchResults.jPosts ? (
 									<JobSearchResults
 										posts={context.state.searchResults.jPosts}

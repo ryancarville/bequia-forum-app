@@ -28,6 +28,7 @@ class Nav extends Component {
 						</Link>
 					</div>
 				</div>
+				
 				<MobileSiteNav />
 			</>
 		);
@@ -52,7 +53,6 @@ class Nav extends Component {
 						</Link>
 					</div>
 				</div>
-
 				<MobileSiteNav />
 			</>
 		);

@@ -4,6 +4,7 @@
 	animation: fadeIn 2s ease-in;
 	display: flex;
 	flex-direction: column;
+	margin-top: 60px;
 }
 .directory-container h2 {
 	text-align: center;
@@ -44,6 +45,9 @@
 	margin: 0px;
 }
 @media only screen and (min-width: 700px) {
+	.directory-container {
+		margin-top: 0px;
+	}
 	.directory-listings ul {
 		flex-direction: row;
 		align-items: flex-start;

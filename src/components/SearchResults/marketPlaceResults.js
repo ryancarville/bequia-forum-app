@@ -13,7 +13,7 @@ export default function MarketPlaceSearchResults(props) {
 							pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
 							state: { id: l.id }
 						}}>
-						<h4>{l.title}</h4>
+						<p>{l.title}</p>
 					</Link>
 					<Truncate
 						lines={1}
