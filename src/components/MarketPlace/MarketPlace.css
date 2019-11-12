@@ -1,7 +1,7 @@
 .market-place-container {
 	width: 100%;
 	text-align: center;
-	animation: fadeIn 1s ease-in;
+	margin-top: 80px;
 }
 
 .market-place-content ul {
@@ -43,6 +43,9 @@
 	opacity: 0.1;
 }
 @media only screen and (min-width: 700px) {
+	.market-place-container {
+		margin-top: 20px;
+	}
 	.market-place-content ul {
 		margin-left: auto;
 		margin-right: auto;

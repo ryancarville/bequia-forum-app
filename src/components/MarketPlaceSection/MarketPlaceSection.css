@@ -3,7 +3,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	animation: moveRight 1s ease-in-out;
+	margin-top: 70px;
 }
 .market-place-section-content {
 	width: 100%;
@@ -16,14 +16,22 @@
 	padding: 0;
 }
 .market-place-section-content ul li {
-	width: 100%;
+	width: 90%;
 	height: auto;
-	border-bottom: 1px solid black;
+	border: 1px solid blue;
 	padding: 15px;
 	margin-bottom: 20px;
+	border-radius: 25px;
+	margin-top: 0px;
 }
+.market-place-section-content ul li h4 {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
 .market-place-section-content a {
 	text-decoration: none;
+	font-size: 20px;
 }
 @media only screen and (min-width: 700px) {
 	.market-place-section-content ul {

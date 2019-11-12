@@ -8,6 +8,7 @@ import TokenServices from '../../services/TokenServices';
 import DeleteButton from '../Buttons/deleteButton';
 import DeletePopUp from '../DeletePopUp/DeletePopUp';
 import EditButton from '../Buttons/Edit';
+
 export default class RentalPage extends Component {
 	constructor(props) {
 		super(props);
@@ -192,10 +193,9 @@ export default class RentalPage extends Component {
 
 	componentDidMount() {
 		var r = this.context.state.rentalPosts.filter(
-			p => p.id === this.props.location.state.id
+			p => p.id.toString() === this.props.match.params.rentalId
 		);
 		r = r[0];
-		console.log(r);
 		this.setState({
 			id: r.id,
 			rental_cat: r.rental_cat,
@@ -253,18 +253,24 @@ export default class RentalPage extends Component {
 							goBack={this.goBack}
 						/>
 					) : (
-						<ListingBody state={this.state} />
+						<ListingBody post={this.state} />
 					)}
-					{TokenServices.getAuthToken() ? (
-						this.context.user.id === this.state.user_id ? (
-							<DeleteButton showDeletePopUp={this.showDeletePopUp} />
-						) : null
-					) : null}
-					{TokenServices.getAuthToken() ? (
-						this.context.user.id === this.state.user_id ? (
-							<EditButton type={'rental'} showEditPopUp={this.showEditPopUp} />
-						) : null
-					) : null}
+
+					<span className='rental-edit-buttons'>
+						{TokenServices.getAuthToken() ? (
+							this.context.user.id === this.state.user_id ? (
+								<DeleteButton showDeletePopUp={this.showDeletePopUp} />
+							) : null
+						) : null}
+						{TokenServices.getAuthToken() ? (
+							this.context.user.id === this.state.user_id ? (
+								<EditButton
+									type={'rental'}
+									showEditPopUp={this.showEditPopUp}
+								/>
+							) : null
+						) : null}
+					</span>
 				</div>
 			</section>
 		);

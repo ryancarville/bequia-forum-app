@@ -1,3 +1,43 @@
+@-webkit-keyframes fallingCoconut-mobile {
+	from {
+		top: 115px;
+		transform: rotate(10deg);
+	}
+	to {
+		top: 215px;
+		transform: rotate(120deg);
+	}
+}
+@keyframes fallingCoconut-mobile {
+	from {
+		top: 115px;
+		transform: rotate(10deg);
+	}
+	to {
+		top: 215px;
+		transform: rotate(120deg);
+	}
+}
+@-webkit-keyframes fallingCoconut {
+	from {
+		top: 115px;
+		transform: rotate(10deg);
+	}
+	to {
+		top: 215px;
+		transform: rotate(120deg);
+	}
+}
+@keyframes fallingCoconut {
+	from {
+		top: 115px;
+		transform: rotate(10deg);
+	}
+	to {
+		top: 255px;
+		transform: rotate(120deg);
+	}
+}
 @-webkit-keyframes moveLeft {
 	0% {
 		transform: translateX(0px);

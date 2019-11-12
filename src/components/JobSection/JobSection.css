@@ -2,10 +2,8 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-
-	animation: fadeIn 1s ease-in-out;
+	margin-top: 100px;
 }
-
 
 .job-section-content ul {
 	list-style: none;

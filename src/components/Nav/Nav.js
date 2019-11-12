@@ -28,7 +28,7 @@ class Nav extends Component {
 						</Link>
 					</div>
 				</div>
-				
+
 				<MobileSiteNav />
 			</>
 		);
@@ -46,10 +46,10 @@ class Nav extends Component {
 					<DesktopSiteNav />
 					<div className='rightNavInfo'>
 						<Link to='/dashboard'>
-							<i class='fas fa-tachometer-alt'></i>
+							<i className='fas fa-tachometer-alt'></i>
 						</Link>
 						<Link to='/' onClick={() => TokenServices.clearAuthToken()}>
-							<i class='fas fa-sign-out-alt'></i>
+							<i className='fas fa-sign-out-alt'></i>
 						</Link>
 					</div>
 				</div>

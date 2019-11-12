@@ -19,7 +19,9 @@ export default class MobileNav extends Component {
 	render() {
 		const mobileSiteNav = (
 			<>
-				<SearchInput />
+				<span className='mobile-search'>
+					<SearchInput />
+				</span>
 				<section className='mobile-nav-container'>
 					<ul className='mobile-nav-bar'>
 						<li>

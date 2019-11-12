@@ -1,6 +1,7 @@
 .forum-container {
 	font-size: 20px;
 	text-align: center;
+	margin-top: 80px;
 }
 .forum-container h3 {
 	text-align: center;
@@ -42,6 +43,9 @@
 }
 
 @media only screen and (min-width: 700px) {
+	.forum-container {
+		margin-top: 20px;
+	}
 	.sectionMenu {
 		width: 45%;
 		margin-left: auto;

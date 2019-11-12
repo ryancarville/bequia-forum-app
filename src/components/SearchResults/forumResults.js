@@ -10,11 +10,16 @@ export default function ForumSearchResults(props) {
 			const numOfComments = props.comments.filter(
 				comment => comment.post_id === p.id
 			).length;
+
+			const forum = props.context.state.forum.filter(
+				forum => forum.id === p.board_id
+			);
+
 			return (
 				<li key={p.id}>
 					<Link
 						to={{
-							pathname: `/messageBoard/${p.board_id}/${p.id}`,
+							pathname: `/messageBoard/${forum[0].messageboard_section}/${p.board_id}/${p.id}`,
 							state: { id: p.id }
 						}}>
 						{p.title}
@@ -27,7 +32,7 @@ export default function ForumSearchResults(props) {
 								...
 								<Link
 									to={{
-										pathname: `/messageBoard/${p.board_id}/${p.id}`,
+										pathname: `/messageBoard/${forum[0].messageboard_section}/${p.board_id}/${p.id}`,
 										state: { id: p.id }
 									}}>
 									Read more

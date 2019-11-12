@@ -1,16 +1,16 @@
 .forum-cat-sections-container {
 	width: 100%;
+	margin-top: 80px;
 }
 .forum-cat-sections-content {
 	width: 100%;
 	font-size: 20px;
-
-	animation: fadeIn 1s ease-in-out;
-}
-.forum-cat-sections-content h3 {
 	text-align: center;
+}
+
+.forum-cat-sections-content header h3 {
 	margin: 0;
-	margin-top: 15px;
+	margin-top: 10px;
 }
 .forum-cat-sections-content ul {
 	list-style: none;
@@ -55,6 +55,9 @@
 }
 
 @media only screen and (min-width: 700px) {
+	.forum-cat-sections-container {
+		margin-top: 50px;
+	}
 	.section-cat-item {
 		font-size: 16px;
 		padding-top: 0px;

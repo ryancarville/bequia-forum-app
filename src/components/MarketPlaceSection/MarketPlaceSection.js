@@ -44,7 +44,7 @@ export default function MarketPlaceSections(props) {
 										}>
 										<p>{l.description}</p>
 									</Truncate>
-									<span className='postInfo'>
+									<span className='post-info'>
 										{l.price ? <p>Price: {l.price}</p> : null}
 										{l.location ? <p>Location: {l.location}</p> : null}
 										<p>Posted By: {l.contact_name}</p>

@@ -1,5 +1,5 @@
 #edit-btn-img {
-	width: 30px;
-	border: none;
-	vertical-align: middle;
+	font-size: 30px;
+	margin-top: 10px;
+	cursor: pointer;
 }

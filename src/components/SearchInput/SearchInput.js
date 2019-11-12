@@ -81,7 +81,7 @@ export default class SearchInput extends Component {
 							value={this.state.term}
 							onChange={this.handleSearchTerm}
 						/>
-						<span>
+					
 							<select
 								name='catagories'
 								id='search-catagories'
@@ -91,9 +91,9 @@ export default class SearchInput extends Component {
 								{this.makeOptions(context.state.forum)}
 							</select>
 							<button id='search-submit' type='submit' value='Search'>
-								<i class='fas fa-search'></i>
+								<i className='fas fa-search'></i>
 							</button>
-						</span>
+						
 					</form>
 				)}
 			</ForumContext.Consumer>

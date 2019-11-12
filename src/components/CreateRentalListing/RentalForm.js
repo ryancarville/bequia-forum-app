@@ -6,10 +6,10 @@ import ForumContext from '../../ForumContext';
 
 export default function RentalForm(props) {
 	const context = useContext(ForumContext);
-	var hideAirBnbLable = '';
-	var hideHomeAwayLable = '';
-	var hideBooking_comLable = '';
-	var hideOtherLable = '';
+	var hideAirBnbLable = 'show-booking-label';
+	var hideHomeAwayLable = 'show-booking-label';
+	var hideBooking_comLable = 'show-booking-label';
+	var hideOtherLable = 'show-booking-label';
 	if (props.state.showAirbnb) {
 		hideAirBnbLable += ' hide-lable';
 	}
@@ -59,7 +59,7 @@ export default function RentalForm(props) {
 				required
 			/>
 			<input
-				type='text'
+				type='number'
 				name='price'
 				id='rental-listing-form-price'
 				value={props.state.price}

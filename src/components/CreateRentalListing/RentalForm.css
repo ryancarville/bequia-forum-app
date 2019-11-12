@@ -3,20 +3,23 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 35px;
+	margin-top: 80px;
 }
 .rental-listing-form input {
-	width: 300px;
-	height: 35px;
-	font-size: 15px;
+	width: 90%;
+	height: 45px;
+	font-size: 20px;
 	margin-top: 15px;
-	border: 1px solid black;
+	border: none;
+	border-bottom: 1px solid black;
+	border-radius: 0;
 	padding: 10px;
 }
 .rental-listing-form select {
-	width: 300px;
-	height: 35px;
-	font-size: 15px;
+	width: 90%;
+	height: 45px;
+	font-size: 20px;
+	border: 1px solid black;
 }
 .rental-listing-form span {
 	width: 100%;
@@ -28,6 +31,14 @@
 .rental-listing-form span input {
 	vertical-align: middle;
 }
+.show-booking-label {
+	margin: 0px;
+	margin-top: -30px;
+	padding: 0px;
+}
+.hide-lable {
+	display: none;
+}
 .booking-site-checkbox {
 	-ms-transform: scale(0.5); /* IE */
 	-moz-transform: scale(0.5); /* FF */
@@ -36,21 +47,45 @@
 	transform: scale(0.5);
 	vertical-align: middle;
 	padding: 0px;
+	margin: 0px;
 }
 
 .rental-listing-form textarea {
-	width: 400px;
+	width: 90%;
 	height: 150px;
 	margin-top: 15px;
+	padding: 5px;
+	border: 1px solid black;
+	font-size: 20px;
 }
 .rental-listing-form button {
-	width: 200px;
-	height: 35px;
-	font-size: 15px;
+	width: 90%;
+	height: 45px;
+	font-size: 20px;
 	padding: 5px;
-	margin-top: 15px;
+	margin-top: 25px;
 	cursor: pointer;
+	background-color: transparent;
+	border: 1px solid black;
 }
-.hide-lable {
-	display: none;
+@media only screen and (min-width: 700px) {
+	.rental-listing-form {
+		margin-top: 20px;
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.booking-site-checkbox {
+		-ms-transform: scale(0.5); /* IE */
+		-moz-transform: scale(0.5); /* FF */
+		-webkit-transform: scale(0.5); /* Safari and Chrome */
+		-o-transform: scale(0.5); /* Opera */
+		transform: scale(0.5);
+		vertical-align: middle;
+		padding: 0px;
+		margin: 25px;
+	}
+	.rental-listing-form button {
+		width: 25%;
+	}
 }

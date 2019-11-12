@@ -3,11 +3,17 @@
 	margin-right: auto;
 	width: 100%;
 	padding: 10px;
+	display: grid;
+	grid-template-rows: auto auto;
+}
+.post-delete-pop-up span {
+	display: flex;
+	justify-content: space-around;
 }
 .post-delete-pop-up button {
 	border: 1px solid blue;
 	border-radius: 25px;
-    background-color: blue;
-    color: white;
-    cursor: pointer;
+	background-color: blue;
+	color: white;
+	cursor: pointer;
 }

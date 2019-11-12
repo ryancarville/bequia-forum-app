@@ -1,45 +1,73 @@
 .landingPage-container {
-	height: 650px;
+	width: 100%;
+	height: auto;
 	margin-top: -20px;
 	padding: 15px;
-	animation: fadeIn 1s ease-in-out;
-	background-image: url('./bequia-island.jpg');
-	background-position: top;
+	background-image: url('./bequia-island.png');
+	background-position: center;
+	background-position-y: 12em;
+	background-repeat: no-repeat;
+	background-size: 80%;
 	z-index: 0;
 }
-.landingPage-container:after {
-	content: '';
+.falling-coconut {
 	position: absolute;
-	margin-top: 62px;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 650px;
-	background: rgba(0, 0, 0, 0.1);
+	background-image: url('./coconut.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 50%;
+	z-index: 1;
+	margin-top: 250px;
+	margin-left: 190px;
+	width: 50px;
+	height: 50px;
+	transform: rotate(20deg);
+	animation: fallingCoconut-mobile 1.5s 1s ease-in forwards;
 }
+
 #landing-page-text {
 	font-size: 20px;
 	padding: 10px;
-	margin-top: 45px;
+	margin-top: 35px;
 	text-align: center;
-	color: white;
+	color: blue;
 	opacity: 1;
 	border-radius: 25px;
 	z-index: 2;
 	position: relative;
-	text-shadow: black 1px 1px;
+}
+#landing-page-text-p {
+	position: relative;
+	margin-top: 325px;
+	z-index: -1000;
 }
 #landing-page-text a {
-	color: yellow;
+	color: limegreen;
 }
 @media only screen and (min-width: 700px) {
 	.landingPage-container {
 		padding: 15px;
 		height: 800px;
+		background-position: left;
+		background-position-y: 4em;
+		background-position-x: 4em;
+		background-size: 30%;
 	}
-	.landingPage-container:after {
-		height: 820px;
+	.falling-coconut {
+		position: absolute;
+		background-image: url('./coconut.png');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 50%;
+		z-index: 1;
+		margin-top: 230px;
+		margin-left: 320px;
+		width: 50px;
+		height: 50px;
+		transform: rotate(20deg);
+		animation: fallingCoconut 1.5s 1s ease-in forwards;
 	}
+
 	.landingPage-content {
 		flex-direction: row;
 		justify-content: space-around;
@@ -47,5 +75,11 @@
 	#landing-page-text {
 		float: right;
 		text-align: right;
+	}
+	#landing-page-text-p {
+		position: relative;
+		float: right;
+		margin-top: 20px;
+		width: 75%;
 	}
 }

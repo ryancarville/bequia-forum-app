@@ -1,6 +1,6 @@
 .jobs-container {
 	text-align: center;
-	animation: fadeIn 2s ease-in;
+	margin-top: 80px;
 }
 
 .jobs-content {
@@ -28,6 +28,9 @@
 }
 
 @media only screen and (min-width: 700px) {
+	.jobs-container {
+		margin-top: 20px;
+	}
 	.jobs-content {
 		width: 70%;
 		margin-left: auto;

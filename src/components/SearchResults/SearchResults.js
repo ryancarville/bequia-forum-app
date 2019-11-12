@@ -26,6 +26,7 @@ export default class SearchResults extends Component {
 										<ForumSearchResults
 											posts={context.state.searchResults.specificBoard}
 											comments={context.state.comments}
+											context={context}
 										/>
 									) : (
 										<p>
@@ -43,6 +44,7 @@ export default class SearchResults extends Component {
 									<ForumSearchResults
 										posts={context.state.searchResults.mbPosts}
 										comments={context.state.comments}
+										context={context}
 									/>
 								) : null}
 							</ul>

@@ -3,16 +3,18 @@
 	font-size: 20px;
 	display: flex;
 	flex-direction: column;
-	animation: fadeIn 1s ease-in;
+	margin-top: 70px;
 }
 .forum-section-container h3 {
 	text-align: center;
 }
 
 .forum-section-content ul {
-	width: 100%;
-	padding: 20px;
+	width: 90%;
+	padding: 0px;
 	list-style: none;
+	margin-left: auto;
+	margin-right: auto;
 }
 .forum-section-content li {
 	border: 1px solid blue;
@@ -23,6 +25,14 @@
 	height: auto;
 	font-size: 18px;
 	line-height: 1.5em;
+}
+.forum-section-content ul li a {
+	text-decoration: none;
+}
+.forum-section-content ul li h4 {
+	margin-top: 0;
+	margin-bottom: 0px;
+	font-size: 20px;
 }
 .post-info {
 	line-height: 0.5em;
@@ -37,17 +47,20 @@
 @media only screen and (min-width: 700px) {
 	.forum-section-container {
 		font-size: 18px;
-		display: inline;
+		display: block;
+		margin-top: 20px;
 	}
 	.forum-section-container h3 {
-		margin-left: 50px;
+		margin-left: 100px;
 		float: left;
 	}
 
 	.forum-section-content {
 		padding: 25px;
 	}
-
+	.forum-section-content ul {
+		margin-top: 70px;
+	}
 	.forum-section-content li {
 		padding-bottom: 0px;
 		font-size: 16px;

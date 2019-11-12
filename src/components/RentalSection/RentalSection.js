@@ -17,11 +17,7 @@ export default function RentalSection(props) {
 		)
 		.map(r => (
 			<li key={r.id}>
-				<Link
-					to={{
-						pathname: `/rentals/${r.rental_cat}/${r.id}`,
-						state: { id: r.id }
-					}}>
+				<Link to={`/rentals/${r.rental_cat}/${r.id}`}>
 					<h3>{r.title}</h3>
 				</Link>
 				<Truncate
@@ -29,13 +25,7 @@ export default function RentalSection(props) {
 					ellipsis={
 						<span>
 							...
-							<Link
-								to={{
-									pathname: `/rentals/${r.rental_cat}/${r.id}`,
-									state: { id: r.id }
-								}}>
-								Read more
-							</Link>
+							<Link to={`/rentals/${r.rental_cat}/${r.id}`}>Read more</Link>
 						</span>
 					}>
 					<p>{r.description}</p>

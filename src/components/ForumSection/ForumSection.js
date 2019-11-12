@@ -36,7 +36,7 @@ export default function ForumSection(props) {
 								pathname: `/messageBoard/${props.match.params.forumCatId}/${p.board_id}/${p.id}`,
 								state: { id: p.id }
 							}}>
-							{p.title}
+							<h4>{p.title}</h4>
 						</Link>
 						<br />
 
@@ -95,9 +95,8 @@ export default function ForumSection(props) {
 			{context => (
 				<section className='forum-section-container'>
 					<header>
-						<h3>{getForumName(context.state.forum)}</h3>
+						<h3 className='forum-title'>{getForumName(context.state.forum)}</h3>
 					</header>
-
 					<Sort sortType='posts' />
 					<div className='forum-section-content'>
 						<ul>{getPosts(context.state.posts, context.state.comments)}</ul>

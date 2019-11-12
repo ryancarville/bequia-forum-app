@@ -4,7 +4,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 25px;
+	margin-top: 80px;
 	padding: 15px;
 }
 .job-listing-form select {
@@ -20,7 +20,8 @@
 	height: 50px;
 	text-align: center;
 	margin: 10px;
-	border: 1px solid black;
+	border: none;
+	border-bottom: 1px solid black;
 	font-size: 20px;
 }
 
@@ -50,6 +51,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		margin-top: 20px;
 	}
 	.job-listing-form select {
 		width: 300px;
@@ -62,12 +64,13 @@
 		height: 35px;
 		text-align: center;
 		margin: 10px;
-		border: 1px solid black;
-		font-size: 15px;
+		font-size: 17px;
 	}
 	.job-listing-form textarea {
 		width: 500px;
 		height: 200px;
+		font-size: 18px;
+		padding: 10px;
 	}
 	.job-listing-form button {
 		width: 250px;

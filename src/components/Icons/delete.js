@@ -1,10 +1,4 @@
 import React from 'react';
 import './delete.css';
-const deleteIcon = (
-	<img
-		src='../../../icons/trash-can.png'
-		alt='deleteIcon'
-		id='deleteIcon-btn-img'
-	/>
-);
+const deleteIcon = <i className='fas fa-trash-alt' id='deleteIcon-btn-img'></i>;
 export default deleteIcon;

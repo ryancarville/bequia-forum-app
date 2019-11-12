@@ -28,6 +28,8 @@
 	font-size: 20px;
 	text-transform: uppercase;
 	letter-spacing: 5px;
+	margin-right: 10px;
+	margin-left: 10px;
 }
 
 #weekdays {
@@ -50,6 +52,7 @@
 	display: grid;
 	grid-template-columns: 0fr 0fr 0fr 0fr 0fr 0fr 0fr;
 	cursor: pointer;
+	
 }
 
 #days li {
@@ -66,6 +69,7 @@
 	justify-content: flex-start;
 	align-items: flex-end;
 	margin: 0;
+	
 }
 
 .event-link {

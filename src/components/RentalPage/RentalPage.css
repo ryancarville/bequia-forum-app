@@ -1,9 +1,19 @@
 .rental-page-container {
 	width: 100%;
-	animation: fadeIn 1s ease-in-out;
+	margin-top: 100px;
 }
 .rental-page-content {
 	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.rentals-booking-sites {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#rental-edit-buttons {
+	text-align: center;
 }
