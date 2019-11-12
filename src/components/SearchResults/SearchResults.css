@@ -1,6 +1,8 @@
 .forum-search-content {
 	width: 100%;
 	margin-top: 75px;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .forum-search-content h2 {
 	text-align: center;
@@ -75,6 +77,7 @@
 	.forum-search-content {
 		width: 100%;
 		padding: 20px;
+		margin-top: 20px;
 	}
 	.forum-search-content ul {
 		list-style: none;

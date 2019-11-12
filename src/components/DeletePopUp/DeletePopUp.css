@@ -5,6 +5,8 @@
 	padding: 10px;
 	display: grid;
 	grid-template-rows: auto auto;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .post-delete-pop-up span {
 	display: flex;

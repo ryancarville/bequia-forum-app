@@ -1,5 +1,7 @@
 .thisWeek-container {
 	width: 100%;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .thisWeek-content {
 	padding: 10px;

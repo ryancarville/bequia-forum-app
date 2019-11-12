@@ -1,5 +1,6 @@
 .create-post-container {
 	width: 100%;
+	margin-top: 80px;
 }
 .create-post-content {
 	width: 90%;
@@ -7,28 +8,10 @@
 	margin-right: auto;
 	margin-top: 25px;
 }
-.category-pop-up-container {
-	width: 100%;
-}
-.categoryPopUpForm {
-	display: grid;
-	grid-template-columns: auto;
-	margin-left: 10%;
-	margin-bottom: 100px;
-}
-.categoryPopUpForm input {
-	cursor: pointer;
-	transform: scale(2);
-	margin: 10px;
-}
-.categoryPopUpForm label {
-	vertical-align: middle;
-	margin: 10px;
-}
 
 @media only screen and (min-width: 700px) {
 	.create-post-container {
-		width: 100%;
+		margin-top: 20px;
 	}
 	.create-post-content {
 		width: 90%;
@@ -55,5 +38,4 @@
 		vertical-align: middle;
 		margin: 10px;
 	}
-	
 }

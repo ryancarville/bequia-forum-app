@@ -11,8 +11,9 @@
 	padding: 10px;
 	font-size: 20px;
 	border: 0;
-    border-bottom: 1px solid black;
-    text-align: center;
+	border-bottom: 1px solid black;
+	text-align: center;
+	border-radius: 0px;
 }
 .create-post-content form select {
 	width: 100%;
@@ -46,17 +47,17 @@
 		align-items: center;
 	}
 	.create-post-content form input {
-		width: 50%;
+		width: 25%;
 		height: 35px;
 		font-size: 16px;
 	}
 	.create-post-content form select {
-		width: 30%;
+		width: 25%;
 		height: 35px;
 		font-size: 16px;
 	}
 	.create-post-content form textarea {
-		width: 70%;
+		width: 50%;
 	}
 	.create-post-content form button {
 		width: 30%;

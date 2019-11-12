@@ -4,6 +4,8 @@
 	flex-direction: column;
 	justify-content: center;
 	margin-top: 70px;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .market-place-section-content {
 	width: 100%;

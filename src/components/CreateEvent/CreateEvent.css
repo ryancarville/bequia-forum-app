@@ -1,5 +1,6 @@
 .create-event-container {
 	width: 100%;
+	margin-top: 80px;
 }
 .create-event-content {
 	width: 100%;
@@ -23,6 +24,7 @@
 	margin: 10px;
 	border: none;
 	border-bottom: 1px solid black;
+	border-radius: 0px;
 }
 .create-event-content form select {
 	width: 90%;
@@ -59,6 +61,7 @@
 @media only screen and (min-width: 700px) {
 	.create-event-container {
 		width: 100%;
+		margin-top: 20px;
 	}
 	.create-event-content {
 		width: 50%;
@@ -80,7 +83,7 @@
 		text-align: center;
 	}
 	.create-event-content form select {
-		width: 100px;
+		width: 150px;
 		height: 35px;
 		font-size: 16px;
 		text-align: center;
@@ -94,6 +97,7 @@
 		font-size: 16px;
 		margin-top: 10px;
 		margin-bottom: 10px;
+		padding: 5px;
 	}
 	.create-event-content button {
 		cursor: pointer;
@@ -104,7 +108,7 @@
 	#event-form-buttons {
 		display: flex;
 		flex-direction: row;
-	justify-content: center;
-	align-items: center;
+		justify-content: center;
+		align-items: center;
 	}
 }

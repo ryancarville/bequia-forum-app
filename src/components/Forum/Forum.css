@@ -2,6 +2,8 @@
 	font-size: 20px;
 	text-align: center;
 	margin-top: 80px;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .forum-container h3 {
 	text-align: center;

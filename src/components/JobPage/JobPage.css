@@ -1,6 +1,8 @@
 .job-page-container {
 	width: 100%;
 	margin-top: 70px;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 .job-page-content {
 	width: 100%;

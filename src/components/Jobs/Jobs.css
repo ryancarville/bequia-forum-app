@@ -1,6 +1,8 @@
 .jobs-container {
 	text-align: center;
 	margin-top: 80px;
+	opacity: 0;
+	animation: fadeIn 2s ease-in forwards;
 }
 
 .jobs-content {
