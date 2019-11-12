@@ -66,6 +66,7 @@ export default class Dashboard extends Component {
 				<div className='home-page-container'>
 					<div className='home-page-content'>
 						<section id='home-page-newest-post'>
+							<h3>New Posts</h3>
 							<NewPost />
 						</section>
 						<section id='home-page-upcoming-events'>
