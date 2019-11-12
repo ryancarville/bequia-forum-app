@@ -92,7 +92,7 @@
 		opacity: 1;
 	}
 }
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes fadeOut {
 	0% {
 		opacity: 1;
 	}
