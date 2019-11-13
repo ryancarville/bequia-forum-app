@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Truncate from 'react-truncate';
@@ -6,16 +6,29 @@ import formatDate from '../../helpers/formatDate';
 import './RentalSection.css';
 import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
+import apiServices from '../../services/apiServices';
 
-export default function RentalSection(props) {
-	const context = useContext(ForumContext);
+export default class RentalSection extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			listings: []
+		};
+	}
+	componentDidMount() {
+		apiServices
+			.getRentalListings(this.props.match.params.rental_cat)
+			.then(listings => {
+				if (listings.error) {
+					this.setState({ error: listings.error });
+				} else {
+					this.setState({ listings: listings });
+				}
+			});
+	}
 
-	const makeRentalListings = context.state.rentalPosts
-		.filter(
-			listing =>
-				listing.rental_cat === parseInt(props.match.params.rentalTypeId)
-		)
-		.map(r => (
+	makeRentalListings = () =>
+		this.state.listings.map(r => (
 			<li key={r.id}>
 				<Link to={`/rentals/${r.rental_cat}/${r.id}`}>
 					<h3>{r.title}</h3>
@@ -30,7 +43,7 @@ export default function RentalSection(props) {
 					}>
 					<p>{r.description}</p>
 				</Truncate>
-				<span className='postInfo'>
+				<span className='post-info'>
 					{r.price ? <p>Price: {r.price}</p> : null}
 					{r.location ? <p>Location: {r.location}</p> : null}
 					<p>Posted By: {r.contact_name}</p>
@@ -39,18 +52,18 @@ export default function RentalSection(props) {
 			</li>
 		));
 
-	return (
-		<section className='rentals-section-container'>
-			<Sort sortType='rentals' />
-			<div className='rentals-section-content'>
-				<ul>
-					{makeRentalListings.length !== 0 ? (
-						makeRentalListings
+	render() {
+		return (
+			<section className='rentals-section-container'>
+				<Sort sortType='rentals' />
+				<div className='rentals-section-content'>
+					{this.state.listings.length !== 0 ? (
+						<ul>{this.makeRentalListings()}</ul>
 					) : (
-						<p>There are no current rental listings.</p>
+						<p id='rentals-section-error'>{this.state.error}</p>
 					)}
-				</ul>
-			</div>
-		</section>
-	);
+				</div>
+			</section>
+		);
+	}
 }

@@ -35,6 +35,9 @@
 	text-decoration: none;
 	font-size: 20px;
 }
+#mp-section-error {
+	text-align: center;
+}
 @media only screen and (min-width: 700px) {
 	.market-place-section-content ul {
 		padding: 20px;

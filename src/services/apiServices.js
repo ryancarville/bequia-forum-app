@@ -2,7 +2,7 @@ import config from '../config';
 
 const apiServices = {
 	signUp(newUser) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/signUp', {
 				method: 'POST',
 				headers: {
@@ -13,7 +13,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -22,7 +22,7 @@ const apiServices = {
 		});
 	},
 	login(creds) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/login', {
 				method: 'POST',
 				headers: {
@@ -33,7 +33,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -42,7 +42,7 @@ const apiServices = {
 		});
 	},
 	verifyToken(token) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/login/verifyToken/${token}`, {
 				method: 'GET',
 				headers: {
@@ -53,7 +53,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -62,7 +62,7 @@ const apiServices = {
 		});
 	},
 	getUserData(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/users/${id}`, {
 				method: 'GET',
 				headers: {
@@ -72,7 +72,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -81,7 +81,7 @@ const apiServices = {
 		});
 	},
 	getUserName(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/users/userName/${id}`, {
 				method: 'GET',
 				headers: {
@@ -91,7 +91,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -100,7 +100,7 @@ const apiServices = {
 		});
 	},
 	getFourmSectionTitles() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/catagories', {
 				method: 'GET',
 				headers: {
@@ -110,7 +110,105 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getForumNameById(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/forum/messageboards/get-board-name/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getFourmBoards(forum_cat) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/forum/messageboards/${forum_cat}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getPostsByBoardId(id) {
+		return new Promise((resolve, reject) => {
+			fetch(
+				config.API_ENDPOINT + `/forum/messageboards/get-board-posts/${id}`,
+				{
+					method: 'GET',
+					headers: {
+						'content-type': 'application/json'
+					},
+					mode: 'cors'
+				}
+			)
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getPostById(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/forum/messageboards/get-post-by-id/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getNumOfCommentsByPostId(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/comments/count-coumments/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -119,7 +217,7 @@ const apiServices = {
 		});
 	},
 	getFourm() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/messageBoards', {
 				method: 'GET',
 				headers: {
@@ -129,7 +227,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -138,7 +236,7 @@ const apiServices = {
 		});
 	},
 	getNumOfThreads(board_id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {
 				method: 'GET',
 				headers: {
@@ -148,7 +246,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -157,7 +255,7 @@ const apiServices = {
 		});
 	},
 	getPosts() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/posts', {
 				method: 'GET',
 				headers: {
@@ -167,7 +265,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -176,7 +274,7 @@ const apiServices = {
 		});
 	},
 	getNewestPosts() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/newestPosts', {
 				method: 'GET',
 				headers: {
@@ -186,7 +284,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -196,7 +294,7 @@ const apiServices = {
 	},
 	searchPosts(search) {
 		if (search.board_id !== 'null') {
-			return new Promise(resolve => {
+			return new Promise((resolve, reject) => {
 				fetch(
 					config.API_ENDPOINT +
 						`/forum/search/posts/${search.board_id}/${search.term}`,
@@ -211,7 +309,7 @@ const apiServices = {
 				)
 					.then(res => {
 						!res.ok
-							? res.json().then(err => Promise.reject(resolve(err)))
+							? res.json().then(err => reject(err))
 							: res.json().then(data => resolve(data));
 					})
 					.catch(err => {
@@ -219,7 +317,7 @@ const apiServices = {
 					});
 			});
 		} else {
-			return new Promise(resolve => {
+			return new Promise((resolve, reject) => {
 				fetch(config.API_ENDPOINT + `/forum/search/posts/${search.term}`, {
 					method: 'GET',
 					headers: {
@@ -230,7 +328,7 @@ const apiServices = {
 				})
 					.then(res => {
 						!res.ok
-							? res.json().then(err => Promise.reject(resolve(err)))
+							? res.json().then(err => reject(err))
 							: res.json().then(data => resolve(data));
 					})
 					.catch(err => {
@@ -241,7 +339,7 @@ const apiServices = {
 	},
 
 	getLikesTracker() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/likesTracker', {
 				method: 'GET',
 				headers: {
@@ -251,7 +349,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -259,9 +357,9 @@ const apiServices = {
 				});
 		});
 	},
-	getComments() {
-		return new Promise(resolve => {
-			fetch(config.API_ENDPOINT + '/comments', {
+	getCommentsByPostId(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/comments/${id}`, {
 				method: 'GET',
 				headers: {
 					'content-type': 'application/json'
@@ -270,7 +368,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -279,7 +377,7 @@ const apiServices = {
 		});
 	},
 	getEvents() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/events', {
 				method: 'GET',
 				headers: {
@@ -289,7 +387,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -298,7 +396,7 @@ const apiServices = {
 		});
 	},
 	getJobCatagories() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/jobs/catagories', {
 				method: 'GET',
 				headers: {
@@ -308,7 +406,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -316,9 +414,9 @@ const apiServices = {
 				});
 		});
 	},
-	getJobPosts() {
-		return new Promise(resolve => {
-			fetch(config.API_ENDPOINT + '/jobs/listings', {
+	getJobListingsByCat(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/jobs/listings-by-cat/${id}`, {
 				method: 'GET',
 				headers: {
 					'content-type': 'application/json'
@@ -327,7 +425,26 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getJobListingById(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/jobs/listings/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -336,7 +453,7 @@ const apiServices = {
 		});
 	},
 	getRentalCatagories() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/rentals/catagories', {
 				method: 'GET',
 				headers: {
@@ -346,7 +463,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -354,9 +471,9 @@ const apiServices = {
 				});
 		});
 	},
-	getRentalListings() {
-		return new Promise(resolve => {
-			fetch(config.API_ENDPOINT + '/rentals/listings', {
+	getRentalListings(rental_cat) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/rentals/listings-by-cat/${rental_cat}`, {
 				method: 'GET',
 				headers: {
 					'content-type': 'application/json'
@@ -365,7 +482,26 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getRentalListing(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/rentals/listing/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -374,7 +510,7 @@ const apiServices = {
 		});
 	},
 	getMarketPlaceCatagories() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/marketPlace/catagories', {
 				method: 'GET',
 				headers: {
@@ -384,7 +520,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -392,9 +528,9 @@ const apiServices = {
 				});
 		});
 	},
-	getMarketPlacePosts() {
-		return new Promise(resolve => {
-			fetch(config.API_ENDPOINT + '/marketPlace/listings', {
+	getMarketPlacePostsByCat(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/marketPlace/listings-by-cat/${id}`, {
 				methoid: 'GET',
 				headers: {
 					'content-type': 'application/json'
@@ -403,7 +539,45 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getMarketPlacePosts() {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + '/marketPlace/listings', {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
+						: res.json().then(data => resolve(data));
+				})
+				.catch(err => {
+					return err;
+				});
+		});
+	},
+	getMarketPlacePostsById(id) {
+		return new Promise((resolve, reject) => {
+			fetch(config.API_ENDPOINT + `/marketPlace/listings/${id}`, {
+				method: 'GET',
+				headers: {
+					'content-type': 'application/json'
+				},
+				mode: 'cors'
+			})
+				.then(res => {
+					!res.ok
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -412,7 +586,7 @@ const apiServices = {
 		});
 	},
 	getDriectory() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/directory', {
 				method: 'GET',
 				headers: {
@@ -422,7 +596,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -431,7 +605,7 @@ const apiServices = {
 		});
 	},
 	addDirectoryListing(newListing) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/directory/addListing', {
 				method: 'POST',
 				headers: {
@@ -442,7 +616,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -451,7 +625,7 @@ const apiServices = {
 		});
 	},
 	deleteDirectoryListing(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/directory/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -461,7 +635,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -470,7 +644,7 @@ const apiServices = {
 		});
 	},
 	sortDirectory(sort) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(
 				config.API_ENDPOINT + `/directory/sort/${sort.column}/${sort.sortType}`,
 				{
@@ -483,7 +657,7 @@ const apiServices = {
 			)
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -492,7 +666,7 @@ const apiServices = {
 		});
 	},
 	sortJobs(sort) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(
 				config.API_ENDPOINT + `/jobs/sort/${sort.column}/${sort.sortType}`,
 				{
@@ -505,7 +679,7 @@ const apiServices = {
 			)
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -514,7 +688,7 @@ const apiServices = {
 		});
 	},
 	sortRentals(sort) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(
 				config.API_ENDPOINT + `/rentals/sort/${sort.column}/${sort.sortType}`,
 				{
@@ -527,7 +701,7 @@ const apiServices = {
 			)
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -536,7 +710,7 @@ const apiServices = {
 		});
 	},
 	sortMarketPlace(sort) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(
 				config.API_ENDPOINT +
 					`/marketPlace/sort/${sort.column}/${sort.sortType}`,
@@ -550,7 +724,7 @@ const apiServices = {
 			)
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -559,7 +733,7 @@ const apiServices = {
 		});
 	},
 	sortForumPosts(sort) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(
 				config.API_ENDPOINT + `/forum/sort/${sort.column}/${sort.sortType}`,
 				{
@@ -572,7 +746,7 @@ const apiServices = {
 			)
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -582,7 +756,7 @@ const apiServices = {
 	},
 	addLike(post_id) {
 		console.log(post_id);
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/post/addLike/${post_id}`, {
 				method: 'PATCH',
 				headers: {
@@ -592,7 +766,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -601,7 +775,7 @@ const apiServices = {
 		});
 	},
 	minusLike(post_id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/post/minusLike/${post_id}`, {
 				method: 'PATCH',
 				headers: {
@@ -611,7 +785,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -620,7 +794,7 @@ const apiServices = {
 		});
 	},
 	addToLikesTracker(info) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/post/addToTracker`, {
 				method: 'POST',
 				headers: {
@@ -631,7 +805,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -640,7 +814,7 @@ const apiServices = {
 		});
 	},
 	deleteFromLikesTracker(info) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/post/deleteFromTracker`, {
 				method: 'DELETE',
 				headers: {
@@ -651,7 +825,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -660,7 +834,7 @@ const apiServices = {
 		});
 	},
 	createPost(newPost) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/addPost', {
 				method: 'POST',
 				headers: {
@@ -671,7 +845,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -680,7 +854,7 @@ const apiServices = {
 		});
 	},
 	editPost(postToUpdate) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/forum/edit', {
 				method: 'PATCH',
 				headers: {
@@ -691,7 +865,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -700,7 +874,7 @@ const apiServices = {
 		});
 	},
 	deletePost(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/forum/posts/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -710,7 +884,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -719,7 +893,7 @@ const apiServices = {
 		});
 	},
 	addComment(newComment) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/comments/addComment', {
 				method: 'POST',
 				headers: {
@@ -730,7 +904,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -739,7 +913,7 @@ const apiServices = {
 		});
 	},
 	deleteComment(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/comments/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -749,7 +923,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -758,7 +932,7 @@ const apiServices = {
 		});
 	},
 	addEvent(newEvent) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/events/addEvent', {
 				method: 'POST',
 				headers: {
@@ -769,7 +943,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -778,7 +952,7 @@ const apiServices = {
 		});
 	},
 	editEvent(eventToUpdate) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/events/edit', {
 				method: 'PATCH',
 				headers: {
@@ -789,7 +963,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -798,7 +972,7 @@ const apiServices = {
 		});
 	},
 	deleteEvent(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/events/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -808,7 +982,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -817,7 +991,7 @@ const apiServices = {
 		});
 	},
 	addJobListing(newEvent) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/jobs/addJob', {
 				method: 'POST',
 				headers: {
@@ -828,7 +1002,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -837,7 +1011,7 @@ const apiServices = {
 		});
 	},
 	editJobListing(listingToUpdate) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/jobs/edit', {
 				method: 'PATCH',
 				headers: {
@@ -848,7 +1022,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -857,7 +1031,7 @@ const apiServices = {
 		});
 	},
 	deleteJobListing(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/jobs/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -867,7 +1041,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -876,7 +1050,7 @@ const apiServices = {
 		});
 	},
 	addRentalListing(newRental) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/rentals/addListing', {
 				method: 'POST',
 				headers: {
@@ -887,7 +1061,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -896,7 +1070,7 @@ const apiServices = {
 		});
 	},
 	editRentalListing(listingToUpdate) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/rentals/edit', {
 				method: 'PATCH',
 				headers: {
@@ -907,7 +1081,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -916,7 +1090,7 @@ const apiServices = {
 		});
 	},
 	deleteRentalListing(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/rentals/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -926,7 +1100,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -935,7 +1109,7 @@ const apiServices = {
 		});
 	},
 	addMarketPlaceListing(newListing) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/marketPlace/addListing', {
 				method: 'POST',
 				headers: {
@@ -946,7 +1120,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -955,7 +1129,7 @@ const apiServices = {
 		});
 	},
 	editMarketPlaceListing(listingToUpdate) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + '/marketPlace/edit', {
 				method: 'PATCH',
 				headers: {
@@ -966,7 +1140,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {
@@ -975,7 +1149,7 @@ const apiServices = {
 		});
 	},
 	deleteMarketPlaceListing(id) {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			fetch(config.API_ENDPOINT + `/marketPlace/delete/${id}`, {
 				method: 'DELETE',
 				headers: {
@@ -985,7 +1159,7 @@ const apiServices = {
 			})
 				.then(res => {
 					!res.ok
-						? res.json().then(err => Promise.reject(resolve(err)))
+						? res.json().then(err => reject(err))
 						: res.json().then(data => resolve(data));
 				})
 				.catch(err => {

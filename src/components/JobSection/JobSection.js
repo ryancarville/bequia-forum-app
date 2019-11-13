@@ -1,19 +1,23 @@
-import React, { useContext } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import formatDate from '../../helpers/formatDate';
 import './JobSection.css';
-import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
+import apiServices from '../../services/apiServices';
 
-export default function JobPage(props) {
-	const context = useContext(ForumContext);
-	const jobTypeId = props.match.params.jobTypeId;
-	const jobPosts = context.state.jobPosts
-		.filter(job => job.job_cat.toString() === jobTypeId)
-		.map(j => (
+export default class JobPage extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			listings: []
+		};
+	}
+
+	makeListings = () => {
+		return this.state.listings.map(j => (
 			<li key={j.id}>
-				<Link to={`/jobs/${jobTypeId}/${j.id}`}>
+				<Link to={`/jobs/${j.job_cat}/${j.id}`}>
 					<h3>{j.title}</h3>
 				</Link>
 				<Truncate
@@ -21,7 +25,7 @@ export default function JobPage(props) {
 					ellipsis={
 						<span>
 							...
-							<Link to={`/jobs/${jobTypeId}/${j.id}`}>Read more</Link>
+							<Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
 						</span>
 					}>
 					<p>{j.description}</p>
@@ -33,22 +37,34 @@ export default function JobPage(props) {
 				</span>
 			</li>
 		));
-	return (
-		<section className='job-section-container'>
-			<Sort sortType='jobs' />
-			<div className='job-section-content'>
-				<ul className='job-section-ul'>
-					{jobPosts ? (
-						jobPosts.length !== 0 ? (
-							jobPosts
-						) : (
-							<p>Currently there are no job postings.</p>
-						)
+	};
+	componentDidMount() {
+		const { job_cat } = this.props.match.params;
+		apiServices.getJobListingsByCat(job_cat).then(listings => {
+			if (listings.error) {
+				this.setState({
+					error: listings.error
+				});
+			} else {
+				this.setState({
+					listings: listings
+				});
+			}
+		});
+	}
+
+	render() {
+		return (
+			<section className='job-section-container'>
+				<Sort sortType='jobs' />
+				<div className='job-section-content'>
+					{this.state.listings.length !== 0 ? (
+						<ul className='job-section-ul'>{this.makeListings()}</ul>
 					) : (
-						<p>Loading...</p>
+						<p id='jobs-section-error'>{this.state.error}</p>
 					)}
-				</ul>
-			</div>
-		</section>
-	);
+				</div>
+			</section>
+		);
+	}
 }

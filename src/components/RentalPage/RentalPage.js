@@ -8,6 +8,7 @@ import TokenServices from '../../services/TokenServices';
 import DeleteButton from '../Buttons/deleteButton';
 import DeletePopUp from '../DeletePopUp/DeletePopUp';
 import EditButton from '../Buttons/Edit';
+import apiServices from '../../services/apiServices';
 
 export default class RentalPage extends Component {
 	constructor(props) {
@@ -33,7 +34,8 @@ export default class RentalPage extends Component {
 			showAirbnb: false,
 			showHomeAway: false,
 			showBooking_com: false,
-			showOther: false
+			showOther: false,
+			dataLoaded: false
 		};
 	}
 	static contextType = ForumContext;
@@ -192,87 +194,92 @@ export default class RentalPage extends Component {
 	};
 
 	componentDidMount() {
-		var r = this.context.state.rentalPosts.filter(
-			p => p.id.toString() === this.props.match.params.rentalId
-		);
-		r = r[0];
-		this.setState({
-			id: r.id,
-			rental_cat: r.rental_cat,
-			user_id: r.user_id,
-			title: r.title,
-			description: r.description,
-			location: r.location,
-			price: r.price,
-			contact_name: r.contact_name,
-			contact_email: r.contact_email,
-			contact_phone: r.contact_phone,
-			airbnb: r.airbnb,
-			homeaway: r.homeaway,
-			booking_dot_com: r.booking_dot_com,
-			other_site: r.other_site,
-			date_posted: r.date_posted
+		const { rentalId } = this.props.match.params;
+		apiServices.getRentalListing(rentalId).then(r => {
+			this.setState({
+				id: r.id,
+				rental_cat: r.rental_cat,
+				user_id: r.user_id,
+				title: r.title,
+				description: r.description,
+				location: r.location,
+				price: r.price,
+				contact_name: r.contact_name,
+				contact_email: r.contact_email,
+				contact_phone: r.contact_phone,
+				airbnb: r.airbnb,
+				homeaway: r.homeaway,
+				booking_dot_com: r.booking_dot_com,
+				other_site: r.other_site,
+				date_posted: r.date_posted,
+				dataLoaded: true
+			});
 		});
 	}
 	render() {
 		if (this.state.redirect) {
 			return <Redirect to={'/rentals'} />;
 		}
-		return (
-			<section className='rental-page-container'>
-				<div className='rental-page-content'>
-					{this.state.showDeletePopUp ? (
-						<DeletePopUp
-							rentalTitle={this.state.title}
-							showDeletePopUp={this.showDeletePopUp}
-							handleDelete={this.handleDelete}
-						/>
-					) : null}
-					{this.state.showEditPopUp ? (
-						<RentalForm
-							type={'edit'}
-							state={this.state}
-							handleRentalType={this.handleRentalType}
-							handleTitle={this.handleTitle}
-							handleDescription={this.handleDescription}
-							handleLocation={this.handleLocation}
-							handlePrice={this.handlePrice}
-							handleShowAirBnbSiteInput={this.handleShowAirBnbSiteInput}
-							handleShowHomeAwaySiteInput={this.handleShowHomeAwaySiteInput}
-							handleShowBookingSiteInput={this.handleShowBookingSiteInput}
-							handleShowOtherSiteInput={this.handleShowOtherSiteInput}
-							handleAirbnb={this.handleAirbnb}
-							handleHomeAway={this.handleHomeAway}
-							handleBooking_com={this.handleBooking_com}
-							handleOtherSite={this.handleOtherSite}
-							handleContactName={this.handleContactName}
-							handleContactEmail={this.handleContactEmail}
-							handleContactPhone={this.handleContactPhone}
-							handleShowPreview={this.handleSubmit}
-							resetState={this.resetState}
-							goBack={this.goBack}
-						/>
-					) : (
-						<ListingBody post={this.state} />
-					)}
+		if (this.state.dataLoaded) {
+			return (
+				<section className='rental-page-container'>
+					<div className='rental-page-content'>
+						{this.state.showDeletePopUp ? (
+							<DeletePopUp
+								rentalTitle={this.state.title}
+								showDeletePopUp={this.showDeletePopUp}
+								handleDelete={this.handleDelete}
+							/>
+						) : null}
+						{this.state.showEditPopUp ? (
+							<RentalForm
+								type={'edit'}
+								state={this.state}
+								handleRentalType={this.handleRentalType}
+								handleTitle={this.handleTitle}
+								handleDescription={this.handleDescription}
+								handleLocation={this.handleLocation}
+								handlePrice={this.handlePrice}
+								handleShowAirBnbSiteInput={this.handleShowAirBnbSiteInput}
+								handleShowHomeAwaySiteInput={this.handleShowHomeAwaySiteInput}
+								handleShowBookingSiteInput={this.handleShowBookingSiteInput}
+								handleShowOtherSiteInput={this.handleShowOtherSiteInput}
+								handleAirbnb={this.handleAirbnb}
+								handleHomeAway={this.handleHomeAway}
+								handleBooking_com={this.handleBooking_com}
+								handleOtherSite={this.handleOtherSite}
+								handleContactName={this.handleContactName}
+								handleContactEmail={this.handleContactEmail}
+								handleContactPhone={this.handleContactPhone}
+								handleShowPreview={this.handleSubmit}
+								resetState={this.resetState}
+								goBack={this.goBack}
+							/>
+						) : this.state.dataLoaded ? (
+							<ListingBody post={this.state} />
+						) : (
+							<p>Loading...</p>
+						)}
 
-					<span className='rental-edit-buttons'>
-						{TokenServices.getAuthToken() ? (
-							this.context.user.id === this.state.user_id ? (
-								<DeleteButton showDeletePopUp={this.showDeletePopUp} />
-							) : null
-						) : null}
-						{TokenServices.getAuthToken() ? (
-							this.context.user.id === this.state.user_id ? (
-								<EditButton
-									type={'rental'}
-									showEditPopUp={this.showEditPopUp}
-								/>
-							) : null
-						) : null}
-					</span>
-				</div>
-			</section>
-		);
+						<span className='rental-edit-buttons'>
+							{TokenServices.getAuthToken() ? (
+								this.context.user.id === this.state.user_id ? (
+									<DeleteButton showDeletePopUp={this.showDeletePopUp} />
+								) : null
+							) : null}
+							{TokenServices.getAuthToken() ? (
+								this.context.user.id === this.state.user_id ? (
+									<EditButton
+										type={'rental'}
+										showEditPopUp={this.showEditPopUp}
+									/>
+								) : null
+							) : null}
+						</span>
+					</div>
+				</section>
+			);
+		}
+		return <p>Loading...</p>;
 	}
 }

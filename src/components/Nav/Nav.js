@@ -20,11 +20,11 @@ class Nav extends Component {
 					<DesktopSiteNav />
 					<div className='rightNavInfo'>
 						<Link to='/signup'>
-							<i className='fas fa-user-plus'></i>
+							<i className='fas fa-user-plus' samesite='none'></i>
 						</Link>
 
 						<Link to='/login'>
-							<i className='fas fa-sign-in-alt'></i>
+							<i className='fas fa-sign-in-alt' samesite='none'></i>
 						</Link>
 					</div>
 				</div>
@@ -46,10 +46,10 @@ class Nav extends Component {
 					<DesktopSiteNav />
 					<div className='rightNavInfo'>
 						<Link to='/dashboard'>
-							<i className='fas fa-tachometer-alt'></i>
+							<i className='fas fa-tachometer-alt' samesite='none'></i>
 						</Link>
 						<Link to='/' onClick={() => TokenServices.clearAuthToken()}>
-							<i className='fas fa-sign-out-alt'></i>
+							<i className='fas fa-sign-out-alt' samesite='none'></i>
 						</Link>
 					</div>
 				</div>

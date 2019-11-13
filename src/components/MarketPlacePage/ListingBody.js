@@ -3,7 +3,6 @@ import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import formatDate from '../../helpers/formatDate';
 export default function ListingBody(props) {
 	const l = props.state;
-	console.log(l);
 	return (
 		<>
 			<h3>{l.title}</h3>

@@ -8,23 +8,23 @@ export default function Listings(props) {
 		return (
 			<li key={d.id} className='directory-listing'>
 				<h4>{fullName}</h4>
-				{d.address ? <li>Address: {d.address}</li> : null}
-				{d.city ? <li>City: {d.city}</li> : null}
-				{d.country ? <li>Country: {d.country}</li> : null}
+				{d.address ? <p>Address: {d.address}</p> : null}
+				{d.city ? <p>City: {d.city}</p> : null}
+				{d.country ? <p>Country: {d.country}</p> : null}
 				{d.email ? (
-					<li>
+					<p>
 						Email: <a href={`mailto:${d.email}`}>{d.email}</a>
-					</li>
+					</p>
 				) : null}
 
-				{d.phone ? <li>Telephone: {formatPhoneNumberIntl(d.phone)}</li> : null}
+				{d.phone ? <p>Telephone: {formatPhoneNumberIntl(d.phone)}</p> : null}
 				{d.website ? (
-					<li>
+					<p>
 						Website:{' '}
 						<a href={d.website} target='_blank' rel='noopener noreferrer'>
 							{d.website}
 						</a>
-					</li>
+					</p>
 				) : null}
 				{props.user_id === d.user_id ? (
 					<DeleteButton showDeletePopUp={props.showDeletePopUp} id={d.id} />

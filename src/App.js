@@ -157,14 +157,7 @@ class App extends Component {
 	getEvents = () => {
 		apiServices.getEvents().then(data => this.setState({ events: data }));
 	};
-	getJobCatagories = () => {
-		apiServices
-			.getJobCatagories()
-			.then(data => this.setState({ jobCatagories: data }));
-	};
-	getJobPosts = () => {
-		apiServices.getJobPosts().then(data => this.setState({ jobPosts: data }));
-	};
+
 	getRentalCatagories = () => {
 		apiServices
 			.getRentalCatagories()
@@ -223,14 +216,12 @@ class App extends Component {
 		this.getLikesTracker();
 		this.getNewestPosts();
 		this.getEvents();
-		this.getJobCatagories();
-		this.getJobPosts();
+
 		this.getRentalCatagories();
 		this.getRentalListings();
 		this.getMarketPlaceCatagories();
 		this.getMarketPlaceListings();
 		this.getDirectory();
-		this.getComments();
 	};
 	componentDidMount() {
 		this.getForumSectionTitles();
@@ -239,14 +230,13 @@ class App extends Component {
 		this.getLikesTracker();
 		this.getNewestPosts();
 		this.getEvents();
-		this.getJobCatagories();
-		this.getJobPosts();
+
 		this.getRentalCatagories();
 		this.getRentalListings();
 		this.getMarketPlaceCatagories();
 		this.getMarketPlaceListings();
 		this.getDirectory();
-		this.getComments();
+
 		const token = TokenServices.getAuthToken();
 		if (token) {
 			apiServices

@@ -28,6 +28,9 @@
 	text-decoration: none;
 	margin: 0;
 }
+#rentals-section-error {
+	text-align: center;
+}
 @media only screen and (min-width: 700px) {
 	.rentals-section-container {
 		margin-top: 20px;

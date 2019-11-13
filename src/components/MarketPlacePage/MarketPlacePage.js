@@ -8,6 +8,7 @@ import TokenServices from '../../services/TokenServices';
 import MarketPlaceListingForm from '../CreateMarketPlaceListing/MarketPlaceListingForm';
 import ForumContext from '../../ForumContext';
 import ListingBody from './ListingBody';
+import apiServices from '../../services/apiServices';
 export default class MarketPlacePage extends Component {
 	constructor(props) {
 		super(props);
@@ -138,20 +139,20 @@ export default class MarketPlacePage extends Component {
 	};
 	componentDidMount() {
 		const { id } = this.props.location.state;
-		var l = this.context.state.marketPlacePosts.filter(l => l.id === id);
-		l = l[0];
-		this.setState({
-			id: l.id,
-			user_id: l.user_id,
-			market_place_cat: l.market_placec_at,
-			title: l.title,
-			description: l.description,
-			price: l.price,
-			location: l.location,
-			contact_name: l.contact_name,
-			contact_email: l.contact_email,
-			contact_phone: l.contact_phone,
-			date_posted: l.date_posted
+		apiServices.getMarketPlacePostsById(id).then(l => {
+			this.setState({
+				id: l.id,
+				user_id: l.user_id,
+				market_place_cat: l.market_placec_at,
+				title: l.title,
+				description: l.description,
+				price: l.price,
+				location: l.location,
+				contact_name: l.contact_name,
+				contact_email: l.contact_email,
+				contact_phone: l.contact_phone,
+				date_posted: l.date_posted
+			});
 		});
 	}
 

@@ -26,12 +26,12 @@ export default class MobileNav extends Component {
 					<ul className='mobile-nav-bar'>
 						<li>
 							<Link to='/messageBoard' className='mobile-nav-link'>
-								<i className='fas fa-align-justify'></i>
+								<i className='fas fa-align-justify' samesite='none'></i>
 							</Link>
 						</li>
 						<li>
 							<Link to='/new-post' className='mobile-nav-link'>
-								<i className='far fa-newspaper'></i>
+								<i className='far fa-newspaper' samesite='none'></i>
 							</Link>
 						</li>
 
@@ -41,12 +41,12 @@ export default class MobileNav extends Component {
 
 						<li>
 							<Link to='/events' className='mobile-nav-link'>
-								<i className='far fa-calendar-alt'></i>
+								<i className='far fa-calendar-alt' samesite='none'></i>
 							</Link>
 						</li>
 						<li>
 							<Link to='/directory' className='mobile-nav-link'>
-								<i className='far fa-address-book'></i>
+								<i className='far fa-address-book' samesite='none'></i>
 							</Link>
 						</li>
 					</ul>

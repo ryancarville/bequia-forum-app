@@ -34,13 +34,19 @@ export default class SearchInput extends Component {
 		});
 
 		const { board_id, term } = this.state;
-		const searchCreds = { board_id, term };
+		sessionStorage.setItem('serachTerm', term);
+		const termCache = sessionStorage.getItem('serachTerm');
+		var searchCreds = { board_id, term };
+		if (term === undefined) {
+			searchCreds = { board_id, termCache };
+		}
 		apiServices.searchPosts(searchCreds).then(data => {
 			console.log(data);
 			if (data.length !== 0) {
 				this.setState({
 					term: ''
 				});
+				console.log(data);
 				this.context.searchResults(data);
 			} else {
 				this.setState({
@@ -81,19 +87,18 @@ export default class SearchInput extends Component {
 							value={this.state.term}
 							onChange={this.handleSearchTerm}
 						/>
-					
-							<select
-								name='catagories'
-								id='search-catagories'
-								value={this.state.board_id}
-								onChange={this.handleCat}>
-								<option value='null'>Search Entire Forum</option>
-								{this.makeOptions(context.state.forum)}
-							</select>
-							<button id='search-submit' type='submit' value='Search'>
-								<i className='fas fa-search'></i>
-							</button>
-						
+
+						<select
+							name='catagories'
+							id='search-catagories'
+							value={this.state.board_id}
+							onChange={this.handleCat}>
+							<option value='null'>Search Entire Forum</option>
+							{this.makeOptions(context.state.forum)}
+						</select>
+						<button id='search-submit' type='submit' value='Search'>
+							<i className='fas fa-search' samesite='none'></i>
+						</button>
 					</form>
 				)}
 			</ForumContext.Consumer>

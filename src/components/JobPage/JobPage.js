@@ -9,6 +9,7 @@ import DeletePopUp from '../DeletePopUp/DeletePopUp';
 import EditButton from '../Buttons/Edit';
 import JobListingForm from '../CreateJobListing/JobListingForm';
 import ForumContext from '../../ForumContext';
+import apiServices from '../../services/apiServices';
 
 class JobPage extends Component {
 	constructor(props) {
@@ -141,24 +142,29 @@ class JobPage extends Component {
 		});
 	};
 	componentDidMount() {
-		var { id } = this.state;
-		id = parseInt(id);
-		const currJob = this.context.state.jobPosts.filter(j => j.id === id);
-		console.log(this.context.state.jobPosts);
-		console.log(currJob[0]);
-		this.setState({
-			user_id: currJob[0].user_id,
-			job_cat: currJob[0].job_cat,
-			title: currJob[0].title,
-			description: currJob[0].description,
-			location: currJob[0].location,
-			employment: currJob[0].employment,
-			contact_name: currJob[0].contact_name,
-			contact_email: currJob[0].contact_email,
-			contact_phone: currJob[0].contact_phone,
-			website: currJob[0].website,
-			date_posted: currJob[0].date_posted,
-			loaded: true
+		var { jobId } = this.props.match.params;
+		apiServices.getJobListingById(jobId).then(listing => {
+			console.log(listing);
+			if (listing.error) {
+				this.setState({
+					error: listing.error
+				});
+			} else {
+				this.setState({
+					user_id: listing.user_id,
+					job_cat: listing.jobCat,
+					title: listing.title,
+					description: listing.description,
+					location: listing.location,
+					employment: listing.employment,
+					contact_name: listing.contact_name,
+					contact_email: listing.contact_email,
+					contact_phone: listing.contact_phone,
+					website: listing.website,
+					date_posted: listing.dateposted,
+					loaded: true
+				});
+			}
 		});
 	}
 	componentWillUnmount() {
@@ -201,27 +207,35 @@ class JobPage extends Component {
 							/>
 						) : (
 							<div className='job-page-content'>
-								<h3>{j.title}</h3>
-								<p>Employment Type: {j.employment}</p>
-
-								<p>Where: {j.location}</p>
-								<h4>Job Description</h4>
-								<p>{j.description}</p>
-								<span>
-									<h4>Contact Information</h4>
-									<p>{j.contact_name}</p>
-									<a
-										href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
-										{j.contact_email}
-									</a>
-									{j.contactphone ? (
-										<p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
-									) : null}
-									<a href={j.website} target='_blank' rel='noopener noreferrer'>
-										{j.website}
-									</a>
-								</span>
-								<p>Posted on: {formatDate(j.date_posted)}</p>
+								{this.state.loaded ? (
+									<>
+										<h3>{j.title}</h3>
+										<p>Employment Type: {j.employment}</p>
+										<p>Where: {j.location}</p>
+										<h4>Job Description</h4>
+										<p>{j.description}</p>
+										<span>
+											<h4>Contact Information</h4>
+											<p>{j.contact_name}</p>
+											<a
+												href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}>
+												{j.contact_email}
+											</a>
+											{j.contactphone ? (
+												<p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
+											) : null}
+											<a
+												href={j.website}
+												target='_blank'
+												rel='noopener noreferrer'>
+												{j.website}
+											</a>
+										</span>
+										<p>Posted on: {formatDate(j.date_posted)}</p>
+									</>
+								) : (
+									<p>Loading...</p>
+								)}
 								{TokenServices.getAuthToken() ? (
 									context.user.id === j.user_id ? (
 										<DeleteButton

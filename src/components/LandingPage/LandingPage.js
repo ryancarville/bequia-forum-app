@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LandingPage.css';
-import fallingCoconut from './fallingCoconut';
 
 export default function LandingPage() {
 	return (

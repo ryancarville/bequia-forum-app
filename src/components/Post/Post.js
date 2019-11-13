@@ -5,9 +5,6 @@ import commentsIcon from '../Icons/comment';
 import './Post.css';
 export default function Post(props) {
 	const p = props.post;
-	const comments = props.comments;
-	const numOfComments = comments.filter(comment => comment.post_id === p.id)
-		.length;
 	return (
 		<section>
 			<header>
@@ -21,7 +18,7 @@ export default function Post(props) {
 					{like} {'  '} {p.likes}
 				</p>
 				<p>
-					{commentsIcon} {numOfComments}
+					{commentsIcon} {props.numOfComments}
 				</p>
 			</span>
 		</section>

@@ -40,12 +40,15 @@ export default class DesktopSiteNav extends Component {
 							<p>Directory</p>
 						</Link>
 					</li>
-					{TokenServices.getAuthToken() ? <CreateContentButton forumType='desktop'/> : null}
+					{TokenServices.getAuthToken() ? (
+						<CreateContentButton forumType='desktop' />
+					) : null}
 					<li>
 						{!this.state.showSearchForm ? (
 							<i
 								className='fas fa-search'
-								onClick={() => this.showSearchForm()}></i>
+								onClick={() => this.showSearchForm()}
+								samesite='none'></i>
 						) : null}
 						{this.state.showSearchForm ? (
 							<SearchInput closeNavSearch={this.showSearchForm} />

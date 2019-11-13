@@ -46,6 +46,10 @@
 	padding: 0px;
 	margin: 0px;
 }
+
+.directory-listing p {
+	margin: 0px;
+}
 @media only screen and (min-width: 700px) {
 	.directory-container {
 		margin-top: 20px;

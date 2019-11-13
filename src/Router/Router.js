@@ -53,25 +53,25 @@ export default class Router extends Component {
 					<Route path='/new-post' component={NewPosts} exact />
 
 					<Route
-						path='/messageBoard/:forumCatId'
+						path='/messageBoard/:forum_cat'
 						component={ForumCatSections}
 						exact
 					/>
 					<Route
-						path='/messageBoard/:forumCatId/:forumId'
+						path='/messageBoard/:forum_cat/:board_id'
 						component={ForumSection}
 						exact
 					/>
 					<Route
-						path='/messageBoard/:forumCatId/:forumId/:postId'
+						path='/messageBoard/:forum_cat/:board_id/:postId'
 						render={() => <PostPage posts={this.context.state.posts} />}
 						exact
 					/>
 					<Route path='/messageBoard' component={Forum} exact />
 
 					<Route path='/jobs' component={Jobs} exact />
-					<Route path='/jobs/:jobTypeId' component={JobSection} exact />
-					<Route path='/jobs/:jobTypeId/:jobId' component={JobPage} exact />
+					<Route path='/jobs/:job_cat' component={JobSection} exact />
+					<Route path='/jobs/:job_cat/:jobId' component={JobPage} exact />
 					<Route path='/createJobListing' component={CreateJobListing} exact />
 					<Route path='/createPost' component={CreatePost} exact />
 					<Route path='/events' component={Events} exact />
@@ -79,11 +79,7 @@ export default class Router extends Component {
 					<Route path='/events/:eventId' component={EventPage} exact />
 					<Route path='/directory' component={Directory} exact />
 					<Route path='/rentals' component={Rentals} exact />
-					<Route
-						path='/rentals/:rentalTypeId'
-						component={RentalSection}
-						exact
-					/>
+					<Route path='/rentals/:rental_cat' component={RentalSection} exact />
 					<Route
 						path='/rentals/:rentalTypeId/:rentalId'
 						component={RentalPage}

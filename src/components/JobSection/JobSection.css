@@ -2,7 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	margin-top: 100px;
+	margin-top: 80px;
 	opacity: 0;
 	animation: fadeIn 2s ease-in forwards;
 }
@@ -28,7 +28,13 @@
 .job-section-content ul li a {
 	text-decoration: none;
 }
+#jobs-section-error {
+	text-align: center;
+}
 @media only screen and (min-width: 700px) {
+	.job-section-container {
+		margin-top: 20px;
+	}
 	.job-section-content ul li {
 		font-size: 16px;
 		padding: 15px;

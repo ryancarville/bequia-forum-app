@@ -11,19 +11,22 @@ import DeletePopUp from '../DeletePopUp/DeletePopUp';
 import LikeButtons from './likeButton';
 import CommentButton from './commentButton';
 import EditButtons from './editButtons';
+import apiServices from '../../services/apiServices';
 
 class PostPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: '',
+			id: this.props.match.params.postId,
 			user_id: '',
 			title: '',
 			content: '',
 			user_name: '',
-			date_posted: new Date(),
+			date_posted: '',
 			likes: '',
+			numOfComments: '',
 			didLike: false,
+			dataLoaded: false,
 			redirectToForum: false
 		};
 	}
@@ -104,24 +107,41 @@ class PostPage extends Component {
 			});
 		}
 	};
-	getPost = context => {
-		const { postId } = this.props.match.params;
-		var post = context.state.posts.filter(p => p.id.toString() === postId);
-		post = post[0];
-		if (post) {
-			this.setState({
-				id: post.id,
-				user_id: post.user_id,
-				board_id: post.board_id,
-				title: post.title,
-				content: post.content,
-				user_name: post.user_name,
-				date_posted: post.date_posted,
-				likes: post.likes
+
+	componentDidMount() {
+		const { id } = this.state;
+		apiServices
+			.getPostById(id)
+			.then(post => {
+				this.setState({
+					id: post.id,
+					user_id: post.user_id,
+					board_id: post.board_id,
+					title: post.title,
+					content: post.content,
+					user_name: post.user_name,
+					date_posted: post.date_posted,
+					likes: post.likes
+				});
+			})
+			.then(() => {
+				apiServices
+					.getNumOfCommentsByPostId(id)
+					.then(numOfComments => {
+						this.setState({
+							numOfComments: numOfComments[0].count,
+							dataLoaded: true
+						});
+					})
+					.then(() => {
+						apiServices.getCommentsByPostId(id).then(comments => {
+							this.setState({
+								comments: comments
+							});
+						});
+					});
 			});
-		}
-		return post;
-	};
+	}
 
 	render() {
 		if (this.state.redirectToForum) {
@@ -131,17 +151,6 @@ class PostPage extends Component {
 		return (
 			<section className='post-container'>
 				<div className='post-content'>
-					<ForumContext.Consumer>
-						{context =>
-							!this.state.title
-								? this.postLiked(
-										this.getPost(context),
-										context.user.id,
-										context
-								  )
-								: null
-						}
-					</ForumContext.Consumer>
 					{TokenService.getAuthToken() ? (
 						this.context.user.id === this.state.user_id ? (
 							<EditButtons
@@ -165,12 +174,10 @@ class PostPage extends Component {
 							handleEditSubmit={this.handleEditSubmit}
 							closeEdit={this.showPostEdit}
 						/>
+					) : this.state.dataLoaded ? (
+						<Post post={this.state} numOfComments={this.state.numOfComments} />
 					) : (
-						<ForumContext.Consumer>
-							{context => (
-								<Post post={this.state} comments={context.state.comments} />
-							)}
-						</ForumContext.Consumer>
+						<p>Loading...</p>
 					)}
 					{TokenService.getAuthToken() ? (
 						<span className='comment-like-button-container'>
@@ -188,7 +195,9 @@ class PostPage extends Component {
 							closeAddComment={this.handleComment}
 						/>
 					) : null}
-					<Comments forumId={this.state.board_id} postId={this.state.id} />
+					{this.state.comments ? (
+						<Comments comments={this.state.comments} />
+					) : null}
 				</div>
 			</section>
 		);
