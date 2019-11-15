@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import ForumContext from '../../ForumContext';
 import './AddComment.css';
+import apiServices from '../../services/apiServices';
 
 export default class AddComment extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			post_id: this.props.postId,
+			post_id: this.props.post_id,
 			user_id: null,
 			content: '',
 			date_posted: new Date().toISOString().slice(0, 10),
 			posted: false
 		};
 	}
-	static contextType = ForumContext;
+
 	handleComment = e => {
 		this.setState({
 			content: e.target.value
@@ -22,14 +23,21 @@ export default class AddComment extends Component {
 	handleCommentSubmit = e => {
 		e.preventDefault();
 		var { post_id } = this.state;
-		post_id = parseInt(post_id);
+		post_id = parseInt(post_id, 10);
 		const { user_id, content, date_posted } = this.state;
 		const newComment = { user_id, content, date_posted, post_id };
-		this.context.addComment(newComment);
-		this.setState({
-			posted: true
-		});
+		apiServices
+			.addComment(newComment)
+			.then(() => {
+				this.props.updateComments();
+			})
+			.then(() => {
+				this.setState({
+					posted: true
+				});
+			});
 	};
+	static contextType = ForumContext;
 	componentDidMount() {
 		this.setState({
 			user_id: this.context.user.id
@@ -44,6 +52,7 @@ export default class AddComment extends Component {
 						<textarea
 							name='addComment'
 							id='add-comment'
+							value={this.state.content}
 							placeholder='Enter comment here...'
 							autoFocus
 							required

@@ -34,7 +34,12 @@ export default function DeletePopUp(props) {
 				<h3>Are you sure you want to delete your comment?</h3>
 			) : null}
 			<span>
-				<button type='button' onClick={props.handleDelete}>
+				<button
+					type='button'
+					onClick={() => {
+						props.showDeletePopUp();
+						props.handleDelete(props.id);
+					}}>
 					Yes
 				</button>
 				<button type='button' onClick={props.showDeletePopUp}>

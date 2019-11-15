@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './ForumCatSections.css';
-import ForumContext from '../../ForumContext';
 import apiServices from '../../services/apiServices';
 
 export default class ForumCatSections extends Component {

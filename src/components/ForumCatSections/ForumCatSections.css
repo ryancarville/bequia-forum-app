@@ -1,68 +1,85 @@
 .forum-cat-sections-container {
-	width: 100%;
-	margin-top: 80px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  height: auto;
+  margin-top: -30px;
+  padding-top: 80px;
+  padding-bottom: 150px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+  background-image: url("./tropical-leaves.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
 }
 .forum-cat-sections-content {
-	width: 100%;
-	font-size: 20px;
-	text-align: center;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
 }
 
 .forum-cat-sections-content header h3 {
-	margin: 0;
-	margin-top: 10px;
+  margin: 0;
+  margin-top: 10px;
+  color: yellow;
+  font-size: 30px;
 }
 .forum-cat-sections-content ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto;
 }
 
 .section-cat-item {
-	width: 90%;
-	height: auto;
-	padding: 10px;
-	margin-top: 20px;
-	text-align: center;
-	border: 1px solid blue;
-	border-radius: 10px;
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid blue;
+  background-color: white;
+  border-radius: 10px;
+}
+.section-cat-item h4 {
+  margin: 0px;
+  margin-top: 10px;
 }
 .section-cat-item a {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	color: black;
-	text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  text-decoration: none;
 }
 .section-text {
-	width: 60%;
-	text-align: left;
+  width: 60%;
+  text-align: left;
 }
 .thread-count {
-	font-size: 20px;
-	margin: 10px;
-	width: 50px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  font-size: 20px;
+  margin: 10px;
+  width: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #wave-loader-gif {
-	width: 30px;
-	vertical-align: middle;
+  width: 30px;
+  vertical-align: middle;
 }
 
 @media only screen and (min-width: 700px) {
-	.forum-cat-sections-container {
-		margin-top: 50px;
-	}
-	.section-cat-item {
-		font-size: 16px;
-		padding-top: 0px;
-		padding-bottom: 0;
-	}
+  .forum-cat-sections-content ul {
+    grid-template-columns: auto auto auto;
+  }
+  .section-cat-item {
+    width: 450px;
+    height: 150px;
+    font-size: 16px;
+    padding-top: 0px;
+    padding-bottom: 0;
+  }
 }

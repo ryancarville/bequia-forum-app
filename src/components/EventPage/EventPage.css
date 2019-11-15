@@ -1,46 +1,108 @@
 .event-page-container {
-	width: 100%;
-	margin-top: 30px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
 .event-page-content {
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .event-page-content h3 {
-	font-size: 30px;
+  font-size: 30px;
 }
 .event-page-content p {
-	font-size: 20px;
+  font-size: 20px;
 }
 .event-page-content button {
-	cursor: pointer;
-	width: 150px;
-	height: 35px;
-	margin: 10px;
-	font-size: 20px;
+  cursor: pointer;
+  width: 150px;
+  height: 35px;
+  margin: 10px;
+  font-size: 20px;
 }
 #event-description {
-	font-size: 20px;
-	width: 100%;
-	border: none;
+  font-size: 20px;
+  width: 100%;
+  border: none;
 }
 .delete-event-pop-up {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }
 .delete-event-pop-up button {
-	cursor: pointer;
-	width: 150px;
-	height: 35px;
-	margin: 10px;
-	font-size: 20px;
+  cursor: pointer;
+  width: 150px;
+  height: 35px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.event-edit-buttons {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.event-edit-buttons button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 700px) {
+  .event-page-container {
+    width: 100%;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+  }
+  .event-page-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .event-page-content h3 {
+    font-size: 30px;
+  }
+  .event-page-content p {
+    font-size: 20px;
+  }
+  .event-page-content button {
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    margin: 10px;
+    font-size: 20px;
+  }
+  #event-description {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+  }
+  .delete-event-pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  .delete-event-pop-up button {
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    margin: 10px;
+    font-size: 20px;
+  }
 }

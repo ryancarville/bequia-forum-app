@@ -1,44 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const ForumContext = React.createContext({
-	state: {},
-	user: {},
-	setAppState: () => {},
-	singUp: () => {},
-	login: () => {},
-	getUserData: () => {},
-	getForumSectionTitles: () => {},
-	getForum: () => {},
-	getPosts: () => {},
-	searchResults: () => {},
-	getLikesTracker: () => {},
-	getNewestPosts: () => {},
-	getDirectory: () => {},
-	setDirectoryState: () => {},
-	setJobsState: () => {},
-	setRentalsState: () => {},
-	setMarketPlaceState: () => {},
-	setForumPostsState: () => {},
-	handleAddLike: () => {},
-	handleAddToLikesTracker: () => {},
-	handleMinusLike: () => {},
-	handleDeleteFromLikesTracker: () => {},
-	creatPost: () => {},
-	updatePost: () => {},
-	deletePost: () => {},
-	addComment: () => {},
-	deleteComment: () => {},
-	createEvent: () => {},
-	editEvent: () => {},
-	deleteEvent: () => {},
-	createJobListing: () => {},
-	editJobListing: () => {},
-	createRentalListing: () => {},
-	editRentalListing: () => {},
-	deleteRentalListing: () => {},
-	createMarketPlaceListing: () => {},
-	editMarketPlaceListing: () => {},
-	deleteMarketPlaceListing: () => {}
+  user: {},
+  setUserData: () => {},
+  singUp: () => {},
+  login: () => {},
+  getUserData: () => {}
 });
 
 export default ForumContext;

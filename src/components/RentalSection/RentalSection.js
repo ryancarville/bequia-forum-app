@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import formatDate from '../../helpers/formatDate';
 import './RentalSection.css';
-import ForumContext from '../../ForumContext';
 import Sort from '../Sort/Sort';
 import apiServices from '../../services/apiServices';
 
@@ -16,19 +15,18 @@ export default class RentalSection extends Component {
 		};
 	}
 	componentDidMount() {
-		apiServices
-			.getRentalListings(this.props.match.params.rental_cat)
-			.then(listings => {
-				if (listings.error) {
-					this.setState({ error: listings.error });
-				} else {
-					this.setState({ listings: listings });
-				}
-			});
+		const { rental_cat } = this.props.match.params;
+		apiServices.getRentalListings(rental_cat).then(listings => {
+			if (listings.error) {
+				this.setState({ error: listings.error });
+			} else {
+				this.setState({ listings: listings });
+			}
+		});
 	}
 
-	makeRentalListings = () =>
-		this.state.listings.map(r => (
+	makeRentalListings = () => {
+		return this.state.listings.map(r => (
 			<li key={r.id}>
 				<Link to={`/rentals/${r.rental_cat}/${r.id}`}>
 					<h3>{r.title}</h3>
@@ -51,6 +49,7 @@ export default class RentalSection extends Component {
 				</span>
 			</li>
 		));
+	};
 
 	render() {
 		return (

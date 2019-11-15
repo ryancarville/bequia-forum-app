@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Forum.css';
-
-import ForumContext from '../../ForumContext';
 import apiServices from '../../services/apiServices';
 
 export default class Forum extends Component {

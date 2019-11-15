@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './MarketPlace.css';
 import CreateContentButton from '../CreateContentButton/CreateContentButton';
 import TokenService from '../../services/TokenServices';
-import ForumContext from '../../ForumContext';
 import apiServices from '../../services/apiServices';
 
 export default class MarketPlace extends Component {
