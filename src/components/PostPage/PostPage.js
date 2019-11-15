@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import "./PostPage.css";
 import Post from "../Post/Post";
 import ForumContext from "../../ForumContext";
-import TokenService from "../../services/TokenServices";
+import TokenServices from "../../services/TokenServices";
 import AddComment from "../AddComment/AddComment";
 import EditPost from "../EditPost/EditPost";
 import Comments from "../Comments/Comments";
@@ -136,7 +136,8 @@ class PostPage extends Component {
 
   componentDidMount() {
     const { id } = this.state;
-    TokenService.getAuthToken()
+    this.context.verifyLoginOnReload();
+    TokenServices.getAuthToken()
       ? this.setState({
           loggedIn: true
         })
@@ -146,6 +147,7 @@ class PostPage extends Component {
     apiServices
       .getPostById(id)
       .then(post => {
+        console.log(post);
         this.setState({
           id: post.id,
           user_id: post.user_id,

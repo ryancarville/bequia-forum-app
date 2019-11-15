@@ -38,24 +38,33 @@ class App extends Component {
       loggedIn: false
     });
   };
-  componentDidMount() {
+  verifyLoginOnReload = () => {
+    console.log("verify ran");
     const token = TokenServices.getAuthToken();
     if (token) {
       apiServices.verifyToken(token).then(data => {
+        this.setState({
+          user: {
+            id: data.user_id
+          }
+        });
         apiServices.getUserData(data.user_id).then(user => {
           this.setState({
-            loggedIn: true,
             user: {
-              id: user.id,
+              id: this.state.user.id,
               name: user.first_name + " " + user.last_name,
               lastLogin: user.last_login
-            }
+            },
+            loggedIn: true
           });
         });
       });
     } else {
       TokenServices.clearAuthToken();
     }
+  };
+  componentDidMount() {
+    this.verifyLoginOnReload();
   }
 
   render() {
@@ -80,7 +89,8 @@ class App extends Component {
       signUp: this.signUp,
       login: this.login,
       getUserData: this.getUserData,
-      user: this.state.user
+      user: this.state.user,
+      verifyLoginOnReload: this.verifyLoginOnReload
     };
     return (
       <ForumContext.Provider value={contextValue}>

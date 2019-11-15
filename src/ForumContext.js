@@ -5,7 +5,8 @@ const ForumContext = React.createContext({
   setUserData: () => {},
   singUp: () => {},
   login: () => {},
-  getUserData: () => {}
+  getUserData: () => {},
+  verifyLoginOnReload: () => {}
 });
 
 export default ForumContext;
