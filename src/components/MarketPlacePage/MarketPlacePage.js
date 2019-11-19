@@ -4,7 +4,6 @@ import "./MarketPlacePage.css";
 import DeleteButton from "../Buttons/deleteButton";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import EditButton from "../Buttons/Edit";
-import TokenServices from "../../services/TokenServices";
 import MarketPlaceListingForm from "../CreateMarketPlaceListing/MarketPlaceListingForm";
 import ForumContext from "../../ForumContext";
 import ListingBody from "./ListingBody";
@@ -25,6 +24,7 @@ export default class MarketPlacePage extends Component {
       contact_email: "",
       contact_phone: "",
       date_posted: new Date().toISOString(),
+      showEditButtons: true,
       showEditPopUp: false,
       showDeletePopUp: false,
       success: false
@@ -116,50 +116,64 @@ export default class MarketPlacePage extends Component {
       contact_phone,
       date_posted
     };
-    this.context.editMarketPlaceListing(newListing);
-    this.setState({
-      showEditPopUp: !this.state.showEditPopUp
+    apiServices.editMarketPlaceListing(newListing).then(() => {
+      this.setState({
+        showEditButtons: !this.state.showEditButtons,
+        showEditPopUp: !this.state.showEditPopUp
+      });
     });
   };
   showEditPopUp = () => {
     this.setState({
+      showEditButtons: !this.state.showEditButtons,
       showEditPopUp: !this.state.showEditPopUp
     });
   };
   showDeletePopUp = () => {
     this.setState({
+      showEditButtons: !this.state.showEditButtons,
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
   handleDelete = () => {
     const { id } = this.state;
-    this.context.deleteMarketPlaceListing(id);
+    apiServices.deleteMarketPlaceListing(id);
     this.setState({
       redirect: true
     });
   };
   componentDidMount() {
     const { id } = this.props.location.state;
+    this.context.verifyLoginOnReload();
     apiServices.getMarketPlaceCatagories().then(cats => {
       this.setState({
         marketPlaceCats: cats
       });
     });
-    apiServices.getMarketPlacePostsById(id).then(l => {
-      this.setState({
-        id: l.id,
-        user_id: l.user_id,
-        market_place_cat: l.market_placec_at,
-        title: l.title,
-        description: l.description,
-        price: l.price,
-        location: l.location,
-        contact_name: l.contact_name,
-        contact_email: l.contact_email,
-        contact_phone: l.contact_phone,
-        date_posted: l.date_posted
+    apiServices
+      .getMarketPlacePostsById(id)
+      .then(l => {
+        this.setState({
+          id: l.id,
+          user_id: l.user_id,
+          market_place_cat: l.market_placec_at,
+          title: l.title,
+          description: l.description,
+          price: l.price,
+          location: l.location,
+          contact_name: l.contact_name,
+          contact_email: l.contact_email,
+          contact_phone: l.contact_phone,
+          date_posted: l.date_posted
+        });
+      })
+      .then(() => {
+        if (this.context.loggedIn) {
+          this.setState({
+            loggedIn: true
+          });
+        }
       });
-    });
   }
 
   render() {
@@ -195,19 +209,23 @@ export default class MarketPlacePage extends Component {
           ) : (
             <ListingBody state={this.state} />
           )}
-          {TokenServices.getAuthToken() ? (
-            this.state.user_id === this.context.user.id ? (
-              <DeleteButton showDeletePopUp={this.showDeletePopUp} />
-            ) : null
-          ) : null}
-          {TokenServices.getAuthToken() ? (
-            this.state.user_id === this.context.user.id ? (
-              <EditButton
-                type="marketPlace"
-                showEditPopUp={this.showEditPopUp}
-              />
-            ) : null
-          ) : null}
+          <ForumContext.Consumer>
+            {context =>
+              this.state.loggedIn ? (
+                this.state.user_id === context.user.id ? (
+                  this.state.showEditButtons ? (
+                    <span>
+                      <DeleteButton showDeletePopUp={this.showDeletePopUp} />
+                      <EditButton
+                        type="marketPlace"
+                        showEditPopUp={this.showEditPopUp}
+                      />
+                    </span>
+                  ) : null
+                ) : null
+              ) : null
+            }
+          </ForumContext.Consumer>
         </div>
       </section>
     );

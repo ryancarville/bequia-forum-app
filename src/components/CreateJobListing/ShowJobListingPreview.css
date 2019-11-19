@@ -1,14 +1,34 @@
 .job-listing-preview {
-	width: 100%;
-	padding: 10px;
+  width: 100%;
+  padding: 10px;
 }
 .job-listing-preview button {
-	width: 100%;
-	height: 50px;
-	font-size: 20px;
-	padding: 5px;
-	text-align: center;
-	border: 1px solid black;
-	background-color: transparent;
-	margin-top: 25px;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid black;
+  background-color: transparent;
+  margin-top: 25px;
+}
+@media only screen and (min-width: 700px) {
+  .job-listing-preview {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.5em;
+  }
+  .job-listing-preview button {
+    width: 150px;
+  }
+  #job-listing-preview-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

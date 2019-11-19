@@ -43,24 +43,32 @@ class App extends Component {
     const token = TokenServices.getAuthToken();
     if (token) {
       apiServices.verifyToken(token).then(data => {
-        this.setState({
-          user: {
-            id: data.user_id
-          }
-        });
-        apiServices.getUserData(data.user_id).then(user => {
+        if (data.message === "jwt expired") {
+          TokenServices.clearAuthToken();
+          this.setState({
+            loggedIn: false
+          });
+          return false;
+        } else {
           this.setState({
             user: {
-              id: this.state.user.id,
-              name: user.first_name + " " + user.last_name,
-              lastLogin: user.last_login
+              id: data.user_id
             },
             loggedIn: true
           });
-        });
+          apiServices.getUserData(data.user_id).then(user => {
+            this.setState({
+              user: {
+                id: this.state.user.id,
+                name: user.first_name + " " + user.last_name,
+                lastLogin: user.last_login
+              },
+              loggedIn: true
+            });
+          });
+          return true;
+        }
       });
-    } else {
-      TokenServices.clearAuthToken();
     }
   };
   componentDidMount() {
@@ -68,23 +76,27 @@ class App extends Component {
   }
 
   render() {
-    if (TokenServices.getAuthToken()) {
-      setTimeout(() => {
-        const token = TokenServices.getAuthToken();
-        apiServices.extendToken(token).then(token => {
-          if (!token) {
-            this.setState({
-              loggedIn: false
-            });
-          } else {
-            console.log(token);
-            TokenServices.saveAuthToken(token.authToken);
-          }
-        });
-      }, 1.14e6);
-    }
+    // if (TokenServices.getAuthToken()) {
+    //   setTimeout(() => {
+    //     const token = TokenServices.getAuthToken();
+    //     apiServices.extendToken(token).then(token => {
+    //       if (token.error) {
+    //         this.setState({
+    //           loggedIn: false
+    //         });
+    //       } else {
+    //         console.log(token);
+    //         TokenServices.saveAuthToken(token.authToken);
+    //         this.setState({
+    //           loggedIn: true
+    //         });
+    //       }
+    //     });
+    //   }, 16000);
+    // }
 
     const contextValue = {
+      loggedIn: this.state.loggedIn,
       setUserData: this.setUserData,
       signUp: this.signUp,
       login: this.login,

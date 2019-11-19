@@ -1,26 +1,38 @@
 import React, { Component } from "react";
 import "./Rentals.css";
 import { Link } from "react-router-dom";
-import TokenService from "../../services/TokenServices";
+import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 
 export default class Rentals extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
       catagories: []
     };
   }
+  static contextType = ForumContext;
   componentDidMount() {
-    apiServices.getRentalCatagories().then(cats => {
-      if (!cats) {
-        this.setState({
-          error: cats.error
-        });
-      } else {
-        this.setState({ catagories: cats });
-      }
-    });
+    this.context.verifyLoginOnReload();
+    apiServices
+      .getRentalCatagories()
+      .then(cats => {
+        if (!cats) {
+          this.setState({
+            error: cats.error
+          });
+        } else {
+          this.setState({ catagories: cats });
+        }
+      })
+      .then(() => {
+        if (this.context.loggedIn) {
+          this.setState({
+            loggedIn: true
+          });
+        }
+      });
   }
   makeCatagories = () => {
     return this.state.catagories.map(r => (
@@ -35,7 +47,7 @@ export default class Rentals extends Component {
       <section className="rentals-container">
         <span>
           <h2>Rentals</h2>
-          {TokenService.getAuthToken() ? (
+          {this.state.loggedIn ? (
             <span className="create-post-button">
               <Link
                 to={"/createRentalListing"}

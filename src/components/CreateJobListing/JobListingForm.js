@@ -33,7 +33,7 @@ export default function JobListingForm(props) {
         value={props.state.employment}
         onChange={props.handleEmploymentType}
       >
-        <option selected disabled value="">
+        <option defaultValue disabled value="">
           Employment Type
         </option>
         <option value="Full Time">Full Time</option>

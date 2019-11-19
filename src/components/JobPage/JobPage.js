@@ -3,7 +3,6 @@ import { Redirect, withRouter } from "react-router-dom";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import "./JobPage.css";
 import formatDate from "../../helpers/formatDate";
-import TokenServices from "../../services/TokenServices";
 import DeleteButton from "../Buttons/deleteButton";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import EditButton from "../Buttons/Edit";
@@ -144,40 +143,45 @@ class JobPage extends Component {
     });
   };
   componentDidMount() {
-    if (TokenServices.getAuthToken()) {
-      this.setState({
-        loggedIn: true
-      });
-    }
+    this.context.verifyLoginOnReload();
     apiServices.getJobCatagories().then(cats => {
       this.setState({
         jobCats: cats
       });
     });
     var { jobId } = this.props.match.params;
-    apiServices.getJobListingById(jobId).then(listing => {
-      console.log(listing);
-      if (listing.error) {
-        this.setState({
-          error: listing.error
-        });
-      } else {
-        this.setState({
-          user_id: listing.user_id,
-          job_cat: listing.jobCat,
-          title: listing.title,
-          description: listing.description,
-          location: listing.location,
-          employment: listing.employment,
-          contact_name: listing.contact_name,
-          contact_email: listing.contact_email,
-          contact_phone: listing.contact_phone,
-          website: listing.website,
-          date_posted: listing.dateposted,
-          loaded: true
-        });
-      }
-    });
+    apiServices
+      .getJobListingById(jobId)
+      .then(listing => {
+        console.log(listing);
+        if (listing.error) {
+          this.setState({
+            error: listing.error
+          });
+        } else {
+          this.setState({
+            user_id: listing.user_id,
+            job_cat: listing.jobCat,
+            title: listing.title,
+            description: listing.description,
+            location: listing.location,
+            employment: listing.employment,
+            contact_name: listing.contact_name,
+            contact_email: listing.contact_email,
+            contact_phone: listing.contact_phone,
+            website: listing.website,
+            date_posted: listing.dateposted,
+            loaded: true
+          });
+        }
+      })
+      .then(() => {
+        if (this.context.loggedIn) {
+          this.setState({
+            loggedIn: true
+          });
+        }
+      });
   }
   componentWillUnmount() {
     this.setState({ loaded: false });
@@ -247,7 +251,7 @@ class JobPage extends Component {
             <ForumContext.Consumer>
               {context =>
                 this.state.loggedIn ? (
-                  context.user.id === j.userid ? (
+                  context.user.id === j.user_id ? (
                     <span>
                       <DeleteButton
                         id={j.id}

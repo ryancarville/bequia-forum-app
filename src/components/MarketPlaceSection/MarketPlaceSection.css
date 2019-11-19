@@ -1,45 +1,48 @@
 .market-place-section-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 70px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 70px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
 .market-place-section-content {
-	width: 100%;
+  width: 100%;
 }
 .market-place-section-content ul {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	list-style: none;
-	padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
 }
 .market-place-section-content ul li {
-	width: 90%;
-	height: auto;
-	border: 1px solid blue;
-	padding: 15px;
-	margin-bottom: 20px;
-	border-radius: 25px;
-	margin-top: 0px;
+  width: 90%;
+  height: auto;
+  border: 1px solid blue;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  margin-top: 0px;
 }
 .market-place-section-content ul li h4 {
-	margin-top: 0px;
-	margin-bottom: 5px;
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 .market-place-section-content a {
-	text-decoration: none;
-	font-size: 20px;
+  text-decoration: none;
+  font-size: 20px;
 }
 #mp-section-error {
-	text-align: center;
+  text-align: center;
 }
 @media only screen and (min-width: 700px) {
-	.market-place-section-content ul {
-		padding: 20px;
-	}
+  .market-place-section-container {
+    margin-top: 20px;
+  }
+  .market-place-section-content ul {
+    padding: 20px;
+  }
 }

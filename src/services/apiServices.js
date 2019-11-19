@@ -1,5 +1,6 @@
 import config from "../config";
 
+
 const apiServices = {
   signUp(newUser) {
     return new Promise((resolve, reject) => {
@@ -10,15 +11,13 @@ const apiServices = {
         },
         body: JSON.stringify(newUser),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   login(creds) {
@@ -30,15 +29,13 @@ const apiServices = {
         },
         body: JSON.stringify(creds),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   verifyToken(token) {
@@ -50,15 +47,13 @@ const apiServices = {
         },
 
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   extendToken(token) {
@@ -69,15 +64,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getUserData(id) {
@@ -88,15 +81,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getUserName(id) {
@@ -107,15 +98,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getFourmSectionTitles() {
@@ -126,15 +115,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getBoardById(id) {
@@ -145,15 +132,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getForumNameById(id) {
@@ -164,15 +149,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getFourmBoards(forum_cat) {
@@ -183,15 +166,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getPostsByBoardId(id) {
@@ -205,15 +186,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getPostById(id) {
@@ -224,15 +203,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getNumOfCommentsByPostId(id) {
@@ -243,15 +220,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getFourm() {
@@ -262,15 +237,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getNumOfThreads(board_id) {
@@ -281,15 +254,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getPosts() {
@@ -300,15 +271,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getNewestPosts() {
@@ -319,15 +288,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   searchPosts(search) {
@@ -344,15 +311,13 @@ const apiServices = {
 
             mode: "cors"
           }
-        )
-          .then(res => {
-            !res.ok
-              ? res.json().then(err => reject(err))
-              : res.json().then(data => resolve(data));
-          })
-          .catch(err => {
-            return err;
-          });
+        ).then(res => {
+          !res.ok
+            ? res.json().then(err => reject(err))
+            : res.json().then(data => resolve(data));
+        });
+      }).catch(err => {
+        return err;
       });
     } else {
       return new Promise((resolve, reject) => {
@@ -363,15 +328,13 @@ const apiServices = {
           },
 
           mode: "cors"
-        })
-          .then(res => {
-            !res.ok
-              ? res.json().then(err => reject(err))
-              : res.json().then(data => resolve(data));
-          })
-          .catch(err => {
-            return err;
-          });
+        }).then(res => {
+          !res.ok
+            ? res.json().then(err => reject(err))
+            : res.json().then(data => resolve(data));
+        });
+      }).catch(err => {
+        return err;
       });
     }
   },
@@ -384,15 +347,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getEvents() {
@@ -403,15 +364,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getThisWeeksEvents() {
@@ -430,15 +389,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getJobCatagories() {
@@ -449,15 +406,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getJobListingsByCat(id) {
@@ -468,15 +423,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getJobListingById(id) {
@@ -487,15 +440,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getRentalCatagories() {
@@ -506,15 +457,30 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
+    });
+  },
+  getRentalCatName(id) {
+    return new Promise((resolve, reject) => {
+      fetch(config.API_ENDPOINT + `/catagories/${id}`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+        mode: "cors"
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getRentalListings(rental_cat) {
@@ -525,15 +491,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getRentalListing(id) {
@@ -544,15 +508,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getMarketPlaceCatagories() {
@@ -563,15 +525,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getMarketPlacePostsByCat(id) {
@@ -582,15 +542,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getMarketPlacePosts() {
@@ -601,15 +559,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getMarketPlacePostsById(id) {
@@ -620,15 +576,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getDriectory() {
@@ -639,15 +593,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addDirectoryListing(newListing) {
@@ -659,15 +611,13 @@ const apiServices = {
         },
         body: JSON.stringify(newListing),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteDirectoryListing(id) {
@@ -678,15 +628,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   sortDirectory(sort) {
@@ -700,15 +648,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   sortJobs(sort) {
@@ -722,15 +668,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   sortRentals(sort) {
@@ -744,15 +688,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   sortMarketPlace(sort) {
@@ -767,15 +709,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   sortForumPosts(sort) {
@@ -789,15 +729,13 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addLike(post_id) {
@@ -809,15 +747,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   minusLike(post_id) {
@@ -828,15 +764,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getLikesTracker(info) {
@@ -851,16 +785,14 @@ const apiServices = {
           },
           mode: "cors"
         }
-      )
-        .then(res => {
-          console.log(res);
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      ).then(res => {
+        console.log(res);
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addToLikesTracker(info) {
@@ -872,15 +804,13 @@ const apiServices = {
         },
         body: JSON.stringify(info),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteFromLikesTracker(info) {
@@ -892,15 +822,13 @@ const apiServices = {
         },
         body: JSON.stringify(info),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   createPost(newPost) {
@@ -912,15 +840,13 @@ const apiServices = {
         },
         body: JSON.stringify(newPost),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   editPost(postToUpdate) {
@@ -932,15 +858,13 @@ const apiServices = {
         },
         body: JSON.stringify(postToUpdate),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deletePost(id) {
@@ -951,15 +875,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addComment(newComment) {
@@ -971,15 +893,13 @@ const apiServices = {
         },
         body: JSON.stringify(newComment),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteComment(id) {
@@ -990,15 +910,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   getEventById(id) {
@@ -1009,16 +927,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          console.log(err);
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addEvent(newEvent) {
@@ -1030,15 +945,13 @@ const apiServices = {
         },
         body: JSON.stringify(newEvent),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   editEvent(eventToUpdate) {
@@ -1050,15 +963,13 @@ const apiServices = {
         },
         body: JSON.stringify(eventToUpdate),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteEvent(id) {
@@ -1069,15 +980,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addJobListing(newEvent) {
@@ -1089,15 +998,13 @@ const apiServices = {
         },
         body: JSON.stringify(newEvent),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   editJobListing(listingToUpdate) {
@@ -1109,15 +1016,13 @@ const apiServices = {
         },
         body: JSON.stringify(listingToUpdate),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteJobListing(id) {
@@ -1128,15 +1033,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addRentalListing(newRental) {
@@ -1148,15 +1051,13 @@ const apiServices = {
         },
         body: JSON.stringify(newRental),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   editRentalListing(listingToUpdate) {
@@ -1168,15 +1069,13 @@ const apiServices = {
         },
         body: JSON.stringify(listingToUpdate),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteRentalListing(id) {
@@ -1187,15 +1086,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   addMarketPlaceListing(newListing) {
@@ -1207,15 +1104,13 @@ const apiServices = {
         },
         body: JSON.stringify(newListing),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   editMarketPlaceListing(listingToUpdate) {
@@ -1227,15 +1122,13 @@ const apiServices = {
         },
         body: JSON.stringify(listingToUpdate),
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   },
   deleteMarketPlaceListing(id) {
@@ -1246,15 +1139,13 @@ const apiServices = {
           "content-type": "application/json"
         },
         mode: "cors"
-      })
-        .then(res => {
-          !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
-        })
-        .catch(err => {
-          return err;
-        });
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
     });
   }
 };

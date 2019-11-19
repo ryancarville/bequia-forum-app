@@ -41,9 +41,11 @@ export default function ShowJobListingPreview(props) {
         ) : null}
       </span>
       <p>Posted on: {formatDate(props.state.date_posted)}</p>
-      <button onClick={() => props.handleSubmit()}>Create Listing</button>
-      <button onClick={props.handleShowPreview}>Edit</button>
-      <button onClick={() => props.goBack()}>Cancel</button>
+      <span id='job-listing-preview-buttons'>
+        <button onClick={() => props.handleSubmit()}>Create Listing</button>
+        <button onClick={props.handleShowPreview}>Edit</button>
+        <button onClick={() => props.goBack()}>Cancel</button>
+      </span>
     </section>
   );
 }

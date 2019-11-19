@@ -72,10 +72,14 @@ export default class Router extends Component {
           <Route path="/jobs" component={Jobs} exact />
           <Route path="/jobs/:job_cat" component={JobSection} exact />
           <Route path="/jobs/:job_cat/:jobId" component={JobPage} exact />
-          <Route path="/createJobListing" component={CreateJobListing} exact />
-          <Route path="/createPost" component={CreatePost} exact />
+          <PrivateRoute
+            path="/createJobListing"
+            component={CreateJobListing}
+            exact
+          />
+          <PrivateRoute path="/createPost" component={CreatePost} exact />
           <Route path="/events" component={Events} exact />
-          <Route path="/createEvent" component={CreateEvent} exact />
+          <PrivateRoute path="/createEvent" component={CreateEvent} exact />
           <Route path="/events/:eventId" component={EventPage} exact />
           <Route path="/directory" component={Directory} exact />
           <Route path="/rentals" component={Rentals} exact />
@@ -85,7 +89,7 @@ export default class Router extends Component {
             component={RentalPage}
             exact
           />
-          <Route
+          <PrivateRoute
             path="/createRentalListing"
             component={CreateRentalListing}
             exact
@@ -101,7 +105,7 @@ export default class Router extends Component {
             component={MarketPlacePage}
             exact
           />
-          <Route
+          <PrivateRoute
             path="/createMarketPlaceListing"
             component={CreateMarketPlaceListing}
             exact

@@ -10,11 +10,17 @@ export default class PostForm extends Component {
     };
   }
   makeSelectCategorys = () => {
-    return this.state.forum.map(item => (
-      <option key={item.id} value={item.id}>
-        {item.name}
-      </option>
-    ));
+    return this.state.forum.map(item => {
+      if (item.id >= 26 && item.id <= 29) {
+        return false;
+      } else {
+        return (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        );
+      }
+    });
   };
   componentDidMount() {
     apiServices.getFourm().then(forum =>
@@ -46,7 +52,7 @@ export default class PostForm extends Component {
           onChange={this.props.handleCatagory}
           required
         >
-          <option selected disabled value="">
+          <option defaultValue disabled value="">
             Please Select a Forum
           </option>
           {this.state.dataLoaded ? this.makeSelectCategorys() : null}

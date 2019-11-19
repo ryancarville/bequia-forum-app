@@ -80,17 +80,19 @@ export default function MarketPlaceListingForm(props) {
         value={props.state.contact_phone}
         onChange={value => props.handleContactPhone(value)}
       />
-      {props.edit === true ? (
-        <button type="submit">Save Edits</button>
-      ) : (
-        <button type="submit">Preview Listing</button>
-      )}
-      <button onClick={props.resetState}>Clear Form</button>
-      {props.edit === true ? (
-        <button onClick={props.showEditPopUp}>Cancel</button>
-      ) : (
-        <button onClick={() => props.goBack()}>Cancel</button>
-      )}
+      <span id='mp-listing-form-buttons'>
+        {props.edit === true ? (
+          <button type="submit">Save Edits</button>
+        ) : (
+          <button type="submit">Preview Listing</button>
+        )}
+        <button onClick={props.resetState}>Clear Form</button>
+        {props.edit === true ? (
+          <button onClick={props.showEditPopUp}>Cancel</button>
+        ) : (
+          <button onClick={() => props.goBack()}>Cancel</button>
+        )}
+      </span>
     </form>
   );
 }

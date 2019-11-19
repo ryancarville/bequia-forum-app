@@ -10,8 +10,8 @@ export default class CreateRentalListings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rentalCats: [],
-      rental_cat: "",
+      rentalCats:[],
+      rental_cat: 1,
       user_id: "",
       title: "",
       description: "",

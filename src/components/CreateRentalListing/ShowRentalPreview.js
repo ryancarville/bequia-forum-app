@@ -1,15 +1,15 @@
 import React from "react";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import "./ShowRentalPreview.css";
+import apiServices from "../../services/apiServices";
 
 export default function ShowRentalpreview(props) {
-  const rentalcat = props.state.rentalCats.filter(
-    c => c.id === parseInt(props.state.rental_cat)
-  );
+  const rentalcat = apiServices.getRentalCatName(props.state.rental_cat);
+  console.log(rentalcat);
   return (
     <section>
       <div>
-        <h2>Posting in catagory: {rentalcat[0].name}</h2>
+        <h2>Posting in catagory: {rentalcat.name}</h2>
         <h3>Title: {props.state.title}</h3>
         <p>Location: {props.state.location}</p>
         <p>Price: {props.state.price}</p>

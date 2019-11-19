@@ -1,24 +1,27 @@
 .job-page-container {
-	width: 100%;
-	margin-top: 70px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  margin-top: 70px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
 .job-page-content {
-	width: 100%;
-	padding: 10px;
-	margin-left: auto;
-	margin-right: auto;
+  width: 100%;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .job-page-content span {
-	line-height: 10px;
+  line-height: 10px;
 }
 .job-page-content h4 {
-	margin: 0;
+  margin: 0;
 }
 
 @media only screen and (min-width: 700px) {
-	.job-page-content {
-		margin-left: 25px;
-	}
+  .job-page-container {
+    margin-top: 20px;
+  }
+  .job-page-content {
+    margin-left: 25px;
+  }
 }

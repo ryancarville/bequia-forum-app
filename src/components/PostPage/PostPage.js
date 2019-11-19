@@ -3,7 +3,6 @@ import { withRouter, Redirect } from "react-router-dom";
 import "./PostPage.css";
 import Post from "../Post/Post";
 import ForumContext from "../../ForumContext";
-import TokenServices from "../../services/TokenServices";
 import AddComment from "../AddComment/AddComment";
 import EditPost from "../EditPost/EditPost";
 import Comments from "../Comments/Comments";
@@ -39,7 +38,6 @@ class PostPage extends Component {
     const post_id = this.state.id;
     const user_id = this.context.user.id;
     const info = { post_id, user_id };
-    console.log(info);
     if (this.state.didLike) {
       apiServices.minusLike(post_id).then(res => {
         this.setState({
@@ -83,7 +81,8 @@ class PostPage extends Component {
     const postToUpdate = { id, title, content };
     apiServices.editPost(postToUpdate).then(() => {
       this.setState({
-        showPostEdit: !this.state.showPostEdit
+        showPostEdit: !this.state.showPostEdit,
+        hideEditButtons: !this.state.hideEditButtons
       });
     });
   };
@@ -110,6 +109,7 @@ class PostPage extends Component {
   };
   updateComments = () => {
     const { id } = this.state;
+
     apiServices
       .getNumOfCommentsByPostId(id)
       .then(numOfComments => {
@@ -137,17 +137,9 @@ class PostPage extends Component {
   componentDidMount() {
     const { id } = this.state;
     this.context.verifyLoginOnReload();
-    TokenServices.getAuthToken()
-      ? this.setState({
-          loggedIn: true
-        })
-      : this.setState({
-          loggedIn: false
-        });
     apiServices
       .getPostById(id)
       .then(post => {
-        console.log(post);
         this.setState({
           id: post.id,
           user_id: post.user_id,
@@ -169,11 +161,24 @@ class PostPage extends Component {
             });
           })
           .then(() => {
-            apiServices.getCommentsByPostId(id).then(comments => {
-              this.setState({
-                comments: comments
+            apiServices
+              .getCommentsByPostId(id)
+              .then(comments => {
+                this.setState({
+                  comments: comments
+                });
+              })
+              .then(() => {
+                if (this.context.loggedIn) {
+                  this.setState({
+                    loggedIn: true
+                  });
+                } else {
+                  this.setState({
+                    loggedIn: false
+                  });
+                }
               });
-            });
           });
       });
 

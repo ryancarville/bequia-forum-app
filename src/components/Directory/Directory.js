@@ -70,7 +70,7 @@ export default class Directory extends Component {
             ) : this.state.showDeletePopUp ? (
               <DeletePopUp
                 directoryListing={true}
-                handleDelete={() => this.handleDelete(context)}
+                handleDelete={() => this.handleDelete}
                 showDeletePopUp={this.handleShowDeletePopUp}
               />
             ) : (

@@ -11,7 +11,7 @@ export default class CreatePost extends Component {
     super(props);
     this.state = {
       title: "",
-      board_id: null,
+      board_id: 1,
       user_id: null,
       content: "",
       date_posted: new Date().toISOString(),

@@ -3,8 +3,7 @@ import { withRouter } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import "./Events.css";
 import { Link } from "react-router-dom";
-
-import TokenServices from "../../services/TokenServices";
+import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 
 class Events extends Component {
@@ -25,17 +24,23 @@ class Events extends Component {
       });
     });
   };
+  static contextType = ForumContext;
   componentDidMount() {
-    if (TokenServices.getAuthToken()) {
-      this.setState({
-        loggedIn: true
+    this.context.verifyLoginOnReload();
+    apiServices
+      .getEvents()
+      .then(events => {
+        this.setState({
+          events: events
+        });
+      })
+      .then(() => {
+        if (this.context.loggedIn) {
+          this.setState({
+            loggedIn: true
+          });
+        }
       });
-    }
-    apiServices.getEvents().then(events => {
-      this.setState({
-        events: events
-      });
-    });
   }
 
   render() {
