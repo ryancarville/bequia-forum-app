@@ -1,70 +1,79 @@
 .forum-section-container {
-	width: 100%;
-	font-size: 20px;
-	display: flex;
-	flex-direction: column;
-	margin-top: 70px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
 .forum-section-container h3 {
-	text-align: center;
+  text-align: center;
 }
 
 .forum-section-content ul {
-	width: 90%;
-	padding: 0px;
-	list-style: none;
-	margin-left: auto;
-	margin-right: auto;
+  width: 90%;
+  padding: 0px;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 .forum-section-content li {
-	border: 1px solid blue;
-	border-radius: 10px;
-	padding: 20px;
-	margin: 0;
-	margin-bottom: 20px;
-	height: auto;
-	font-size: 18px;
-	line-height: 1.5em;
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 15px;
+  padding-bottom: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  height: auto;
+  font-size: 18px;
+  line-height: 1.5em;
 }
 .forum-section-content ul li a {
-	text-decoration: none;
+  text-decoration: none;
+  margin: 0;
 }
 .forum-section-content ul li h4 {
-	margin-top: 0;
-	margin-bottom: 0px;
-	font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0px;
+  font-size: 20px;
 }
 .post-info {
-	line-height: 0.5em;
+  line-height: 0.5em;
 }
 .post-icons {
-	width: 20%;
-	display: block;
-	margin: 0px;
-	padding: 0px;
+  width: 20%;
+  display: block;
+  margin: 0px;
+  padding: 0px;
 }
 
 @media only screen and (min-width: 700px) {
-	.forum-section-container {
-		font-size: 18px;
-		display: block;
-		margin-top: 20px;
-	}
-	.forum-section-container h3 {
-		margin-left: 100px;
-		float: left;
-	}
+  .forum-section-container {
+    font-size: 18px;
+    display: block;
+    margin-top: 20px;
+  }
+  .forum-section-container h3 {
+    margin-left: 100px;
+    float: left;
+  }
 
-	.forum-section-content {
-		padding: 25px;
-	}
-	.forum-section-content ul {
-		margin-top: 70px;
-	}
-	.forum-section-content li {
-		padding-bottom: 0px;
-		font-size: 16px;
-	}
+  .forum-section-content {
+    padding: 25px;
+  }
+  .forum-section-content ul {
+    margin-top: 70px;
+  }
+  .forum-section-content li {
+    padding-bottom: 0px;
+    font-size: 16px;
+    height: auto;
+    overflow: hidden;
+  }
+  .forum-section-content ul li article {
+    padding: 0px;
+    margin: 0px;
+    line-height: 1em;
+  }
 }

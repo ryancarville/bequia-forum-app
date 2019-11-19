@@ -1,15 +1,11 @@
 .forum-cat-sections-container {
   width: 100%;
   height: auto;
-  margin-top: -30px;
+  margin-top: 10px;
   padding-top: 80px;
   padding-bottom: 150px;
   opacity: 0;
   animation: fadeIn 2s ease-in forwards;
-  background-image: url("./tropical-leaves.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
 }
 .forum-cat-sections-content {
   width: 100%;
@@ -20,7 +16,7 @@
 .forum-cat-sections-content header h3 {
   margin: 0;
   margin-top: 10px;
-  color: yellow;
+  color: blue;
   font-size: 30px;
 }
 .forum-cat-sections-content ul {
@@ -73,13 +69,26 @@
 
 @media only screen and (min-width: 700px) {
   .forum-cat-sections-content ul {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: auto auto auto;
   }
   .section-cat-item {
-    width: 450px;
-    height: 150px;
+    width: 350px;
+    height: auto;
     font-size: 16px;
     padding-top: 0px;
     padding-bottom: 0;
+  }
+  .section-cat-item:hover {
+    background-color: blue;
+    color: white;
+  }
+  .section-cat-item a {
+    height: 100%;
+  }
+  .section-cat-item a:hover {
+    color: white;
   }
 }

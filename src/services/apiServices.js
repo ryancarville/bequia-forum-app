@@ -1,6 +1,4 @@
 import config from "../config";
-
-
 const apiServices = {
   signUp(newUser) {
     return new Promise((resolve, reject) => {
@@ -124,23 +122,6 @@ const apiServices = {
       return err;
     });
   },
-  getBoardById(id) {
-    return new Promise((resolve, reject) => {
-      fetch(config.API_ENDPOINT + `/forum/messageboards/get-board/${id}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
-      }).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
   getForumNameById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board-name/${id}`, {
@@ -175,6 +156,41 @@ const apiServices = {
       return err;
     });
   },
+  getFourm() {
+    return new Promise((resolve, reject) => {
+      fetch(config.API_ENDPOINT + "/forum/messageBoards", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+        mode: "cors"
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
+    });
+  },
+  getBoardById(id) {
+    return new Promise((resolve, reject) => {
+      fetch(config.API_ENDPOINT + `/forum/messageboards/get-board/${id}`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+        mode: "cors"
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
+    });
+  },
+
   getPostsByBoardId(id) {
     return new Promise((resolve, reject) => {
       fetch(
@@ -229,23 +245,7 @@ const apiServices = {
       return err;
     });
   },
-  getFourm() {
-    return new Promise((resolve, reject) => {
-      fetch(config.API_ENDPOINT + "/forum/messageBoards", {
-        method: "GET",
-        headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
-      }).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
+
   getNumOfThreads(board_id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {

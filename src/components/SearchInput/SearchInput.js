@@ -34,19 +34,17 @@ export default class SearchInput extends Component {
     });
 
     const { board_id, term } = this.state;
-    sessionStorage.setItem("serachTerm", term);
-    const termCache = sessionStorage.getItem("serachTerm");
+    sessionStorage.setItem("searchTerm", term);
+    sessionStorage.setItem("searchBoard", board_id);
     var searchCreds = { board_id, term };
     if (term === undefined) {
-      searchCreds = { board_id, termCache };
+      const term = sessionStorage.getItem("searchTerm");
+      const board_id = sessionStorage.getItem("searchBoard");
+      searchCreds = { board_id, term };
     }
     apiServices.searchPosts(searchCreds).then(data => {
       console.log(data);
       if (data.length !== 0) {
-        this.setState({
-          term: ""
-        });
-        console.log(data);
         this.context.searchResults(data);
       } else {
         this.setState({
@@ -80,36 +78,32 @@ export default class SearchInput extends Component {
     }
 
     return (
-      <ForumContext.Consumer>
-        {context => (
-          <form className="search-form" onSubmit={this.handleSearch}>
-            {this.state.noResults ? (
-              <p>There are no posts with {this.state.term} in them.</p>
-            ) : null}
-            <input
-              type="text"
-              name="search"
-              id="search-input"
-              placeholder="Enter search keywords"
-              value={this.state.term}
-              onChange={this.handleSearchTerm}
-            />
+      <form className="search-form" onSubmit={this.handleSearch}>
+        {this.state.noResults ? (
+          <p>There are no posts with {this.state.term} in them.</p>
+        ) : null}
+        <input
+          type="text"
+          name="search"
+          id="search-input"
+          placeholder="Enter search keywords"
+          value={this.state.term}
+          onChange={this.handleSearchTerm}
+        />
 
-            <select
-              name="catagories"
-              id="search-catagories"
-              value={this.state.board_id}
-              onChange={this.handleCat}
-            >
-              <option value="null">Search Entire Forum</option>
-              {this.state.forum ? this.makeOptions(this.state.forum) : null}
-            </select>
-            <button id="search-submit" type="submit" value="Search">
-              <i className="fas fa-search" samesite="none"></i>
-            </button>
-          </form>
-        )}
-      </ForumContext.Consumer>
+        <select
+          name="catagories"
+          id="search-catagories"
+          value={this.state.board_id}
+          onChange={this.handleCat}
+        >
+          <option value="null">Search Entire Forum</option>
+          {this.state.forum ? this.makeOptions(this.state.forum) : null}
+        </select>
+        <button id="search-submit" type="submit" value="Search">
+          <i className="fas fa-search" samesite="none"></i>
+        </button>
+      </form>
     );
   }
 }

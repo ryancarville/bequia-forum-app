@@ -41,14 +41,20 @@ export default class Router extends Component {
   render() {
     return (
       <>
-        {this.props.searchResults ? <Redirect to={"/searchResults"} /> : null}
+        {this.props.showSearch ? <Redirect to={"/searchResults"} /> : null}
         <Switch>
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <Route path="/" component={LandingPage} exact />
           <Route path="/signup" component={SingUp} exact />
           <Route path="/login" component={LogIn} exact />
 
-          <Route path="/searchResults" component={SearchResults} exact />
+          <Route
+            path="/searchResults"
+            render={props => (
+              <SearchResults results={this.props.searchResults} {...props} />
+            )}
+            exact
+          />
 
           <Route path="/new-post" component={NewPosts} exact />
 
