@@ -76,9 +76,12 @@ class App extends Component {
   searchResults = data => {
     this.setState({
       showSearch: false,
+      searchResults: {},
+      resultsCount: 0,
       searchBoardDataLoaded: false,
       siteSearchDataLoaded: false
     });
+    console.log(data);
     if (data.message) {
       this.setState({
         searchResults: { error: data.message },
@@ -140,17 +143,8 @@ class App extends Component {
       return true;
     }
 
-    if (data.length === 4) {
-      let resultsLength = 0;
-      data.forEach(data => {
-        for (var propName in data) {
-          if (data.hasOwnProperty(propName)) {
-            var propValue = data[propName];
-            var size = propValue.length;
-            resultsLength += parseInt(size);
-          }
-        }
-      });
+    if (data[0].siteSearch) {
+      console.log(data[0].siteSearch);
 
       this.setState({
         searchResults: {
@@ -160,16 +154,29 @@ class App extends Component {
           jPosts: [],
           numOfComments: []
         },
+
         newStateSet: true
       });
-
+      let resultsLength = 0;
+      data.forEach(data => {
+        if (data.siteSearch) {
+          return;
+        }
+        for (var propName in data) {
+          if (data.hasOwnProperty(propName)) {
+            var propValue = data[propName];
+            var size = propValue.length;
+            resultsLength += parseInt(size);
+          }
+        }
+      });
+      console.log(resultsLength + " " + this.state.resultsCount);
       if (this.state.newStateSet) {
         data.forEach(board => {
+          if (board.siteSearch) {
+            return;
+          }
           if (board.mbPosts) {
-            this.setState({
-              resultsCount:
-                this.state.resultsCount + parseInt(board.mbPosts.length)
-            });
             board.mbPosts.map(post => {
               return apiServices
                 .getBoardById(post.board_id)
@@ -188,43 +195,44 @@ class App extends Component {
                       rPosts: this.state.searchResults.rPosts,
                       jPosts: this.state.searchResults.jPosts,
                       numOfComments: this.state.searchResults.numOfComments
-                    }
+                    },
+                    resultsCount: this.state.resultsCount + 1
                   });
                 })
                 .then(() => {
-                  apiServices.getNumOfCommentsByPostId(post.id).then(num => {
-                    const count = { post_id: post.id, count: num[0].count };
-                    this.setState({
-                      searchResults: {
-                        mbPosts: this.state.searchResults.mbPosts,
-                        mpPosts: this.state.searchResults.mpPosts,
-                        rPosts: this.state.searchResults.rPosts,
-                        jPosts: this.state.searchResults.jPosts,
-                        numOfComments: [
-                          ...this.state.searchResults.numOfComments,
-                          count
-                        ]
+                  apiServices
+                    .getNumOfCommentsByPostId(post.id)
+                    .then(num => {
+                      const count = { post_id: post.id, count: num[0].count };
+                      this.setState({
+                        searchResults: {
+                          mbPosts: this.state.searchResults.mbPosts,
+                          mpPosts: this.state.searchResults.mpPosts,
+                          rPosts: this.state.searchResults.rPosts,
+                          jPosts: this.state.searchResults.jPosts,
+                          numOfComments: [
+                            ...this.state.searchResults.numOfComments,
+                            count
+                          ]
+                        }
+                      });
+                    })
+                    .then(() => {
+                      if (
+                        this.state.resultsCount === resultsLength &&
+                        this.state.searchResults.numOfComments.length ===
+                          this.state.searchResults.mbPosts.length
+                      ) {
+                        this.setState({
+                          showSearch: true,
+                          siteSearchDataLoaded: true
+                        });
                       }
                     });
-                    if (
-                      this.state.resultsCount === resultsLength &&
-                      this.state.searchResults.numOfComments.length ===
-                        this.state.searchResults.mbPosts.length
-                    ) {
-                      this.setState({
-                        showSearch: true,
-                        siteSearchDataLoaded: true
-                      });
-                    }
-                  });
                 });
             });
           }
           if (board.mpPosts) {
-            this.setState({
-              resultsCount:
-                this.state.resultsCount + parseInt(board.mpPosts.length)
-            });
             board.mpPosts.map(post =>
               this.setState({
                 searchResults: {
@@ -233,16 +241,13 @@ class App extends Component {
                   rPosts: this.state.searchResults.rPosts,
                   jPosts: this.state.searchResults.jPosts,
                   numOfComments: this.state.searchResults.numOfComments
-                }
+                },
+                resultsCount: this.state.resultsCount + 1
               })
             );
           }
 
           if (board.rPosts) {
-            this.setState({
-              resultsCount:
-                this.state.resultsCount + parseInt(board.rPosts.length)
-            });
             board.rPosts.map(post =>
               this.setState({
                 searchResults: {
@@ -251,15 +256,12 @@ class App extends Component {
                   rPosts: [...this.state.searchResults.rPosts, post],
                   jPosts: this.state.searchResults.jPosts,
                   numOfComments: this.state.searchResults.numOfComments
-                }
+                },
+                resultsCount: this.state.resultsCount + 1
               })
             );
           }
           if (board.jPosts) {
-            this.setState({
-              resultsCount:
-                this.state.resultsCount + parseInt(board.jPosts.length)
-            });
             board.jPosts.map(post =>
               this.setState({
                 searchResults: {
@@ -268,10 +270,17 @@ class App extends Component {
                   rPosts: this.state.searchResults.rPosts,
                   jPosts: [...this.state.searchResults.jPosts, post],
                   numOfComments: this.state.searchResults.numOfComments
-                }
+                },
+                resultsCount: this.state.resultsCount + 1
               })
             );
           }
+        });
+      }
+      if (this.state.resultsCount === resultsLength) {
+        this.setState({
+          showSearch: true,
+          siteSearchDataLoaded: true
         });
       }
       return true;

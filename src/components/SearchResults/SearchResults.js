@@ -64,12 +64,17 @@ export default class SearchResults extends Component {
               ) : null}
               <ul className="search-results-section" id="forum-search-results">
                 {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.mbPosts ? (
+                  context.state.searchResults.mbPosts.length !== 0 ? (
                     <ForumSearchResults
                       posts={context.state.searchResults.mbPosts}
                       numOfComments={context.state.searchResults.numOfComments}
                     />
-                  ) : null
+                  ) : (
+                    <p>
+                      There are no posts with that keyword(s) on the
+                      messageboards.
+                    </p>
+                  )
                 ) : null}
               </ul>
               {context.state.siteSearchDataLoaded ? (
@@ -82,11 +87,16 @@ export default class SearchResults extends Component {
                 id="market-place-search-results"
               >
                 {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.mpPosts ? (
+                  context.state.searchResults.mpPosts.length !== 0 ? (
                     <MarketPlaceSearchResults
                       posts={context.state.searchResults.mpPosts}
                     />
-                  ) : null
+                  ) : (
+                    <p>
+                      There are no posts with that keyword(s) in the market
+                      place.
+                    </p>
+                  )
                 ) : null}
               </ul>
               {context.state.siteSearchDataLoaded ? (
@@ -99,11 +109,16 @@ export default class SearchResults extends Component {
                 id="rentals-search-results"
               >
                 {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.rPosts ? (
+                  context.state.searchResults.rPosts.length !== 0 ? (
                     <RentalsSearchResults
                       posts={context.state.searchResults.rPosts}
                     />
-                  ) : null
+                  ) : (
+                    <p>
+                      There are no posts with that keyword(s) in the rentals
+                      section.
+                    </p>
+                  )
                 ) : null}
               </ul>
               {context.state.siteSearchDataLoaded ? (
@@ -113,11 +128,15 @@ export default class SearchResults extends Component {
               ) : null}
               <ul className="search-results-section" id="jobs-search-results">
                 {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.jPosts ? (
+                  context.state.searchResults.jPosts.length !== 0 ? (
                     <JobSearchResults
                       posts={context.state.searchResults.jPosts}
                     />
-                  ) : null
+                  ) : (
+                    <p>
+                      There are no posts with that keyword(s) on the job boards.
+                    </p>
+                  )
                 ) : null}
               </ul>
             </div>

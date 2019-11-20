@@ -11,7 +11,7 @@ class Nav extends Component {
         <div className="navBar">
           <span className="forumLogo">
             <Link to="/">
-              <img src="../../../icons/bequia-logo.png" alt="forum-icon" />
+              <img src="./../Images/bequia-logo.png" alt="forum-icon" />
             </Link>
             <h1>Bequia Forum</h1>
           </span>
@@ -20,7 +20,6 @@ class Nav extends Component {
             <Link to="/signup">
               <i className="fas fa-user-plus" samesite="none"></i>
             </Link>
-
             <Link to="/login">
               <i className="fas fa-sign-in-alt" samesite="none"></i>
             </Link>
