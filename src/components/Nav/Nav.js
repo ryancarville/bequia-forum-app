@@ -11,7 +11,10 @@ class Nav extends Component {
         <div className="navBar">
           <span className="forumLogo">
             <Link to="/">
-              <img src="./../Images/bequia-logo.png" alt="forum-icon" />
+              <img
+                src="https://bequiaforum.com/images/bequia-logo.png"
+                alt="forum-icon"
+              />
             </Link>
             <h1>Bequia Forum</h1>
           </span>
@@ -33,7 +36,10 @@ class Nav extends Component {
         <div className="navBar">
           <span className="forumLogo">
             <Link to="/">
-              <img src="../../../icons/bequia-logo.png" alt="forum-icon" />
+              <img
+                src="https://bequiaforum.com/images/bequia-logo.png"
+                alt="forum-icon"
+              />
             </Link>
             <Link to="/">
               <h1>Bequia Forum</h1>
