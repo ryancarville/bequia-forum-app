@@ -81,7 +81,6 @@ class App extends Component {
       searchBoardDataLoaded: false,
       siteSearchDataLoaded: false
     });
-    console.log(data);
     if (data.message) {
       this.setState({
         searchResults: { error: data.message },
@@ -116,7 +115,6 @@ class App extends Component {
               .getNumOfCommentsByPostId(post.id)
               .then(num => {
                 const count = { post_id: post.id, count: num[0].count };
-
                 this.setState({
                   searchResults: {
                     formattedPosts: this.state.searchResults.formattedPosts,
@@ -144,8 +142,6 @@ class App extends Component {
     }
 
     if (data[0].siteSearch) {
-      console.log(data[0].siteSearch);
-
       this.setState({
         searchResults: {
           mbPosts: [],
@@ -170,7 +166,6 @@ class App extends Component {
           }
         }
       });
-      console.log(resultsLength + " " + this.state.resultsCount);
       if (this.state.newStateSet) {
         data.forEach(board => {
           if (board.siteSearch) {
