@@ -46,7 +46,129 @@ export default class Directory extends Component {
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
-
+  handleSort = sort => {
+    if (sort.sortType === "asc" && sort.column === "last_name") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.last_name.toLowerCase();
+        var y = b.last_name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "last_name") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.last_name.toLowerCase();
+        var y = b.last_name.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "asc" && sort.column === "first_name") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.first_name.toLowerCase();
+        var y = b.first_name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "first_name") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.first_name.toLowerCase();
+        var y = b.first_name.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "asc" && sort.column === "city") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.city.toLowerCase();
+        var y = b.city.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "city") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.city.toLowerCase();
+        var y = b.city.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "asc" && sort.column === "country") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.country.toLowerCase();
+        var y = b.country.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "country") {
+      var sorted = this.state.directory.sort(function(a, b) {
+        var x = a.country.toLowerCase();
+        var y = b.country.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        directory: sorted
+      });
+    }
+  };
   componentDidMount() {
     apiServices.getDriectory().then(dir => {
       this.setState({
@@ -79,7 +201,7 @@ export default class Directory extends Component {
                 {TokenServices.getAuthToken() ? (
                   <AddToDirectory showAddForm={this.handleShowAddForm} />
                 ) : null}
-                <Sort handleSort={context.sort} sortType={"dir"} />
+                <Sort handleSort={this.handleSort} sortType={"dir"} />
                 <div className="directory-content">
                   <div className="directory-listings">
                     <ul>

@@ -16,21 +16,19 @@ export default class ForumSection extends Component {
       boardId: this.props.match.params.board_id,
       boardName: "",
       posts: [],
-      numOfComments: [],
-      user_names: [],
+      postsWithCount: [],
+      completePost: [],
+
       error: null
     };
   }
-  getCommentCount = id => {
-    const num = this.state.numOfComments.filter(post => post.post_id === id);
-    return num[0].count;
-  };
+
   getUserName = user_id => {
     const name = this.state.user_names.filter(user => user.id === user_id);
     return name[0].name;
   };
   getPosts = () => {
-    return this.state.posts.map(p => (
+    return this.state.postsWithCount.map(p => (
       <li key={p.id}>
         <Link
           to={`/messageBoard/${this.props.match.params.forum_cat}/${p.board_id}/${p.id}`}
@@ -59,9 +57,7 @@ export default class ForumSection extends Component {
         <span className="post-info">
           <p>
             Posted By:{"   "}
-            {this.state.user_names.length === this.state.posts.length
-              ? this.getUserName(p.user_id)
-              : "Loading..."}
+            {p.user_name}
           </p>
           <p>Posted On: {formatDate(p.date_posted)}</p>
           <span className="post-icons">
@@ -73,14 +69,89 @@ export default class ForumSection extends Component {
             <p>
               {comment}
               {"   "}
-              {this.state.numOfComments.length === this.state.posts.length
-                ? this.getCommentCount(p.id)
-                : "counting..."}
+              {p.commentCount}
             </p>
           </span>
         </span>
       </li>
     ));
+  };
+  handleSort = sort => {
+    if (sort.sortType === "asc" && sort.column === "title") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        var x = a.title.toLowerCase();
+        var y = b.title.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "title") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        var x = a.title.toLowerCase();
+        var y = b.title.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    } else if (sort.sortType === "asc" && sort.column === "date_posted") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        var x = a.date_posted.toLowerCase();
+        var y = b.date_posted.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "date_posted") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        var x = a.date_posted.toLowerCase();
+        var y = b.date_posted.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    } else if (sort.sortType === "asc" && sort.column === "likes") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        return a.likes - b.likes;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    } else if (sort.sortType === "desc" && sort.column === "likes") {
+      var sorted = this.state.postsWithCount.sort(function(a, b) {
+        return b.likes - a.likes;
+      });
+      this.setState({
+        postsWithCount: sorted
+      });
+    }
   };
   componentDidMount() {
     apiServices
@@ -107,20 +178,23 @@ export default class ForumSection extends Component {
               apiServices
                 .getNumOfCommentsByPostId(post.id)
                 .then(numOfComments => {
-                  const count = {
-                    post_id: post.id,
-                    count: numOfComments[0].count
-                  };
+                  var newPost = post;
+                  newPost.commentCount = numOfComments[0].count;
                   this.setState({
-                    numOfComments: [...this.state.numOfComments, count]
+                    postsWithCount: [...this.state.postsWithCount, post]
                   });
                 })
                 .then(() => {
-                  apiServices.getUserName(post.user_id).then(user => {
-                    const newName = { id: post.user_id, name: user.user_name };
-
-                    this.setState({
-                      user_names: [...this.state.user_names, newName]
+                  this.state.postsWithCount.forEach(post => {
+                    apiServices.getUserName(post.user_id).then(user => {
+                      var addUserToPost = post;
+                      addUserToPost.user_name = user.user_name;
+                      this.setState({
+                        completePost: [
+                          ...this.state.completePost,
+                          addUserToPost
+                        ]
+                      });
                     });
                   });
                 });
@@ -135,7 +209,7 @@ export default class ForumSection extends Component {
         <header>
           <h3 className="forum-title">{this.state.boardName}</h3>
         </header>
-        <Sort sortType="posts" />
+        <Sort sortType="posts" handleSort={this.handleSort} />
         <div className="forum-section-content">
           {this.state.posts.length !== 0 ? (
             <ul>{this.getPosts()}</ul>

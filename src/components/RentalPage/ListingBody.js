@@ -31,7 +31,7 @@ export default function ListingBody(props) {
                   return null;
                 } else {
                   return (
-                    <li>
+                    <li key={b.id}>
                       <a
                         key={b.id}
                         href={b.site}

@@ -8,8 +8,10 @@ export default class Sort extends Component {
     super(props);
     this.state = {
       table: "",
-      column: "",
-      sortType: ""
+      sort: {
+        column: "",
+        sortType: ""
+      }
     };
   }
   handleSort = context => {
@@ -45,8 +47,10 @@ export default class Sort extends Component {
   handleSortType = e => {
     const sortTypes = e.target.value.split("-");
     this.setState({
-      sortType: sortTypes[0],
-      column: sortTypes[1]
+      sort: {
+        sortType: sortTypes[0],
+        column: sortTypes[1]
+      }
     });
   };
   selectSort = () => {
@@ -56,7 +60,11 @@ export default class Sort extends Component {
           {context => (
             <form
               className="sortForm"
-              onChange={() => this.handleSort(context)}
+              onChange={() =>
+                setTimeout(() => {
+                  this.props.handleSort(this.state.sort);
+                }, 50)
+              }
             >
               <select
                 name="sort"
@@ -81,115 +89,99 @@ export default class Sort extends Component {
       );
     } else if (this.props.sortType === "marketPlace") {
       return (
-        <ForumContext.Consumer>
-          {context => (
-            <form
-              className="sortForm"
-              onChange={() => this.handleSort(context)}
-            >
-              <select
-                name="sort"
-                id="selectSort"
-                onChange={this.handleSortType}
-              >
-                <option defaultValue disabled value="">
-                  Sort By...
-                </option>
-                <option value="desc-date_posted">Date Posted new-old</option>
-                <option value="asc-date_posted">Date Posted old-new</option>
-                <option value="asc-price">Price low-high</option>
-                <option value="desc-price">Price high-low</option>
-                <option value="asc-location">Location A-Z</option>
-                <option value="desc-location">Location Z-A</option>
-              </select>
-            </form>
-          )}
-        </ForumContext.Consumer>
+        <form
+          className="sortForm"
+          onChange={() =>
+            setTimeout(() => {
+              this.props.handleSort(this.state.sort);
+            }, 50)
+          }
+        >
+          <select name="sort" id="selectSort" onChange={this.handleSortType}>
+            <option defaultValue disabled value="">
+              Sort By...
+            </option>
+            <option value="desc-date_posted">Date Posted new-old</option>
+            <option value="asc-date_posted">Date Posted old-new</option>
+            <option value="asc-price">Price low-high</option>
+            <option value="desc-price">Price high-low</option>
+            <option value="asc-location">Location A-Z</option>
+            <option value="desc-location">Location Z-A</option>
+          </select>
+        </form>
       );
     } else if (this.props.sortType === "rentals") {
       return (
-        <ForumContext.Consumer>
-          {context => (
-            <form
-              className="sortForm"
-              onChange={() => this.handleSort(context)}
-            >
-              <select
-                name="sort"
-                id="selectSort"
-                onChange={this.handleSortType}
-              >
-                <option defaultValue disabled value="">
-                  Sort By...
-                </option>
-                <option value="asc-title">Title A-Z</option>
-                <option value="desc-title">Title Z-A</option>
-                <option value="asc-price">Price low-high</option>
-                <option value="desc-price">Price high-low</option>
-                <option value="asc-location">Location A-Z</option>
-                <option value="desc-location">Location Z-A</option>
-                <option value="asc-date_posted">Date Posted old-new</option>
-                <option value="desc-date_posted">Date Posted new-old</option>
-              </select>
-            </form>
-          )}
-        </ForumContext.Consumer>
+        <form
+          className="sortForm"
+          onChange={() =>
+            setTimeout(() => {
+              this.props.handleSort(this.state.sort);
+            }, 50)
+          }
+        >
+          <select name="sort" id="selectSort" onChange={this.handleSortType}>
+            <option defaultValue disabled value="">
+              Sort By...
+            </option>
+            <option value="asc-title">Title A-Z</option>
+            <option value="desc-title">Title Z-A</option>
+            <option value="asc-price">Price low-high</option>
+            <option value="desc-price">Price high-low</option>
+            <option value="asc-location">Location A-Z</option>
+            <option value="desc-location">Location Z-A</option>
+            <option value="asc-date_posted">Date Posted old-new</option>
+            <option value="desc-date_posted">Date Posted new-old</option>
+          </select>
+        </form>
       );
     } else if (this.props.sortType === "jobs") {
       return (
-        <ForumContext.Consumer>
-          {context => (
-            <form
-              className="sortForm"
-              onChange={() => this.handleSort(context)}
-            >
-              <select
-                name="sort"
-                id="selectSort"
-                onChange={this.handleSortType}
-              >
-                <option defaultValue disabled value="">
-                  Sort By...
-                </option>
-                <option value="asc-title">Title A-Z</option>
-                <option value="desc-title">Title Z-A</option>
-                <option value="asc-location">Location A-Z</option>
-                <option value="desc-location">Location Z-A</option>
-                <option value="Full Time-employment">Full Time</option>
-                <option value="Part Time-employment">Part Time</option>
-                <option value="Contract-employment">Contract</option>
-                <option value="Seasonal-employment">Seasonal</option>
-              </select>
-            </form>
-          )}
-        </ForumContext.Consumer>
+        <form
+          className="sortForm"
+          onChange={() =>
+            setTimeout(() => {
+              this.props.handleSort(this.state.sort);
+            }, 50)
+          }
+        >
+          <select name="sort" id="selectSort" onChange={this.handleSortType}>
+            <option defaultValue disabled value="">
+              Sort By...
+            </option>
+            <option value="asc-title">Title A-Z</option>
+            <option value="desc-title">Title Z-A</option>
+            <option value="asc-location">Location A-Z</option>
+            <option value="desc-location">Location Z-A</option>
+            <option value="Full Time-employment">Full Time</option>
+            <option value="Part Time-employment">Part Time</option>
+            <option value="Contract-employment">Contract</option>
+            <option value="Seasonal-employment">Seasonal</option>
+          </select>
+        </form>
       );
     } else if (this.props.sortType === "posts") {
       return (
-        <ForumContext.Consumer>
-          {context => (
-            <form
-              className="sortForm"
-              onChange={() => this.handleSort(context)}
-            >
-              <select
-                name="sort"
-                id="selectSort"
-                onChange={this.handleSortType}
-              >
-                <option defaultValue disabled value="">
-                  Sort By...
-                </option>
-                <option value="asc-title">Title A-Z</option>
-                <option value="desc-title">Title Z-A</option>
-                <option value="asc-date_posted">Date Posted old-new</option>
-                <option value="desc-date_posted">Date Posted new-old</option>
-                <option value="asc-likes">Likes low-high</option>
-                <option value="desc-likes">Likes high-low</option>
-              </select>
-            </form>
-          )}
-        </ForumContext.Consumer>
+        <form
+          className="sortForm"
+          onChange={() =>
+            setTimeout(() => {
+              this.props.handleSort(this.state.sort);
+            }, 50)
+          }
+        >
+          <select name="sort" id="selectSort" onChange={this.handleSortType}>
+            <option defaultValue disabled value="">
+              Sort By...
+            </option>
+            <option value="asc-title">Title A-Z</option>
+            <option value="desc-title">Title Z-A</option>
+            <option value="asc-date_posted">Date Posted old-new</option>
+            <option value="desc-date_posted">Date Posted new-old</option>
+            <option value="asc-likes">Likes low-high</option>
+            <option value="desc-likes">Likes high-low</option>
+          </select>
+        </form>
       );
     }
   };
