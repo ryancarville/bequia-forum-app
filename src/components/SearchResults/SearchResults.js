@@ -66,7 +66,7 @@ export default class SearchResults extends Component {
               </header>
               <ul className="search-results-section" id="forum-search-results">
                 {context.state.searchBoardDataLoaded ? (
-                  context.state.searchResults.formatedPosts.lenght > 0 ? (
+                  context.state.searchResults.formattedPosts.length > 0 ? (
                     <ForumSearchResults
                       posts={context.state.searchResults.formattedPosts}
                       numOfComments={context.state.searchResults.numOfComments}

@@ -132,18 +132,19 @@ class App extends Component {
           });
       });
     }
-    let resultsLength = 0;
-    data.forEach(data => {
-      for (var propName in data) {
-        if (data.hasOwnProperty(propName)) {
-          var propValue = data[propName];
-          var size = propValue.length;
-          resultsLength += parseInt(size);
-        }
-      }
-    });
 
     if (data.length === 4) {
+      let resultsLength = 0;
+      data.forEach(data => {
+        for (var propName in data) {
+          if (data.hasOwnProperty(propName)) {
+            var propValue = data[propName];
+            var size = propValue.length;
+            resultsLength += parseInt(size);
+          }
+        }
+      });
+
       this.setState({
         searchResults: {
           mbPosts: [],
