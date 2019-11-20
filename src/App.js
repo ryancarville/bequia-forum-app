@@ -42,7 +42,6 @@ class App extends Component {
     });
   };
   verifyLoginOnReload = () => {
-    console.log("verify ran");
     const token = TokenServices.getAuthToken();
     if (token) {
       apiServices.verifyToken(token).then(data => {
@@ -81,7 +80,6 @@ class App extends Component {
       siteSearchDataLoaded: false
     });
 
-    console.log(data);
     if (data.specificBoard) {
       this.setState({
         searchResults: { formattedPosts: [], numofComments: [] }
@@ -90,8 +88,6 @@ class App extends Component {
         return apiServices
           .getBoardById(post.board_id)
           .then(board => {
-            console.log(post);
-            console.log(board);
             const formattedPost = {
               section_id: board.messageboard_section,
               post: post
@@ -111,7 +107,7 @@ class App extends Component {
               .getNumOfCommentsByPostId(post.id)
               .then(num => {
                 const count = { post_id: post.id, count: num[0].count };
-                console.log(count);
+
                 this.setState({
                   searchResults: {
                     formattedPosts: this.state.searchResults.formattedPosts,
@@ -127,37 +123,38 @@ class App extends Component {
                   data.specificBoard.length ===
                   this.state.searchResults.numOfComments.length
                 ) {
-                  this.setState(
-                    {
-                      showSearch: true,
-                      searchBoardDataLoaded: true
-                    },
-                    () => {
-                      console.log(this.state);
-                    }
-                  );
+                  this.setState({
+                    showSearch: true,
+                    searchBoardDataLoaded: true
+                  });
                 }
               });
           });
       });
     }
+    let resultsLength = 0;
+    data.forEach(data => {
+      for (var propName in data) {
+        if (data.hasOwnProperty(propName)) {
+          var propValue = data[propName];
+          var size = propValue.length;
+          resultsLength += parseInt(size);
+        }
+      }
+    });
 
     if (data.length === 4) {
-      this.setState(
-        {
-          searchResults: {
-            mbPosts: [],
-            mpPosts: [],
-            rPosts: [],
-            jPosts: [],
-            numOfComments: []
-          },
-          newStateSet: true
+      this.setState({
+        searchResults: {
+          mbPosts: [],
+          mpPosts: [],
+          rPosts: [],
+          jPosts: [],
+          numOfComments: []
         },
-        () => {
-          console.log(this.state);
-        }
-      );
+        newStateSet: true
+      });
+
       if (this.state.newStateSet) {
         data.forEach(board => {
           console.log(board);
@@ -170,8 +167,6 @@ class App extends Component {
               return apiServices
                 .getBoardById(post.board_id)
                 .then(board => {
-                  console.log(post);
-                  console.log(board);
                   const formattedPost = {
                     section_id: board.messageboard_section,
                     post: post
@@ -190,101 +185,55 @@ class App extends Component {
                   });
                 })
                 .then(() => {
-                  apiServices
-                    .getNumOfCommentsByPostId(post.id)
-                    .then(num => {
-                      const count = { post_id: post.id, count: num[0].count };
-                      console.log(count);
-                      this.setState({
-                        searchResults: {
-                          mbPosts: this.state.searchResults.mbPosts,
-                          mpPosts: this.state.searchResults.mpPosts,
-                          rPosts: this.state.searchResults.rPosts,
-                          jPosts: this.state.searchResults.jPosts,
-                          numOfComments: [
-                            ...this.state.searchResults.numOfComments,
-                            count
-                          ]
-                        }
-                      });
-                    })
-                    .then(() => {
-                      if (
-                        this.state.searchResults.numOfComments.length ===
-                        this.state.resultsCount
-                      ) {
-                        this.setState({
-                          showSearch: true,
-                          siteSearchDataLoaded: true
-                        });
+                  apiServices.getNumOfCommentsByPostId(post.id).then(num => {
+                    const count = { post_id: post.id, count: num[0].count };
+                    this.setState({
+                      searchResults: {
+                        mbPosts: this.state.searchResults.mbPosts,
+                        mpPosts: this.state.searchResults.mpPosts,
+                        rPosts: this.state.searchResults.rPosts,
+                        jPosts: this.state.searchResults.jPosts,
+                        numOfComments: [
+                          ...this.state.searchResults.numOfComments,
+                          count
+                        ]
                       }
                     });
+                    if (
+                      this.state.resultsCount === resultsLength &&
+                      this.state.searchResults.numOfComments.length ===
+                        this.state.searchResults.mbPosts.length
+                    ) {
+                      this.setState(
+                        {
+                          showSearch: true,
+                          siteSearchDataLoaded: true
+                        },
+                        () => {
+                          console.log(this.state.searchResults);
+                        }
+                      );
+                    }
+                  });
                 });
             });
           }
-
           if (board.mpPosts) {
             this.setState({
               resultsCount:
                 this.state.resultsCount + parseInt(board.mpPosts.length)
             });
             board.mpPosts.map(post => {
-              return apiServices
-                .getBoardById(post.board_id)
-                .then(board => {
-                  console.log(post);
-                  console.log(board);
-                  const formattedPost = {
-                    section_id: board.messageboard_section,
-                    post: post
-                  };
-                  this.setState({
-                    searchResults: {
-                      mbPosts: this.state.searchResults.mbPosts,
-                      mpPosts: [
-                        ...this.state.searchResults.mpPosts,
-                        formattedPost
-                      ],
-                      rPosts: this.state.searchResults.rPosts,
-                      jPosts: this.state.searchResults.jPosts,
-                      numOfComments: this.state.searchResults.numOfComments
-                    }
-                  });
-                })
-                .then(() => {
-                  apiServices
-                    .getNumOfCommentsByPostId(post.id)
-                    .then(num => {
-                      const count = {
-                        post_id: post.id,
-                        count: num[0].count
-                      };
-                      console.log(count);
-                      this.setState({
-                        searchResults: {
-                          mbPosts: this.state.searchResults.mbPosts,
-                          mpPosts: this.state.searchResults.mpPosts,
-                          rPosts: this.state.searchResults.rPosts,
-                          jPosts: this.state.searchResults.jPosts,
-                          numOfComments: [
-                            ...this.state.searchResults.numOfComments,
-                            count
-                          ]
-                        }
-                      });
-                    })
-                    .then(() => {
-                      if (
-                        this.state.searchResults.numOfComments.length ===
-                        this.state.resultsCount
-                      ) {
-                        this.setState({
-                          showSearch: true,
-                          siteSearchDataLoaded: true
-                        });
-                      }
-                    });
-                });
+              console.log(post);
+              this.setState({
+                searchResults: {
+                  mbPosts: this.state.searchResults.mbPosts,
+                  mpPosts: [...this.state.searchResults.mpPosts, post],
+                  rPosts: this.state.searchResults.rPosts,
+                  jPosts: this.state.searchResults.jPosts,
+                  numOfComments: this.state.searchResults.numOfComments
+                }
+              });
             });
           }
 
@@ -294,59 +243,16 @@ class App extends Component {
                 this.state.resultsCount + parseInt(board.rPosts.length)
             });
             board.rPosts.map(post => {
-              return apiServices
-                .getBoardById(post.board_id)
-                .then(board => {
-                  console.log(post);
-                  console.log(board);
-                  const formattedPost = {
-                    section_id: board.messageboard_section,
-                    post: post
-                  };
-                  this.setState({
-                    searchResults: {
-                      mbPosts: this.state.searchResults.mbPosts,
-                      mpPosts: this.state.searchResults.mpPosts,
-                      rPosts: [
-                        ...this.state.searchResults.rPosts,
-                        formattedPost
-                      ],
-                      jPosts: this.state.searchResults.jPosts,
-                      numOfComments: this.state.searchResults.numOfComments
-                    }
-                  });
-                })
-                .then(() => {
-                  apiServices
-                    .getNumOfCommentsByPostId(post.id)
-                    .then(num => {
-                      const count = { post_id: post.id, count: num[0].count };
-                      console.log(count);
-                      this.setState({
-                        searchResults: {
-                          mbPosts: this.state.searchResults.mbPosts,
-                          mpPosts: this.state.searchResults.mpPosts,
-                          rPosts: this.state.searchResults.rPosts,
-                          jPosts: this.state.searchResults.jPosts,
-                          numOfComments: [
-                            ...this.state.searchResults.numOfComments,
-                            count
-                          ]
-                        }
-                      });
-                    })
-                    .then(() => {
-                      if (
-                        this.state.searchResults.numOfComments.length ===
-                        this.state.resultsCount
-                      ) {
-                        this.setState({
-                          showSearch: true,
-                          siteSearchDataLoaded: true
-                        });
-                      }
-                    });
-                });
+              console.log(post);
+              this.setState({
+                searchResults: {
+                  mbPosts: this.state.searchResults.mbPosts,
+                  mpPosts: this.state.searchResults.mpPosts,
+                  rPosts: [...this.state.searchResults.rPosts, post],
+                  jPosts: this.state.searchResults.jPosts,
+                  numOfComments: this.state.searchResults.numOfComments
+                }
+              });
             });
           }
           if (board.jPosts) {
@@ -355,59 +261,16 @@ class App extends Component {
                 this.state.resultsCount + parseInt(board.jPosts.length)
             });
             board.jPosts.map(post => {
-              return apiServices
-                .getBoardById(post.board_id)
-                .then(board => {
-                  console.log(post);
-                  console.log(board);
-                  const formattedPost = {
-                    section_id: board.messageboard_section,
-                    post: post
-                  };
-                  this.setState({
-                    searchResults: {
-                      mbPosts: this.state.searchResults.mbPosts,
-                      mpPosts: this.state.searchResults.mpPosts,
-                      rPosts: this.state.searchResults.rPosts,
-                      jPosts: [
-                        ...this.state.searchResults.jPosts,
-                        formattedPost
-                      ],
-                      numOfComments: this.state.searchResults.numOfComments
-                    }
-                  });
-                })
-                .then(() => {
-                  apiServices
-                    .getNumOfCommentsByPostId(post.id)
-                    .then(num => {
-                      const count = { post_id: post.id, count: num[0].count };
-                      console.log(count);
-                      this.setState({
-                        searchResults: {
-                          mbPosts: this.state.searchResults.mbPosts,
-                          mpPosts: this.state.searchResults.mpPosts,
-                          rPosts: this.state.searchResults.rPosts,
-                          jPosts: this.state.searchResults.jPosts,
-                          numOfComments: [
-                            ...this.state.searchResults.numOfComments,
-                            count
-                          ]
-                        }
-                      });
-                    })
-                    .then(() => {
-                      if (
-                        this.state.searchResults.numOfComments.length ===
-                        this.state.resultsCount
-                      ) {
-                        this.setState({
-                          showSearch: true,
-                          siteSearchDataLoaded: true
-                        });
-                      }
-                    });
-                });
+              console.log(post);
+              this.setState({
+                searchResults: {
+                  mbPosts: this.state.searchResults.mbPosts,
+                  mpPosts: this.state.searchResults.mpPosts,
+                  rPosts: this.state.searchResults.rPosts,
+                  jPosts: [...this.state.searchResults.jPosts, post],
+                  numOfComments: this.state.searchResults.numOfComments
+                }
+              });
             });
           }
         });

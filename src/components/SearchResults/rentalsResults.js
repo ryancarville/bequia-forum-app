@@ -6,14 +6,14 @@ export default function RentalsSearchResults(props) {
   const rentalsPosts = () => {
     console.log(props.posts);
     return props.posts.map(r => (
-      <li key={r.post.id}>
+      <li key={r.id}>
         <Link
           to={{
-            pathname: `/rentals/${r.rental_cat}/${r.post.id}`,
-            state: { id: r.post.id }
+            pathname: `/rentals/${r.rental_cat}/${r.id}`,
+            state: { id: r.id }
           }}
         >
-          <p>{r.post.title}</p>
+          <p>{r.title}</p>
         </Link>
         <br />
         <Truncate
@@ -23,8 +23,8 @@ export default function RentalsSearchResults(props) {
               ...
               <Link
                 to={{
-                  pathname: `/rentals/${r.rental_cat}/${r.post.id}`,
-                  state: { id: r.post.id }
+                  pathname: `/rentals/${r.rental_cat}/${r.id}`,
+                  state: { id: r.id }
                 }}
               >
                 Read more
@@ -32,13 +32,13 @@ export default function RentalsSearchResults(props) {
             </span>
           }
         >
-          <p>{r.post.description}</p>
+          <p>{r.description}</p>
         </Truncate>
         <span className="postInfo">
-          {r.post.price ? <p>Price: {r.post.price}</p> : null}
-          {r.post.location ? <p>Location: {r.post.location}</p> : null}
-          <p>Posted By: {r.post.contact_name}</p>
-          <p>Posted On: {formatDate(r.post.date_posted)}</p>
+          {r.price ? <p>Price: {r.price}</p> : null}
+          {r.location ? <p>Location: {r.location}</p> : null}
+          <p>Posted By: {r.contact_name}</p>
+          <p>Posted On: {formatDate(r.date_posted)}</p>
         </span>
       </li>
     ));

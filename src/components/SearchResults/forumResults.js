@@ -8,7 +8,6 @@ export default function ForumSearchResults(props) {
   console.log(props);
   const forumPosts = () => {
     return props.posts.map(p => {
-      console.log(p.post.id);
       const numOfComments = props.numOfComments.find(
         count => count.post_id === p.post.id
       );

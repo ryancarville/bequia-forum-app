@@ -5,16 +5,16 @@ import formatDate from '../../helpers/formatDate';
 export default function MarketPlaceSearchResults(props) {
 	const marketPlacePosts = () => {
 		return props.posts.map(l => {
-			const marketPlaceId = l.post.market_place_cat;
+			const marketPlaceId = l.market_place_cat;
 			return (
-        <li key={l.post.id}>
+        <li key={l.id}>
           <Link
             to={{
-              pathname: `/marketPlace/${marketPlaceId}/${l.post.id}`,
-              state: { id: l.post.id }
+              pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
+              state: { id: l.id }
             }}
           >
-            <p>{l.post.title}</p>
+            <p>{l.title}</p>
           </Link>
           <Truncate
             lines={1}
@@ -23,8 +23,8 @@ export default function MarketPlaceSearchResults(props) {
                 ...
                 <Link
                   to={{
-                    pathname: `/marketPlace/${marketPlaceId}/${l.post.id}`,
-                    state: { id: l.post.id }
+                    pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
+                    state: { id: l.id }
                   }}
                 >
                   Read more
@@ -32,13 +32,13 @@ export default function MarketPlaceSearchResults(props) {
               </span>
             }
           >
-            <p>{l.post.description}</p>
+            <p>{l.description}</p>
           </Truncate>
           <span className="postInfo">
-            {l.post.price ? <p>Price: {l.post.price}</p> : null}
-            {l.post.location ? <p>Location: {l.post.location}</p> : null}
-            <p>Posted By: {l.post.contact_name}</p>
-            <p>Posted On: {formatDate(l.post.date_posted)}</p>
+            {l.price ? <p>Price: {l.price}</p> : null}
+            {l.location ? <p>Location: {l.location}</p> : null}
+            <p>Posted By: {l.contact_name}</p>
+            <p>Posted On: {formatDate(l.date_posted)}</p>
           </span>
         </li>
       );
