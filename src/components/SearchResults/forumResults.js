@@ -5,13 +5,11 @@ import formatDate from "../../helpers/formatDate";
 import comment from "../Icons/comment";
 import like from "../Icons/like";
 export default function ForumSearchResults(props) {
-  console.log(props);
   const forumPosts = () => {
     return props.posts.map(p => {
       const numOfComments = props.numOfComments.find(
         count => count.post_id === p.post.id
       );
-      console.log(numOfComments);
       return (
         <li key={p.post.id}>
           <Link

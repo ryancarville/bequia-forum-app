@@ -17,42 +17,14 @@ export default class SearchResults extends Component {
   static contextType = ForumContext;
   componentDidMount() {
     const prevSearch = sessionStorage.getItem("searchTerm");
-    console.log(prevSearch);
     if (prevSearch) {
       const term = sessionStorage.getItem("searchTerm");
       const board_id = sessionStorage.getItem("searchBoard");
       var searchCreds = { board_id, term };
       apiServices.searchPosts(searchCreds).then(data => {
-        console.log(data);
-        if (data.length !== 0) {
-          this.context.searchResults(data);
-        }
+        this.context.searchResults(data);
       });
     }
-    // } else {
-    //   this.state.searchResults.map(section => {
-    //     return section.map(post => {
-    //       apiServices
-    //         .getNumOfCommentsByPostId(post.id)
-    //         .then(num => {
-    //           const count = { post_id: post.id, count: num[0].count };
-    //           this.setState(
-    //             {
-    //               numOfComments: [...this.state.numOfComments, count]
-    //             },
-    //             () => {
-    //               console.log(this.state.numOfComments);
-    //             }
-    //           );
-    //         })
-    //         .then(() => {
-    //           this.setState({
-    //             dataLoaded: true
-    //           });
-    //         });
-    //     });
-    //   });
-    // }
   }
 
   render() {
@@ -64,6 +36,12 @@ export default class SearchResults extends Component {
               <header>
                 <h2>Search Results</h2>
               </header>
+              {context.state.searchResults.error ? (
+                <p id="no-search-results-message">
+                  {context.state.searchResults.error}
+                </p>
+              ) : null}
+
               <ul className="search-results-section" id="forum-search-results">
                 {context.state.searchBoardDataLoaded ? (
                   context.state.searchResults.formattedPosts.length > 0 ? (
@@ -94,7 +72,6 @@ export default class SearchResults extends Component {
                   ) : null
                 ) : null}
               </ul>
-
               {context.state.siteSearchDataLoaded ? (
                 context.state.searchResults.mpPosts ? (
                   <h3>Market Place</h3>

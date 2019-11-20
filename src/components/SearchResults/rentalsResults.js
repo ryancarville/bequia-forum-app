@@ -4,7 +4,6 @@ import Truncate from "react-truncate";
 import formatDate from "../../helpers/formatDate";
 export default function RentalsSearchResults(props) {
   const rentalsPosts = () => {
-    console.log(props.posts);
     return props.posts.map(r => (
       <li key={r.id}>
         <Link

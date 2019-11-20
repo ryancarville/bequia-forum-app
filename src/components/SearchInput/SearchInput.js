@@ -9,7 +9,8 @@ export default class SearchInput extends Component {
     this.state = {
       board_id: "null",
       term: "",
-      showResults: false
+      showResults: false,
+      noResultsError: null
     };
   }
   static contextType = ForumContext;
@@ -29,9 +30,6 @@ export default class SearchInput extends Component {
       this.props.closeNavSearch();
       return true;
     }
-    this.setState({
-      noResults: false
-    });
 
     const { board_id, term } = this.state;
     sessionStorage.setItem("searchTerm", term);
@@ -43,14 +41,7 @@ export default class SearchInput extends Component {
       searchCreds = { board_id, term };
     }
     apiServices.searchPosts(searchCreds).then(data => {
-      console.log(data);
-      if (data.length !== 0) {
-        this.context.searchResults(data);
-      } else {
-        this.setState({
-          noResults: true
-        });
-      }
+      this.context.searchResults(data);
     });
   };
   makeOptions = catagories => {
@@ -69,10 +60,10 @@ export default class SearchInput extends Component {
   }
 
   render() {
-    if (this.state.noResults) {
+    if (this.state.noResultsError) {
       setTimeout(() => {
         this.setState({
-          noResults: false
+          noResultsError: null
         });
       }, 5000);
     }
@@ -102,10 +93,8 @@ export default class SearchInput extends Component {
             <i className="fas fa-search" samesite="none"></i>
           </button>
         </form>
-        {this.state.noResults ? (
-          <p id="search-input-error">
-            There are no posts with {this.state.term} in them.
-          </p>
+        {this.state.noResultsError ? (
+          <p id="search-input-error">{this.state.noResultsError}</p>
         ) : null}
       </section>
     );

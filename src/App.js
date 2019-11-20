@@ -79,7 +79,13 @@ class App extends Component {
       searchBoardDataLoaded: false,
       siteSearchDataLoaded: false
     });
-
+    if (data.message) {
+      this.setState({
+        searchResults: { error: data.message },
+        showSearch: true
+      });
+      return true;
+    }
     if (data.specificBoard) {
       this.setState({
         searchResults: { formattedPosts: [], numofComments: [] }
@@ -131,6 +137,7 @@ class App extends Component {
               });
           });
       });
+      return true;
     }
 
     if (data.length === 4) {
@@ -158,7 +165,6 @@ class App extends Component {
 
       if (this.state.newStateSet) {
         data.forEach(board => {
-          console.log(board);
           if (board.mbPosts) {
             this.setState({
               resultsCount:
@@ -205,15 +211,10 @@ class App extends Component {
                       this.state.searchResults.numOfComments.length ===
                         this.state.searchResults.mbPosts.length
                     ) {
-                      this.setState(
-                        {
-                          showSearch: true,
-                          siteSearchDataLoaded: true
-                        },
-                        () => {
-                          console.log(this.state.searchResults);
-                        }
-                      );
+                      this.setState({
+                        showSearch: true,
+                        siteSearchDataLoaded: true
+                      });
                     }
                   });
                 });
@@ -224,8 +225,7 @@ class App extends Component {
               resultsCount:
                 this.state.resultsCount + parseInt(board.mpPosts.length)
             });
-            board.mpPosts.map(post => {
-              console.log(post);
+            board.mpPosts.map(post =>
               this.setState({
                 searchResults: {
                   mbPosts: this.state.searchResults.mbPosts,
@@ -234,8 +234,8 @@ class App extends Component {
                   jPosts: this.state.searchResults.jPosts,
                   numOfComments: this.state.searchResults.numOfComments
                 }
-              });
-            });
+              })
+            );
           }
 
           if (board.rPosts) {
@@ -243,8 +243,7 @@ class App extends Component {
               resultsCount:
                 this.state.resultsCount + parseInt(board.rPosts.length)
             });
-            board.rPosts.map(post => {
-              console.log(post);
+            board.rPosts.map(post =>
               this.setState({
                 searchResults: {
                   mbPosts: this.state.searchResults.mbPosts,
@@ -253,16 +252,15 @@ class App extends Component {
                   jPosts: this.state.searchResults.jPosts,
                   numOfComments: this.state.searchResults.numOfComments
                 }
-              });
-            });
+              })
+            );
           }
           if (board.jPosts) {
             this.setState({
               resultsCount:
                 this.state.resultsCount + parseInt(board.jPosts.length)
             });
-            board.jPosts.map(post => {
-              console.log(post);
+            board.jPosts.map(post =>
               this.setState({
                 searchResults: {
                   mbPosts: this.state.searchResults.mbPosts,
@@ -271,11 +269,12 @@ class App extends Component {
                   jPosts: [...this.state.searchResults.jPosts, post],
                   numOfComments: this.state.searchResults.numOfComments
                 }
-              });
-            });
+              })
+            );
           }
         });
       }
+      return true;
     }
   };
 

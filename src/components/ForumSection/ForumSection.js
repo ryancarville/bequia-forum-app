@@ -8,7 +8,6 @@ import like from "../Icons/like";
 import "./ForumSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
-import { async } from "q";
 
 export default class ForumSection extends Component {
   constructor(props) {
@@ -27,7 +26,6 @@ export default class ForumSection extends Component {
     return num[0].count;
   };
   getUserName = user_id => {
-    console.log(this.state.user_names);
     const name = this.state.user_names.filter(user => user.id === user_id);
     return name[0].name;
   };
