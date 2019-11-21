@@ -1,14 +1,14 @@
 {
-	"short_name": "Bequia-Forum",
-	"name": "Bequia-Forum-App",
-	"icons": [
-		{
-			"src": "favicon.ico",
-			"sizes": "64x64 32x32 24x24 16x16",
-			"type": "image/x-icon"
-		}
-	],
-
-	"start_url": ".",
-	"display": "standalone"
+  "short_name": "Bequia-Forum",
+  "name": "Bequia-Forum-App",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "content-type": "application/json",
+  "start_url": ".",
+  "display": "standalone"
 }

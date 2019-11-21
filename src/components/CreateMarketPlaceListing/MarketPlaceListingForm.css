@@ -33,19 +33,29 @@
   font-size: 20px;
   border: 1px solid black;
 }
+
+#mp-listing-form-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 .mp-listing-form button {
   width: 90%;
   height: 50px;
   padding: 10px;
   font-size: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   cursor: pointer;
   border: 1px solid black;
-  background-color: transparent;
+  background-color: blue;
+  color: white;
+  border-radius: 25px;
 }
 @media only screen and (min-width: 700px) {
   .mp-listing-form {
-    width: 30%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,13 +65,13 @@
     margin-right: auto;
   }
   .mp-listing-form select {
-    width: 100%;
+    width: 40%;
     height: 35px;
     font-size: 16px;
     border: 1px solid black;
   }
   .mp-listing-form input {
-    width: 100%;
+    width: 50%;
     height: 35px;
     font-size: 16px;
     padding: 10px;
@@ -71,23 +81,24 @@
     border-bottom: 1px solid black;
     border-radius: 0px;
   }
+
+  .react-phone-number-input__row {
+    width: 100%;
+  }
   .mp-listing-form textarea {
     width: 100%;
     height: 200px;
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid black;
   }
   #mp-listing-form-buttons {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: row;
   }
   .mp-listing-form button {
     width: 30%;
-    height: 35px;
+    height: 45px;
     padding: 5px;
     font-size: 18px;
     margin-top: 15px;

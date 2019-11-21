@@ -153,7 +153,6 @@ class JobPage extends Component {
     apiServices
       .getJobListingById(jobId)
       .then(listing => {
-        console.log(listing);
         if (listing.error) {
           this.setState({
             error: listing.error

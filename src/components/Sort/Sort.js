@@ -14,6 +14,12 @@ export default class Sort extends Component {
       }
     };
   }
+  componentDidMount() {
+    this.setState({
+      table: this.props.sortType
+    });
+  }
+
   handleSort = context => {
     setTimeout(() => {
       const { column, sortType } = this.state;
@@ -71,7 +77,7 @@ export default class Sort extends Component {
                 id="selectSort"
                 onChange={this.handleSortType}
               >
-                <option defaultValue disabled value="">
+                <option selected disabled value="">
                   Sort By...
                 </option>
                 <option value="asc-last_name">Last Name A-Z</option>
@@ -98,7 +104,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="desc-date_posted">Date Posted new-old</option>
@@ -121,7 +127,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
@@ -146,7 +152,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
@@ -171,7 +177,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
@@ -185,14 +191,8 @@ export default class Sort extends Component {
       );
     }
   };
-  setTable = () => {
-    this.setState({
-      table: this.props.sortType
-    });
-    return true;
-  };
 
   render() {
-    return this.state.table ? this.selectSort() : this.setTable();
+    return this.state.table ? this.selectSort() : null;
   }
 }

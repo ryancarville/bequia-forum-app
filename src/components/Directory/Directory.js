@@ -48,7 +48,7 @@ export default class Directory extends Component {
   };
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "last_name") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.last_name.toLowerCase();
         var y = b.last_name.toLowerCase();
         if (x < y) {
@@ -62,8 +62,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "last_name") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "last_name") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.last_name.toLowerCase();
         var y = b.last_name.toLowerCase();
         if (x > y) {
@@ -77,8 +79,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "asc" && sort.column === "first_name") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "first_name") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.first_name.toLowerCase();
         var y = b.first_name.toLowerCase();
         if (x < y) {
@@ -92,8 +96,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "first_name") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "first_name") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.first_name.toLowerCase();
         var y = b.first_name.toLowerCase();
         if (x > y) {
@@ -107,8 +113,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "asc" && sort.column === "city") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "city") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.city.toLowerCase();
         var y = b.city.toLowerCase();
         if (x < y) {
@@ -122,8 +130,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "city") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "city") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.city.toLowerCase();
         var y = b.city.toLowerCase();
         if (x > y) {
@@ -137,8 +147,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "asc" && sort.column === "country") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "country") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.country.toLowerCase();
         var y = b.country.toLowerCase();
         if (x < y) {
@@ -152,8 +164,10 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "country") {
-      var sorted = this.state.directory.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "country") {
+      const sorted = this.state.directory.sort(function(a, b) {
         var x = a.country.toLowerCase();
         var y = b.country.toLowerCase();
         if (x > y) {
@@ -167,6 +181,7 @@ export default class Directory extends Component {
       this.setState({
         directory: sorted
       });
+      return;
     }
   };
   componentDidMount() {

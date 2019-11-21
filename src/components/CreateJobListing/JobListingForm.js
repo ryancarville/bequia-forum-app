@@ -22,7 +22,7 @@ export default function JobListingForm(props) {
         onChange={props.handleJobCatagory}
         required
       >
-        <option defaultValue disabled value="">
+        <option selected disabled value="">
           Please Select a Job Catagory
         </option>
         {makeCatagoryMenu()}

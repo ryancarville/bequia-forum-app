@@ -40,7 +40,6 @@ export default class JobPage extends Component {
     ));
   };
   handleSort = sort => {
-    console.log(sort);
     const { job_cat } = this.props.match.params;
     apiServices
       .getJobListingsByCat(job_cat)
@@ -57,7 +56,7 @@ export default class JobPage extends Component {
       })
       .then(() => {
         if (sort.sortType === "asc" && sort.column === "title") {
-          var sorted = this.state.listings.sort(function(a, b) {
+          const sorted = this.state.listings.sort(function(a, b) {
             var x = a.title.toLowerCase();
             var y = b.title.toLowerCase();
             if (x < y) {
@@ -71,8 +70,10 @@ export default class JobPage extends Component {
           this.setState({
             listings: sorted
           });
-        } else if (sort.sortType === "desc" && sort.column === "title") {
-          var sorted = this.state.listings.sort(function(a, b) {
+          return;
+        }
+        if (sort.sortType === "desc" && sort.column === "title") {
+          const sorted = this.state.listings.sort(function(a, b) {
             var x = a.title.toLowerCase();
             var y = b.title.toLowerCase();
             if (x > y) {
@@ -86,7 +87,9 @@ export default class JobPage extends Component {
           this.setState({
             listings: sorted
           });
-        } else if (sort.sortType === "asc" && sort.column === "location") {
+          return;
+        }
+        if (sort.sortType === "asc" && sort.column === "location") {
           var sorted = this.state.listings.sort(function(a, b) {
             var x = a.location.toLowerCase();
             var y = b.location.toLowerCase();
@@ -101,8 +104,10 @@ export default class JobPage extends Component {
           this.setState({
             listings: sorted
           });
-        } else if (sort.sortType === "desc" && sort.column === "location") {
-          var sorted = this.state.listings.sort(function(a, b) {
+          return;
+        }
+        if (sort.sortType === "desc" && sort.column === "location") {
+          const sorted = this.state.listings.sort(function(a, b) {
             var x = a.location.toLowerCase();
             var y = b.location.toLowerCase();
             if (x > y) {
@@ -116,46 +121,43 @@ export default class JobPage extends Component {
           this.setState({
             listings: sorted
           });
-        } else if (
-          sort.sortType === "Full Time" &&
-          sort.column === "employment"
-        ) {
-          var sorted = this.state.listings.filter(
+          return;
+        }
+        if (sort.sortType === "Full Time" && sort.column === "employment") {
+          const sorted = this.state.listings.filter(
             listing => listing.employment === "Full Time"
           );
           this.setState({
             listings: sorted
           });
-        } else if (
-          sort.sortType === "Part Time" &&
-          sort.column === "employment"
-        ) {
-          var sorted = this.state.listings.filter(
+          return;
+        }
+        if (sort.sortType === "Part Time" && sort.column === "employment") {
+          const sorted = this.state.listings.filter(
             listing => listing.employment === "Part Time"
           );
           this.setState({
             listings: sorted
           });
-        } else if (
-          sort.sortType === "Contract" &&
-          sort.column === "employment"
-        ) {
-          var sorted = this.state.listings.filter(
+          return;
+        }
+        if (sort.sortType === "Contract" && sort.column === "employment") {
+          const sorted = this.state.listings.filter(
             listing => listing.employment === "Contract"
           );
           this.setState({
             listings: sorted
           });
-        } else if (
-          sort.sortType === "Seasonal" &&
-          sort.column === "employment"
-        ) {
-          var sorted = this.state.listings.filter(
+          return;
+        }
+        if (sort.sortType === "Seasonal" && sort.column === "employment") {
+          const sorted = this.state.listings.filter(
             listing => listing.employment === "Seasonal"
           );
           this.setState({
             listings: sorted
           });
+          return;
         }
       });
   };

@@ -16,7 +16,7 @@ export default class MarketPlaceSections extends Component {
   }
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "date_posted") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x < y) {
@@ -30,8 +30,10 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "date_posted") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "date_posted") {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x > y) {
@@ -45,8 +47,10 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
-    } else if (sort.sortType === "asc" && sort.column === "price") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "price") {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.price.toLowerCase();
         var y = b.price.toLowerCase();
         if (x < y) {
@@ -60,8 +64,10 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "price") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "price") {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.price.toLowerCase();
         var y = b.price.toLowerCase();
         if (x > y) {
@@ -75,8 +81,10 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
-    } else if (sort.sortType === "asc" && sort.column === "location") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "location") {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.location.toLowerCase();
         var y = b.location.toLowerCase();
         if (x < y) {
@@ -90,8 +98,10 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
-    } else if (sort.sortType === "desc" && sort.column === "location") {
-      var sorted = this.state.listings.sort(function(a, b) {
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "location") {
+      const sorted = this.state.listings.sort(function(a, b) {
         var x = a.location.toLowerCase();
         var y = b.location.toLowerCase();
         if (x > y) {
@@ -105,6 +115,7 @@ export default class MarketPlaceSections extends Component {
       this.setState({
         listings: sorted
       });
+      return;
     }
   };
   componentDidMount() {

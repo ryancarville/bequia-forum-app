@@ -30,76 +30,78 @@ export default function RentalForm(props) {
 
   return (
     <form className="rental-listing-form" onSubmit={props.handleShowPreview}>
-      <select
-        name="rental-type"
-        id="rental-lisitng-form-rental-type"
-        value={props.state.rental_cat}
-        onChange={props.handleRentalType}
-        required
-      >
-        {makeRentalTypes()}
-      </select>
-      <input
-        type="text"
-        name="title"
-        id="rental-lisitng-form-title"
-        value={props.state.title}
-        placeholder="Listing Title"
-        onChange={props.handleTitle}
-        required
-      />
-      <input
-        type="text"
-        name="location"
-        id="rental-listing-form-location"
-        value={props.state.location}
-        placeholder="Location"
-        onChange={props.handleLocation}
-        required
-      />
-      <input
-        type="number"
-        name="price"
-        id="rental-listing-form-price"
-        value={props.state.price}
-        placeholder="Price"
-        onChange={props.handlePrice}
-      />
-      <textarea
-        name="description"
-        id="rental-lisitng-form-description"
-        value={props.state.description}
-        placeholder="Description"
-        onChange={props.handleDescription}
-        required
-      />
-      <input
-        type="text"
-        name="contact-name"
-        id="rental-lisitng-form-contact-name"
-        value={props.state.contact_name}
-        placeholder="Contact Name"
-        onChange={props.handleContactName}
-        required
-      />
-      <input
-        type="email"
-        name="contact-email"
-        id="rental-lisitng-form-contact-email"
-        value={props.state.contact_email}
-        placeholder="Contact Email Address"
-        onChange={props.handleContactEmail}
-        required
-      />
-      <PhoneInput
-        name="contact-phone"
-        id="rental-lisitng-form-contact-phone"
-        placeholder="Contact Phone Number"
-        country="VC"
-        value={props.state.contact_phone}
-        onChange={value => props.handleContactPhone(value)}
-      />
-      <span>
+      <section>
+        <select
+          name="rental-type"
+          id="rental-lisitng-form-rental-type"
+          value={props.state.rental_cat}
+          onChange={props.handleRentalType}
+          required
+        >
+          {makeRentalTypes()}
+        </select>
+        <input
+          type="text"
+          name="title"
+          id="rental-lisitng-form-title"
+          value={props.state.title}
+          placeholder="Listing Title"
+          onChange={props.handleTitle}
+          required
+        />
+        <input
+          type="text"
+          name="location"
+          id="rental-listing-form-location"
+          value={props.state.location}
+          placeholder="Location"
+          onChange={props.handleLocation}
+          required
+        />
+        <input
+          type="number"
+          name="price"
+          id="rental-listing-form-price"
+          value={props.state.price}
+          placeholder="Price"
+          onChange={props.handlePrice}
+        />
+        <textarea
+          name="description"
+          id="rental-lisitng-form-description"
+          value={props.state.description}
+          placeholder="Description"
+          onChange={props.handleDescription}
+          required
+        />
+        <input
+          type="text"
+          name="contact-name"
+          id="rental-lisitng-form-contact-name"
+          value={props.state.contact_name}
+          placeholder="Contact Name"
+          onChange={props.handleContactName}
+          required
+        />
+        <input
+          type="email"
+          name="contact-email"
+          id="rental-lisitng-form-contact-email"
+          value={props.state.contact_email}
+          placeholder="Contact Email Address"
+          onChange={props.handleContactEmail}
+          required
+        />
+        <PhoneInput
+          name="contact-phone"
+          id="rental-lisitng-form-contact-phone"
+          placeholder="Contact Phone Number"
+          country="VC"
+          value={props.state.contact_phone}
+          onChange={value => props.handleContactPhone(value)}
+        />
+      </section>
+      <span className="rental-form-booking-checkboxes">
         <input
           className="booking-site-checkbox"
           type="checkbox"
@@ -108,6 +110,9 @@ export default function RentalForm(props) {
           value={props.state.showAirbnb}
           onChange={props.handleShowAirBnbSiteInput}
         />
+        <label className={hideAirBnbLable} htmlFor="airbnb">
+          AirBnb
+        </label>
         {props.state.showAirbnb ? (
           <input
             className="booking-site-input"
@@ -119,9 +124,6 @@ export default function RentalForm(props) {
             onChange={props.handleAirbnb}
           />
         ) : null}
-        <label className={hideAirBnbLable} htmlFor="airbnb">
-          AirBnb
-        </label>
 
         <input
           className="booking-site-checkbox"
@@ -131,6 +133,9 @@ export default function RentalForm(props) {
           value={props.state.showHomeAway}
           onChange={props.handleShowHomeAwaySiteInput}
         />
+        <label className={hideHomeAwayLable} htmlFor="homeAway-site">
+          HomeAway
+        </label>
         {props.state.showHomeAway ? (
           <input
             className="booking-site-input"
@@ -142,9 +147,6 @@ export default function RentalForm(props) {
             onChange={props.handleHomeAway}
           />
         ) : null}
-        <label className={hideHomeAwayLable} htmlFor="homeAway-site">
-          HomeAway
-        </label>
 
         <input
           className="booking-site-checkbox"
@@ -190,19 +192,21 @@ export default function RentalForm(props) {
         <label className={hideOtherLable} htmlFor="booking-com-site">
           Other Site
         </label>
-      </span>
 
-      {props.type === "edit" ? (
-        <button type="submit">Save Edits</button>
-      ) : (
-        <button type="submit">Preview Listing</button>
-      )}
-      <button onClick={props.resetState}>Clear Form</button>
-      {props.type === "edit" ? (
-        <button onClick={props.showEditPopUp}>Cancel</button>
-      ) : (
-        <button onClick={() => props.goBack()}>Cancel</button>
-      )}
+        <span className="rental-form-button-container">
+          {props.type === "edit" ? (
+            <button type="submit">Save Edits</button>
+          ) : (
+            <button type="submit">Preview Listing</button>
+          )}
+          <button onClick={props.resetState}>Clear Form</button>
+          {props.type === "edit" ? (
+            <button onClick={props.showEditPopUp}>Cancel</button>
+          ) : (
+            <button onClick={() => props.goBack()}>Cancel</button>
+          )}
+        </span>
+      </span>
     </form>
   );
 }

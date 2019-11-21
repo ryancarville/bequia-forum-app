@@ -58,6 +58,9 @@
   height: 45px;
   font-size: 20px;
   border: 1px solid black;
+  border-radius: 25px;
+  background-color: blue;
+  color: white;
 }
 @media only screen and (min-width: 700px) {
   .create-event-container {
@@ -78,13 +81,13 @@
     flex-direction: column;
   }
   .create-event-content form input {
-    width: 250px;
+    width: 350px;
     height: 35px;
     font-size: 16px;
     text-align: center;
   }
   .create-event-content form select {
-    width: 150px;
+    width: 250px;
     height: 35px;
     font-size: 16px;
     text-align: center;
@@ -98,7 +101,7 @@
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 10px;
   }
   .create-event-content button {
     cursor: pointer;

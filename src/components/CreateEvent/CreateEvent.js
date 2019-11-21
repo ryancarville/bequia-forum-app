@@ -179,26 +179,32 @@ export default class CreateEvent extends Component {
           onChange={this.handleDate}
           required
         />
-        <label htmlFor="eventStartTime">Start Time</label>
+
         <select
           name="eventStartTime"
           id="event-start-time"
           onChange={this.handleStartTime}
         >
+          <option selected disabled value="">
+            Start Time
+          </option>
           {this.eventTimeSelect()}
         </select>
-        <label htmlFor="eventEndTime">End Time</label>
+
         <select
           name="eventEndTime"
           id="event-end-time"
           onChange={this.handleEndTime}
         >
+          <option selected value="">
+            End Time
+          </option>
           {this.eventTimeSelect()}
         </select>
 
         <textarea
           name="eventDescritption"
-          id="event-description"
+          id="event-form-description"
           placeholder="Event Description"
           onChange={this.handleDescription}
         />
