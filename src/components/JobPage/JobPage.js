@@ -9,7 +9,7 @@ import EditButton from "../Buttons/Edit";
 import JobListingForm from "../CreateJobListing/JobListingForm";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
-
+import waveLoader from "../Icons/waveLoader";
 class JobPage extends Component {
   constructor(props) {
     super(props);
@@ -153,25 +153,31 @@ class JobPage extends Component {
     apiServices
       .getJobListingById(jobId)
       .then(listing => {
+        console.log(listing);
         if (listing.error) {
           this.setState({
             error: listing.error
           });
         } else {
-          this.setState({
-            user_id: listing.user_id,
-            job_cat: listing.jobCat,
-            title: listing.title,
-            description: listing.description,
-            location: listing.location,
-            employment: listing.employment,
-            contact_name: listing.contact_name,
-            contact_email: listing.contact_email,
-            contact_phone: listing.contact_phone,
-            website: listing.website,
-            date_posted: listing.dateposted,
-            loaded: true
-          });
+          this.setState(
+            {
+              user_id: listing.user_id,
+              job_cat: listing.jobCat,
+              title: listing.title,
+              description: listing.description,
+              location: listing.location,
+              employment: listing.employment,
+              contact_name: listing.contact_name,
+              contact_email: listing.contact_email,
+              contact_phone: listing.contact_phone,
+              website: listing.website,
+              date_posted: listing.dateposted,
+              loaded: true
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
         }
       })
       .then(() => {
@@ -223,25 +229,54 @@ class JobPage extends Component {
             {this.state.loaded ? (
               <>
                 <h3>{j.title}</h3>
-                <p>Employment Type: {j.employment}</p>
-                <p>Where: {j.location}</p>
+                <p>
+                  <i className="fas fa-business-time" samesite="none"></i>{" "}
+                  {j.employment}
+                </p>
+                <p>
+                  <i className="fas fa-map-marked-alt" samesite="none"></i>{" "}
+                  {j.location}
+                </p>
                 <h4>Job Description</h4>
                 <p>{j.description}</p>
-                <span>
-                  <h4>Contact Information</h4>
-                  <p>{j.contact_name}</p>
-                  <a
-                    href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}
-                  >
-                    {j.contact_email}
-                  </a>
-                  {j.contact_phone ? (
-                    <p>Phone: {formatPhoneNumberIntl(j.contact_phone)}</p>
-                  ) : null}
-                  <a href={j.website} target="_blank" rel="noopener noreferrer">
-                    {j.website}
-                  </a>
-                </span>
+                {j.contact_name || j.contact_phone || j.contact_email ? (
+                  <div id='job-contact-info'>
+                    {j.contact_name ? (
+                      <p>
+                        <i class="fas fa-user-tie"></i> {j.contact_name}
+                      </p>
+                    ) : null}
+
+                    {j.contact_phone ? (
+                      <p>
+                        <i className="fas fa-mobile-alt" samesite="none"></i>{" "}
+                        {formatPhoneNumberIntl(j.contact_phone)}
+                      </p>
+                    ) : null}
+                    {j.website ? (
+                      <>
+                        <i className="fas fa-laptop" samesite="none"></i>
+                        <a
+                          href={j.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {j.website}
+                        </a>
+                      </>
+                    ) : null}
+                    {j.contact_email ? (
+                      <>
+                        <i className="fas fa-at"></i>{" "}
+                        <a
+                          href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}
+                        >
+                          {j.contact_email}
+                        </a>
+                      </>
+                    ) : null}
+                  </div>
+                ) : null}
                 <p>Posted on: {formatDate(j.date_posted)}</p>
               </>
             ) : (
@@ -269,7 +304,7 @@ class JobPage extends Component {
         )}
       </section>
     ) : (
-      <h4>Loading...</h4>
+      waveLoader
     );
   }
 }

@@ -9,6 +9,7 @@ import DeleteButton from "../Buttons/deleteButton";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import EditButton from "../Buttons/Edit";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 
 export default class RentalPage extends Component {
   constructor(props) {
@@ -195,31 +196,42 @@ export default class RentalPage extends Component {
 
   componentDidMount() {
     const { rentalId } = this.props.match.params;
-    apiServices.getRentalCatagories().then(cats => {
-      this.setState({
-        rentalCats: cats
+
+    apiServices
+      .getRentalListing(rentalId)
+      .then(r => {
+        console.log(r);
+        this.setState(
+          {
+            id: r.id,
+            rental_cat: r.rentalcat,
+            user_id: r.userid,
+            title: r.title,
+            description: r.description,
+            location: r.location,
+            price: r.price,
+            contact_name: r.contact_name,
+            contact_email: r.contact_email,
+            contact_phone: r.contact_phone,
+            airbnb: r.airbnb,
+            homeaway: r.homeaway,
+            booking_dot_com: r.booking_dot_com,
+            other_site: r.other_site,
+            date_posted: r.date_posted,
+            dataLoaded: true
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
+      })
+      .then(() => {
+        apiServices.getRentalCatagories().then(cats => {
+          this.setState({
+            rentalCats: cats
+          });
+        });
       });
-    });
-    apiServices.getRentalListing(rentalId).then(r => {
-      this.setState({
-        id: r.id,
-        rental_cat: r.rental_cat,
-        user_id: r.user_id,
-        title: r.title,
-        description: r.description,
-        location: r.location,
-        price: r.price,
-        contact_name: r.contact_name,
-        contact_email: r.contact_email,
-        contact_phone: r.contact_phone,
-        airbnb: r.airbnb,
-        homeaway: r.homeaway,
-        booking_dot_com: r.booking_dot_com,
-        other_site: r.other_site,
-        date_posted: r.dateposted,
-        dataLoaded: true
-      });
-    });
   }
   render() {
     if (this.state.redirect) {
@@ -263,7 +275,7 @@ export default class RentalPage extends Component {
             ) : this.state.dataLoaded ? (
               <ListingBody post={this.state} />
             ) : (
-              <p>Loading...</p>
+              waveLoader
             )}
 
             {TokenServices.getAuthToken() ? (

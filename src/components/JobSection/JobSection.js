@@ -21,6 +21,7 @@ export default class JobPage extends Component {
           <h3>{j.title}</h3>
         </Link>
         <Truncate
+          className="post-teaser"
           lines={2}
           ellipsis={
             <span>
@@ -163,6 +164,12 @@ export default class JobPage extends Component {
   };
   componentDidMount() {
     const { job_cat } = this.props.match.params;
+    apiServices.getJobCatagories().then(cats => {
+      const cat_name = cats.filter(c => c.id.toString() === job_cat);
+      this.setState({
+        cat_name: cat_name[0].name
+      });
+    });
     apiServices.getJobListingsByCat(job_cat).then(listings => {
       if (listings.error) {
         this.setState({
@@ -180,6 +187,9 @@ export default class JobPage extends Component {
     return (
       <section className="job-section-container">
         <Sort sortType="jobs" handleSort={this.handleSort} />
+        <h3 id="job-section-cat-title">
+          {this.state.cat_name ? this.state.cat_name : null}
+        </h3>
         <div className="job-section-content">
           {this.state.listings.length !== 0 ? (
             <ul className="job-section-ul">{this.makeListings()}</ul>

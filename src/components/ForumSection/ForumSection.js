@@ -35,8 +35,8 @@ export default class ForumSection extends Component {
         >
           <h4>{p.title}</h4>
         </Link>
-        <br />
         <Truncate
+          className="post-teaser"
           lines={1}
           ellipsis={
             <span>

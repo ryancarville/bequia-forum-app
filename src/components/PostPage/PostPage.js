@@ -152,6 +152,13 @@ class PostPage extends Component {
         });
       })
       .then(() => {
+        apiServices.getUserName(this.state.user_id).then(user => {
+          this.setState({
+            user_name: user.user_name
+          });
+        });
+      })
+      .then(() => {
         apiServices
           .getNumOfCommentsByPostId(id)
           .then(numOfComments => {

@@ -6,6 +6,7 @@ import MarketPlaceSearchResults from "./marketPlaceResults";
 import ForumSearchResults from "./forumResults";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
+import waveLoader from "../Icons/waveLoader";
 
 export default class SearchResults extends Component {
   constructor(props) {
@@ -50,10 +51,7 @@ export default class SearchResults extends Component {
                       numOfComments={context.state.searchResults.numOfComments}
                     />
                   ) : (
-                    <p>
-                      There are no posts on that messageboard with those
-                      keywords.{" "}
-                    </p>
+                    <span className="fourm-wave-loader">{waveLoader}</span>
                   )
                 ) : null}
               </ul>

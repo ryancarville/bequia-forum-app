@@ -1,25 +1,26 @@
 .sortForm {
-	float: right;
-	display: flex;
-	flex-direction: column;
-	text-align: right;
-	padding: 15px;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding: 15px;
+  margin-top: -20px;
 }
 .sortForm select {
-	width: 100%;
-	height: 45px;
-	margin-left: auto;
-	margin-right: auto;
-	border: 1px solid black;
-	font-size: 20px;
+  width: 100%;
+  height: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  font-size: 20px;
 }
 
 @media only screen and (min-width: 700px) {
-	.sortForm select {
-		width: 250px;
-		height: 25px;
-		font-size: 16px;
-		float: right;
-		margin-right: 100px;
-	}
+  .sortForm select {
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+    float: right;
+    margin-right: 100px;
+  }
 }

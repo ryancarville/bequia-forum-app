@@ -1,45 +1,56 @@
 .job-section-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	margin-top: 80px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
-
+#job-section-cat-title {
+  text-align: center;
+  font-size: 20px;
+}
 .job-section-content ul {
-	list-style: none;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
 .job-section-content ul li {
-	width: 90%;
-	border: 1px solid blue;
-	border-radius: 25px;
-	padding: 20px;
-	margin: 0;
-	margin-bottom: 20px;
-	height: auto;
-	font-size: 18px;
-	line-height: 1.5em;
+  width: 90%;
+  border: 1px solid blue;
+  border-radius: 25px;
+  padding: 15px;
+  margin: 0;
+  margin-bottom: 20px;
+  height: auto;
+  font-size: 18px;
+  line-height: 1.5em;
 }
 .job-section-content ul li a {
-	text-decoration: none;
+  text-decoration: none;
+}
+.job-section-content ul li a h3 {
+  margin: 0;
 }
 #jobs-section-error {
-	text-align: center;
+  text-align: center;
 }
 @media only screen and (min-width: 700px) {
-	.job-section-container {
-		margin-top: 20px;
-	}
-	.job-section-content ul li {
-		font-size: 16px;
-		padding: 15px;
-	}
-	.job-section-content ul li h3 {
-		margin: 0;
-	}
+  .job-section-container {
+    margin-top: 20px;
+  }
+  #job-section-cat-title {
+    text-align: left;
+    margin-left: 100px;
+  }
+  .job-section-content ul li {
+    width: 88%;
+    font-size: 16px;
+    padding: 15px;
+  }
+  .job-section-content ul li h3 {
+    margin: 0;
+  }
 }

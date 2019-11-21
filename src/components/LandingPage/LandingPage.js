@@ -4,9 +4,13 @@ import "./LandingPage.css";
 
 export default function LandingPage() {
   return (
-    <div className="landingPage-container">
+    <section className="landingPage-container">
       <div className="landingPage-content">
-        <div className="palm-trees" />
+        <img
+          id="palm-trees"
+          src="https://bequiaforum.com/static/media/bequia-island.e276d53c.png"
+          alt="palm-trees"
+        />
         <div id="landing-page-text">
           <h1>Welcome to Bequia Forum!</h1>
           <article id="landing-page-text-p">
@@ -21,6 +25,6 @@ export default function LandingPage() {
           </article>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

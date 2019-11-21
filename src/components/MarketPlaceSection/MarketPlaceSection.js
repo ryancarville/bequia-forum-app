@@ -120,18 +120,28 @@ export default class MarketPlaceSections extends Component {
   };
   componentDidMount() {
     const { marketPlaceId } = this.props.match.params;
-    apiServices.getMarketPlacePostsByCat(marketPlaceId).then(listings => {
-      console.log(listings.error);
-      if (listings.error) {
-        this.setState({
-          error: listings.error
+    apiServices
+      .getMarketPlacePostsByCat(marketPlaceId)
+      .then(listings => {
+        console.log(listings.error);
+        if (listings.error) {
+          this.setState({
+            error: listings.error
+          });
+        } else {
+          this.setState({
+            listings: listings
+          });
+        }
+      })
+      .then(() => {
+        apiServices.getMarketPlaceCatagories().then(cats => {
+          const currCat = cats.filter(c => c.id.toString() === marketPlaceId);
+          this.setState({
+            market_place_name: currCat[0].name
+          });
         });
-      } else {
-        this.setState({
-          listings: listings
-        });
-      }
-    });
+      });
   }
   makeListings = () => {
     return this.state.listings.map(l => (
@@ -145,6 +155,7 @@ export default class MarketPlaceSections extends Component {
           <h4>{l.title}</h4>
         </Link>
         <Truncate
+          className="post-teaser"
           lines={1}
           ellipsis={
             <span>
@@ -163,8 +174,17 @@ export default class MarketPlaceSections extends Component {
           <p>{l.description}</p>
         </Truncate>
         <span className="post-info">
-          {l.price ? <p>Price: {l.price}</p> : null}
-          {l.location ? <p>Location: {l.location}</p> : null}
+          {l.price && l.price !== "0" ? (
+            <p>
+              <i className="fas fa-dollar-sign" samesite="none"></i> {l.price}
+            </p>
+          ) : null}
+          {l.location ? (
+            <p>
+              <i className="fas fa-map-marked-alt" samesite="none"></i>{" "}
+              {l.location}
+            </p>
+          ) : null}
           <p>Posted By: {l.contact_name}</p>
           <p>Posted On: {formatDate(l.date_posted)}</p>
         </span>
@@ -175,6 +195,11 @@ export default class MarketPlaceSections extends Component {
     return (
       <section className="market-place-section-container">
         <Sort sortType="marketPlace" handleSort={this.handleSort} />
+        <header>
+          {this.state.market_place_name ? (
+            <h4>{this.state.market_place_name}</h4>
+          ) : null}
+        </header>
         <div className="market-place-section-content">
           {this.state.listings.length !== 0 ? (
             <ul>{this.makeListings()}</ul>

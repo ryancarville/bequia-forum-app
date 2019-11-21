@@ -212,11 +212,12 @@ export default class Directory extends Component {
               />
             ) : (
               <>
-                <h2>Directory</h2>
                 {TokenServices.getAuthToken() ? (
                   <AddToDirectory showAddForm={this.handleShowAddForm} />
                 ) : null}
                 <Sort handleSort={this.handleSort} sortType={"dir"} />
+                <h2>Directory</h2>
+                <br />
                 <div className="directory-content">
                   <div className="directory-listings">
                     <ul>

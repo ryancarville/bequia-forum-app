@@ -1,67 +1,67 @@
 .rentals-container {
-	text-align: center;
-	margin-top: 80px;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
+  text-align: center;
+  margin-top: 80px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
 }
 
 .rentals-content {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 .rentals-card {
-	cursor: pointer;
-	width: 100%;
-	height: auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .rental-cat-img {
-	width: 100px;
-	height: auto;
+  width: 150px;
+  height: auto;
 }
 .rentals-container a {
-	text-decoration: none;
-	cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 .rentals-card-text {
-	display: block;
-	position: relative;
-	font-size: 25px;
-	margin-top: 10px;
-	color: limegreen;
-	padding: 0px;
+  display: block;
+  position: relative;
+  font-size: 25px;
+  margin-top: 10px;
+  color: limegreen;
+  padding: 0px;
 }
 
 @media only screen and (min-width: 700px) {
-	.rentals-container {
-		margin-top: 20px;
-	}
-	.rentals-content {
-		width: 70%;
-		margin-left: auto;
-		margin-right: auto;
-		grid-template-columns: repeat(4, 1fr);
-		grid-gap: 1em;
-	}
-	.rentals-card-text {
-		display: none;
-		position: absolute;
-		font-size: 25px;
-		color: blue;
-	}
-	.rental-cat-img {
-		width: 200px;
-	}
-	.rentals-container a:hover .rentals-card-text {
-		display: block;
-	}
-	.rentals-container a:hover .rental-cat-img {
-		opacity: 0.3;
-	}
+  .rentals-container {
+    margin-top: 20px;
+  }
+  .rentals-content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1em;
+  }
+  .rentals-card-text {
+    display: none;
+    position: absolute;
+    font-size: 25px;
+    color: blue;
+  }
+  .rental-cat-img {
+    width: 200px;
+  }
+  .rentals-container a:hover .rentals-card-text {
+    display: block;
+  }
+  .rentals-container a:hover .rental-cat-img {
+    opacity: 0.3;
+  }
 }

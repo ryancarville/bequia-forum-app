@@ -9,19 +9,34 @@
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 20px;
 }
-.job-page-content span {
-  line-height: 10px;
+.job-page-content h3 {
+  margin: 0;
 }
 .job-page-content h4 {
   margin: 0;
+  margin-top: 20px;
+}
+.job-page-content p {
+  margin: 0;
+  margin-top: 10px;
+}
+#job-contact-info {
+  margin-top: 30px;
+}
+#job-contact-info p {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 @media only screen and (min-width: 700px) {
   .job-page-container {
-    margin-top: 20px;
+    margin: 40px;
+
   }
   .job-page-content {
     margin-left: 25px;
+    font-size: 16px;
   }
 }
