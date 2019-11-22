@@ -86,9 +86,8 @@
   }
   .post-teaser {
     display: block;
-    
   }
-  .post-teaser article{
+  .post-teaser article {
     margin: 0;
   }
 }

@@ -44,7 +44,6 @@ export default class LogIn extends Component {
     apiServices
       .login(creds)
       .then(data => {
-        console.log(data);
         if (data.error) {
           this.setState({
             error: data.error
@@ -53,7 +52,6 @@ export default class LogIn extends Component {
           token = data.authToken;
           TokenServices.saveAuthToken(token);
           apiServices.getUserData(data.user_id).then(user => {
-            console.log(user);
             this.context.setUserData(data.user_id, user);
           });
         }

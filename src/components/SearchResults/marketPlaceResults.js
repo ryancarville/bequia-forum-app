@@ -1,32 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Truncate from 'react-truncate';
-import formatDate from '../../helpers/formatDate';
+import React from "react";
+import { Link } from "react-router-dom";
+import Truncate from "react-truncate";
+import formatDate from "../../helpers/formatDate";
 export default function MarketPlaceSearchResults(props) {
-	const marketPlacePosts = () => {
-		return props.posts.map(l => {
-			const marketPlaceId = l.market_place_cat;
-			return (
-        <li key={l.id}>
-          <Link
-            to={{
-              pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
-              state: { id: l.id }
-            }}
-          >
-            <p>{l.title}</p>
-          </Link>
+  const marketPlacePosts = () => {
+    return props.posts.map(l => {
+      const marketPlaceId = l.market_place_cat;
+      return (
+        <li key={l.id} className="search-result-item">
+          <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>{l.title}</Link>
           <Truncate
             lines={1}
             ellipsis={
               <span>
                 ...
-                <Link
-                  to={{
-                    pathname: `/marketPlace/${marketPlaceId}/${l.id}`,
-                    state: { id: l.id }
-                  }}
-                >
+                <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>
                   Read more
                 </Link>
               </span>
@@ -42,7 +30,7 @@ export default function MarketPlaceSearchResults(props) {
           </span>
         </li>
       );
-		});
-	};
-	return marketPlacePosts();
+    });
+  };
+  return marketPlacePosts();
 }

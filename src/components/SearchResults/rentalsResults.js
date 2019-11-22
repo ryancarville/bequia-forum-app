@@ -5,29 +5,15 @@ import formatDate from "../../helpers/formatDate";
 export default function RentalsSearchResults(props) {
   const rentalsPosts = () => {
     return props.posts.map(r => (
-      <li key={r.id}>
-        <Link
-          to={{
-            pathname: `/rentals/${r.rental_cat}/${r.id}`,
-            state: { id: r.id }
-          }}
-        >
-          <p>{r.title}</p>
-        </Link>
+      <li key={r.id} className="search-result-item">
+        <Link to={`/rentals/${r.rental_cat}/${r.id}`}>{r.title}</Link>
         <br />
         <Truncate
           lines={1}
           ellipsis={
             <span>
               ...
-              <Link
-                to={{
-                  pathname: `/rentals/${r.rental_cat}/${r.id}`,
-                  state: { id: r.id }
-                }}
-              >
-                Read more
-              </Link>
+              <Link to={`/rentals/${r.rental_cat}/${r.id}`}>Read more</Link>
             </span>
           }
         >

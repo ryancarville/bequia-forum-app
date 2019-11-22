@@ -8,7 +8,6 @@
       "type": "image/x-icon"
     }
   ],
-  "content-type": "application/json",
   "start_url": ".",
   "display": "standalone"
 }

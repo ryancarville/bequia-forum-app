@@ -56,87 +56,72 @@ export default class SearchResults extends Component {
                 ) : null}
               </ul>
               {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.mbPosts ? (
-                  <h3>Messageboards</h3>
+                context.state.searchResults.mbPosts.length > 0 ? (
+                  <>
+                    <h3>Messageboards</h3>
+                    <ul
+                      className="search-results-section"
+                      id="forum-search-results"
+                    >
+                      <ForumSearchResults
+                        posts={context.state.searchResults.mbPosts}
+                        numOfComments={
+                          context.state.searchResults.numOfComments
+                        }
+                      />
+                    </ul>
+                  </>
                 ) : null
               ) : null}
-              <ul className="search-results-section" id="forum-search-results">
-                {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.mbPosts.length !== 0 ? (
-                    <ForumSearchResults
-                      posts={context.state.searchResults.mbPosts}
-                      numOfComments={context.state.searchResults.numOfComments}
-                    />
-                  ) : (
-                    <p>
-                      There are no posts with that keyword(s) on the
-                      messageboards.
-                    </p>
-                  )
-                ) : null}
-              </ul>
+
               {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.mpPosts ? (
-                  <h3>Market Place</h3>
+                context.state.searchResults.mpPosts.length > 0 ? (
+                  <>
+                    <h3>Market Place</h3>
+                    <ul
+                      className="search-results-section"
+                      id="market-place-search-results"
+                    >
+                      <MarketPlaceSearchResults
+                        posts={context.state.searchResults.mpPosts}
+                      />
+                    </ul>
+                  </>
                 ) : null
               ) : null}
-              <ul
-                className="search-results-section"
-                id="market-place-search-results"
-              >
-                {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.mpPosts.length !== 0 ? (
-                    <MarketPlaceSearchResults
-                      posts={context.state.searchResults.mpPosts}
-                    />
-                  ) : (
-                    <p>
-                      There are no posts with that keyword(s) in the market
-                      place.
-                    </p>
-                  )
-                ) : null}
-              </ul>
+
               {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.rPosts ? (
-                  <h3>Rentals</h3>
+                context.state.searchResults.rPosts.length > 0 ? (
+                  <>
+                    <h3>Rentals</h3>
+                    <ul
+                      className="search-results-section"
+                      id="rentals-search-results"
+                    >
+                      <RentalsSearchResults
+                        posts={context.state.searchResults.rPosts}
+                      />
+                    </ul>
+                  </>
                 ) : null
               ) : null}
-              <ul
-                className="search-results-section"
-                id="rentals-search-results"
-              >
-                {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.rPosts.length !== 0 ? (
-                    <RentalsSearchResults
-                      posts={context.state.searchResults.rPosts}
-                    />
-                  ) : (
-                    <p>
-                      There are no posts with that keyword(s) in the rentals
-                      section.
-                    </p>
-                  )
-                ) : null}
-              </ul>
+
               {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.jPosts ? (
-                  <h3>Jobs</h3>
+                context.state.searchResults.jPosts.length > 0 ? (
+                  <>
+                    {" "}
+                    <h3>Jobs</h3>
+                    <ul
+                      className="search-results-section"
+                      id="jobs-search-results"
+                    >
+                      <JobSearchResults
+                        posts={context.state.searchResults.jPosts}
+                      />
+                    </ul>
+                  </>
                 ) : null
               ) : null}
-              <ul className="search-results-section" id="jobs-search-results">
-                {context.state.siteSearchDataLoaded ? (
-                  context.state.searchResults.jPosts.length !== 0 ? (
-                    <JobSearchResults
-                      posts={context.state.searchResults.jPosts}
-                    />
-                  ) : (
-                    <p>
-                      There are no posts with that keyword(s) on the job boards.
-                    </p>
-                  )
-                ) : null}
-              </ul>
             </div>
           </section>
         )}

@@ -11,6 +11,7 @@ import LikeButtons from "./likeButton";
 import CommentButton from "./commentButton";
 import EditButtons from "./editButtons";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 
 class PostPage extends Component {
   constructor(props) {
@@ -243,7 +244,7 @@ class PostPage extends Component {
           ) : this.state.dataLoaded ? (
             <Post post={this.state} numOfComments={this.state.numOfComments} />
           ) : (
-            <p>Loading...</p>
+            waveLoader
           )}
           {this.state.loggedIn ? (
             <span className="comment-like-button-container">

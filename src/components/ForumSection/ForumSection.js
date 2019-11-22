@@ -23,10 +23,6 @@ export default class ForumSection extends Component {
     };
   }
 
-  getUserName = user_id => {
-    const name = this.state.user_names.filter(user => user.id === user_id);
-    return name[0].name;
-  };
   getPosts = () => {
     return this.state.postsWithCount.map(p => (
       <li key={p.id}>

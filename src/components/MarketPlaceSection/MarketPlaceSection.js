@@ -123,7 +123,6 @@ export default class MarketPlaceSections extends Component {
     apiServices
       .getMarketPlacePostsByCat(marketPlaceId)
       .then(listings => {
-        console.log(listings.error);
         if (listings.error) {
           this.setState({
             error: listings.error

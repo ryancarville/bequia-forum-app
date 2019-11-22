@@ -11,12 +11,9 @@ export default function ForumSearchResults(props) {
         count => count.post_id === p.post.id
       );
       return (
-        <li key={p.post.id}>
+        <li key={p.post.id} className="search-result-item">
           <Link
-            to={{
-              pathname: `/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`,
-              state: { id: p.post.id }
-            }}
+            to={`/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`}
           >
             {p.post.title}
           </Link>
@@ -27,10 +24,7 @@ export default function ForumSearchResults(props) {
               <span>
                 ...
                 <Link
-                  to={{
-                    pathname: `/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`,
-                    state: { id: p.post.id }
-                  }}
+                  to={`/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`}
                 >
                   Read more
                 </Link>

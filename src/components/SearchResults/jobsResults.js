@@ -5,28 +5,14 @@ import formatDate from "../../helpers/formatDate";
 export default function JobSearchResults(props) {
   const jobPosts = () => {
     return props.posts.map(j => (
-      <li key={j.id}>
-        <Link
-          to={{
-            pathname: `/jobs/${j.job_cat}/${j.id}`,
-            state: { id: j.id }
-          }}
-        >
-          <p>{j.title}</p>
-        </Link>
+      <li key={j.id} className="search-result-item">
+        <Link to={`/jobs/${j.job_cat}/${j.id}`}>{j.title}</Link>
         <Truncate
           lines={1}
           ellipsis={
             <span>
               ...
-              <Link
-                to={{
-                  pathname: `/jobs/${j.job_cat}/${j.id}`,
-                  state: { id: j.id }
-                }}
-              >
-                Read more
-              </Link>
+              <Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
             </span>
           }
         >

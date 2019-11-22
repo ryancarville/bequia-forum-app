@@ -8,6 +8,7 @@ import MarketPlaceListingForm from "../CreateMarketPlaceListing/MarketPlaceListi
 import ForumContext from "../../ForumContext";
 import ListingBody from "./ListingBody";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 export default class MarketPlacePage extends Component {
   constructor(props) {
     super(props);
@@ -143,7 +144,7 @@ export default class MarketPlacePage extends Component {
     });
   };
   componentDidMount() {
-    const { id } = this.props.location.state;
+    const id = this.props.match.params.marektPlaceListingId;
     this.context.verifyLoginOnReload();
     apiServices.getMarketPlaceCatagories().then(cats => {
       this.setState({
@@ -164,7 +165,8 @@ export default class MarketPlacePage extends Component {
           contact_name: l.contact_name,
           contact_email: l.contact_email,
           contact_phone: l.contact_phone,
-          date_posted: l.date_posted
+          date_posted: l.date_posted,
+          dataLoaded: true
         });
       })
       .then(() => {
@@ -206,8 +208,10 @@ export default class MarketPlacePage extends Component {
               showEditPopUp={this.showEditPopUp}
               resetState={this.resetState}
             />
-          ) : (
+          ) : this.state.dataLoaded ? (
             <ListingBody state={this.state} />
+          ) : (
+            waveLoader
           )}
           <ForumContext.Consumer>
             {context =>

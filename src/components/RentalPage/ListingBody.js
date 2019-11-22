@@ -4,7 +4,6 @@ import formatDate from "../../helpers/formatDate";
 import waveLoader from "../Icons/waveLoader";
 export default function ListingBody(props) {
   var r = props.post;
-  console.log(r);
   const { airbnb, homeaway, booking_dot_com, other_site } = r;
   const sites = [airbnb, homeaway, booking_dot_com, other_site];
   const bookingSites = [];
@@ -14,7 +13,6 @@ export default function ListingBody(props) {
       bookingSites.push({ id: i, site: sites[i] });
     }
   }
-  console.log(sites);
   const makeListing = (
     <>
       <h3>{r.title}</h3>

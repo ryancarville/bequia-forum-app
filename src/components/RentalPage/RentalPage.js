@@ -196,34 +196,27 @@ export default class RentalPage extends Component {
 
   componentDidMount() {
     const { rentalId } = this.props.match.params;
-
     apiServices
       .getRentalListing(rentalId)
       .then(r => {
-        console.log(r);
-        this.setState(
-          {
-            id: r.id,
-            rental_cat: r.rentalcat,
-            user_id: r.userid,
-            title: r.title,
-            description: r.description,
-            location: r.location,
-            price: r.price,
-            contact_name: r.contact_name,
-            contact_email: r.contact_email,
-            contact_phone: r.contact_phone,
-            airbnb: r.airbnb,
-            homeaway: r.homeaway,
-            booking_dot_com: r.booking_dot_com,
-            other_site: r.other_site,
-            date_posted: r.date_posted,
-            dataLoaded: true
-          },
-          () => {
-            console.log(this.state);
-          }
-        );
+        this.setState({
+          id: r.id,
+          rental_cat: r.rentalcat,
+          user_id: r.userid,
+          title: r.title,
+          description: r.description,
+          location: r.location,
+          price: r.price,
+          contact_name: r.contact_name,
+          contact_email: r.contact_email,
+          contact_phone: r.contact_phone,
+          airbnb: r.airbnb,
+          homeaway: r.homeaway,
+          booking_dot_com: r.booking_dot_com,
+          other_site: r.other_site,
+          date_posted: r.date_posted,
+          dataLoaded: true
+        });
       })
       .then(() => {
         apiServices.getRentalCatagories().then(cats => {
@@ -293,6 +286,6 @@ export default class RentalPage extends Component {
         </section>
       );
     }
-    return <p>Loading...</p>;
+    return waveLoader;
   }
 }

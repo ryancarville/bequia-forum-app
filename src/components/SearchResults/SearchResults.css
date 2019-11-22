@@ -9,26 +9,15 @@
 }
 #no-search-results-message {
   text-align: center;
+  font-size: 20px;
 }
 .search-results-section {
   list-style: none;
   padding: 0px;
 }
+
 .forum-search-content h3 {
   margin-left: 20px;
-}
-#forum-search-results li p {
-  margin: 0px;
-}
-.search-results-section li {
-  border: 1px solid black;
-  padding: 10px;
-  margin-bottom: 15px;
-  width: 90%;
-  height: auto;
-  background-color: limegreen;
-  font-size: 18px;
-  line-height: 1.5em;
 }
 
 .search-results-section {
@@ -36,55 +25,21 @@
   flex-direction: column;
   align-items: center;
 }
-
-.market-place-search-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.market-place-search-results li {
+.search-result-item {
   border: 1px solid black;
+  border-radius: 25px;
   padding: 10px;
-  margin-bottom: 15px;
-  width: 90%;
+  margin: 10px;
+  width: 95%;
   height: auto;
-  background-color: limegreen;
+  background-color: yellow;
   font-size: 18px;
   line-height: 1.5em;
-}
-#market-place-search-results li p {
-  margin: 0;
-}
-.rentals-search-results {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
-#rentals-search-results li {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin-bottom: 15px;
-  float: left;
-  height: auto;
-}
-#rentals-search-results li p {
-  margin: 0;
-}
-.jobs-search-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.jobs-search-results li {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin-bottom: 15px;
-  font-size: 10px;
-  height: auto;
-}
-#jobs-search-results li p {
+.search-result-item p{
   margin: 0;
 }
 
@@ -99,53 +54,7 @@
   .forum-search-content ul {
     list-style: none;
   }
-  .forum-search-content ul li {
-    border: 1px solid black;
-    padding: 10px;
+  .search-result-item {
     width: 100%;
-    background-color: lightgreen;
-  }
-
-  .forum-search-results {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 1em;
-  }
-
-  .market-place-search-results {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 1em;
-  }
-  .market-place-search-results li {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    float: left;
-    height: auto;
-  }
-  .rentals-search-results {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 1em;
-  }
-  .rentals-search-results li {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    float: left;
-    height: auto;
-  }
-  .jobs-search-results {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 1em;
-  }
-  .jobs-search-results li {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    float: left;
-    height: auto;
   }
 }

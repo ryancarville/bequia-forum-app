@@ -153,31 +153,25 @@ class JobPage extends Component {
     apiServices
       .getJobListingById(jobId)
       .then(listing => {
-        console.log(listing);
         if (listing.error) {
           this.setState({
             error: listing.error
           });
         } else {
-          this.setState(
-            {
-              user_id: listing.user_id,
-              job_cat: listing.jobCat,
-              title: listing.title,
-              description: listing.description,
-              location: listing.location,
-              employment: listing.employment,
-              contact_name: listing.contact_name,
-              contact_email: listing.contact_email,
-              contact_phone: listing.contact_phone,
-              website: listing.website,
-              date_posted: listing.dateposted,
-              loaded: true
-            },
-            () => {
-              console.log(this.state);
-            }
-          );
+          this.setState({
+            user_id: listing.user_id,
+            job_cat: listing.jobCat,
+            title: listing.title,
+            description: listing.description,
+            location: listing.location,
+            employment: listing.employment,
+            contact_name: listing.contact_name,
+            contact_email: listing.contact_email,
+            contact_phone: listing.contact_phone,
+            website: listing.website,
+            date_posted: listing.dateposted,
+            loaded: true
+          });
         }
       })
       .then(() => {
@@ -240,7 +234,7 @@ class JobPage extends Component {
                 <h4>Job Description</h4>
                 <p>{j.description}</p>
                 {j.contact_name || j.contact_phone || j.contact_email ? (
-                  <div id='job-contact-info'>
+                  <div id="job-contact-info">
                     {j.contact_name ? (
                       <p>
                         <i class="fas fa-user-tie"></i> {j.contact_name}
