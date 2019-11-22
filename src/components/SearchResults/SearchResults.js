@@ -22,9 +22,14 @@ export default class SearchResults extends Component {
       const term = sessionStorage.getItem("searchTerm");
       const board_id = sessionStorage.getItem("searchBoard");
       var searchCreds = { board_id, term };
-      apiServices.searchPosts(searchCreds).then(data => {
-        this.context.searchResults(data);
-      });
+      apiServices
+        .searchPosts(searchCreds)
+        .then(data => {
+          this.context.searchResults(data);
+        })
+        .then(() => {
+          this.context.resetsearchRedirect();
+        });
     }
   }
 
@@ -54,45 +59,59 @@ export default class SearchResults extends Component {
                   </ul>
                 ) : null || context.state.siteSearchDataLoaded ? (
                   <>
-                    <h3>Messageboards</h3>
-                    <ul
-                      className="search-results-section"
-                      id="forum-search-results"
-                    >
-                      <ForumSearchResults
-                        posts={context.state.siteSearchResults.mbPosts}
-                      />
-                    </ul>
-
-                    <h3>Market Place</h3>
-                    <ul
-                      className="search-results-section"
-                      id="market-place-search-results"
-                    >
-                      <MarketPlaceSearchResults
-                        posts={context.state.siteSearchResults.mpPosts}
-                      />
-                    </ul>
-
-                    <h3>Rentals</h3>
-                    <ul
-                      className="search-results-section"
-                      id="rentals-search-results"
-                    >
-                      <RentalsSearchResults
-                        posts={context.state.siteSearchResults.rPosts}
-                      />
-                    </ul>
-
-                    <h3>Jobs</h3>
-                    <ul
-                      className="search-results-section"
-                      id="jobs-search-results"
-                    >
-                      <JobSearchResults
-                        posts={context.state.siteSearchResults.jPosts}
-                      />
-                    </ul>
+                    {context.state.siteSearchResults.mbPosts.length > 0 ? (
+                      <>
+                        {" "}
+                        <h3>Messageboards</h3>
+                        <ul
+                          className="search-results-section"
+                          id="forum-search-results"
+                        >
+                          <ForumSearchResults
+                            posts={context.state.siteSearchResults.mbPosts}
+                          />
+                        </ul>
+                      </>
+                    ) : null}
+                    {context.state.siteSearchResults.mpPosts.length > 0 ? (
+                      <>
+                        <h3>Market Place</h3>
+                        <ul
+                          className="search-results-section"
+                          id="market-place-search-results"
+                        >
+                          <MarketPlaceSearchResults
+                            posts={context.state.siteSearchResults.mpPosts}
+                          />
+                        </ul>
+                      </>
+                    ) : null}
+                    {context.state.siteSearchResults.rPosts.length > 0 ? (
+                      <>
+                        <h3>Rentals</h3>
+                        <ul
+                          className="search-results-section"
+                          id="rentals-search-results"
+                        >
+                          <RentalsSearchResults
+                            posts={context.state.siteSearchResults.rPosts}
+                          />
+                        </ul>
+                      </>
+                    ) : null}
+                    {context.state.siteSearchResults.jPosts.length > 0 ? (
+                      <>
+                        <h3>Jobs</h3>
+                        <ul
+                          className="search-results-section"
+                          id="jobs-search-results"
+                        >
+                          <JobSearchResults
+                            posts={context.state.siteSearchResults.jPosts}
+                          />
+                        </ul>
+                      </>
+                    ) : null}
                   </>
                 ) : null
               ) : (

@@ -21,6 +21,7 @@ class App extends Component {
       searchResults: { formattedPosts: [], numOfComments: [] },
       resultsCount: 0,
       showSearch: false,
+      searchRedirect: false,
       loggedIn: false
     };
   }
@@ -73,6 +74,11 @@ class App extends Component {
       });
     }
   };
+  resetsearchRedirect = () => {
+    this.setState({
+      searchRedirect: false
+    });
+  };
   searchResults = data => {
     this.setState({
       showSearch: false,
@@ -80,7 +86,8 @@ class App extends Component {
       siteSearchResults: {},
       resultsCount: 0,
       searchBoardDataLoaded: false,
-      siteSearchDataLoaded: false
+      siteSearchDataLoaded: false,
+      searchRedirect: true
     });
     if (data.message) {
       this.setState({
@@ -146,6 +153,7 @@ class App extends Component {
           jPosts: [],
           numOfComments: []
         },
+        searchRedirect: true,
         newStateSet: true
       });
       let resultsLength = 0;
@@ -309,7 +317,8 @@ class App extends Component {
       getUserData: this.getUserData,
       user: this.state.user,
       verifyLoginOnReload: this.verifyLoginOnReload,
-      searchResults: this.searchResults
+      searchResults: this.searchResults,
+      resetsearchRedirect: this.resetsearchRedirect
     };
     return (
       <ForumContext.Provider value={contextValue}>
@@ -321,6 +330,7 @@ class App extends Component {
           <Router
             searchResults={this.state.searchResults}
             showSearch={this.state.showSearch}
+            searchRedirect={this.state.searchRedirect}
           />
           <Footer />
         </div>
