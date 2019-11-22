@@ -290,13 +290,6 @@ class App extends Component {
                 });
             });
           }
-
-          if (this.state.resultsCount === resultsLength) {
-            this.setState({
-              showSearch: true,
-              siteSearchDataLoaded: true
-            });
-          }
         });
         return true;
       }
