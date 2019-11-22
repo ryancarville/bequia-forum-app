@@ -28,6 +28,11 @@ export default class Dashboard extends Component {
       showPosts: !this.state.showPosts
     });
   };
+  showUserPosts = () => {
+    this.setState({
+      showUserPosts: !this.state.showUserPosts
+    });
+  };
   static contextType = ForumContext;
   componentDidMount() {
     apiServices
@@ -51,7 +56,7 @@ export default class Dashboard extends Component {
           <div className="mobile-home-page-event-content">
             <h3 onClick={this.showHomePageEvents}>
               {this.state.showEvents ? (
-                <i class="far fa-times-circle" samesite="none"></i>
+                <i className="far fa-times-circle" samesite="none"></i>
               ) : (
                 "Upcoming Events"
               )}
@@ -73,7 +78,7 @@ export default class Dashboard extends Component {
 
             <h3 onClick={this.showNewPosts}>
               {this.state.showPosts ? (
-                <i class="far fa-times-circle" samesite="none"></i>
+                <i className="far fa-times-circle" samesite="none"></i>
               ) : (
                 "New Posts"
               )}
@@ -85,7 +90,32 @@ export default class Dashboard extends Component {
                   : "mobile-home-page-new-posts-closed"
               }`}
             >
-              <NewPost />
+              <NewPost dashboard={true} />
+            </div>
+
+            <div className="mobile-home-page-user-post-content"></div>
+
+            <h3 onClick={this.showUserPosts}>
+              {this.state.showUserPosts ? (
+                <i className="far fa-times-circle" samesite="none"></i>
+              ) : (
+                "Your Posts"
+              )}
+            </h3>
+            <div
+              className={`${
+                this.state.showUserPosts
+                  ? "mobile-home-page-user-posts-open"
+                  : "mobile-home-page-user-posts-closed"
+              }`}
+            >
+              {this.state.userPosts.length > 0 ? (
+                <ul>
+                  <UserPosts posts={this.state.userPosts} />
+                </ul>
+              ) : (
+                waveLoader
+              )}
             </div>
           </div>
         </section>

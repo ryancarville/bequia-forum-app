@@ -8,13 +8,18 @@ export default function ThisWeek(props) {
     return events.map(e => {
       return (
         <div className="event" key={e.id}>
-          <span>
-            <Link to={`/events/${e.id}`}>{e.title}</Link>
-            <p>Where: {e.location}</p>
-            <p>When: {formatDate(e.event_date)}</p>
-            <p>Time: {e.event_time}</p>
-          </span>
-          <p>{e.description}</p>
+          <Link to={`/events/${e.id}`}>{e.title}</Link>
+          <p>
+            <i className="fas fa-map-marked-alt" samesite="none"></i>{" "}
+            {e.location}
+          </p>
+          <p>
+            <i className="far fa-calendar-alt" samesite="none"></i>{" "}
+            {formatDate(e.event_date)}
+          </p>
+          <p>
+            <i className="far fa-clock" samesite="none"></i> {e.event_time}
+          </p>
         </div>
       );
     });
