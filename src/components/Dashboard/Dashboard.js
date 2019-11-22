@@ -3,22 +3,22 @@ import "./Dashboard.css";
 import NewPost from "../NewPost/NewPost";
 import ThisWeek from "../ThisWeek/ThisWeek";
 import apiServices from "../../services/apiServices";
-
+import ForumContext from "../../ForumContext";
+import UserPosts from "../UserPosts/UserPosts";
+import waveLoader from "../Icons/waveLoader";
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: null,
-      usersPosts:[],
+      events: [],
+      userPosts: [],
       error: null,
       showEvents: false,
-      showPosts: false,
-      
+      showPosts: false
     };
   }
 
   showHomePageEvents = () => {
-    console.log("click");
     this.setState({
       showEvents: !this.state.showEvents
     });
@@ -28,10 +28,20 @@ export default class Dashboard extends Component {
       showPosts: !this.state.showPosts
     });
   };
+  static contextType = ForumContext;
   componentDidMount() {
-    apiServices.getThisWeeksEvents().then(events => {
-      this.setState({ events: events });
-    });
+    apiServices
+      .getThisWeeksEvents()
+      .then(events => {
+        this.setState({ events: events });
+      })
+      .then(() => {
+        apiServices.getAllUserPosts(this.context.user.id).then(posts => {
+          this.setState({
+            userPosts: posts
+          });
+        });
+      });
   }
 
   render() {
@@ -83,14 +93,24 @@ export default class Dashboard extends Component {
           <div className="home-page-content">
             <section id="home-page-newest-post">
               <h3>New Posts</h3>
-              <NewPost />
+              <NewPost dashboard={true} />
             </section>
             <section id="home-page-upcoming-events">
               <h3>Upcoming Events</h3>
-              {this.state.events ? (
+              {this.state.events.length > 0 ? (
                 <ThisWeek events={this.state.events} />
               ) : (
                 <p>Currently there are no events for this week.</p>
+              )}
+            </section>
+            <section className="dashboard-home-user-posts">
+              <h3>Your Posts</h3>
+              {this.state.userPosts.length > 0 ? (
+                <ul>
+                  <UserPosts posts={this.state.userPosts} />
+                </ul>
+              ) : (
+                waveLoader
               )}
             </section>
           </div>

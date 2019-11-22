@@ -237,7 +237,7 @@ class JobPage extends Component {
                   <div id="job-contact-info">
                     {j.contact_name ? (
                       <p>
-                        <i class="fas fa-user-tie"></i> {j.contact_name}
+                        <i className="fas fa-user-tie"></i> {j.contact_name}
                       </p>
                     ) : null}
 

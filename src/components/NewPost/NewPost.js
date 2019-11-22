@@ -104,9 +104,7 @@ export default class NewPost extends Component {
   render() {
     return (
       <div className="newPost-container">
-        <header>
-          <h2>Newest Posts</h2>
-        </header>
+        <header>{this.props.dashboard ? null : <h2>Newest Posts</h2>}</header>
         <div className="newPost-content">
           {this.state.dataLoaded ? (
             this.state.postsWithCount ? (

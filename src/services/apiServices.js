@@ -147,7 +147,7 @@ const apiServices = {
       return err;
     });
   },
-  //get all the forum sub sections for a catagory 
+  //get all the forum sub sections for a catagory
   getFourmBoards(forum_cat) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/${forum_cat}`, {
@@ -280,6 +280,24 @@ const apiServices = {
   getNewestPosts() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/newestPosts", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+        mode: "cors"
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
+    });
+  },
+  //get all posts for a users
+  getAllUserPosts(id) {
+    return new Promise((resolve, reject) => {
+      fetch(config.API_ENDPOINT + `/forum/get-user-posts/${id}`, {
         method: "GET",
         headers: {
           "content-type": "application/json"
@@ -671,7 +689,7 @@ const apiServices = {
       return err;
     });
   },
-  //get likes tracker 
+  //get likes tracker
   getLikesTracker(info) {
     return new Promise((resolve, reject) => {
       fetch(
