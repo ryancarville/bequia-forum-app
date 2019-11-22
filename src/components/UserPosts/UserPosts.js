@@ -15,14 +15,12 @@ export default class UserPosts extends Component {
     };
   }
   divideResponsePosts = () => {
-    console.log(this.state.allPosts);
     const { allPosts } = this.state;
     allPosts.forEach(posts => {
       if (posts.mbPosts) {
         apiServices
           .getFourm()
           .then(boards => {
-            console.log(boards);
             this.setState({
               messageBoards: boards
             });
@@ -70,7 +68,7 @@ export default class UserPosts extends Component {
   };
   makeMpPosts = () => {
     const { mpPosts } = this.state;
-    console.log(mpPosts);
+
     return mpPosts.map(p => (
       <li key={p.id} className="dashboard-user-post-card-item">
         <Link to={`/marketPlace/${p.market_place_cat}/${p.id}`}>{p.title}</Link>
@@ -79,7 +77,7 @@ export default class UserPosts extends Component {
   };
   makerPosts = () => {
     const { rPosts } = this.state;
-    console.log(rPosts);
+
     return rPosts.map(p => (
       <li key={p.id} className="dashboard-user-post-card-item">
         <Link to={`/rentals/${p.rental_cat}/${p.id}`}>{p.title}</Link>
@@ -88,7 +86,7 @@ export default class UserPosts extends Component {
   };
   makejPosts = () => {
     const { jPosts } = this.state;
-    console.log(jPosts);
+
     return jPosts.map(p => (
       <li key={p.id} className="dashboard-user-post-card-item">
         <Link to={`/jobs/${p.job_cat}/${p.id}`}>{p.title}</Link>

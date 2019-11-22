@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   setUserData = (user_id, user) => {
+    sessionStorage.setItem("user_id", user_id);
     this.setState({
       user: {
         id: user_id,
@@ -297,6 +298,15 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const user_id = sessionStorage.getItem("user_id");
+    if (user_id) {
+      this.setState({
+        user: {
+          id: user_id
+        }
+      });
+    }
+
     this.verifyLoginOnReload();
   }
 

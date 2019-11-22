@@ -52,8 +52,8 @@
   margin-right: auto;
 }
 .dashboard-user-post-card-item {
-  font-size: 25px;
-  padding: 10px;
+  font-size: 20px;
+  padding: 5px;
   text-align: center;
   border: 1px solid blue;
   margin-bottom: 20px;
@@ -61,25 +61,10 @@
   cursor: pointer;
   animation: fadeIn 2s ease-in forwards;
 }
-.dashboard-user-post-card-item:hover {
-  background-color: blue;
-  color: yellow;
-}
+
 .dashboard-user-post-card-item a {
   text-decoration: none;
   color: black;
-}
-.dashboard-user-post-card-item a:hover {
-  color: yellow;
-}
-.dashboard-home-user-posts {
-  width: 20%;
-  scroll-behavior: smooth;
-  height: 675px;
-  overflow: scroll;
-  border: 3px solid blue;
-  padding: 20px;
-  padding-top: 0;
 }
 
 .home-page-container {
