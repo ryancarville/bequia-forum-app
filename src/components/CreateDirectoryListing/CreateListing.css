@@ -1,67 +1,67 @@
 .dir-listing-form {
-	width: 100%;
-	margin-top: 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .dir-listing-form input {
-	width: 90%;
-	height: 50px;
-	padding: 20px;
-	font-size: 16px;
-	margin-top: 20px;
-	border: none;
-	border-bottom: 1px solid black;
+  width: 90%;
+  height: 50px;
+  padding: 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
 }
 .dir-listing-form select {
-	width: 90%;
-	height: 50px;
-	padding: 10px;
-	font-size: 16px;
-	margin-top: 20px;
-	border: 1px solid black;
+  width: 90%;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+  border: 1px solid black;
 }
 .dir-listing-form button {
-	width: 90%;
-	height: 50px;
-	font-size: 20px;
-	padding: 5px;
-	margin-top: 20px;
+  width: 90%;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin-top: 20px;
 }
 
-@media only screen and (min-width: 700px){
-	.dir-listing-form {
-		width: 100%;
-		margin-top: 25px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-	.dir-listing-form input {
-		width: 20%;
-		height: 35px;
-		padding: 10px;
-		font-size: 16px;
-		margin-top: 20px;
-		border: none;
-		border-bottom: 1px solid black;
-	}
-	.dir-listing-form select {
-		width: 20%;
-		height: 35px;
-		padding: 10px;
-		font-size: 16px;
-		margin-top: 20px;
-	}
-	.dir-listing-form button {
-		width: 20%;
-		height: 35px;
-		font-size: 16px;
-		padding: 5px;
-		margin-top: 20px;
-	}
-	
+@media only screen and (min-width: 700px) {
+  .dir-listing-form {
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dir-listing-form input {
+    width: 20%;
+    height: 35px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+  .dir-listing-form select {
+    width: 20%;
+    height: 35px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .dir-listing-form button {
+    width: 20%;
+    height: 35px;
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 20px;
+  }
 }
