@@ -6,19 +6,24 @@ export default function JobSearchResults(props) {
   const jobPosts = () => {
     return props.posts.map(j => (
       <li key={j.id} className="search-result-item">
-        <Link to={`/jobs/${j.job_cat}/${j.id}`}>{j.title}</Link>
-        <Truncate
-          lines={1}
-          ellipsis={
-            <span>
-              ...
-              <Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
-            </span>
-          }
-        >
-          <p>{j.description}</p>
-        </Truncate>
-        <span className="postInfo">
+        <article className="post-card-info">
+          <Link to={`/jobs/${j.job_cat}/${j.id}`}>
+            <h4>{j.title}</h4>
+          </Link>
+          <Truncate
+            className="post-teaser"
+            lines={2}
+            ellipsis={
+              <span>
+                ...
+                <Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
+              </span>
+            }
+          >
+            <p>{j.description}</p>
+          </Truncate>
+        </article>
+        <span className="post-card-user-info">
           {j.location ? <p>Location: {j.location}</p> : null}
           {j.employment ? <p>Employment: {j.employment}</p> : null}
           <p>Posted By: {j.user_name}</p>

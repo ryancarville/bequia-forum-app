@@ -7,46 +7,46 @@ import like from "../Icons/like";
 export default function ForumSearchResults(props) {
   const forumPosts = () => {
     return props.posts.map(p => {
-      const numOfComments = props.numOfComments.find(
-        count => count.post_id === p.post.id
-      );
+      
       return (
-        <li key={p.post.id} className="search-result-item">
-          <Link
-            to={`/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`}
-          >
-            {p.post.title}
-          </Link>
-          <br />
-          <Truncate
-            lines={1}
-            ellipsis={
-              <span>
-                ...
-                <Link
-                  to={`/messageBoard/${p.section_id}/${p.post.board_id}/${p.post.id}`}
-                >
-                  Read more
-                </Link>
-              </span>
-            }
-          >
-            {p.post.content}
-          </Truncate>
-          <span className="postInfo">
-            <p>Posted By: {p.post.user_name}</p>
-            <p>Posted On: {formatDate(p.post.date_posted)}</p>
-            <span className="post-icons">
+        <li key={p.id} className="search-result-item">
+          <article className="post-card-info">
+            <Link
+              to={`/messageBoard/${p.section_id}/${p.board_id}/${p.id}`}
+            >
+              <h4>{p.title}</h4>
+            </Link>
+            <Truncate
+              className="post-teaser"
+              lines={2}
+              ellipsis={
+                <span>
+                  ...
+                  <Link
+                    to={`/messageBoard/${p.section_id}/${p.board_id}/${p.id}`}
+                  >
+                    Read more
+                  </Link>
+                </span>
+              }
+            >
+              <p>{p.content}</p>
+            </Truncate>
+          </article>
+          <span className="post-card-user-info">
+            <p>Posted By: {p.user_name}</p>
+            <p>Posted On: {formatDate(p.date_posted)}</p>
+            <span className="post-card-icons">
               <p>
                 {like}
                 {"   "}
-                {p.post.likes}
+                {p.likes}
               </p>
 
               <p>
                 {comment}
                 {"   "}
-                {numOfComments.count}
+                {p.commentCount}
               </p>
             </span>
           </span>

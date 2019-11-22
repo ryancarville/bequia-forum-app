@@ -77,6 +77,7 @@ class App extends Component {
     this.setState({
       showSearch: false,
       searchResults: {},
+      siteSearchResults: {},
       resultsCount: 0,
       searchBoardDataLoaded: false,
       siteSearchDataLoaded: false
@@ -93,48 +94,43 @@ class App extends Component {
         searchResults: { formattedPosts: [], numofComments: [] }
       });
       data.specificBoard.map(post => {
+        const formattedPost = post;
         return apiServices
           .getBoardById(post.board_id)
           .then(board => {
-            const formattedPost = {
-              section_id: board.messageboard_section,
-              post: post
-            };
-            this.setState({
-              searchResults: {
-                formattedPosts: [
-                  ...this.state.searchResults.formattedPosts,
-                  formattedPost
-                ],
-                numOfComments: []
-              }
-            });
+            formattedPost.section_id = board.messageboard_section;
           })
           .then(() => {
             apiServices
-              .getNumOfCommentsByPostId(post.id)
-              .then(num => {
-                const count = { post_id: post.id, count: num[0].count };
-                this.setState({
-                  searchResults: {
-                    formattedPosts: this.state.searchResults.formattedPosts,
-                    numOfComments: [
-                      ...this.state.searchResults.numOfComments,
-                      count
-                    ]
-                  }
-                });
+              .getUserName(post.user_id)
+              .then(user => {
+                formattedPost.user_name = user.user_name;
               })
               .then(() => {
-                if (
-                  data.specificBoard.length ===
-                  this.state.searchResults.numOfComments.length
-                ) {
-                  this.setState({
-                    showSearch: true,
-                    searchBoardDataLoaded: true
+                apiServices
+                  .getNumOfCommentsByPostId(post.id)
+                  .then(num => {
+                    formattedPost.commentCount = num[0].count;
+                    this.setState({
+                      searchResults: {
+                        formattedPosts: [
+                          ...this.state.searchResults.formattedPosts,
+                          formattedPost
+                        ]
+                      }
+                    });
+                  })
+                  .then(() => {
+                    if (
+                      data.specificBoard.length ===
+                      this.state.searchResults.formattedPosts.length
+                    ) {
+                      this.setState({
+                        showSearch: true,
+                        searchBoardDataLoaded: true
+                      });
+                    }
                   });
-                }
               });
           });
       });
@@ -143,14 +139,13 @@ class App extends Component {
 
     if (data[0].siteSearch) {
       this.setState({
-        searchResults: {
+        siteSearchResults: {
           mbPosts: [],
           mpPosts: [],
           rPosts: [],
           jPosts: [],
           numOfComments: []
         },
-
         newStateSet: true
       });
       let resultsLength = 0;
@@ -173,51 +168,37 @@ class App extends Component {
           }
           if (board.mbPosts) {
             board.mbPosts.map(post => {
+              const formattedPost = post;
               return apiServices
                 .getBoardById(post.board_id)
                 .then(board => {
-                  const formattedPost = {
-                    section_id: board.messageboard_section,
-                    post: post
-                  };
-                  this.setState({
-                    searchResults: {
-                      mbPosts: [
-                        ...this.state.searchResults.mbPosts,
-                        formattedPost
-                      ],
-                      mpPosts: this.state.searchResults.mpPosts,
-                      rPosts: this.state.searchResults.rPosts,
-                      jPosts: this.state.searchResults.jPosts,
-                      numOfComments: this.state.searchResults.numOfComments
-                    },
-                    resultsCount: this.state.resultsCount + 1
+                  formattedPost.section_id = board.messageboard_section;
+                })
+                .then(() => {
+                  apiServices.getUserName(post.user_id).then(user => {
+                    formattedPost.user_name = user.user_name;
                   });
                 })
                 .then(() => {
                   apiServices
                     .getNumOfCommentsByPostId(post.id)
                     .then(num => {
-                      const count = { post_id: post.id, count: num[0].count };
+                      formattedPost.commentCount = num[0].count;
                       this.setState({
-                        searchResults: {
-                          mbPosts: this.state.searchResults.mbPosts,
-                          mpPosts: this.state.searchResults.mpPosts,
-                          rPosts: this.state.searchResults.rPosts,
-                          jPosts: this.state.searchResults.jPosts,
-                          numOfComments: [
-                            ...this.state.searchResults.numOfComments,
-                            count
-                          ]
-                        }
+                        siteSearchResults: {
+                          mbPosts: [
+                            ...this.state.siteSearchResults.mbPosts,
+                            formattedPost
+                          ],
+                          mpPosts: this.state.siteSearchResults.mpPosts,
+                          rPosts: this.state.siteSearchResults.rPosts,
+                          jPosts: this.state.siteSearchResults.jPosts
+                        },
+                        resultsCount: this.state.resultsCount + 1
                       });
                     })
                     .then(() => {
-                      if (
-                        this.state.resultsCount === resultsLength &&
-                        this.state.searchResults.numOfComments.length ===
-                          this.state.searchResults.mbPosts.length
-                      ) {
+                      if (this.state.resultsCount === resultsLength) {
                         this.setState({
                           showSearch: true,
                           siteSearchDataLoaded: true
@@ -228,57 +209,89 @@ class App extends Component {
             });
           }
           if (board.mpPosts) {
-            board.mpPosts.map(post =>
-              this.setState({
-                searchResults: {
-                  mbPosts: this.state.searchResults.mbPosts,
-                  mpPosts: [...this.state.searchResults.mpPosts, post],
-                  rPosts: this.state.searchResults.rPosts,
-                  jPosts: this.state.searchResults.jPosts,
-                  numOfComments: this.state.searchResults.numOfComments
-                },
-                resultsCount: this.state.resultsCount + 1
-              })
-            );
+            board.mpPosts.map(post => {
+              const formattedPost = post;
+              return apiServices
+                .getUserName(post.user_id)
+                .then(user => {
+                  formattedPost.user_name = user.user_name;
+                })
+                .then(() => {
+                  this.setState({
+                    siteSearchResults: {
+                      mbPosts: this.state.siteSearchResults.mbPosts,
+                      mpPosts: [
+                        ...this.state.siteSearchResults.mpPosts,
+                        formattedPost
+                      ],
+                      rPosts: this.state.siteSearchResults.rPosts,
+                      jPosts: this.state.siteSearchResults.jPosts
+                    },
+                    resultsCount: this.state.resultsCount + 1
+                  });
+                });
+            });
           }
 
           if (board.rPosts) {
-            board.rPosts.map(post =>
-              this.setState({
-                searchResults: {
-                  mbPosts: this.state.searchResults.mbPosts,
-                  mpPosts: this.state.searchResults.mpPosts,
-                  rPosts: [...this.state.searchResults.rPosts, post],
-                  jPosts: this.state.searchResults.jPosts,
-                  numOfComments: this.state.searchResults.numOfComments
-                },
-                resultsCount: this.state.resultsCount + 1
-              })
-            );
+            board.rPosts.map(post => {
+              const formattedPost = post;
+              return apiServices
+                .getUserName(post.user_id)
+                .then(user => {
+                  formattedPost.user_name = user.user_name;
+                })
+                .then(() => {
+                  this.setState({
+                    siteSearchResults: {
+                      mbPosts: this.state.siteSearchResults.mbPosts,
+                      mpPosts: this.state.siteSearchResults.mpPosts,
+
+                      rPosts: [
+                        ...this.state.siteSearchResults.rPosts,
+                        formattedPost
+                      ],
+                      jPosts: this.state.siteSearchResults.jPosts
+                    },
+                    resultsCount: this.state.resultsCount + 1
+                  });
+                });
+            });
           }
           if (board.jPosts) {
-            board.jPosts.map(post =>
-              this.setState({
-                searchResults: {
-                  mbPosts: this.state.searchResults.mbPosts,
-                  mpPosts: this.state.searchResults.mpPosts,
-                  rPosts: this.state.searchResults.rPosts,
-                  jPosts: [...this.state.searchResults.jPosts, post],
-                  numOfComments: this.state.searchResults.numOfComments
-                },
-                resultsCount: this.state.resultsCount + 1
-              })
-            );
+            board.jPosts.map(post => {
+              const formattedPost = post;
+              return apiServices
+                .getUserName(post.user_id)
+                .then(user => {
+                  formattedPost.user_name = user.user_name;
+                })
+                .then(() => {
+                  this.setState({
+                    siteSearchResults: {
+                      mbPosts: this.state.siteSearchResults.mbPosts,
+                      mpPosts: this.state.siteSearchResults.mpPosts,
+                      rPosts: this.state.siteSearchResults.rPosts,
+                      jPosts: [
+                        ...this.state.siteSearchResults.jPosts,
+                        formattedPost
+                      ]
+                    },
+                    resultsCount: this.state.resultsCount + 1
+                  });
+                });
+            });
+          }
+
+          if (this.state.resultsCount === resultsLength) {
+            this.setState({
+              showSearch: true,
+              siteSearchDataLoaded: true
+            });
           }
         });
+        return true;
       }
-      if (this.state.resultsCount === resultsLength) {
-        this.setState({
-          showSearch: true,
-          siteSearchDataLoaded: true
-        });
-      }
-      return true;
     }
   };
 

@@ -42,21 +42,17 @@ export default class SearchResults extends Component {
                   {context.state.searchResults.error}
                 </p>
               ) : null}
-
-              <ul className="search-results-section" id="forum-search-results">
-                {context.state.searchBoardDataLoaded ? (
-                  context.state.searchResults.formattedPosts.length > 0 ? (
+              {context.state.showSearch ? (
+                context.state.searchBoardDataLoaded ? (
+                  <ul
+                    className="search-results-section"
+                    id="forum-search-results"
+                  >
                     <ForumSearchResults
                       posts={context.state.searchResults.formattedPosts}
-                      numOfComments={context.state.searchResults.numOfComments}
                     />
-                  ) : (
-                    <span className="fourm-wave-loader">{waveLoader}</span>
-                  )
-                ) : null}
-              </ul>
-              {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.mbPosts.length > 0 ? (
+                  </ul>
+                ) : null || context.state.siteSearchDataLoaded ? (
                   <>
                     <h3>Messageboards</h3>
                     <ul
@@ -64,64 +60,44 @@ export default class SearchResults extends Component {
                       id="forum-search-results"
                     >
                       <ForumSearchResults
-                        posts={context.state.searchResults.mbPosts}
-                        numOfComments={
-                          context.state.searchResults.numOfComments
-                        }
+                        posts={context.state.siteSearchResults.mbPosts}
                       />
                     </ul>
-                  </>
-                ) : null
-              ) : null}
 
-              {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.mpPosts.length > 0 ? (
-                  <>
                     <h3>Market Place</h3>
                     <ul
                       className="search-results-section"
                       id="market-place-search-results"
                     >
                       <MarketPlaceSearchResults
-                        posts={context.state.searchResults.mpPosts}
+                        posts={context.state.siteSearchResults.mpPosts}
                       />
                     </ul>
-                  </>
-                ) : null
-              ) : null}
 
-              {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.rPosts.length > 0 ? (
-                  <>
                     <h3>Rentals</h3>
                     <ul
                       className="search-results-section"
                       id="rentals-search-results"
                     >
                       <RentalsSearchResults
-                        posts={context.state.searchResults.rPosts}
+                        posts={context.state.siteSearchResults.rPosts}
                       />
                     </ul>
-                  </>
-                ) : null
-              ) : null}
 
-              {context.state.siteSearchDataLoaded ? (
-                context.state.searchResults.jPosts.length > 0 ? (
-                  <>
-                    {" "}
                     <h3>Jobs</h3>
                     <ul
                       className="search-results-section"
                       id="jobs-search-results"
                     >
                       <JobSearchResults
-                        posts={context.state.searchResults.jPosts}
+                        posts={context.state.siteSearchResults.jPosts}
                       />
                     </ul>
                   </>
                 ) : null
-              ) : null}
+              ) : (
+                <span className="forum-loader">{waveLoader}</span>
+              )}
             </div>
           </section>
         )}

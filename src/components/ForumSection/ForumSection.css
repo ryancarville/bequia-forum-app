@@ -118,6 +118,7 @@
   }
   .post-card-user-info {
     line-height: 1.5em;
+    text-align: right;
   }
   .post-card-user-info p {
     margin: 0;

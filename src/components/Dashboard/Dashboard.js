@@ -9,9 +9,11 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       events: null,
+      usersPosts:[],
       error: null,
       showEvents: false,
-      showPosts: false
+      showPosts: false,
+      
     };
   }
 

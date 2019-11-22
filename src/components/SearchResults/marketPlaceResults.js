@@ -8,24 +8,29 @@ export default function MarketPlaceSearchResults(props) {
       const marketPlaceId = l.market_place_cat;
       return (
         <li key={l.id} className="search-result-item">
-          <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>{l.title}</Link>
-          <Truncate
-            lines={1}
-            ellipsis={
-              <span>
-                ...
-                <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>
-                  Read more
-                </Link>
-              </span>
-            }
-          >
-            <p>{l.description}</p>
-          </Truncate>
-          <span className="postInfo">
+          <article className="post-card-info">
+            <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>
+              <h4>{l.title}</h4>
+            </Link>
+            <Truncate
+              className="post-teaser"
+              lines={2}
+              ellipsis={
+                <span>
+                  ...
+                  <Link to={`/marketPlace/${marketPlaceId}/${l.id}`}>
+                    Read more
+                  </Link>
+                </span>
+              }
+            >
+              <p>{l.description}</p>
+            </Truncate>
+          </article>
+          <span className="post-card-user-info">
             {l.price ? <p>Price: {l.price}</p> : null}
             {l.location ? <p>Location: {l.location}</p> : null}
-            <p>Posted By: {l.contact_name}</p>
+            <p>Posted By: {l.user_name}</p>
             <p>Posted On: {formatDate(l.date_posted)}</p>
           </span>
         </li>
