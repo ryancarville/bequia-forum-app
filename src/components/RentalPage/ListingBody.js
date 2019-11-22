@@ -1,7 +1,6 @@
 import React from "react";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import formatDate from "../../helpers/formatDate";
-import { loadPartialConfig } from "@babel/core";
 import waveLoader from "../Icons/waveLoader";
 export default function ListingBody(props) {
   var r = props.post;
@@ -24,7 +23,12 @@ export default function ListingBody(props) {
           <i className="fas fa-map-marked-alt" samesite="none"></i> {r.location}{" "}
         </p>
       ) : null}
-      <p>{r.price ? (r.price === "0" ? null : "Price: " + r.price) : null}</p>
+      {r.price || r.price === "0" ? (
+        <p>
+          {" "}
+          <i className="fas fa-dollar-sign" samesite="none"></i> {r.price}{" "}
+        </p>
+      ) : null}
       <p>{r.description}</p>
       <span>
         <h4>Contact</h4>

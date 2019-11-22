@@ -1,5 +1,6 @@
 import config from "../config";
 const apiServices = {
+  //sign up fetch
   signUp(newUser) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/signUp", {
@@ -18,6 +19,7 @@ const apiServices = {
       return err;
     });
   },
+  //login fetch
   login(creds) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/login", {
@@ -36,6 +38,7 @@ const apiServices = {
       return err;
     });
   },
+  //verify JWT
   verifyToken(token) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/login/verifyToken/${token}`, {
@@ -54,6 +57,7 @@ const apiServices = {
       return err;
     });
   },
+  //extend JWT if valid
   extendToken(token) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/login/token/extended/${token}`, {
@@ -71,6 +75,7 @@ const apiServices = {
       return err;
     });
   },
+  //get logged in user data
   getUserData(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/users/${id}`, {
@@ -88,6 +93,7 @@ const apiServices = {
       return err;
     });
   },
+  //get any user name by user id
   getUserName(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/users/userName/${id}`, {
@@ -105,6 +111,7 @@ const apiServices = {
       return err;
     });
   },
+  //get the high level forum catagories
   getFourmSectionTitles() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/catagories", {
@@ -122,6 +129,7 @@ const apiServices = {
       return err;
     });
   },
+  //get a specific messageboard name by id
   getForumNameById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board-name/${id}`, {
@@ -139,6 +147,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the forum sub sections for a catagory 
   getFourmBoards(forum_cat) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/${forum_cat}`, {
@@ -156,6 +165,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all messageboards
   getFourm() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/messageBoards", {
@@ -173,6 +183,7 @@ const apiServices = {
       return err;
     });
   },
+  //get a messageboard by id
   getBoardById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board/${id}`, {
@@ -190,7 +201,7 @@ const apiServices = {
       return err;
     });
   },
-
+  //get all forum posts by board id
   getPostsByBoardId(id) {
     return new Promise((resolve, reject) => {
       fetch(
@@ -211,6 +222,7 @@ const apiServices = {
       return err;
     });
   },
+  //get a messageboard post by id
   getPostById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-post-by-id/${id}`, {
@@ -228,6 +240,7 @@ const apiServices = {
       return err;
     });
   },
+  //get the number of comments for a single post
   getNumOfCommentsByPostId(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/comments/count-coumments/${id}`, {
@@ -245,7 +258,7 @@ const apiServices = {
       return err;
     });
   },
-
+  //get the number of posts on a specific messageboard
   getNumOfThreads(board_id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {
@@ -263,23 +276,7 @@ const apiServices = {
       return err;
     });
   },
-  getPosts() {
-    return new Promise((resolve, reject) => {
-      fetch(config.API_ENDPOINT + "/forum/posts", {
-        method: "GET",
-        headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
-      }).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
+  //get newest forum posts
   getNewestPosts() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/newestPosts", {
@@ -297,6 +294,7 @@ const apiServices = {
       return err;
     });
   },
+  //search fetch for entire site and specific boards
   searchPosts(search) {
     if (search.board_id !== "null") {
       return new Promise((resolve, reject) => {
@@ -338,7 +336,7 @@ const apiServices = {
       });
     }
   },
-
+  //get all the comments for a specific post by post id
   getCommentsByPostId(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/comments/${id}`, {
@@ -356,6 +354,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the events
   getEvents() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/events", {
@@ -373,6 +372,7 @@ const apiServices = {
       return err;
     });
   },
+  //get the upcoming weeks events
   getThisWeeksEvents() {
     let today = new Date();
     let nextWeek = new Date(
@@ -398,6 +398,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the job catagories
   getJobCatagories() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/jobs/catagories", {
@@ -405,6 +406,7 @@ const apiServices = {
         headers: {
           "content-type": "application/json"
         },
+
         mode: "cors"
       }).then(res => {
         !res.ok
@@ -415,6 +417,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the job listings by catagory id
   getJobListingsByCat(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/jobs/listings-by-cat/${id}`, {
@@ -432,6 +435,7 @@ const apiServices = {
       return err;
     });
   },
+  //get job listings by id
   getJobListingById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/jobs/listings/${id}`, {
@@ -449,6 +453,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the rental catagories
   getRentalCatagories() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/rentals/catagories", {
@@ -466,6 +471,7 @@ const apiServices = {
       return err;
     });
   },
+  //get renatal catagory name by id
   getRentalCatName(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/catagories/${id}`, {
@@ -483,6 +489,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the rental listings by catagory
   getRentalListings(rental_cat) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/rentals/listings-by-cat/${rental_cat}`, {
@@ -500,6 +507,7 @@ const apiServices = {
       return err;
     });
   },
+  //get a rental listing by id
   getRentalListing(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/rentals/listing/${id}`, {
@@ -517,6 +525,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the market place catagories
   getMarketPlaceCatagories() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/marketPlace/catagories", {
@@ -534,6 +543,7 @@ const apiServices = {
       return err;
     });
   },
+  //get all the market place post by catagory id
   getMarketPlacePostsByCat(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/marketPlace/listings-by-cat/${id}`, {
@@ -551,23 +561,7 @@ const apiServices = {
       return err;
     });
   },
-  getMarketPlacePosts() {
-    return new Promise((resolve, reject) => {
-      fetch(config.API_ENDPOINT + "/marketPlace/listings", {
-        method: "GET",
-        headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
-      }).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
+  //get market place listing by id
   getMarketPlacePostsById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/marketPlace/listings/${id}`, {
@@ -585,6 +579,7 @@ const apiServices = {
       return err;
     });
   },
+  //get entire directory
   getDriectory() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/directory", {
@@ -602,6 +597,7 @@ const apiServices = {
       return err;
     });
   },
+  //POST to directory
   addDirectoryListing(newListing) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/directory/addListing", {
@@ -620,6 +616,7 @@ const apiServices = {
       return err;
     });
   },
+  //DELETE from directory
   deleteDirectoryListing(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/directory/delete/${id}`, {
@@ -637,107 +634,7 @@ const apiServices = {
       return err;
     });
   },
-  sortDirectory(sort) {
-    return new Promise((resolve, reject) => {
-      fetch(
-        config.API_ENDPOINT + `/directory/sort/${sort.column}/${sort.sortType}`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json"
-          },
-          mode: "cors"
-        }
-      ).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
-  sortJobs(sort) {
-    return new Promise((resolve, reject) => {
-      fetch(
-        config.API_ENDPOINT + `/jobs/sort/${sort.column}/${sort.sortType}`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json"
-          },
-          mode: "cors"
-        }
-      ).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
-  sortRentals(sort) {
-    return new Promise((resolve, reject) => {
-      fetch(
-        config.API_ENDPOINT + `/rentals/sort/${sort.column}/${sort.sortType}`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json"
-          },
-          mode: "cors"
-        }
-      ).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
-  sortMarketPlace(sort) {
-    return new Promise((resolve, reject) => {
-      fetch(
-        config.API_ENDPOINT +
-          `/marketPlace/sort/${sort.column}/${sort.sortType}`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json"
-          },
-          mode: "cors"
-        }
-      ).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
-  sortForumPosts(sort) {
-    return new Promise((resolve, reject) => {
-      fetch(
-        config.API_ENDPOINT + `/forum/sort/${sort.column}/${sort.sortType}`,
-        {
-          method: "GET",
-          headers: {
-            "content-type": "application/json"
-          },
-          mode: "cors"
-        }
-      ).then(res => {
-        !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
-      });
-    }).catch(err => {
-      return err;
-    });
-  },
+  //add like to post
   addLike(post_id) {
     console.log(post_id);
     return new Promise((resolve, reject) => {
@@ -756,6 +653,7 @@ const apiServices = {
       return err;
     });
   },
+  //subtract like from post
   minusLike(post_id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/post/minusLike/${post_id}`, {
@@ -773,6 +671,7 @@ const apiServices = {
       return err;
     });
   },
+  //get likes tracker 
   getLikesTracker(info) {
     return new Promise((resolve, reject) => {
       fetch(
@@ -795,6 +694,7 @@ const apiServices = {
       return err;
     });
   },
+  //add to likes tracker
   addToLikesTracker(info) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/post/addToTracker`, {
@@ -813,6 +713,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete from likes tracker
   deleteFromLikesTracker(info) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/post/deleteFromTracker`, {
@@ -831,6 +732,7 @@ const apiServices = {
       return err;
     });
   },
+  //create new forum post
   createPost(newPost) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/addPost", {
@@ -849,6 +751,7 @@ const apiServices = {
       return err;
     });
   },
+  //edit forum post
   editPost(postToUpdate) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/edit", {
@@ -867,6 +770,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete forum post
   deletePost(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/posts/${id}`, {
@@ -884,6 +788,7 @@ const apiServices = {
       return err;
     });
   },
+  //add new comment
   addComment(newComment) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/comments/addComment", {
@@ -902,6 +807,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete comment
   deleteComment(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/comments/delete/${id}`, {
@@ -919,6 +825,7 @@ const apiServices = {
       return err;
     });
   },
+  //get event by event id
   getEventById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/events/${id}`, {
@@ -936,6 +843,7 @@ const apiServices = {
       return err;
     });
   },
+  //add new event
   addEvent(newEvent) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/events/addEvent", {
@@ -954,6 +862,7 @@ const apiServices = {
       return err;
     });
   },
+  //edit event
   editEvent(eventToUpdate) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/events/edit", {
@@ -972,6 +881,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete event
   deleteEvent(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/events/delete/${id}`, {
@@ -989,6 +899,7 @@ const apiServices = {
       return err;
     });
   },
+  //add new job listing
   addJobListing(newEvent) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/jobs/addJob", {
@@ -1007,6 +918,7 @@ const apiServices = {
       return err;
     });
   },
+  //edit job listing
   editJobListing(listingToUpdate) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/jobs/edit", {
@@ -1025,6 +937,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete job listing
   deleteJobListing(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/jobs/delete/${id}`, {
@@ -1042,6 +955,7 @@ const apiServices = {
       return err;
     });
   },
+  //create new rental listing
   addRentalListing(newRental) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/rentals/addListing", {
@@ -1060,6 +974,7 @@ const apiServices = {
       return err;
     });
   },
+  //edit rental listing
   editRentalListing(listingToUpdate) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/rentals/edit", {
@@ -1078,6 +993,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete rental listing
   deleteRentalListing(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/rentals/delete/${id}`, {
@@ -1095,6 +1011,7 @@ const apiServices = {
       return err;
     });
   },
+  //create new market place listing
   addMarketPlaceListing(newListing) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/marketPlace/addListing", {
@@ -1113,6 +1030,7 @@ const apiServices = {
       return err;
     });
   },
+  //edit market place listing
   editMarketPlaceListing(listingToUpdate) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/marketPlace/edit", {
@@ -1131,6 +1049,7 @@ const apiServices = {
       return err;
     });
   },
+  //delete market place listing
   deleteMarketPlaceListing(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/marketPlace/delete/${id}`, {

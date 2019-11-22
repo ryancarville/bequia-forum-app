@@ -12,9 +12,7 @@ class Nav extends Component {
           <span className="forumLogo">
             <Link to="/">
               <img
-                samesite="none"
-                secure="true"
-                src="https://bequiaforum.com/images/bequia-logo.png"
+                src="https://bequiaforum.com/static/media/bequia-logo.png"
                 alt="forum-icon"
               />
             </Link>
@@ -40,7 +38,7 @@ class Nav extends Component {
             <Link to="/">
               <img
                 samesite="none"
-                src="https://bequiaforum.com/images/bequia-logo.png"
+                src="https://bequiaforum.com/static/media/bequia-logo.png"
                 alt="forum-icon"
               />
             </Link>
