@@ -7,7 +7,7 @@ const waveLoader = (
       alt="wave-loader"
       id="wave-loader-gif"
     />
-    <p>Relax. We are loading.</p>
+    <p>We are loading your results.</p>
   </div>
 );
 export default waveLoader;
