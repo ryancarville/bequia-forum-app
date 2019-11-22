@@ -42,6 +42,7 @@ export default function ForumSearchResults(props) {
                 {"   "}
                 {p.post.likes}
               </p>
+
               <p>
                 {comment}
                 {"   "}
