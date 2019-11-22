@@ -8,7 +8,7 @@ import like from "../Icons/like";
 import "./ForumSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
-
+import waveLoader from "../Icons/waveLoader";
 export default class ForumSection extends Component {
   constructor(props) {
     super(props);
@@ -25,38 +25,40 @@ export default class ForumSection extends Component {
 
   getPosts = () => {
     return this.state.postsWithCount.map(p => (
-      <li key={p.id}>
-        <Link
-          to={`/messageBoard/${this.props.match.params.forum_cat}/${p.board_id}/${p.id}`}
-        >
-          <h4>{p.title}</h4>
-        </Link>
-        <Truncate
-          className="post-teaser"
-          lines={1}
-          ellipsis={
-            <span>
-              ...
-              <Link
-                to={{
-                  pathname: `/messageBoard/${this.props.match.params.forum_cat}/${p.board_id}/${p.id}`,
-                  state: { id: p.id }
-                }}
-              >
-                Read more
-              </Link>
-            </span>
-          }
-        >
-          <article>{p.content}</article>
-        </Truncate>
-        <span className="post-info">
+      <li key={p.id} className="post-card">
+        <article className="post-card-info">
+          <Link
+            to={`/messageBoard/${this.props.match.params.forum_cat}/${p.board_id}/${p.id}`}
+          >
+            <h4>{p.title}</h4>
+          </Link>
+          <Truncate
+            className="post-teaser"
+            lines={2}
+            ellipsis={
+              <span>
+                ...
+                <Link
+                  to={{
+                    pathname: `/messageBoard/${this.props.match.params.forum_cat}/${p.board_id}/${p.id}`,
+                    state: { id: p.id }
+                  }}
+                >
+                  Read more
+                </Link>
+              </span>
+            }
+          >
+            {p.content}
+          </Truncate>
+        </article>
+        <span className="post-card-user-info">
           <p>
             Posted By:{"   "}
             {p.user_name}
           </p>
           <p>Posted On: {formatDate(p.date_posted)}</p>
-          <span className="post-icons">
+          <span className="post-card-icons">
             <p>
               {like}
               {"   "}
@@ -172,7 +174,8 @@ export default class ForumSection extends Component {
           .then(posts => {
             if (posts.error) {
               this.setState({
-                error: posts.error
+                error: posts.error,
+                dataLoaded: true
               });
             } else {
               this.setState({
@@ -188,7 +191,7 @@ export default class ForumSection extends Component {
                   var newPost = post;
                   newPost.commentCount = numOfComments[0].count;
                   this.setState({
-                    postsWithCount: [...this.state.postsWithCount, post]
+                    postsWithCount: [...this.state.postsWithCount, newPost]
                   });
                 })
                 .then(() => {
@@ -200,7 +203,8 @@ export default class ForumSection extends Component {
                         completePost: [
                           ...this.state.completePost,
                           addUserToPost
-                        ]
+                        ],
+                        dataLoaded: true
                       });
                     });
                   });
@@ -218,18 +222,21 @@ export default class ForumSection extends Component {
         </header>
         <Sort sortType="posts" handleSort={this.handleSort} />
         <div className="forum-section-content">
-          {this.state.posts.length !== 0 ? (
-            <ul>{this.getPosts()}</ul>
-          ) : TokenServices.getAuthToken() ? (
-            <p>
-              There are currently no posts in this section. Be the first one!
-            </p>
+          {this.state.dataLoaded ? (
+            this.state.postsWithCount.length > 0 ? (
+              <ul>{this.getPosts()}</ul>
+            ) : TokenServices.getAuthToken() ? (
+              <p className="error-message">
+                {this.state.error} Be the first one!
+              </p>
+            ) : (
+              <p className="error-message">
+                {this.state.error} <Link to={"/signup"}>Create a account</Link>{" "}
+                or <Link to={"/login"}>Log in</Link> and be the first one!
+              </p>
+            )
           ) : (
-            <p>
-              There are currently no posts in this section.{" "}
-              <Link to={"/signup"}>Create a account</Link> or{" "}
-              <Link to={"/login"}>Log in</Link> and be the first one!
-            </p>
+            <div className="forum-loader">{waveLoader}</div>
           )}
         </div>
       </section>

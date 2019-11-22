@@ -244,7 +244,7 @@ class PostPage extends Component {
           ) : this.state.dataLoaded ? (
             <Post post={this.state} numOfComments={this.state.numOfComments} />
           ) : (
-            waveLoader
+            <div className="forum-loader">{waveLoader}</div>
           )}
           {this.state.loggedIn ? (
             <span className="comment-like-button-container">
