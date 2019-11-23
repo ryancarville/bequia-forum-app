@@ -11,6 +11,7 @@ export default class SelectedEvents extends Component {
     };
   }
   makeEvents = events => {
+    console.log(events);
     return events.map(e => (
       <div className="calendar-event" key={e.id}>
         <Link to={`/events/${e.id}`}>{e.title}</Link>
@@ -28,6 +29,10 @@ export default class SelectedEvents extends Component {
     ));
   };
   render() {
-    return <section className='calendar-events-container'>{this.makeEvents(this.state.events)}</section>;
+    return (
+      <section className="calendar-events-container">
+        {this.makeEvents(this.state.events)}
+      </section>
+    );
   }
 }

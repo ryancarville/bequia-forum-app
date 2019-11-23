@@ -29,11 +29,15 @@ class Events extends Component {
 
   handleShowEvents = events => {
     console.log(events);
-
     this.setState({
-      showEvents: true,
-      selectedEvents: events
+      selectedEvents: []
     });
+    setTimeout(() => {
+      this.setState({
+        showEvents: true,
+        selectedEvents: events
+      });
+    }, 5);
   };
   static contextType = ForumContext;
   componentDidMount() {
@@ -77,10 +81,12 @@ class Events extends Component {
             events={this.state.events}
             handleShowEvents={this.handleShowEvents}
           />
-          {this.state.selectedEvents.length > 0 ? (
-            <SelectedEvents events={this.state.selectedEvents} />
-          ) : this.state.showEvents ? (
-            <p>There are no scheduled events for this date.</p>
+          {this.state.showEvents ? (
+            this.state.selectedEvents.length > 0 ? (
+              <SelectedEvents events={this.state.selectedEvents} />
+            ) : (
+              <p>There are no scheduled events for this date.</p>
+            )
           ) : (
             <h4>Click on a date to see the events for that day.</h4>
           )}
