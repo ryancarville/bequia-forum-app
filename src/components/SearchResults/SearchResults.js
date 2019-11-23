@@ -22,14 +22,9 @@ export default class SearchResults extends Component {
       const term = sessionStorage.getItem("searchTerm");
       const board_id = sessionStorage.getItem("searchBoard");
       var searchCreds = { board_id, term };
-      apiServices
-        .searchPosts(searchCreds)
-        .then(data => {
-          this.context.searchResults(data);
-        })
-        .then(() => {
-          this.context.resetsearchRedirect();
-        });
+      apiServices.searchPosts(searchCreds).then(data => {
+        this.context.searchResults(data);
+      });
     }
   }
 

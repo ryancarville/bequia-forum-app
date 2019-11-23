@@ -18,7 +18,7 @@ class App extends Component {
         email: "",
         lastLogin: ""
       },
-      searchResults: { formattedPosts: [], numOfComments: [] },
+      searchResults: {},
       resultsCount: 0,
       showSearch: false,
       searchRedirect: false,
@@ -73,12 +73,12 @@ class App extends Component {
       });
     }
   };
-  resetsearchRedirect = () => {
+
+  searchResults = data => {
+    console.log(data);
     this.setState({
       searchRedirect: false
     });
-  };
-  searchResults = data => {
     this.setState({
       showSearch: false,
       searchResults: {},
@@ -168,6 +168,7 @@ class App extends Component {
           }
         }
       });
+
       if (this.state.newStateSet) {
         data.forEach(board => {
           if (board.siteSearch) {
@@ -236,6 +237,14 @@ class App extends Component {
                     },
                     resultsCount: this.state.resultsCount + 1
                   });
+                })
+                .then(() => {
+                  if (this.state.resultsCount === resultsLength) {
+                    this.setState({
+                      showSearch: true,
+                      siteSearchDataLoaded: true
+                    });
+                  }
                 });
             });
           }
@@ -262,6 +271,14 @@ class App extends Component {
                     },
                     resultsCount: this.state.resultsCount + 1
                   });
+                })
+                .then(() => {
+                  if (this.state.resultsCount === resultsLength) {
+                    this.setState({
+                      showSearch: true,
+                      siteSearchDataLoaded: true
+                    });
+                  }
                 });
             });
           }
@@ -286,11 +303,19 @@ class App extends Component {
                     },
                     resultsCount: this.state.resultsCount + 1
                   });
+                })
+                .then(() => {
+                  if (this.state.resultsCount === resultsLength) {
+                    this.setState({
+                      showSearch: true,
+                      siteSearchDataLoaded: true
+                    });
+                  }
                 });
             });
           }
+          return true;
         });
-        return true;
       }
     }
   };
@@ -319,7 +344,7 @@ class App extends Component {
       user: this.state.user,
       verifyLoginOnReload: this.verifyLoginOnReload,
       searchResults: this.searchResults,
-      resetsearchRedirect: this.resetsearchRedirect
+      resetSearchRedirect: this.resetSearchRedirect
     };
     return (
       <ForumContext.Provider value={contextValue}>

@@ -10,7 +10,7 @@ const ForumContext = React.createContext({
   getUserData: () => {},
   verifyLoginOnReload: () => {},
   searchResults: () => {},
-  resetsearchRedirect: () => {}
+  resetSearchRedirect: () => {}
 });
 
 export default ForumContext;
