@@ -1,36 +1,41 @@
 .events-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	opacity: 0;
-	animation: fadeIn 2s ease-in forwards;
-	margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+  margin-top: 70px;
 }
 
 .events-container span h2 {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .events-container span a {
-	font-size: 20px;
+  font-size: 20px;
 }
 .events-content {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
 }
 .events-calendar {
-	margin: 0;
-	padding: 10px;
-	width: 90%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  margin: 0;
+  padding: 10px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media only screen and (min-width: 700px) {
-	.events-container {
-		padding: 20px;
-		margin-top: 0px;
-	}
+  .events-container {
+    padding: 20px;
+    margin-top: 0px;
+  }
+  .events-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

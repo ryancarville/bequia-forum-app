@@ -11,8 +11,9 @@
   padding: 15px;
   width: 100%;
   height: 50px;
-  background-color: limegreen;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .month ul {
@@ -35,7 +36,6 @@
 #weekdays {
   margin: 0;
   padding: 10px 0;
-  background-color: white;
   display: flex;
   justify-content: space-around;
 }
@@ -57,24 +57,55 @@
 #days li {
   list-style-type: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   color: rgb(0, 0, 0);
   padding: 5px;
-  width: 53px;
-  height: 85px;
-  border: 1px solid rgb(76, 0, 255);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
-.event-link {
-  font-size: 10px;
+#days li text {
+  margin-top: 0;
 }
+.event-marker {
+  width: 10px;
+  height: 10px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: blue;
+}
+#calendar-ledgend-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-style: italic;
+  font-size: 14px;
+  margin-left: 20px;
+  flex-direction: row;
+}
+#calendar-ledgend-container p {
+  padding: 0;
+  margin: 0;
+}
+.calender-ledgend {
+  width: 10px;
+  height: 10px;
+  border: 1px solid blue;
+  border-radius: 20px;
+  background-color: blue;
+  margin: 3px;
+}
+
 #days li.active {
   background: #eeff00;
   color: rgb(0, 0, 0) !important;
+  border: 1px solid yellow;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  margin-left: 25px;
 }
 #next,
 #prev {
@@ -93,16 +124,12 @@
     width: 100%;
   }
 
-  #days {
-    grid-template-columns: auto auto auto auto auto auto auto;
-  }
-
   #days li {
     width: 100%;
-    height: 75px;
+    height: 50px;
   }
   .event-link {
     width: 100%;
-    font-size: 18px;
+    font-size: 14px;
   }
 }

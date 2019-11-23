@@ -1,0 +1,43 @@
+.calendar-events-container {
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.calendar-event {
+  width: 95%;
+  height: auto;
+  border: 1px solid black;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+.calendar-event a {
+  text-decoration: none;
+  font-size: 20px;
+}
+@media only screen and (min-width: 700px) {
+  .calendar-events-container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+  }
+  .calendar-event {
+    width: 90%;
+    height: 170px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+  }
+  .calendar-event a {
+    text-decoration: none;
+    font-size: 20px;
+  }
+}

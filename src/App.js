@@ -30,15 +30,13 @@ class App extends Component {
     sessionStorage.setItem("user_id", user_id);
     this.setState({
       user: {
-        id: user_id,
-        name: user.first_name + " " + user.last_name,
-        lastLogin: user.last_login
+        id: user_id
       },
       loggedIn: true
     });
   };
   handleLogOut = () => {
-    TokenServices.clearAuthToken();
+    sessionStorage.clear();
     this.setState({
       loggedIn: false
     });

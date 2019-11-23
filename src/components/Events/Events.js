@@ -5,13 +5,15 @@ import "./Events.css";
 import { Link } from "react-router-dom";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
-
+import SelectedEvents from "../SelectedEvents/SelectedEvents";
 class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
-      events: []
+      events: [],
+      showEvents: false,
+      selectedEvents: []
     };
   }
   updateEvents = () => {
@@ -22,6 +24,15 @@ class Events extends Component {
       this.setState({
         events: events
       });
+    });
+  };
+
+  handleShowEvents = events => {
+    console.log(events);
+
+    this.setState({
+      showEvents: true,
+      selectedEvents: events
     });
   };
   static contextType = ForumContext;
@@ -62,7 +73,17 @@ class Events extends Component {
         ) : null}
 
         <div className="events-content">
-          <Calendar events={this.state.events} />
+          <Calendar
+            events={this.state.events}
+            handleShowEvents={this.handleShowEvents}
+          />
+          {this.state.selectedEvents.length > 0 ? (
+            <SelectedEvents events={this.state.selectedEvents} />
+          ) : this.state.showEvents ? (
+            <p>There are no scheduled events for this date.</p>
+          ) : (
+            <h4>Click on a date to see the events for that day.</h4>
+          )}
         </div>
       </section>
     );
