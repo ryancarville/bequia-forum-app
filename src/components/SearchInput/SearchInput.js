@@ -71,6 +71,9 @@ export default class SearchInput extends Component {
     return (
       <section className="search-input-container">
         <form className="search-form" onSubmit={this.handleSearch}>
+          <button id="search-submit" type="submit" value="Search">
+            <i className="fas fa-search" samesite="none"></i>
+          </button>
           <input
             type="text"
             name="search"
@@ -89,9 +92,6 @@ export default class SearchInput extends Component {
             <option value="null">Search Entire Forum</option>
             {this.state.forum ? this.makeOptions(this.state.forum) : null}
           </select>
-          <button id="search-submit" type="submit" value="Search">
-            <i className="fas fa-search" samesite="none"></i>
-          </button>
         </form>
         {this.state.noResultsError ? (
           <p id="search-input-error">{this.state.noResultsError}</p>

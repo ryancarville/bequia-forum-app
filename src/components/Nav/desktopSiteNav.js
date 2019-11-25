@@ -7,11 +7,19 @@ export default class DesktopSiteNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSearchForm: false
+      showSearchForm: false,
+      hideSearch: "search-container-hide"
     };
   }
   showSearchForm = () => {
+    var searchClass = "";
+    if (this.state.hideSearch === "search-container-hide") {
+      searchClass = "search-container-show";
+    } else {
+      searchClass = "search-container-hide";
+    }
     this.setState({
+      hideSearch: searchClass,
       showSearchForm: !this.state.showSearchForm
     });
   };
@@ -48,6 +56,7 @@ export default class DesktopSiteNav extends Component {
               </span>
             </li>
           ) : null}
+
           <li>
             {!this.state.showSearchForm ? (
               <i
@@ -56,9 +65,11 @@ export default class DesktopSiteNav extends Component {
                 samesite="none"
               ></i>
             ) : null}
-            {this.state.showSearchForm ? (
-              <SearchInput closeNavSearch={this.showSearchForm} />
-            ) : null}
+            <div className="search-container">
+              {this.state.showSearchForm ? (
+                <SearchInput closeNavSearch={this.showSearchForm} />
+              ) : null}
+            </div>
           </li>
         </ul>
       </div>

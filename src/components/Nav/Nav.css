@@ -54,9 +54,11 @@
     text-transform: uppercase;
     border: none;
     background-color: transparent;
+    color: white;
   }
-  .navBar h1 {
-    color: green;
+  .navBar ul {
+    justify-content: flex-start;
+    width: 100%;
   }
   .forumLogo img {
     width: 100px;
@@ -78,7 +80,7 @@
   .navBar ul li a {
     font-size: 16px;
     text-decoration: none;
-    color: blue;
+    color: white;
   }
   .navBar ul li p:hover {
     color: green;

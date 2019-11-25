@@ -7,7 +7,7 @@
     display: block;
   }
   .siteNav ul {
-    width: 100%;
+    width: 75%;
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -17,18 +17,25 @@
   }
 
   .siteNav ul li p:hover {
-    color: green;
+    color: limegreen;
   }
   .fa-search {
     cursor: pointer;
+  }
+  .fa-search:hover {
+    color: blue;
+  }
+  .search-container {
+    width: 450px;
+    display: flex;
   }
   .search-form {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     animation: fadeIn 1s ease-in;
-    overflow: hidden;
-    width: 450px;
+    margin-left: -8px;
+    margin-top: -3px;
   }
   #search-input {
     width: 175px;
@@ -52,5 +59,7 @@
     text-align: center;
     cursor: pointer;
     border: 0;
+    background-color: transparent;
+    color: limegreen;
   }
 }
