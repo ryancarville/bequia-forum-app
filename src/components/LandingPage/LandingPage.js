@@ -8,7 +8,7 @@ export default function LandingPage() {
       <div className="landingPage-content">
         <img
           id="palm-trees"
-          src="https://bequiaforum.com/static/media/bequia-island.e276d53c.png"
+          src="https://bequiaforum.com/static/media/bequia-image.jpg"
           alt="palm-trees"
         />
         <div id="landing-page-text">
