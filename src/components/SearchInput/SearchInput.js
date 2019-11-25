@@ -7,6 +7,7 @@ export default class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      board_name: "Search Entire Forum",
       board_id: "null",
       term: "",
       showResults: false,
@@ -20,9 +21,20 @@ export default class SearchInput extends Component {
     });
   };
   handleCat = e => {
-    this.setState({
-      board_id: e.target.value
-    });
+    const id = e.target.value;
+    if (id === "null") {
+      this.setState({
+        board_name: "Search Entire Forum",
+        board_id: "null"
+      });
+    } else {
+      apiServices.getForumNameById(id).then(name => {
+        this.setState({
+          board_name: "Search " + name.name,
+          board_id: id
+        });
+      });
+    }
   };
   handleSearch = e => {
     e.preventDefault();
@@ -78,9 +90,10 @@ export default class SearchInput extends Component {
             type="text"
             name="search"
             id="search-input"
-            placeholder="Enter search keywords"
+            placeholder={this.state.board_name}
             value={this.state.term}
             onChange={this.handleSearchTerm}
+            autoFocus
           />
 
           <select
