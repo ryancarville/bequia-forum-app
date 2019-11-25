@@ -16,20 +16,25 @@
     margin: 0px;
   }
 
-  .siteNav ul li p:hover {
-    color: limegreen;
-  }
   .fa-search {
     cursor: pointer;
   }
   .fa-search:hover {
-    color: blue;
+    color: limegreen;
+  }
+  .search-form-fadeOut {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: fadeOut 1s ease-in;
+    margin-left: -8px;
+    margin-top: -3px;
   }
   .search-container {
     width: 500px;
     display: flex;
   }
-  .search-form {
+  .search-form-fadeIn {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -56,10 +61,10 @@
     border: none;
     color: white;
     text-shadow: limegreen 1px 1px 1px;
-	cursor: pointer;
-	-moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari and Chrome */
-    appearance:none;
+    cursor: pointer;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
   }
   #search-submit {
     width: 30px;

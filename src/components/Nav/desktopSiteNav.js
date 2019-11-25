@@ -8,21 +8,30 @@ export default class DesktopSiteNav extends Component {
     super(props);
     this.state = {
       showSearchForm: false,
-      hideSearch: "search-container-hide"
+      fadeOut: ""
     };
   }
+
   showSearchForm = () => {
-    var searchClass = "";
-    if (this.state.hideSearch === "search-container-hide") {
-      searchClass = "search-container-show";
+    if (this.state.showSearchForm === true) {
+      this.setState({
+        fadeOut: "fadeOut"
+      });
+      setTimeout(() => {
+        this.setState({
+          showSearchForm: false
+        });
+      }, 1000);
     } else {
-      searchClass = "search-container-hide";
+      this.setState({
+        fadeOut: "",
+        showSearchForm: true
+      });
+
+      console.log("ran");
     }
-    this.setState({
-      hideSearch: searchClass,
-      showSearchForm: !this.state.showSearchForm
-    });
   };
+
   render() {
     return (
       <div className="siteNav">
@@ -47,7 +56,7 @@ export default class DesktopSiteNav extends Component {
               <p>Directory</p>
             </Link>
           </li>
-          
+
           <li>
             {!this.state.showSearchForm ? (
               <i

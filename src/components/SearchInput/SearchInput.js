@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import "./SearchInput.css";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
-
 export default class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fadeOut: "search-form-fadeIn",
       board_name: "Search Entire Forum",
       board_id: "null",
       term: "",
-      showResults: false,
-      noResultsError: null
+      showResults: false
     };
   }
   static contextType = ForumContext;
@@ -39,6 +38,9 @@ export default class SearchInput extends Component {
   handleSearch = e => {
     e.preventDefault();
     if (this.state.term === "") {
+      this.setState({
+        fadeOut: "search-form-fadeOut"
+      });
       this.props.closeNavSearch();
       return true;
     }
@@ -72,17 +74,13 @@ export default class SearchInput extends Component {
   }
 
   render() {
-    if (this.state.noResultsError) {
-      setTimeout(() => {
-        this.setState({
-          noResultsError: null
-        });
-      }, 5000);
-    }
-
     return (
       <section className="search-input-container">
-        <form className="search-form" onSubmit={this.handleSearch}>
+        <form
+          className={this.state.fadeOut}
+          id="search-form"
+          onSubmit={this.handleSearch}
+        >
           <button id="search-submit" type="submit" value="Search">
             <i className="fas fa-search" samesite="none"></i>
           </button>
@@ -106,9 +104,6 @@ export default class SearchInput extends Component {
             {this.state.forum ? this.makeOptions(this.state.forum) : null}
           </select>
         </form>
-        {this.state.noResultsError ? (
-          <p id="search-input-error">{this.state.noResultsError}</p>
-        ) : null}
       </section>
     );
   }
