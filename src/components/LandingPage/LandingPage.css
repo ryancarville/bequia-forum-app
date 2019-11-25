@@ -1,7 +1,7 @@
 .landingPage-container {
   width: 100%;
   height: 700px;
-  margin-top: -100px;
+  margin-top: -110px;
   padding: 15px;
   z-index: 0;
   background-image: url("./bequia-image.jpg");
@@ -12,7 +12,7 @@
 }
 .landingPage-content {
   width: 95%;
-  margin-top: 165px;
+  margin-top: 175px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -38,19 +38,21 @@
 }
 #landing-page-text header h4 {
   margin: 0;
+  margin-top: 70px;
   font-size: 18px;
   text-align: center;
 }
 #landing-page-message {
-  width: 75%;
+  width: 100%;
+  float: right;
   height: auto;
   padding: 5px;
-  margin-top: 320px;
+  margin-top: 10px;
   margin-left: -20px;
   z-index: -1000;
-  text-align: left;
+  text-align: center;
   text-shadow: black 1px 1px 1px;
-  font-size: 16px;
+  font-size: 18px;
 }
 #landing-page-text a {
   color: yellow;
@@ -64,6 +66,7 @@
   .landingPage-content {
     width: 100%;
     margin-top: 0px;
+    margin-left: 50px;
   }
   #landing-page-text {
     display: flex;
@@ -85,10 +88,15 @@
   #landing-page-text h4 {
     margin: 0;
   }
-
+  #landing-page-text header h4 {
+    margin: 0;
+    font-size: 18px;
+    text-align: left;
+  }
   #landing-page-message {
     float: left;
+    text-align: left;
     margin-top: 0px;
-    width: 100%;
+    margin-left: -5px;
   }
 }

@@ -16,7 +16,9 @@ class Nav extends Component {
                 alt="forum-icon"
               />
             </Link>
-            <h1>Bequia Forum</h1>
+            <Link to="/">
+              <h1>Bequia Forum</h1>
+            </Link>
           </span>
           <DesktopSiteNav />
           <div className="rightNavInfo">
