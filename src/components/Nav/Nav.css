@@ -67,12 +67,13 @@
     padding: 0;
   }
   .rightNavInfo {
-    width: 100px;
+    width: 200px;
     font-size: 25px;
     line-height: 40px;
     text-align: right;
     display: flex;
-    flex-direction: row;
+	flex-direction: row;
+	justify-content: flex-end;
     align-items: flex-end;
   }
   .rightNavInfo p {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
-import TokenServices from "../../services/TokenServices";
+
 import "./desktopSiteNav.css";
 export default class DesktopSiteNav extends Component {
   constructor(props) {
@@ -47,16 +47,7 @@ export default class DesktopSiteNav extends Component {
               <p>Directory</p>
             </Link>
           </li>
-          {TokenServices.getAuthToken() ? (
-            <li>
-              <span className="create-post-button">
-                <Link to={`/createPost`} id="create-forum-post-button">
-                  <i className="fas fa-plus" samesite="none"></i>Thread
-                </Link>
-              </span>
-            </li>
-          ) : null}
-
+          
           <li>
             {!this.state.showSearchForm ? (
               <i

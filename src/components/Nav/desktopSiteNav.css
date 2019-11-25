@@ -7,7 +7,7 @@
     display: block;
   }
   .siteNav ul {
-    width: 75%;
+    width: 100%;
     list-style: none;
     display: flex;
     justify-content: space-around;

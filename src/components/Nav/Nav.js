@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 import MobileSiteNav from "./mobileSiteNav";
 import DesktopSiteNav from "./desktopSiteNav";
+import TokenServices from "../../services/TokenServices";
 
 class Nav extends Component {
   render() {
@@ -49,6 +50,12 @@ class Nav extends Component {
           </span>
           <DesktopSiteNav />
           <div className="rightNavInfo">
+            {TokenServices.getAuthToken() ? (
+              <Link to={`/createPost`} id="create-forum-post-button">
+                <i className="fas fa-plus" samesite="none"></i>
+              </Link>
+            ) : null}
+
             <Link to="/dashboard">
               <i className="fas fa-tachometer-alt" samesite="none"></i>
             </Link>

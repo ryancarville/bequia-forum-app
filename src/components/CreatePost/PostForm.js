@@ -52,7 +52,7 @@ export default class PostForm extends Component {
           onChange={this.props.handleCatagory}
           required
         >
-          <option selected disabled value="">
+          <option selected disabled value="0">
             Please Select a Forum
           </option>
           {this.state.dataLoaded ? this.makeSelectCategorys() : null}
