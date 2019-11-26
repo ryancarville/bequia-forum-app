@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Calendar.css";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const months = [
   "January",

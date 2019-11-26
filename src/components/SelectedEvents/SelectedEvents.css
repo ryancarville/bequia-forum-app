@@ -7,8 +7,6 @@
 }
 .calendar-event {
   width: 95%;
-  height: auto;
-  border: 1px solid black;
   padding: 10px;
   padding-bottom: 0px;
   margin-left: auto;
@@ -29,8 +27,7 @@
   }
   .calendar-event {
     width: 90%;
-    height: 170px;
-    border: 1px solid black;
+
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
