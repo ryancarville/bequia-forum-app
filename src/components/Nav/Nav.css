@@ -27,7 +27,6 @@
 .navBar h1 {
   font-size: 18px;
   margin: 0;
-  color: blue;
 }
 
 .forumLogo a {
@@ -42,9 +41,7 @@
 .rightNavInfo a {
   font-size: 25px;
   text-decoration: none;
-  color: blue;
   margin-right: 15px;
-  text-shadow: white 1px 1px 2px;
 }
 
 @media only screen and (min-width: 700px) {
@@ -53,7 +50,6 @@
     text-transform: uppercase;
     border: none;
     background-color: transparent;
-    color: blue;
   }
   .navBar ul {
     justify-content: flex-start;
@@ -77,10 +73,15 @@
   .navBar ul li a {
     font-size: 16px;
     text-decoration: none;
+  }
+  .nav-text-color-white {
+    color: white;
+  }
+  .nav-text-color-blue {
     color: blue;
   }
   .navBar ul li p:hover {
-    color: limegreen;
-    animation: grow 1s ease-in;
+    color: blue;
+    animation: grow 1s ease-in forwards;
   }
 }

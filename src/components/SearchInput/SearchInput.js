@@ -82,7 +82,10 @@ export default class SearchInput extends Component {
           onSubmit={this.handleSearch}
         >
           <button id="search-submit" type="submit" value="Search">
-            <i className="fas fa-search" samesite="none"></i>
+            <i
+              className={this.props.colorClass + " " + "fas fa-search"}
+              samesite="none"
+            ></i>
           </button>
           <input
             type="text"
@@ -96,6 +99,7 @@ export default class SearchInput extends Component {
 
           <select
             name="catagories"
+            className={this.props.colorClass}
             id="search-catagories"
             value={this.state.board_id}
             onChange={this.handleCat}

@@ -20,7 +20,7 @@
     cursor: pointer;
   }
   .fa-search:hover {
-    color: limegreen;
+    color: blue;
   }
   .search-form-fadeOut {
     display: flex;
@@ -59,8 +59,6 @@
     margin-right: 10px;
     background-color: transparent;
     border: none;
-    color: white;
-    text-shadow: limegreen 1px 1px 1px;
     cursor: pointer;
     -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari and Chrome */

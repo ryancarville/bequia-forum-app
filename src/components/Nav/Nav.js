@@ -6,10 +6,31 @@ import DesktopSiteNav from "./desktopSiteNav";
 import TokenServices from "../../services/TokenServices";
 
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navColorClass: "nav-text-color-white"
+    };
+  }
+  handleNavTextColor = () => {
+    if (window.location.pathname !== "/") {
+      this.setState({
+        navColorClass: "nav-text-color-blue"
+      });
+    } else {
+      this.setState({
+        navColorClass: "nav-text-color-white"
+      });
+    }
+  };
   render() {
     const publicNav = (
       <>
-        <div className="navBar">
+        <div
+          className="navBar"
+          onLoad={this.handleNavTextColor}
+          onClick={this.handleNavTextColor}
+        >
           <span className="forumLogo">
             <Link to="/">
               <img
@@ -18,15 +39,15 @@ class Nav extends Component {
               />
             </Link>
             <Link to="/">
-              <h1>Bequia Forum</h1>
+              <h1 className={this.state.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
-          <DesktopSiteNav />
+          <DesktopSiteNav colorClass={this.state.navColorClass} />
           <div className="rightNavInfo">
-            <Link to="/signup">
+            <Link to="/signup" className={this.state.navColorClass}>
               <i className="fas fa-user-plus" samesite="none"></i>
             </Link>
-            <Link to="/login">
+            <Link to="/login" className={this.state.navColorClass}>
               <i className="fas fa-sign-in-alt" samesite="none"></i>
             </Link>
           </div>
@@ -45,21 +66,29 @@ class Nav extends Component {
               />
             </Link>
             <Link to="/">
-              <h1>Bequia Forum</h1>
+              <h1 className={this.state.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
-          <DesktopSiteNav />
+          <DesktopSiteNav colorClass={this.state.navColorClass} />
           <div className="rightNavInfo">
             {TokenServices.getAuthToken() ? (
-              <Link to={`/createPost`} id="create-forum-post-button">
+              <Link
+                to={`/createPost`}
+                id="create-forum-post-button"
+                className={this.state.navColorClass}
+              >
                 <i className="fas fa-plus" samesite="none"></i>
               </Link>
             ) : null}
 
-            <Link to="/dashboard">
+            <Link to="/dashboard" className={this.state.navColorClass}>
               <i className="fas fa-tachometer-alt" samesite="none"></i>
             </Link>
-            <Link to="/" onClick={() => this.props.handleLogOut()}>
+            <Link
+              to="/"
+              onClick={() => this.props.handleLogOut()}
+              className={this.state.navColorClass}
+            >
               <i className="fas fa-sign-out-alt" samesite="none"></i>
             </Link>
           </div>

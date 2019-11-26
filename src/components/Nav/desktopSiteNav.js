@@ -37,22 +37,22 @@ export default class DesktopSiteNav extends Component {
       <div className="siteNav">
         <ul>
           <li>
-            <Link to="/messageBoard">
+            <Link to="/messageBoard" className={this.props.colorClass}>
               <p>Forum</p>
             </Link>
           </li>
           <li>
-            <Link to="/new-post">
+            <Link to="/new-post" className={this.props.colorClass}>
               <p>New Posts</p>
             </Link>
           </li>
           <li>
-            <Link to="/events">
+            <Link to="/events" className={this.props.colorClass}>
               <p>Events</p>
             </Link>
           </li>
           <li>
-            <Link to="/directory">
+            <Link to="/directory" className={this.props.colorClass}>
               <p>Directory</p>
             </Link>
           </li>
@@ -60,14 +60,17 @@ export default class DesktopSiteNav extends Component {
           <li>
             {!this.state.showSearchForm ? (
               <i
-                className="fas fa-search"
+                className={this.props.colorClass + " " + "fas fa-search"}
                 onClick={() => this.showSearchForm()}
                 samesite="none"
               ></i>
             ) : null}
             <div className="search-container">
               {this.state.showSearchForm ? (
-                <SearchInput closeNavSearch={this.showSearchForm} />
+                <SearchInput
+                  closeNavSearch={this.showSearchForm}
+                  colorClass={this.props.colorClass}
+                />
               ) : null}
             </div>
           </li>
