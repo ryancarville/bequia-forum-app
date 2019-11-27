@@ -22,10 +22,10 @@ export default function JobSearchResults(props) {
           >
             <p>{j.description}</p>
           </Truncate>
-        </article>
-        <span className="post-card-user-info">
           {j.location ? <p>Location: {j.location}</p> : null}
           {j.employment ? <p>Employment: {j.employment}</p> : null}
+        </article>
+        <span className="post-card-user-info">
           <p>Posted By: {j.user_name}</p>
           <p>Posted On: {formatDate(j.date_posted)}</p>
         </span>

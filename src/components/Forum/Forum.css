@@ -55,7 +55,4 @@
     width: 200px;
     animation: none;
   }
-  .section-menu-link:hover {
-    animation: grow 1s ease-in;
-  }
 }

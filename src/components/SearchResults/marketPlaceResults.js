@@ -26,10 +26,10 @@ export default function MarketPlaceSearchResults(props) {
             >
               <p>{l.description}</p>
             </Truncate>
-          </article>
-          <span className="post-card-user-info">
             {l.price ? <p>Price: {l.price}</p> : null}
             {l.location ? <p>Location: {l.location}</p> : null}
+          </article>
+          <span className="post-card-user-info">
             <p>Posted By: {l.user_name}</p>
             <p>Posted On: {formatDate(l.date_posted)}</p>
           </span>

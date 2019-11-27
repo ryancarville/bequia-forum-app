@@ -23,8 +23,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid blue;
-  border-radius: 10px;
+  border-bottom: 1px solid blue;
   padding: 10px;
   padding-bottom: 0;
   margin: 0;
@@ -51,6 +50,7 @@
 }
 .post-card-user-info {
   line-height: 1.5em;
+  bottom: 0;
 }
 .post-card-user-info p {
   margin: 0;
@@ -103,6 +103,7 @@
   }
   .post-card-info {
     width: 70%;
+    bottom: 0;
   }
   .post-card-info a {
     text-decoration: none;

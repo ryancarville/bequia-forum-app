@@ -27,6 +27,7 @@ export default class ForumCatSections extends Component {
               <p>{item.description}</p>
             </div>
             <span className="thread-count">
+              <h5>Threads</h5>
               <i className="far fa-file-alt" samesite="none"></i>
               <p id={`thread-count-${item.id}`}>
                 {this.state.threadCounts.length === this.state.boards.length ? (
@@ -91,7 +92,7 @@ export default class ForumCatSections extends Component {
       <section className="forum-cat-sections-container">
         <div className="forum-cat-sections-content">
           <header>
-            <h3>{this.state.forumTitle}</h3>
+            <p>{this.state.forumTitle}</p>
           </header>
           {this.state.boards ? <ul>{this.makeBoards()}</ul> : <p>Loading...</p>}
         </div>

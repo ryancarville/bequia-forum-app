@@ -57,7 +57,7 @@ export default class SearchResults extends Component {
                     {context.state.siteSearchResults.mbPosts.length > 0 ? (
                       <>
                         {" "}
-                        <h3>Messageboards</h3>
+                        <p className="search-section-title">Messageboards</p>
                         <ul
                           className="search-results-section"
                           id="forum-search-results"
@@ -70,7 +70,7 @@ export default class SearchResults extends Component {
                     ) : null}
                     {context.state.siteSearchResults.mpPosts.length > 0 ? (
                       <>
-                        <h3>Market Place</h3>
+                        <p className="search-section-title">Market Place</p>
                         <ul
                           className="search-results-section"
                           id="market-place-search-results"
@@ -83,7 +83,7 @@ export default class SearchResults extends Component {
                     ) : null}
                     {context.state.siteSearchResults.rPosts.length > 0 ? (
                       <>
-                        <h3>Rentals</h3>
+                        <p className="search-section-title">Rentals</p>
                         <ul
                           className="search-results-section"
                           id="rentals-search-results"
@@ -96,7 +96,7 @@ export default class SearchResults extends Component {
                     ) : null}
                     {context.state.siteSearchResults.jPosts.length > 0 ? (
                       <>
-                        <h3>Jobs</h3>
+                        <p className="search-section-title">Jobs</p>
                         <ul
                           className="search-results-section"
                           id="jobs-search-results"

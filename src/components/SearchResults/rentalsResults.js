@@ -23,10 +23,10 @@ export default function RentalsSearchResults(props) {
           >
             <p>{r.description}</p>
           </Truncate>
-        </article>
-        <span className="post-card-user-info">
           {r.price ? <p>Price: {r.price}</p> : null}
           {r.location ? <p>Location: {r.location}</p> : null}
+        </article>
+        <span className="post-card-user-info">
           <p>Posted By: {r.user_name}</p>
           <p>Posted On: {formatDate(r.date_posted)}</p>
         </span>

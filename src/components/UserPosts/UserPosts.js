@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserPosts.css";
 import apiServices from "../../services/apiServices";
+import like from "../Icons/like";
+import comment from "../Icons/comment";
 
 export default class UserPosts extends Component {
   constructor(props) {
@@ -27,12 +29,16 @@ export default class UserPosts extends Component {
           })
           .then(() => {
             posts.mbPosts.forEach(post => {
-              const forumTitle = this.state.messageBoards.filter(
-                board => post.board_id === board.id
-              );
-              post.messageboard_section = forumTitle[0].messageboard_section;
-              this.setState({
-                mbPosts: [...this.state.mbPosts, post]
+              apiServices.getNumOfCommentsByPostId(post.id).then(num => {
+                const forumTitle = this.state.messageBoards.filter(
+                  board => post.board_id === board.id
+                );
+
+                post.numComments = num[0].count;
+                post.messageboard_section = forumTitle[0].messageboard_section;
+                this.setState({
+                  mbPosts: [...this.state.mbPosts, post]
+                });
               });
             });
           });
@@ -57,40 +63,56 @@ export default class UserPosts extends Component {
   makeMbPosts = () => {
     const { mbPosts } = this.state;
     return mbPosts.map(p => (
-      <li key={p.id} className="dashboard-user-post-card-item">
-        <Link
-          to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
-        >
-          {p.title}
-        </Link>
-      </li>
+      <Link
+        key={p.id}
+        className="dashboard-user-post-card-item"
+        to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
+      >
+        {p.title}{" "}
+        <span>
+          {like} {p.likes}
+          {comment} {p.numComments}
+        </span>
+      </Link>
     ));
   };
   makeMpPosts = () => {
     const { mpPosts } = this.state;
 
     return mpPosts.map(p => (
-      <li key={p.id} className="dashboard-user-post-card-item">
-        <Link to={`/marketPlace/${p.market_place_cat}/${p.id}`}>{p.title}</Link>
-      </li>
+      <Link
+        key={p.id}
+        className="dashboard-user-post-card-item"
+        to={`/marketPlace/${p.market_place_cat}/${p.id}`}
+      >
+        <li>{p.title}</li>
+      </Link>
     ));
   };
   makerPosts = () => {
     const { rPosts } = this.state;
 
     return rPosts.map(p => (
-      <li key={p.id} className="dashboard-user-post-card-item">
-        <Link to={`/rentals/${p.rental_cat}/${p.id}`}>{p.title}</Link>
-      </li>
+      <Link
+        key={p.id}
+        className="dashboard-user-post-card-item"
+        to={`/rentals/${p.rental_cat}/${p.id}`}
+      >
+        <li>{p.title}</li>
+      </Link>
     ));
   };
   makejPosts = () => {
     const { jPosts } = this.state;
 
     return jPosts.map(p => (
-      <li key={p.id} className="dashboard-user-post-card-item">
-        <Link to={`/jobs/${p.job_cat}/${p.id}`}>{p.title}</Link>
-      </li>
+      <Link
+        key={p.id}
+        className="dashboard-user-post-card-item"
+        to={`/jobs/${p.job_cat}/${p.id}`}
+      >
+        <li>{p.title}</li>
+      </Link>
     ));
   };
 
