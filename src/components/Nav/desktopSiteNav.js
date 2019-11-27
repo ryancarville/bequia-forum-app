@@ -36,27 +36,30 @@ export default class DesktopSiteNav extends Component {
     return (
       <div className="siteNav">
         <ul>
-          <li>
-            <Link to="/messageBoard" className={this.props.colorClass}>
-              <p>Forum</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/new-post" className={this.props.colorClass}>
-              <p>New Posts</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/events" className={this.props.colorClass}>
-              <p>Events</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/directory" className={this.props.colorClass}>
-              <p>Directory</p>
-            </Link>
-          </li>
-
+          {!this.state.showSearchForm ? (
+            <>
+              <li>
+                <Link to="/messageBoard" className={this.props.colorClass}>
+                  <p>Forum</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/new-post" className={this.props.colorClass}>
+                  <p>New Posts</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/events" className={this.props.colorClass}>
+                  <p>Events</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/directory" className={this.props.colorClass}>
+                  <p>Directory</p>
+                </Link>
+              </li>
+            </>
+          ) : null}
           <li>
             {!this.state.showSearchForm ? (
               <i

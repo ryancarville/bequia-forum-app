@@ -35,6 +35,13 @@ export default class SearchInput extends Component {
       });
     }
   };
+  closeSearch = () => {
+    this.setState({
+      term: ""
+    });
+    this.props.closeNavSearch();
+    return true;
+  };
   handleSearch = e => {
     e.preventDefault();
     if (this.state.term === "") {
@@ -107,6 +114,12 @@ export default class SearchInput extends Component {
             <option value="null">Search Entire Forum</option>
             {this.state.forum ? this.makeOptions(this.state.forum) : null}
           </select>
+          <button id="search-cancel" type="submit" onClick={this.closeSearch}>
+            <i
+              className={this.props.colorClass + " " + "fas fa-times"}
+              samesite="none"
+            ></i>
+          </button>
         </form>
       </section>
     );
