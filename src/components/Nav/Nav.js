@@ -33,10 +33,7 @@ class Nav extends Component {
         >
           <span className="forumLogo">
             <Link to="/">
-              <img
-                src="https://bequiaforum.com/images/bequia-logo.png"
-                alt="forum-icon"
-              />
+              <img src="./bequia-logo.png" alt="forum-icon" />
             </Link>
             <Link to="/">
               <h1 className={this.state.navColorClass}>Bequia Forum</h1>

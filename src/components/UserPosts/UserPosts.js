@@ -4,7 +4,7 @@ import "./UserPosts.css";
 import apiServices from "../../services/apiServices";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
-
+import waveLoader from "../Icons/waveLoader";
 export default class UserPosts extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +37,8 @@ export default class UserPosts extends Component {
                 post.numComments = num[0].count;
                 post.messageboard_section = forumTitle[0].messageboard_section;
                 this.setState({
-                  mbPosts: [...this.state.mbPosts, post]
+                  mbPosts: [...this.state.mbPosts, post],
+                  dataLoaded: true
                 });
               });
             });
@@ -62,6 +63,7 @@ export default class UserPosts extends Component {
   };
   makeMbPosts = () => {
     const { mbPosts } = this.state;
+
     return mbPosts.map(p => (
       <Link
         key={p.id}
@@ -78,7 +80,6 @@ export default class UserPosts extends Component {
   };
   makeMpPosts = () => {
     const { mpPosts } = this.state;
-
     return mpPosts.map(p => (
       <Link
         key={p.id}
@@ -91,7 +92,6 @@ export default class UserPosts extends Component {
   };
   makerPosts = () => {
     const { rPosts } = this.state;
-
     return rPosts.map(p => (
       <Link
         key={p.id}
@@ -104,7 +104,6 @@ export default class UserPosts extends Component {
   };
   makejPosts = () => {
     const { jPosts } = this.state;
-
     return jPosts.map(p => (
       <Link
         key={p.id}
@@ -123,10 +122,17 @@ export default class UserPosts extends Component {
   render() {
     return (
       <div>
-        {this.state.mbPosts ? this.makeMbPosts() : null}
-        {this.state.mpPosts ? this.makeMpPosts() : null}
-        {this.state.rPosts ? this.makerPosts() : null}
-        {this.state.jPosts ? this.makejPosts() : null}
+        {this.state.dataLoaded
+          ? this.state.mbPosts.length > 0
+            ? this.makeMbPosts()
+            : null(this.state.mpPosts.length > 0)
+            ? this.makeMpPosts()
+            : null(this.state.rPosts.length > 0)
+            ? this.makerPosts()
+            : null(this.state.jPosts.length > 0)
+            ? this.makejPosts()
+            : null
+          : waveLoader}
       </div>
     );
   }
