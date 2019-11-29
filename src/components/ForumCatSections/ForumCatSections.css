@@ -29,6 +29,7 @@
 
 .section-cat-item {
   width: 100%;
+
   height: auto;
   padding: 10px;
   margin-top: 20px;
@@ -45,14 +46,14 @@
 .section-cat-item a {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   color: black;
   text-decoration: none;
 }
 .section-text {
-  width: 50%;
+  width: 90%;
   text-align: center;
   color: black;
 }
@@ -61,10 +62,10 @@
 }
 .thread-count {
   font-size: 22px;
-  width: 15%;
+  width: 50%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-evenly;
+  align-items: baseline;
   color: blue;
 }
 #wave-loader-gif {
@@ -96,6 +97,7 @@
     width: 100%;
     height: auto;
     padding: 5px;
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -104,6 +106,7 @@
     text-align: left;
   }
   .thread-count {
+    width:18%;
     float: right;
     font-size: 20px;
   }
