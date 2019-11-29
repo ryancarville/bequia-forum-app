@@ -38,3 +38,11 @@
   background: transparent;
   border: none;
 }
+@media only screen and (min-width: 700px) {
+  #search-cancel-icon {
+    display: block;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}
