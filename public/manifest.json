@@ -1,6 +1,6 @@
 {
-  "short_name": "Bequia-Forum",
-  "name": "Bequia-Forum-App",
+  "short_name": "Bequia Forum",
+  "name": "Bequia Forum App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,5 +9,6 @@
     }
   ],
   "start_url": ".",
+  "background_color": "#3367D6",
   "display": "standalone"
 }
