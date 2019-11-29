@@ -224,11 +224,19 @@ class JobPage extends Component {
               <>
                 <h3>{j.title}</h3>
                 <p>
-                  <i className="fas fa-business-time" samesite="none"></i>{" "}
+                  <i
+                    className="fas fa-business-time"
+                    samesite="none"
+                    secure="true"
+                  ></i>{" "}
                   {j.employment}
                 </p>
                 <p>
-                  <i className="fas fa-map-marked-alt" samesite="none"></i>{" "}
+                  <i
+                    className="fas fa-map-marked-alt"
+                    samesite="none"
+                    secure="true"
+                  ></i>{" "}
                   {j.location}
                 </p>
                 <h4>Job Description</h4>
@@ -237,19 +245,32 @@ class JobPage extends Component {
                   <div id="job-contact-info">
                     {j.contact_name ? (
                       <p>
-                        <i className="fas fa-user-tie"></i> {j.contact_name}
+                        <i
+                          className="fas fa-user-tie"
+                          samesite="none"
+                          secure="true"
+                        ></i>{" "}
+                        {j.contact_name}
                       </p>
                     ) : null}
 
                     {j.contact_phone ? (
                       <p>
-                        <i className="fas fa-mobile-alt" samesite="none"></i>{" "}
+                        <i
+                          className="fas fa-mobile-alt"
+                          samesite="none"
+                          secure="true"
+                        ></i>{" "}
                         {formatPhoneNumberIntl(j.contact_phone)}
                       </p>
                     ) : null}
                     {j.website ? (
                       <>
-                        <i className="fas fa-laptop" samesite="none"></i>
+                        <i
+                          className="fas fa-laptop"
+                          samesite="none"
+                          secure="true"
+                        ></i>
                         <a
                           href={j.website}
                           target="_blank"
@@ -261,7 +282,11 @@ class JobPage extends Component {
                     ) : null}
                     {j.contact_email ? (
                       <>
-                        <i className="fas fa-at"></i>{" "}
+                        <i
+                          className="fas fa-at"
+                          samesite="none"
+                          secure="true"
+                        ></i>{" "}
                         <a
                           href={`mailto: ${j.contact_email}?subject=New Enquiry from you post on Bequia Forum: ${j.title}`}
                         >

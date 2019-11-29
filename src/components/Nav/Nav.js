@@ -33,7 +33,10 @@ class Nav extends Component {
         >
           <span className="forumLogo">
             <Link to="/">
-              <img src="https://bequiaforum.com/images/bequia-logo.png" alt="forum-icon" />
+              <img
+                src="https://bequiaforum.com/images/bequia-logo.png"
+                alt="forum-icon"
+              />
             </Link>
             <Link to="/">
               <h1 className={this.state.navColorClass}>Bequia Forum</h1>
@@ -42,10 +45,10 @@ class Nav extends Component {
           <DesktopSiteNav colorClass={this.state.navColorClass} />
           <div className="rightNavInfo">
             <Link to="/signup" className={this.state.navColorClass}>
-              <i className="fas fa-user-plus" samesite="none"></i>
+              <i className="fas fa-user-plus" samesite="none" secure='true'></i>
             </Link>
             <Link to="/login" className={this.state.navColorClass}>
-              <i className="fas fa-sign-in-alt" samesite="none"></i>
+              <i className="fas fa-sign-in-alt" samesite="none" secure='true'></i>
             </Link>
           </div>
         </div>
@@ -74,19 +77,27 @@ class Nav extends Component {
                 id="create-forum-post-button"
                 className={this.state.navColorClass}
               >
-                <i className="fas fa-plus" samesite="none"></i>
+                <i className="fas fa-plus" samesite="none" secure="true"></i>
               </Link>
             ) : null}
 
             <Link to="/dashboard" className={this.state.navColorClass}>
-              <i className="fas fa-tachometer-alt" samesite="none"></i>
+              <i
+                className="fas fa-tachometer-alt"
+                samesite="none"
+                secure="true"
+              ></i>
             </Link>
             <Link
               to="/"
               onClick={() => this.props.handleLogOut()}
               className={this.state.navColorClass}
             >
-              <i className="fas fa-sign-out-alt" samesite="none"></i>
+              <i
+                className="fas fa-sign-out-alt"
+                samesite="none"
+                secure="true"
+              ></i>
             </Link>
           </div>
         </div>

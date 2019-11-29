@@ -92,6 +92,7 @@ export default class SearchInput extends Component {
             <i
               className={this.props.colorClass + " " + "fas fa-search"}
               samesite="none"
+              secure="true"
             ></i>
           </button>
           <input
@@ -122,6 +123,7 @@ export default class SearchInput extends Component {
             <i
               className={this.props.colorClass + " " + "fas fa-times"}
               samesite="none"
+              secure="true"
             ></i>
           </button>
         </form>

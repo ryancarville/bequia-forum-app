@@ -28,7 +28,7 @@ export default class ForumCatSections extends Component {
             </div>
             <span className="thread-count">
               <h5>Threads</h5>
-              <i className="far fa-file-alt" samesite="none"></i>
+              <i className="far fa-file-alt" samesite="none" secure="true"></i>
               <p id={`thread-count-${item.id}`}>
                 {this.state.threadCounts.length === this.state.boards.length ? (
                   this.getCount(item.id)

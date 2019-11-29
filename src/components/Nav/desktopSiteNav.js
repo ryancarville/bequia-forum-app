@@ -66,6 +66,7 @@ export default class DesktopSiteNav extends Component {
                 className={this.props.colorClass + " " + "fas fa-search"}
                 onClick={() => this.showSearchForm()}
                 samesite="none"
+                secure="true"
               ></i>
             ) : null}
             <div className="search-container">

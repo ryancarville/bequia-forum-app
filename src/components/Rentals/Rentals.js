@@ -53,7 +53,8 @@ export default class Rentals extends Component {
                 to={"/createRentalListing"}
                 id="create-rental-listing-button"
               >
-                <i className="fas fa-plus"></i>Listing
+                <i className="fas fa-plus" samesite="none" secure="true"></i>
+                Listing
               </Link>
             </span>
           ) : null}

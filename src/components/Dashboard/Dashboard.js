@@ -56,7 +56,11 @@ export default class Dashboard extends Component {
           <div className="mobile-home-page-event-content">
             <h3 onClick={this.showHomePageEvents}>
               {this.state.showEvents ? (
-                <i className="far fa-times-circle" samesite="none"></i>
+                <i
+                  className="far fa-times-circle"
+                  samesite="none"
+                  secure="true"
+                ></i>
               ) : (
                 "Upcoming Events"
               )}
@@ -78,7 +82,11 @@ export default class Dashboard extends Component {
 
             <h3 onClick={this.showNewPosts}>
               {this.state.showPosts ? (
-                <i className="far fa-times-circle" samesite="none"></i>
+                <i
+                  className="far fa-times-circle"
+                  samesite="none"
+                  secure="true"
+                ></i>
               ) : (
                 "New Posts"
               )}
@@ -97,7 +105,11 @@ export default class Dashboard extends Component {
 
             <h3 onClick={this.showUserPosts}>
               {this.state.showUserPosts ? (
-                <i className="far fa-times-circle" samesite="none"></i>
+                <i
+                  className="far fa-times-circle"
+                  samesite="none"
+                  secure="true"
+                ></i>
               ) : (
                 "Your Posts"
               )}

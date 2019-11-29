@@ -49,7 +49,8 @@ export default class Jobs extends Component {
             {TokenService.getAuthToken() ? (
               <span className="create-post-button">
                 <Link to={"/createJobListing"} id="create-job-listing-button">
-                  <i className="fas fa-plus"></i>Listing
+                  <i className="fas fa-plus" samesite="none" secure="true"></i>
+                  Listing
                 </Link>
               </span>
             ) : null}

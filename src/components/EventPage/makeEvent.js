@@ -8,14 +8,20 @@ export default function MakeEvent(props) {
       <span key={e.id}>
         <h3>{e.title}</h3>
         <p>
-          <i className="fas fa-map-marked-alt" samesite="none"></i> {e.location}
+          <i
+            className="fas fa-map-marked-alt"
+            samesite="none"
+            secure="true"
+          ></i>{" "}
+          {e.location}
         </p>
         <p>
-          <i className="far fa-calendar-alt" samesite="none"></i>{" "}
+          <i className="far fa-calendar-alt" samesite="none" secure="true"></i>{" "}
           {formatDate(e.event_date)}
         </p>
         <p>
-          <i className="far fa-clock" samesite="none"></i> {e.event_time}
+          <i className="far fa-clock" samesite="none" secure="true"></i>{" "}
+          {e.event_time}
         </p>
       </span>
       <p id="event-description">{e.description}</p>

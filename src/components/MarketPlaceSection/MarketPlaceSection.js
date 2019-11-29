@@ -175,12 +175,21 @@ export default class MarketPlaceSections extends Component {
         <span className="post-info">
           {l.price && l.price !== "0" ? (
             <p>
-              <i className="fas fa-dollar-sign" samesite="none"></i> {l.price}
+              <i
+                className="fas fa-dollar-sign"
+                samesite="none"
+                secure="true"
+              ></i>{" "}
+              {l.price}
             </p>
           ) : null}
           {l.location ? (
             <p>
-              <i className="fas fa-map-marked-alt" samesite="none"></i>{" "}
+              <i
+                className="fas fa-map-marked-alt"
+                samesite="none"
+                secure="true"
+              ></i>{" "}
               {l.location}
             </p>
           ) : null}

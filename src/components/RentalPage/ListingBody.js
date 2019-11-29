@@ -18,13 +18,23 @@ export default function ListingBody(props) {
       <h3>{r.title}</h3>
       {r.location ? (
         <p>
-          <i className="fas fa-map-marked-alt" samesite="none"></i> {r.location}{" "}
+          <i
+            className="fas fa-map-marked-alt"
+            samesite="none"
+            secure="true"
+          ></i>{" "}
+          {r.location}{" "}
         </p>
       ) : null}
       {r.price || r.price === "0" ? (
         <p>
           {" "}
-          <i className="fas fa-dollar-sign" samesite="none"></i> {r.price}{" "}
+          <i
+            className="fas fa-dollar-sign"
+            samesite="none"
+            secure="true"
+          ></i>{" "}
+          {r.price}{" "}
         </p>
       ) : null}
       <p>{r.description}</p>
