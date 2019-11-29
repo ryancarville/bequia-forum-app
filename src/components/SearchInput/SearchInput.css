@@ -25,6 +25,9 @@
 #search-catagories {
   display: none;
 }
+#search-cancel-icon {
+  display: none;
+}
 .mobile-search form button {
   position: absolute;
   font-size: 18px;

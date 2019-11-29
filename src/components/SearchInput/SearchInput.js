@@ -114,7 +114,11 @@ export default class SearchInput extends Component {
             <option value="null">Search Entire Forum</option>
             {this.state.forum ? this.makeOptions(this.state.forum) : null}
           </select>
-          <button id="search-cancel" type="submit" onClick={this.closeSearch}>
+          <button
+            id="search-cancel-icon"
+            type="submit"
+            onClick={this.closeSearch}
+          >
             <i
               className={this.props.colorClass + " " + "fas fa-times"}
               samesite="none"
