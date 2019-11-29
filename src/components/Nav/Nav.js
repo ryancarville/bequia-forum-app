@@ -34,7 +34,7 @@ class Nav extends Component {
           <span className="forumLogo">
             <Link to="/">
               <img
-                src="https://bequiaforum.com/images/bequia-logo.png"
+                src="/images/nav/bequia-logo.png"
                 alt="forum-icon"
               />
             </Link>
@@ -61,7 +61,7 @@ class Nav extends Component {
           <span className="forumLogo">
             <Link to="/">
               <img
-                src="https://bequiaforum.com/images/bequia-logo.png"
+                src="/images/nav/bequia-logo.png"
                 alt="forum-icon"
               />
             </Link>

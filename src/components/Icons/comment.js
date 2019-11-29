@@ -2,7 +2,7 @@ import React from "react";
 import "./comment.css";
 const comment = (
   <img
-    src="https://bequiaforum.com/images/comment.png"
+    src="/images/icons/comment.png"
     alt="comment-icon"
     id="comment-btn-img"
   />

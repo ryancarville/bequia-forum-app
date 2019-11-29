@@ -11,9 +11,123 @@
       "src": "/images/splash-logo.png",
       "type": "image/png",
       "sizes": "156x156"
+    },
+    {
+      "src": "/images/nav/bequia-logo.png.png",
+      "type": "image/png",
+      "sizes": "1481x1133"
+    },
+    {
+      "src": "/images/icons/coconut.png",
+      "type": "image/png",
+      "sizes": "168x171"
+    },
+    {
+      "src": "/images/icons/comment.png",
+      "type": "image/png",
+      "sizes": "332x266"
+    },
+    {
+      "src": "/images/jobs/construction.png",
+      "type": "image/png",
+      "sizes": "461x461"
+    },
+    {
+      "src": "/images/jobs/hospitality.png",
+      "type": "image/png",
+      "sizes": "225x225"
+    },
+    {
+      "src": "/images/jobs/marine.png",
+      "type": "image/png",
+      "sizes": "784x784"
+    },
+    {
+      "src": "/images/jobs/professional.png",
+      "type": "image/png",
+      "sizes": "895x895"
+    },
+    {
+      "src": "/images/jobs/special-skills.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/images/jobs/wellness.png",
+      "type": "image/png",
+      "sizes": "794x794"
+    },
+    {
+      "src": "/images/rentals/apartment.png",
+      "type": "image/png",
+      "sizes": "443x443"
+    },
+    {
+      "src": "/images/rentals/boat.jpg",
+      "type": "image/jpg",
+      "sizes": "450x450"
+    },
+    {
+      "src": "/images/rentals/car.jpg",
+      "type": "image/jpg",
+      "sizes": "632x632"
+    },
+    {
+      "src": "/images/rentals/house.jpg",
+      "type": "image/jpg",
+      "sizes": "612x612"
+    },
+    {
+      "src": "/images/rentals/misc.jpg",
+      "type": "image/jpg",
+      "sizes": "1010x1010"
+    },
+    {
+      "src": "/images/rentals/sporting.jpg",
+      "type": "image/jpg",
+      "sizes": "900x900"
+    },
+    {
+      "src": "/images/rentals/tools.jpg",
+      "type": "image/jpg",
+      "sizes": "654x654"
+    },
+    {
+      "src": "/images/market-place/for-sale.png",
+      "type": "image/png",
+      "sizes": "626x626"
+    },
+    {
+      "src": "/images/market-place/free-stuff.png",
+      "type": "image/png",
+      "sizes": "1000x1000"
+    },
+    {
+      "src": "/images/market-place/items-wanted.png",
+      "type": "image/png",
+      "sizes": "985x985"
+    },
+    {
+      "src": "/images/market-place/property-for-sale.png",
+      "type": "image/png",
+      "sizes": "1000x1000"
+    },
+    {
+      "src": "/images/market-place/property-looking.png",
+      "type": "image/png",
+      "sizes": "867x867"
+    },
+    {
+      "src": "/images/market-place/vehicle-for-sale.png",
+      "type": "image/png",
+      "sizes": "338x338"
     }
   ],
+  "serviceworker": {
+    "src": "./serviceworker.js"
+  },
   "start_url": ".",
+  "scope": "/",
   "background_color": "#3367D6",
   "display": "standalone",
   "theme_color": "#3367D6"
