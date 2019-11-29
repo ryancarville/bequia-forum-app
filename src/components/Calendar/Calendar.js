@@ -93,7 +93,7 @@ class Calendar extends Component {
           year.toString() === eventYear
         );
       });
-      console.log(eventsOnThisDay);
+
       calendarItems.push(
         <li
           className={`singleDay ${isActive ? "active" : ""}`}

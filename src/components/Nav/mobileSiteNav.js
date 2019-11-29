@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import CreateContentButton from '../CreateContentButton/CreateContentButton';
-import TokenServices from '../../services/TokenServices';
-import SearchInput from '../SearchInput/SearchInput';
-import './mobileSiteNav.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import CreateContentButton from "../CreateContentButton/CreateContentButton";
+import TokenServices from "../../services/TokenServices";
+import SearchInput from "../SearchInput/SearchInput";
+import "./mobileSiteNav.css";
 export default class MobileNav extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isOpen: false
-		};
-	}
-	openHamburger = () => {
-		this.setState({
-			isOpen: !this.state.isOpen
-		});
-	};
-	render() {
-		const mobileSiteNav = (
+  render() {
+    const mobileSiteNav = (
       <>
         <span className="mobile-search">
           <SearchInput />
@@ -69,6 +58,6 @@ export default class MobileNav extends Component {
         </section>
       </>
     );
-		return mobileSiteNav;
-	}
+    return mobileSiteNav;
+  }
 }

@@ -23,6 +23,7 @@
     color: blue;
   }
   .search-form-fadeOut {
+    margin-top: 18px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -31,11 +32,13 @@
   .search-container {
     float: right;
     width: 100%;
+
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
   }
   .search-form-fadeIn {
+    margin-top: 18px;
     display: flex;
     justify-content: flex-end;
     align-items: center;

@@ -27,8 +27,6 @@ export default class DesktopSiteNav extends Component {
         fadeOut: "",
         showSearchForm: true
       });
-
-      console.log("ran");
     }
   };
 
