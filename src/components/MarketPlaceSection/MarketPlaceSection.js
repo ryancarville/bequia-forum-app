@@ -5,7 +5,7 @@ import "./MarketPlaceSection.css";
 import Truncate from "react-truncate";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
-
+//market place section component
 export default class MarketPlaceSections extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +14,7 @@ export default class MarketPlaceSections extends Component {
       error: null
     };
   }
+  //handle sort
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "date_posted") {
       const sorted = this.state.listings.sort(function(a, b) {
@@ -119,6 +120,7 @@ export default class MarketPlaceSections extends Component {
     }
   };
   componentDidMount() {
+    window.scroll(0, 0);
     const { marketPlaceId } = this.props.match.params;
     apiServices
       .getMarketPlacePostsByCat(marketPlaceId)
@@ -142,6 +144,7 @@ export default class MarketPlaceSections extends Component {
         });
       });
   }
+  //make all listings for section
   makeListings = () => {
     return this.state.listings.map(l => (
       <li key={l.id}>

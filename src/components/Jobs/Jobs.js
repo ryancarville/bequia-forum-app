@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import apiSevices from "../../services/apiServices";
 import TokenService from "../../services/TokenServices";
 import "./Jobs.css";
-
+//jobs component
 export default class Jobs extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +11,7 @@ export default class Jobs extends Component {
       catagories: []
     };
   }
+  //make all job catagories
   makeCatagories = () => {
     return this.state.catagories.map(j => (
       <div className="job-card" key={j.id}>
@@ -27,6 +28,7 @@ export default class Jobs extends Component {
     ));
   };
   componentDidMount() {
+    window.scroll(0, 0);
     apiSevices.getJobCatagories().then(cats => {
       if (cats.error) {
         this.setState({

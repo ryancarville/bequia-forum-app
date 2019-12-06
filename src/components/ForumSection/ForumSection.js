@@ -9,6 +9,7 @@ import "./ForumSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
+//forum board
 export default class ForumSection extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +19,10 @@ export default class ForumSection extends Component {
       posts: [],
       postsWithCount: [],
       completePost: [],
-
       error: null
     };
   }
-
+  //get all posts for the board
   getPosts = () => {
     return this.state.postsWithCount.map(p => (
       <li key={p.id} className="post-card">
@@ -74,6 +74,7 @@ export default class ForumSection extends Component {
       </li>
     ));
   };
+  //handle sort
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "title") {
       const sorted = this.state.postsWithCount.sort(function(a, b) {
@@ -163,6 +164,8 @@ export default class ForumSection extends Component {
     }
   };
   componentDidMount() {
+    window.scroll(0, 0);
+    //get all the board info and post info
     apiServices
       .getForumNameById(this.state.boardId)
       .then(boardName => {

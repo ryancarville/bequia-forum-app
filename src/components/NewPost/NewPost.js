@@ -7,7 +7,7 @@ import "./NewPost.css";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
 import waveLoader from "../Icons/waveLoader";
-
+//new posts component
 export default class NewPost extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,7 @@ export default class NewPost extends Component {
       error: null
     };
   }
+  //get most rest posts
   recentPosts = () => {
     return this.state.postsWithCount.map(p => {
       var forum = this.state.forum.filter(f => f.id === p.board_id);
@@ -70,6 +71,7 @@ export default class NewPost extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     apiServices
       .getFourm()
       .then(forum => this.setState({ forum: forum }))

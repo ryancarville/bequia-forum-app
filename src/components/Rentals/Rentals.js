@@ -3,7 +3,7 @@ import "./Rentals.css";
 import { Link } from "react-router-dom";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
-
+//rentals component
 export default class Rentals extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +14,7 @@ export default class Rentals extends Component {
   }
   static contextType = ForumContext;
   componentDidMount() {
+    window.scroll(0, 0);
     this.context.verifyLoginOnReload();
     apiServices
       .getRentalCatagories()
@@ -34,6 +35,7 @@ export default class Rentals extends Component {
         }
       });
   }
+  //make all rental catagories
   makeCatagories = () => {
     return this.state.catagories.map(r => (
       <Link key={r.id} to={`/rentals/${r.id}`} className="rentals-card">

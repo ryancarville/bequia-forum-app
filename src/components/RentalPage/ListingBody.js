@@ -2,12 +2,12 @@ import React from "react";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import formatDate from "../../helpers/formatDate";
 import waveLoader from "../Icons/waveLoader";
+//rental listing
 export default function ListingBody(props) {
   var r = props.post;
   const { airbnb, homeaway, booking_dot_com, other_site } = r;
   const sites = [airbnb, homeaway, booking_dot_com, other_site];
   const bookingSites = [];
-
   for (let i = 0; i < sites.length; i++) {
     if (sites[i] !== "") {
       bookingSites.push({ id: i, site: sites[i] });

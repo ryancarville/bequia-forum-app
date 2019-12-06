@@ -1,5 +1,6 @@
 import React from "react";
 import "./like.css";
+//like icon
 const like = (
   <img
     src="/images/icons/coconut.png"

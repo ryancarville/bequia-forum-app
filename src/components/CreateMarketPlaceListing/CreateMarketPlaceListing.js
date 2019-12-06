@@ -5,6 +5,7 @@ import MarketPlaceListingForm from "./MarketPlaceListingForm";
 import "./CreateMarketPlaceListing.css";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
+//create market place listing
 export default class CreateMarketPlaceListing extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ export default class CreateMarketPlaceListing extends Component {
     };
   }
   static contextType = ForumContext;
+  //handle reset form
   resetState = () => {
     this.setState({
       user_id: "",
@@ -38,52 +40,62 @@ export default class CreateMarketPlaceListing extends Component {
       contact_phone: ""
     });
   };
+  //handle catagory
   handleMarketPlaceCat = e => {
     this.setState({
       market_place_cat: e.target.value
     });
   };
+  //handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle description
   handleDescription = e => {
     this.setState({
       description: e.target.value
     });
   };
+  //handle location
   handleLocation = e => {
     this.setState({
       location: e.target.value
     });
   };
+  //handle price
   handlePrice = e => {
     this.setState({
       price: e.target.value
     });
   };
+  //handle contact name
   handleContactName = e => {
     this.setState({
       contact_name: e.target.value
     });
   };
+  //handle contact emial
   handleContactEmail = e => {
     this.setState({
       contact_email: e.target.value
     });
   };
+  //handle contact phone
   handleContactPhone = e => {
     this.setState({
       contact_phone: e
     });
   };
+  //handle show preview
   handleShowPreview = e => {
     e.preventDefault();
     this.setState({
       showPreview: !this.state.showPreview
     });
   };
+  //handle submit
   handleSubmit = e => {
     e.preventDefault();
     const {
@@ -116,10 +128,12 @@ export default class CreateMarketPlaceListing extends Component {
       });
     });
   };
+  //handle back
   goBack = () => {
     this.props.history.goBack();
   };
   componentDidMount() {
+    window.scroll(0, 0);
     apiServices.getMarketPlaceCatagories().then(cats => {
       this.setState({
         marketPlaceCats: cats,

@@ -25,7 +25,7 @@ class App extends Component {
       loggedIn: false
     };
   }
-
+  //set token and user id
   setUserData = (user_id, user) => {
     sessionStorage.setItem("user_id", user_id);
     this.setState({
@@ -35,12 +35,14 @@ class App extends Component {
       loggedIn: true
     });
   };
+  //handle log out
   handleLogOut = () => {
     sessionStorage.clear();
     this.setState({
       loggedIn: false
     });
   };
+  //verify token
   verifyLoginOnReload = () => {
     const token = TokenServices.getAuthToken();
     if (token) {
@@ -73,7 +75,7 @@ class App extends Component {
       });
     }
   };
-
+  //set app state with search results
   searchResults = data => {
     console.log(data);
     this.setState({
@@ -321,6 +323,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    window.scroll(0, 0);
     const user_id = sessionStorage.getItem("user_id");
     if (user_id) {
       this.setState({
@@ -329,7 +332,6 @@ class App extends Component {
         }
       });
     }
-
     this.verifyLoginOnReload();
   }
 
@@ -347,8 +349,8 @@ class App extends Component {
       resetSearchRedirect: this.resetSearchRedirect
     };
     return (
-      <ForumContext.Provider value={contextValue}>
-        <div className="App">
+      <div className="App">
+        <ForumContext.Provider value={contextValue}>
           <Nav
             loggedIn={this.state.loggedIn}
             handleLogOut={this.handleLogOut}
@@ -359,8 +361,8 @@ class App extends Component {
             searchRedirect={this.state.searchRedirect}
           />
           <Footer />
-        </div>
-      </ForumContext.Provider>
+        </ForumContext.Provider>
+      </div>
     );
   }
 }

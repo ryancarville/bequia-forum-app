@@ -4,6 +4,7 @@ import CreateContentButton from "../CreateContentButton/CreateContentButton";
 import TokenServices from "../../services/TokenServices";
 import SearchInput from "../SearchInput/SearchInput";
 import "./mobileSiteNav.css";
+//mobile nav version
 export default class MobileNav extends Component {
   render() {
     const mobileSiteNav = (
@@ -12,23 +13,18 @@ export default class MobileNav extends Component {
           <SearchInput />
         </span>
         <section className="mobile-nav-container">
-          <ul className="mobile-nav-bar">
+          <ul
+            className="mobile-nav-bar"
+            onClick={this.props.handleNavTextColor}
+          >
             <li>
               <Link to="/messageBoard" className="mobile-nav-link">
-                <i
-                  className="fas fa-align-justify"
-                  samesite="none"
-                  secure="true"
-                ></i>
+                <i className="fas fa-align-justify"></i>
               </Link>
             </li>
             <li>
               <Link to="/new-post" className="mobile-nav-link">
-                <i
-                  className="far fa-newspaper"
-                  samesite="none"
-                  secure="true"
-                ></i>
+                <i className="far fa-newspaper"></i>
               </Link>
             </li>
 
@@ -38,20 +34,12 @@ export default class MobileNav extends Component {
 
             <li>
               <Link to="/events" className="mobile-nav-link">
-                <i
-                  className="far fa-calendar-alt"
-                  samesite="none"
-                  secure="true"
-                ></i>
+                <i className="far fa-calendar-alt"></i>
               </Link>
             </li>
             <li>
               <Link to="/directory" className="mobile-nav-link">
-                <i
-                  className="far fa-address-book"
-                  samesite="none"
-                  secure="true"
-                ></i>
+                <i className="far fa-address-book"></i>
               </Link>
             </li>
           </ul>

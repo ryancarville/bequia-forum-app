@@ -1,8 +1,10 @@
 import React from "react";
 import "./MarketPlaceListingForm.css";
 import PhoneInput from "react-phone-number-input";
-
+//market place listing form
 export default function MarketPlaceListingForm(props) {
+  window.scroll(0, 0);
+  //create market place sections menu
   const makeSelectMenu = props.state.marketPlaceCats.map(mp => (
     <option key={mp.id} value={mp.id}>
       {mp.name}
@@ -80,7 +82,7 @@ export default function MarketPlaceListingForm(props) {
         value={props.state.contact_phone}
         onChange={value => props.handleContactPhone(value)}
       />
-      <span id='mp-listing-form-buttons'>
+      <span id="mp-listing-form-buttons">
         {props.edit === true ? (
           <button type="submit">Save Edits</button>
         ) : (

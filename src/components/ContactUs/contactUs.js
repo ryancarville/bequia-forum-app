@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './contactUs.css';
-
+//contact form
 export default class ContactUs extends Component {
 	constructor(props) {
 		super(props);
@@ -37,6 +37,10 @@ export default class ContactUs extends Component {
 		e.preventDefault();
 		this.setState({ success: true });
 	};
+	componentDidMount() {
+		window.scroll(0, 0);
+	}
+	
 	render() {
 		const contactForm = (
 			<form onSubmit={this.handleSubmit}>

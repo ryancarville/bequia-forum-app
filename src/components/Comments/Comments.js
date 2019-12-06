@@ -20,6 +20,7 @@ export default class Comments extends Component {
     };
   }
   static contextType = ForumContext;
+  //display or hide delete confirmation box
   showDeletePopUp = id => {
     console.log(id);
     this.setState({
@@ -27,14 +28,14 @@ export default class Comments extends Component {
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
-
+  //get user name for owner of comment
   getUserName = id => {
     const user_name = this.state.commentUsers.filter(
       comment => comment.comment_id === id
     );
-
     return user_name[0].user_name;
   };
+  //make all the comments for the post
   makeComments = () => {
     return this.state.comments.map(c => (
       <article className="comments-content" key={c.id}>
@@ -57,6 +58,7 @@ export default class Comments extends Component {
   };
 
   componentDidMount() {
+    //get all info for each comment
     this.state.comments.forEach(comment => {
       apiServices.getUserName(comment.user_id).then(userName => {
         const commentUser = {

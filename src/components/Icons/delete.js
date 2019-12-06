@@ -1,5 +1,6 @@
-import React from 'react';
-import './delete.css';
+import React from "react";
+import "./delete.css";
+//delete icon
 const deleteIcon = (
   <i
     className="fas fa-trash-alt"

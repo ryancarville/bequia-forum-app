@@ -1,5 +1,6 @@
 import React from "react";
 import "./waveLoader.css";
+//loader gif
 const waveLoader = (
   <div className="forum-wave-loader">
     <img
@@ -7,7 +8,10 @@ const waveLoader = (
       alt="wave-loader"
       id="wave-loader-gif"
     />
-    <p>We are loading your results.</p>
+    <p>
+      Dig your toes in the sand. <br />
+      Loading your coconuts.
+    </p>
   </div>
 );
 export default waveLoader;

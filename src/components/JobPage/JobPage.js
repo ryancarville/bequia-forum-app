@@ -10,6 +10,7 @@ import JobListingForm from "../CreateJobListing/JobListingForm";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
+//job page component
 class JobPage extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +31,7 @@ class JobPage extends Component {
     };
   }
   static contextType = ForumContext;
+  //rest form
   resetState = () => {
     this.setState({
       user_id: "",
@@ -44,50 +46,59 @@ class JobPage extends Component {
       contact_phone: ""
     });
   };
+  //handle catagory
   handleJobCatagory = e => {
     this.setState({
       job_cat: e.target.value
     });
   };
+  //handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle location
   handleLocation = e => {
     this.setState({
       location: e.target.value
     });
   };
+  //handle empolyment type
   handleEmploymentType = e => {
     this.setState({
       employment: e.target.value
     });
   };
+  //handle description
   handleDescription = e => {
     this.setState({
       description: e.target.value
     });
   };
+  //handle contact name
   handleContactName = e => {
     this.setState({
       contact_name: e.target.value
     });
   };
+  //handle contact email
   handleContactEmail = e => {
     this.setState({
       contact_email: e.target.value
     });
   };
+  //handle website
   handleWebsite = e => {
     this.setState({ website: e.target.value });
   };
+  //handle contact phone
   handleContactPhone = e => {
     this.setState({
       contact_phone: e
     });
   };
-
+  //handle edit submit
   handleEditSubmit = e => {
     e.preventDefault();
     const {
@@ -124,16 +135,19 @@ class JobPage extends Component {
       });
     });
   };
+  //handleshow edit form
   showEditPopUp = () => {
     this.setState({
       showEditPopUp: !this.state.showEditPopUp
     });
   };
+  //handle show delete pop up
   showDeletePopUp = () => {
     this.setState({
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle delete
   handleDelete = () => {
     const { id } = this.state;
     apiServices.deleteJobListing(id).then(() => {
@@ -143,6 +157,7 @@ class JobPage extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     this.context.verifyLoginOnReload();
     apiServices.getJobCatagories().then(cats => {
       this.setState({

@@ -2,8 +2,10 @@ import React from "react";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import "./ShowMarketPlaceListingPreview.css";
 import formatDate from "../../helpers/formatDate";
-
+//show market place listing preview
 export default function ShowMarketPlaceListingPreview(props) {
+  window.scroll(0, 0);
+  //get market place catagory name
   const marketPlaceCat = props.state.marketPlaceCats.filter(
     mp => mp.id === parseInt(props.state.market_place_cat)
   );

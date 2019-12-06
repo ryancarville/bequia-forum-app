@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Sort.css";
 import apiServices from "../../services/apiServices";
-import ForumContext from "../../ForumContext";
 
+//all sort menus for the site
 export default class Sort extends Component {
   constructor(props) {
     super(props);
@@ -62,36 +62,28 @@ export default class Sort extends Component {
   selectSort = () => {
     if (this.state.table === "dir") {
       return (
-        <ForumContext.Consumer>
-          {context => (
-            <form
-              className="sortForm"
-              onChange={() =>
-                setTimeout(() => {
-                  this.props.handleSort(this.state.sort);
-                }, 50)
-              }
-            >
-              <select
-                name="sort"
-                id="selectSort"
-                onChange={this.handleSortType}
-              >
-                <option selected disabled value="">
-                  Sort By...
-                </option>
-                <option value="asc-last_name">Last Name A-Z</option>
-                <option value="desc-last_name">Last NameZ-A</option>
-                <option value="asc-first_name">First Name A-Z</option>
-                <option value="desc-first_name">First Name Z-A</option>
-                <option value="asc-city">City A-Z</option>
-                <option value="desc-city">City Z-A</option>
-                <option value="asc-country">Country A-Z</option>
-                <option value="desc-country">Country Z-A</option>
-              </select>
-            </form>
-          )}
-        </ForumContext.Consumer>
+        <form
+          className="sortForm"
+          onChange={() =>
+            setTimeout(() => {
+              this.props.handleSort(this.state.sort);
+            }, 50)
+          }
+        >
+          <select name="sort" id="selectSort" onChange={this.handleSortType}>
+            <option defaultValue disabled value="">
+              Sort By...
+            </option>
+            <option value="asc-last_name">Last Name A-Z</option>
+            <option value="desc-last_name">Last NameZ-A</option>
+            <option value="asc-first_name">First Name A-Z</option>
+            <option value="desc-first_name">First Name Z-A</option>
+            <option value="asc-city">City A-Z</option>
+            <option value="desc-city">City Z-A</option>
+            <option value="asc-country">Country A-Z</option>
+            <option value="desc-country">Country Z-A</option>
+          </select>
+        </form>
       );
     } else if (this.props.sortType === "marketPlace") {
       return (
@@ -152,7 +144,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option selected disabled value="">
+            <option defaultValue disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
@@ -177,7 +169,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option selected disabled value="">
+            <option defaultValue disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>

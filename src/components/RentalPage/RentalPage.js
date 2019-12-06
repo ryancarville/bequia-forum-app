@@ -10,7 +10,7 @@ import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import EditButton from "../Buttons/Edit";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
-
+//rental listing component
 export default class RentalPage extends Component {
   constructor(props) {
     super(props);
@@ -40,98 +40,120 @@ export default class RentalPage extends Component {
     };
   }
   static contextType = ForumContext;
+  //show edit form
   showEditPopUp = () => {
     this.setState({
       showEditPopUp: !this.state.showEditPopUp
     });
   };
+  //show delete pop up
   showDeletePopUp = () => {
-    this.setState({ showDeletePopUp: !this.state.showDeletePopUp });
+    this.setState({
+      showDeletePopUp: !this.state.showDeletePopUp
+    });
   };
+  //handle rental type
   handleRentalType = e => {
     this.setState({
       rental_cat: e.target.value
     });
   };
+  //handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle description
   handleDescription = e => {
     this.setState({
       description: e.target.value
     });
   };
+  //handle location
   handleLocation = e => {
     this.setState({ location: e.target.value });
   };
+  //handle price
   handlePrice = e => {
     this.setState({
       price: e.target.value
     });
   };
+  //handle airbnb
   handleAirbnb = e => {
     this.setState({
       airbnb: e.target.value
     });
   };
+  //handle homeaway
   handleHomeAway = e => {
     this.setState({
       homeaway: e.target.value
     });
   };
+  //handle booking.com
   handleBooking_com = e => {
     this.setState({
       booking_dot_com: e.target.value
     });
   };
+  //handle other site
   handleOtherSite = e => {
     this.setState({
       other_site: e.target.value
     });
   };
+  //show airbnb input
   handleShowAirBnbSiteInput = e => {
     this.setState({
       showAirbnb: !this.state.showAirbnb
     });
   };
+  //show homeaway input
   handleShowHomeAwaySiteInput = e => {
     this.setState({
       showHomeAway: !this.state.showHomeAway
     });
   };
+  //show booking.com input
   handleShowBookingSiteInput = e => {
     this.setState({
       showBooking_com: !this.state.showBooking_com
     });
   };
+  //show other site input
   handleShowOtherSiteInput = e => {
     this.setState({
       showOther: !this.state.showOther
     });
   };
+  //handle contact name
   handleContactName = e => {
     this.setState({
       contact_name: e.target.value
     });
   };
+  //handle contact email
   handleContactEmail = e => {
     this.setState({
       contact_email: e.target.value
     });
   };
+  //handle contact phone
   handleContactPhone = e => {
     this.setState({
       contact_phone: e
     });
   };
+  //handle show listing preivew
   handleShowPreview = e => {
     e.preventDefault();
     this.setState({
       showPreview: !this.state.showPreview
     });
   };
+  //handle submit
   handleSubmit = e => {
     e.preventDefault();
     var airbnb = "";
@@ -186,6 +208,7 @@ export default class RentalPage extends Component {
       showEditPopUp: !this.state.showEditPopUp
     });
   };
+  //handle delete
   handleDelete = () => {
     const { id } = this.state;
     apiServices.deleteRentalListing(id);
@@ -195,6 +218,7 @@ export default class RentalPage extends Component {
   };
 
   componentDidMount() {
+    window.scroll(0, 0);
     const { rentalId } = this.props.match.params;
     apiServices
       .getRentalListing(rentalId)

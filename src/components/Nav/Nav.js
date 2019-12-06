@@ -4,7 +4,7 @@ import "./Nav.css";
 import MobileSiteNav from "./mobileSiteNav";
 import DesktopSiteNav from "./desktopSiteNav";
 import TokenServices from "../../services/TokenServices";
-
+//main nav component
 class Nav extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +12,7 @@ class Nav extends Component {
       navColorClass: "nav-text-color-white"
     };
   }
+  //handle nav text color change when not landing page
   handleNavTextColor = () => {
     if (window.location.pathname !== "/") {
       this.setState({
@@ -32,27 +33,32 @@ class Nav extends Component {
           onClick={this.handleNavTextColor}
         >
           <span className="forumLogo">
-            <Link to="/">
-              <img
-                src="/images/nav/bequia-logo.png"
-                alt="forum-icon"
-              />
+            <Link to="/" onClick={this.handleNavTextColor}>
+              <img src="/images/nav/bequia-logo.png" alt="forum-icon" />
             </Link>
-            <Link to="/">
+            <Link to="/" onClick={this.handleNavTextColor}>
               <h1 className={this.state.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
           <DesktopSiteNav colorClass={this.state.navColorClass} />
           <div className="rightNavInfo">
-            <Link to="/signup" className={this.state.navColorClass}>
-              <i className="fas fa-user-plus" samesite="none" secure='true'></i>
+            <Link
+              to="/signup"
+              className={this.state.navColorClass}
+              onClick={this.handleNavTextColor}
+            >
+              <i className="fas fa-user-plus"></i>
             </Link>
-            <Link to="/login" className={this.state.navColorClass}>
-              <i className="fas fa-sign-in-alt" samesite="none" secure='true'></i>
+            <Link
+              to="/login"
+              className={this.state.navColorClass}
+              onClick={this.handleNavTextColor}
+            >
+              <i className="fas fa-sign-in-alt"></i>
             </Link>
           </div>
         </div>
-        <MobileSiteNav />
+        <MobileSiteNav handleNavTextColor={this.handleNavTextColor} />
       </>
     );
     const privateNav = (
@@ -60,10 +66,7 @@ class Nav extends Component {
         <div className="navBar">
           <span className="forumLogo">
             <Link to="/">
-              <img
-                src="/images/nav/bequia-logo.png"
-                alt="forum-icon"
-              />
+              <img src="/images/nav/bequia-logo.png" alt="forum-icon" />
             </Link>
             <Link to="/">
               <h1 className={this.state.navColorClass}>Bequia Forum</h1>
@@ -77,27 +80,19 @@ class Nav extends Component {
                 id="create-forum-post-button"
                 className={this.state.navColorClass}
               >
-                <i className="fas fa-plus" samesite="none" secure="true"></i>
+                <i className="fas fa-plus"></i>
               </Link>
             ) : null}
 
             <Link to="/dashboard" className={this.state.navColorClass}>
-              <i
-                className="fas fa-tachometer-alt"
-                samesite="none"
-                secure="true"
-              ></i>
+              <i className="fas fa-tachometer-alt"></i>
             </Link>
             <Link
               to="/"
               onClick={() => this.props.handleLogOut()}
               className={this.state.navColorClass}
             >
-              <i
-                className="fas fa-sign-out-alt"
-                samesite="none"
-                secure="true"
-              ></i>
+              <i className="fas fa-sign-out-alt"></i>
             </Link>
           </div>
         </div>

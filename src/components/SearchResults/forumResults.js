@@ -4,16 +4,14 @@ import Truncate from "react-truncate";
 import formatDate from "../../helpers/formatDate";
 import comment from "../Icons/comment";
 import like from "../Icons/like";
+//forum search results
 export default function ForumSearchResults(props) {
   const forumPosts = () => {
     return props.posts.map(p => {
-      
       return (
         <li key={p.id} className="search-result-item">
           <article className="post-card-info">
-            <Link
-              to={`/messageBoard/${p.section_id}/${p.board_id}/${p.id}`}
-            >
+            <Link to={`/messageBoard/${p.section_id}/${p.board_id}/${p.id}`}>
               <h4>{p.title}</h4>
             </Link>
             <Truncate

@@ -2,12 +2,14 @@ import React from "react";
 import "./ShowJobListingPreview.css";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import formatDate from "../../helpers/formatDate";
-
+//job listing preview
 export default function ShowJobListingPreview(props) {
+  window.scroll(0, 0);
+  //get the job catagory name
   const jobcat = props.state.jobCats.filter(
     cat => cat.id === parseInt(props.state.job_cat)
   );
-  console.log(jobcat);
+
   return (
     <section className="job-listing-preview">
       <header>
@@ -41,7 +43,7 @@ export default function ShowJobListingPreview(props) {
         ) : null}
       </span>
       <p>Posted on: {formatDate(props.state.date_posted)}</p>
-      <span id='job-listing-preview-buttons'>
+      <span id="job-listing-preview-buttons">
         <button onClick={() => props.handleSubmit()}>Create Listing</button>
         <button onClick={props.handleShowPreview}>Edit</button>
         <button onClick={() => props.goBack()}>Cancel</button>

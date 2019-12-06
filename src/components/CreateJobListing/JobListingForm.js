@@ -2,8 +2,10 @@ import React from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import "./JobListingForm.css";
-
+//job listing form
 export default function JobListingForm(props) {
+  window.scroll(0, 0);
+  //make all the job catagories
   const makeCatagoryMenu = () => {
     return props.state.jobCats.map(j => {
       return (

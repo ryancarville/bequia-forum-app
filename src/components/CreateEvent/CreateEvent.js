@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import "./CreateEvent.css";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
+//create new event
 export default class CreateEvent extends Component {
   constructor(props) {
     super(props);
@@ -18,36 +19,43 @@ export default class CreateEvent extends Component {
     };
   }
   static contextType = ForumContext;
+  //handle event title
   handleEventTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle event description
   handleDescription = e => {
     this.setState({
       description: e.target.value
     });
   };
+  //handle event location
   handleLocation = e => {
     this.setState({
       location: e.target.value
     });
   };
+  //handle event date
   handleDate = e => {
     this.setState({
       event_date: e.target.value
     });
   };
+  //handle event start time
   handleStartTime = e => {
     this.setState({
       start_time: e.target.value
     });
   };
+  //handle event end time
   handleEndTime = e => {
     this.setState({
       end_time: e.target.value
     });
   };
+  //handle event post submit
   handleSubmit = e => {
     e.preventDefault();
     const { start_time, end_time } = this.state;
@@ -73,11 +81,11 @@ export default class CreateEvent extends Component {
     apiServices.addEvent(newEvent).then(() => {
       return this.props.match.params;
     });
-
     this.setState({
       redirectToCalendar: true
     });
   };
+  //make event time select menu options
   eventTimeSelect = () => {
     const times = [
       "All Day",
@@ -142,6 +150,7 @@ export default class CreateEvent extends Component {
     ));
   };
   componentDidMount() {
+    window.scroll(0, 0);
     this.setState({ user_id: this.context.user.id });
   }
 

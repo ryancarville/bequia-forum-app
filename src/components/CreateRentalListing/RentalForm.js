@@ -2,8 +2,9 @@ import React from "react";
 import PhoneInput from "react-phone-number-input";
 import "./RentalForm.css";
 import "react-phone-number-input/style.css";
-
+// rental listing form
 export default function RentalForm(props) {
+  //detects which websites are to be entered and hide the label
   var hideAirBnbLable = "show-booking-label";
   var hideHomeAwayLable = "show-booking-label";
   var hideBooking_comLable = "show-booking-label";
@@ -20,6 +21,7 @@ export default function RentalForm(props) {
   if (props.state.showOther) {
     hideOtherLable += " hide-lable";
   }
+  //make all rental tyes
   const makeRentalTypes = () => {
     return props.state.rentalCats.map(r => (
       <option key={r.id} value={r.id}>

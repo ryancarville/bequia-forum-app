@@ -5,6 +5,7 @@ import apiServices from "../../services/apiServices";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
 import waveLoader from "../Icons/waveLoader";
+//logged in users posts
 export default class UserPosts extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ export default class UserPosts extends Component {
       jPosts: []
     };
   }
+  //diveds posts into forum sections
   divideResponsePosts = () => {
     const { allPosts } = this.state;
     allPosts.forEach(posts => {
@@ -61,6 +63,7 @@ export default class UserPosts extends Component {
       }
     });
   };
+  //makes a message board posts
   makeMbPosts = () => {
     const { mbPosts } = this.state;
 
@@ -78,6 +81,7 @@ export default class UserPosts extends Component {
       </Link>
     ));
   };
+  //makes all market place posts
   makeMpPosts = () => {
     const { mpPosts } = this.state;
     return mpPosts.map(p => (
@@ -90,7 +94,8 @@ export default class UserPosts extends Component {
       </Link>
     ));
   };
-  makerPosts = () => {
+  //makes all rental posts
+  makeRPosts = () => {
     const { rPosts } = this.state;
     return rPosts.map(p => (
       <Link
@@ -102,7 +107,8 @@ export default class UserPosts extends Component {
       </Link>
     ));
   };
-  makejPosts = () => {
+  //make all job posts
+  makeJPosts = () => {
     const { jPosts } = this.state;
     return jPosts.map(p => (
       <Link
@@ -128,9 +134,9 @@ export default class UserPosts extends Component {
             : null(this.state.mpPosts.length > 0)
             ? this.makeMpPosts()
             : null(this.state.rPosts.length > 0)
-            ? this.makerPosts()
+            ? this.makeRPosts()
             : null(this.state.jPosts.length > 0)
-            ? this.makejPosts()
+            ? this.makeJPosts()
             : null
           : waveLoader}
       </div>

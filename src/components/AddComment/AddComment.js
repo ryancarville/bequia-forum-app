@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ForumContext from "../../ForumContext";
 import "./AddComment.css";
 import apiServices from "../../services/apiServices";
-
+//add comment to a post
 export default class AddComment extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +14,19 @@ export default class AddComment extends Component {
       posted: false
     };
   }
-
+  //resets comment form
+  resetForm = () => {
+    this.setState({
+      content: ""
+    });
+  };
+  //set users comment in component state on user input
   handleComment = e => {
     this.setState({
       content: e.target.value
     });
   };
+  //handle comment submit
   handleCommentSubmit = e => {
     e.preventDefault();
     var { post_id } = this.state;
@@ -40,6 +47,7 @@ export default class AddComment extends Component {
   static contextType = ForumContext;
   componentDidMount() {
     this.setState({
+      //set logged in user id
       user_id: this.context.user.id
     });
   }
@@ -60,7 +68,9 @@ export default class AddComment extends Component {
             />
             <span>
               <button type="submit">Post</button>
-              <button type="reset">Clear Form</button>
+              <button type="reset" onClick={this.resetForm}>
+                Clear Comment
+              </button>
               <button type="button" onClick={this.props.closeAddComment}>
                 Cancel
               </button>

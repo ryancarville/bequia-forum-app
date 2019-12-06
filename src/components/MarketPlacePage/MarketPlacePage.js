@@ -9,6 +9,7 @@ import ForumContext from "../../ForumContext";
 import ListingBody from "./ListingBody";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
+//market place page component
 export default class MarketPlacePage extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +33,7 @@ export default class MarketPlacePage extends Component {
     };
   }
   static contextType = ForumContext;
+  //reset form
   resetState = () => {
     this.setState({
       user_id: "",
@@ -45,52 +47,62 @@ export default class MarketPlacePage extends Component {
       contact_phone: ""
     });
   };
+  //handle catagory
   handleMarketPlaceCat = e => {
     this.setState({
       market_place_cat: e.target.value
     });
   };
+  //handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle description
   handleDescription = e => {
     this.setState({
       description: e.target.value
     });
   };
+  //handle location
   handleLocation = e => {
     this.setState({
       location: e.target.value
     });
   };
+  //handle price
   handlePrice = e => {
     this.setState({
       price: e.target.value
     });
   };
+  //handle contact name
   handleContactName = e => {
     this.setState({
       contact_name: e.target.value
     });
   };
+  //handle contact email
   handleContactEmail = e => {
     this.setState({
       contact_email: e.target.value
     });
   };
+  //handle contact phone
   handleContactPhone = e => {
     this.setState({
       contact_phone: e
     });
   };
+  //handle show listing preivew
   handleShowPreview = e => {
     e.preventDefault();
     this.setState({
       showPreview: !this.state.showPreview
     });
   };
+  //handle submit
   handleSubmit = e => {
     e.preventDefault();
     const {
@@ -124,18 +136,21 @@ export default class MarketPlacePage extends Component {
       });
     });
   };
+  //show edit form
   showEditPopUp = () => {
     this.setState({
       showEditButtons: !this.state.showEditButtons,
       showEditPopUp: !this.state.showEditPopUp
     });
   };
+  //show delete pop up
   showDeletePopUp = () => {
     this.setState({
       showEditButtons: !this.state.showEditButtons,
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle delete
   handleDelete = () => {
     const { id } = this.state;
     apiServices.deleteMarketPlaceListing(id);
@@ -144,6 +159,7 @@ export default class MarketPlacePage extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     const id = this.props.match.params.marektPlaceListingId;
     this.context.verifyLoginOnReload();
     apiServices.getMarketPlaceCatagories().then(cats => {

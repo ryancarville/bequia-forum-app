@@ -2,10 +2,12 @@ import React from "react";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import "./ShowRentalPreview.css";
 import apiServices from "../../services/apiServices";
-
+// show rental listing preview
 export default function ShowRentalpreview(props) {
+  window.scroll(0, 0);
+  //get rental cat name
   const rentalcat = apiServices.getRentalCatName(props.state.rental_cat);
-  console.log(rentalcat);
+
   return (
     <section>
       <div>

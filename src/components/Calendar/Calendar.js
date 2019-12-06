@@ -41,7 +41,7 @@ class Calendar extends Component {
       year: today.getFullYear()
     };
   }
-
+  //handle move to next month on calendar
   handleClickNext = () => {
     this.setState(({ month, year }) => {
       const newYear = (year = month === 11 ? year + 1 : year);
@@ -52,7 +52,7 @@ class Calendar extends Component {
       };
     });
   };
-
+  //handle previous month on calendar
   handleClickPrev = () => {
     this.setState(({ month, year }) => {
       const newYear = month === 0 ? year - 1 : year;
@@ -63,7 +63,7 @@ class Calendar extends Component {
       };
     });
   };
-
+  //make calendar
   renderCalendar = () => {
     const today = new Date();
     const { events } = this.props;
@@ -77,11 +77,12 @@ class Calendar extends Component {
     }
     // render rest
     for (let day = 1; day <= totalDays; day++) {
+      //get todays date cell
       const isActive =
         dayInt === day &&
         month === today.getMonth() &&
         year === today.getFullYear();
-      // we filter out all the events on this day.
+      // we filter all the events on this day.
       const eventsOnThisDay = events.filter(event => {
         const eventDate = event.event_date.split("-");
         const eventDay = eventDate[2];
@@ -93,7 +94,7 @@ class Calendar extends Component {
           year.toString() === eventYear
         );
       });
-
+      //push all dates with events to calendar array
       calendarItems.push(
         <li
           className={`singleDay ${isActive ? "active" : ""}`}
@@ -101,6 +102,7 @@ class Calendar extends Component {
           onClick={() => this.props.handleShowEvents(eventsOnThisDay)}
         >
           {day}
+
           {eventsOnThisDay.length > 0 ? (
             <span className="event-marker" key={`event-marker${day}`} />
           ) : null}

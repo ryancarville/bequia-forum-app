@@ -5,7 +5,7 @@ import formatDate from "../../helpers/formatDate";
 import "./JobSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
-
+//job section component
 export default class JobPage extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ export default class JobPage extends Component {
       listings: []
     };
   }
-
+  //get all job listings for section
   makeListings = () => {
     return this.state.listings.map(j => (
       <li key={j.id}>
@@ -40,6 +40,7 @@ export default class JobPage extends Component {
       </li>
     ));
   };
+  //handle sort
   handleSort = sort => {
     const { job_cat } = this.props.match.params;
     apiServices
@@ -163,6 +164,7 @@ export default class JobPage extends Component {
       });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     const { job_cat } = this.props.match.params;
     apiServices.getJobCatagories().then(cats => {
       const cat_name = cats.filter(c => c.id.toString() === job_cat);

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate";
 import formatDate from "../../helpers/formatDate";
+//market place search results
 export default function MarketPlaceSearchResults(props) {
   const marketPlacePosts = () => {
     return props.posts.map(l => {

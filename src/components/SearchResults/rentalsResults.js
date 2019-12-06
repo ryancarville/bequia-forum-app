@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate";
 import formatDate from "../../helpers/formatDate";
+//rentals search results
 export default function RentalsSearchResults(props) {
   const rentalsPosts = () => {
     return props.posts.map(r => (

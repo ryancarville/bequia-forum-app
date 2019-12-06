@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ThisWeek.css";
 import formatDate from "../../helpers/formatDate";
-
+//upcoming events
 export default function ThisWeek(props) {
+  window.scroll(0, 0);
+  //make all events for the upcoming 7 days
   const makeEvents = events => {
     return events.map(e => {
       return (

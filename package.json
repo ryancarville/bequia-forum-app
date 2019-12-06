@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "now": "^16.2.0",
+    "now": "^16.6.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-phone-number-input": "^2.3.24",
+    "react-phone-number-input": "^2.5.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-test-renderer": "^16.11.0",
-    "react-truncate": "^2.4.0"
+    "react-truncate": "^2.4.0",
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -35,9 +35,3 @@ exports[`App Component renders Nav correctly 1`] = `null`;
 exports[`App Component renders Router correctly 1`] = `null`;
 
 exports[`App Component renders footer correctly 1`] = `null`;
-
-exports[`Nav Component renders Nav correctly 1`] = `null`;
-
-exports[`Nav Component renders Router correctly 1`] = `null`;
-
-exports[`Nav Component renders footer correctly 1`] = `null`;

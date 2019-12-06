@@ -1,7 +1,7 @@
-import React from 'react';
-
+import React from "react";
+//add to directory button
 export default function AddToDirectory(props) {
-	return (
+  return (
     <button
       className="add-to-directory"
       type="button"

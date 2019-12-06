@@ -7,7 +7,7 @@ import ForumSearchResults from "./forumResults";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
 import waveLoader from "../Icons/waveLoader";
-
+//search results component
 export default class SearchResults extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,7 @@ export default class SearchResults extends Component {
   }
   static contextType = ForumContext;
   componentDidMount() {
+    window.scroll(0, 0);
     const prevSearch = sessionStorage.getItem("searchTerm");
     if (prevSearch) {
       const term = sessionStorage.getItem("searchTerm");

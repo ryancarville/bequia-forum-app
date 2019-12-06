@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
-
 import "./desktopSiteNav.css";
+//desktop nav version
 export default class DesktopSiteNav extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export default class DesktopSiteNav extends Component {
       fadeOut: ""
     };
   }
-
+  //expand or hide search input
   showSearchForm = () => {
     if (this.state.showSearchForm === true) {
       this.setState({
@@ -61,7 +61,7 @@ export default class DesktopSiteNav extends Component {
           <li>
             {!this.state.showSearchForm ? (
               <i
-                className={this.props.colorClass + " " + "fas fa-search"}
+                className={this.props.colorClass + " fas fa-search"}
                 onClick={() => this.showSearchForm()}
                 samesite="none"
                 secure="true"

@@ -3,7 +3,7 @@ import apiServices from "../../services/apiServices";
 import TokenServices from "../../services/TokenServices";
 import ForumContext from "../../ForumContext";
 import "./LogIn.css";
-
+//login component
 export default class LogIn extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +15,7 @@ export default class LogIn extends Component {
     };
   }
   static contextType = ForumContext;
+  //handle user name
   handleLoginName = e => {
     if (this.state.error) {
       this.setState({ error: null });
@@ -23,11 +24,13 @@ export default class LogIn extends Component {
       loginName: e.target.value
     });
   };
+  //handle user password
   handlePass = e => {
     this.setState({
       password: e.target.value
     });
   };
+  //handle submit
   handleSubmit = e => {
     e.preventDefault();
     const { loginName, password } = this.state;
@@ -62,13 +65,17 @@ export default class LogIn extends Component {
         });
       });
   };
-
+  //set test user credentials
   setTestUser = () => {
     this.setState({
       loginName: "testUser@gmail.com",
       password: "testUser!2"
     });
   };
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
+
   render() {
     if (this.state.success) {
       this.props.history.go(-1);

@@ -8,6 +8,7 @@ import AddToDirectory from "./AddToDirectory";
 import Listings from "./listings";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import apiServices from "../../services/apiServices";
+//directory component
 export default class Directory extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ export default class Directory extends Component {
       showDeletePopUp: false
     };
   }
-
+  //updates directory when new entry added
   updateDiretory = () => {
     this.setState({
       directory: []
@@ -28,17 +29,20 @@ export default class Directory extends Component {
       });
     });
   };
+  //handle show add listing form
   handleShowAddForm = () => {
     this.setState({
       showAddForm: !this.state.showAddForm
     });
   };
+  //handle show delete pop up
   handleShowDeletePopUp = id => {
     this.setState({
       id: id,
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle delete entry
   handleDelete = () => {
     const { id } = this.state;
     apiServices.deleteDirectoryListing(id).then(() => this.updateDiretory());
@@ -46,6 +50,7 @@ export default class Directory extends Component {
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle sorting
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "last_name") {
       const sorted = this.state.directory.sort(function(a, b) {
@@ -185,6 +190,7 @@ export default class Directory extends Component {
     }
   };
   componentDidMount() {
+    window.scroll(0, 0);
     apiServices.getDriectory().then(dir => {
       this.setState({
         directory: dir

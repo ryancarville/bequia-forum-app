@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 import SelectedEvents from "../SelectedEvents/SelectedEvents";
+//events component
 class Events extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,7 @@ class Events extends Component {
       selectedEvents: []
     };
   }
+  //updates calendar after new event added
   updateEvents = () => {
     this.setState({
       events: []
@@ -26,9 +28,8 @@ class Events extends Component {
       });
     });
   };
-
+  //shows events for the day user clicks
   handleShowEvents = events => {
-    console.log(events);
     this.setState({
       selectedEvents: []
     });
@@ -41,6 +42,7 @@ class Events extends Component {
   };
   static contextType = ForumContext;
   componentDidMount() {
+    window.scroll(0, 0);
     this.context.verifyLoginOnReload();
     apiServices
       .getEvents()

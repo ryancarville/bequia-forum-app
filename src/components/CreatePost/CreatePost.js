@@ -5,7 +5,7 @@ import ShowPostPreview from "./ShowPostPreview";
 import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 import "./CreatePost.css";
-
+//create forum post
 export default class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +20,7 @@ export default class CreatePost extends Component {
     };
   }
   static contextType = ForumContext;
+  //handle form reset
   resetState = () => {
     this.setState({
       title: "",
@@ -29,17 +30,19 @@ export default class CreatePost extends Component {
       redirectToPost: false
     });
   };
+  //handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle content
   handleContent = e => {
     this.setState({
       content: e.target.value
     });
   };
-
+  //handle forum catagory
   handleCatagory = e => {
     this.setState({
       board_id: e.target.value
@@ -68,20 +71,29 @@ export default class CreatePost extends Component {
         });
       });
   };
+  //handle back
   goBack = () => {
     this.props.history.goBack();
   };
+  //handle show preview
   handleShowPreview = e => {
     e.preventDefault();
     this.setState({
       showPreview: !this.state.showPreview
     });
   };
+  //handle submit
   handleSubmit = e => {
     var { board_id } = this.state;
     board_id = parseInt(board_id);
     const { user_id, title, content, date_posted } = this.state;
-    const newPost = { board_id, user_id, title, content, date_posted };
+    const newPost = {
+      board_id,
+      user_id,
+      title,
+      content,
+      date_posted
+    };
     apiServices.createPost(newPost).then(() => {
       this.setState({
         redirectToPost: true
@@ -89,6 +101,7 @@ export default class CreatePost extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     this.setState({
       user_id: this.context.user.id
     });

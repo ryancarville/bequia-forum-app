@@ -3,6 +3,7 @@ import CountriesSelect from "./countriesDropMenu";
 import PhoneInput from "react-phone-number-input";
 import apiService from "../../services/apiServices";
 import "./CreateListing.css";
+//create directory listing
 export default class CreateListing extends Component {
   constructor(props) {
     super(props);
@@ -19,46 +20,55 @@ export default class CreateListing extends Component {
       website: ""
     };
   }
+  //handle first name
   handleFirstName = e => {
     this.setState({
       first_name: e.target.value
     });
   };
+  //handle last name
   handleLastName = e => {
     this.setState({
       last_name: e.target.value
     });
   };
+  //handle address
   handleAddress = e => {
     this.setState({
       address: e.target.value
     });
   };
+  //handle city
   handleCity = e => {
     this.setState({
       city: e.target.value
     });
   };
+  //handle country
   handleCountry = e => {
     this.setState({
       country: e.target.value
     });
   };
+  //handle email
   handleEmail = e => {
     this.setState({
       email: e.target.value
     });
   };
+  //handle phone
   handlePhone = e => {
     this.setState({
       phone: e
     });
   };
+  //handle website
   handleWebsite = e => {
     this.setState({
       website: e.target.value
     });
   };
+  //handle directory listing submit
   handleSubmit = e => {
     e.preventDefault();
     const {
@@ -94,6 +104,9 @@ export default class CreateListing extends Component {
       this.props.context.getDirectory();
     });
   };
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
 
   render() {
     return (

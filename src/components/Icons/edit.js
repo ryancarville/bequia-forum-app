@@ -1,5 +1,6 @@
 import React from "react";
 import "./edit.css";
+//edit icon
 const edit = (
   <i
     className="far fa-edit"

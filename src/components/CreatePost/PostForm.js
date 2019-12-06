@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./PostForm.css";
 import apiServices from "../../services/apiServices";
-
+// forum post form
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +9,7 @@ export default class PostForm extends Component {
       forum: []
     };
   }
+  //make forum catagories menu
   makeSelectCategorys = () => {
     return this.state.forum.map(item => {
       if (item.id >= 26 && item.id <= 29) {
@@ -23,6 +24,8 @@ export default class PostForm extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
+    //get all forum catagories
     apiServices.getFourm().then(forum =>
       this.setState({
         forum: forum,

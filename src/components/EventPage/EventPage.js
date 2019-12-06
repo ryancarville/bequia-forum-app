@@ -9,7 +9,7 @@ import apiServices from "../../services/apiServices";
 import EditButton from "../Buttons/Edit";
 import TokenServices from "../../services/TokenServices";
 import deleteIcon from "../Icons/delete";
-
+//event page component
 export default class EventPage extends Component {
   constructor(props) {
     super(props);
@@ -21,17 +21,19 @@ export default class EventPage extends Component {
       redirect: false
     };
   }
-
+  //show edit form
   showEditPopUp = () => {
     this.setState({
       showEditPopUp: !this.state.showEditPopUp
     });
   };
+  //show delete pop up
   showDeletePopUp = () => {
     this.setState({
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle detlete
   handleDelete = () => {
     const { id } = this.state;
     apiServices.deleteEvent(id).then(() => {
@@ -41,6 +43,7 @@ export default class EventPage extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     if (TokenServices.getAuthToken()) {
       this.setState({
         loggedIn: true

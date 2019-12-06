@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SearchInput.css";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
+//serach component
 export default class SearchInput extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +15,13 @@ export default class SearchInput extends Component {
     };
   }
   static contextType = ForumContext;
+  //handle search term
   handleSearchTerm = e => {
     this.setState({
       term: e.target.value
     });
   };
+  //handle site catagory
   handleCat = e => {
     const id = e.target.value;
     if (id === "null") {
@@ -35,6 +38,7 @@ export default class SearchInput extends Component {
       });
     }
   };
+  //close search and clear term
   closeSearch = () => {
     this.setState({
       term: ""
@@ -42,6 +46,7 @@ export default class SearchInput extends Component {
     this.props.closeNavSearch();
     return true;
   };
+  //handle search submit
   handleSearch = e => {
     e.preventDefault();
     if (this.state.term === "") {
@@ -65,6 +70,7 @@ export default class SearchInput extends Component {
       this.context.searchResults(data);
     });
   };
+  //make site sections menu
   makeOptions = catagories => {
     return catagories.map(cat => (
       <option key={cat.id} value={cat.id}>
@@ -90,7 +96,7 @@ export default class SearchInput extends Component {
         >
           <button id="search-submit" type="submit" value="Search">
             <i
-              className={this.props.colorClass + " " + "fas fa-search"}
+              className={this.props.colorClass + " fas fa-search"}
               samesite="none"
               secure="true"
             ></i>
@@ -121,7 +127,7 @@ export default class SearchInput extends Component {
             onClick={this.closeSearch}
           >
             <i
-              className={this.props.colorClass + " " + "fas fa-times"}
+              className={this.props.colorClass + " fas fa-times"}
               samesite="none"
               secure="true"
             ></i>

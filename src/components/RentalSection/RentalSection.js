@@ -6,7 +6,7 @@ import "./RentalSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
-
+//rentals section component
 export default class RentalSection extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ export default class RentalSection extends Component {
       listings: []
     };
   }
-
+  //handle sort
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "title") {
       const sorted = this.state.listings.sort(function(a, b) {
@@ -155,6 +155,7 @@ export default class RentalSection extends Component {
   };
 
   componentDidMount() {
+    window.scroll(0, 0);
     const { rental_cat } = this.props.match.params;
     apiServices
       .getRentalListings(rental_cat)
@@ -177,7 +178,7 @@ export default class RentalSection extends Component {
         });
       });
   }
-
+  //make all rental listings for section
   makeRentalListings = () => {
     return this.state.listings.map(r => (
       <li key={r.id}>

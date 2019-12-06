@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Forum.css";
 import apiServices from "../../services/apiServices";
-
+//forum component
 export default class Forum extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export default class Forum extends Component {
       error: null
     };
   }
-
+  //make forum sections
   makeForum = () => {
     let links = [];
     this.state.forumTitles.forEach(title => {
@@ -87,7 +87,7 @@ export default class Forum extends Component {
           </Link>
         );
       }
-      if (title.name === "Activites") {
+      if (title.name === "Activities") {
         links.push(
           <Link
             to={`/messageBoard/${title.id}`}
@@ -127,6 +127,7 @@ export default class Forum extends Component {
     return links;
   };
   componentDidMount() {
+    window.scroll(0, 0);
     apiServices.getFourmSectionTitles().then(titles => {
       if (titles.error) {
         this.setState({
@@ -145,7 +146,7 @@ export default class Forum extends Component {
       <section className="forum-container">
         <div className="forum-content">
           <header>
-            <h3>Fourm</h3>
+            <h3>Forum</h3>
           </header>
 
           {this.state.forumTitles ? (

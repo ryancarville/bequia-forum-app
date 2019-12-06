@@ -6,6 +6,7 @@ import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
 import UserPosts from "../UserPosts/UserPosts";
 import waveLoader from "../Icons/waveLoader";
+//user dashboard
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -17,17 +18,19 @@ export default class Dashboard extends Component {
       showPosts: false
     };
   }
-
+  //show upcoming events
   showHomePageEvents = () => {
     this.setState({
       showEvents: !this.state.showEvents
     });
   };
+  //show newests posts
   showNewPosts = () => {
     this.setState({
       showPosts: !this.state.showPosts
     });
   };
+  //show users posts
   showUserPosts = () => {
     this.setState({
       showUserPosts: !this.state.showUserPosts
@@ -35,6 +38,7 @@ export default class Dashboard extends Component {
   };
   static contextType = ForumContext;
   componentDidMount() {
+    window.scroll(0, 0);
     apiServices
       .getThisWeeksEvents()
       .then(events => {

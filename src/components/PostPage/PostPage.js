@@ -12,7 +12,7 @@ import CommentButton from "./commentButton";
 import EditButtons from "./editButtons";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
-
+//post page component
 class PostPage extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,7 @@ class PostPage extends Component {
     };
   }
   static contextType = ForumContext;
-  //post like handlers
+  //post like handler
   handlePostLike = () => {
     const post_id = this.state.id;
     const user_id = this.context.user.id;
@@ -59,23 +59,26 @@ class PostPage extends Component {
     }
   };
 
-  //post edit handlers
+  //post edit handler
   showPostEdit = () => {
     this.setState({
       hideEditButtons: !this.state.hideEditButtons,
       showPostEdit: !this.state.showPostEdit
     });
   };
+  // handle title
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
   };
+  //handle content
   handleContent = e => {
     this.setState({
       content: e.target.value
     });
   };
+  //handle edit submit
   handleEditSubmit = e => {
     e.preventDefault();
     const { id, title, content } = this.state;
@@ -87,13 +90,14 @@ class PostPage extends Component {
       });
     });
   };
-  //post delete handlers
+  //post delete handler
   showDeletePopUp = () => {
     this.setState({
       hideEditButtons: !this.state.hideEditButtons,
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //handle post delete
   handlePostDelete = () => {
     const { id } = this.state;
     apiServices.deletePost(id).then(() => {
@@ -102,15 +106,15 @@ class PostPage extends Component {
       });
     });
   };
-  //comment handlers
+  //show add comment form
   showAddComment = () => {
     this.setState({
       showAddComment: !this.state.showAddComment
     });
   };
+  //update all comments after new comment added
   updateComments = () => {
     const { id } = this.state;
-
     apiServices
       .getNumOfCommentsByPostId(id)
       .then(numOfComments => {
@@ -129,13 +133,15 @@ class PostPage extends Component {
         });
       });
   };
+  //handle delete comment
   handleCommentDelete = id => {
     console.log(id);
     apiServices.deleteComment(id).then(() => this.updateComments());
   };
-  //API calls for post by id, comments for post and num of comments for post
 
+  //API calls for post by id, comments for post and num of comments for post
   componentDidMount() {
+    window.scroll(0, 0);
     const { id } = this.state;
     this.context.verifyLoginOnReload();
     apiServices

@@ -1,25 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './CreateContentButton.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./CreateContentButton.css";
+//create any content buttons for entire site
 export default function AddPost(props) {
-	if (props.forumType === 'jobs') {
-		return (
+  //create job listing button
+  if (props.forumType === "jobs") {
+    return (
       <span className="create-post-button">
         <Link to={"/createJobListing"} id="create-job-listing-button">
           <i className="fas fa-plus" samesite="none" secure="true"></i>Listing
         </Link>
       </span>
     );
-	} else if (props.forumType === 'rentals') {
-		return (
+  }
+  //create rentals listing button
+  else if (props.forumType === "rentals") {
+    return (
       <span className="create-post-button">
         <Link to={"/createRentalListing"} id="create-rental-listing-button">
           <i className="fas fa-plus" samesite="none" secure="true"></i>Listing
         </Link>
       </span>
     );
-	} else if (props.forumType === 'market-place') {
-		return (
+  }
+  //create market place button
+  else if (props.forumType === "market-place") {
+    return (
       <span className="create-post-button">
         <Link
           to={"/createMarketPlaceListing"}
@@ -30,16 +36,20 @@ export default function AddPost(props) {
         </Link>
       </span>
     );
-	} else if (props.forumType === 'events') {
-		return (
+  }
+  //create event button
+  else if (props.forumType === "events") {
+    return (
       <span className="create-post-button">
         <Link to={"/createEvent"} id="create-event-listing-button">
           <i className="fas fa-plus" samesite="none" secure="true"></i>Event
         </Link>
       </span>
     );
-	} else if (props.forumType === 'desktop') {
-		return (
+  }
+  //create post for desktop site button
+  else if (props.forumType === "desktop") {
+    return (
       <li>
         <span className="create-post-button">
           <Link
@@ -51,8 +61,10 @@ export default function AddPost(props) {
         </span>
       </li>
     );
-	} else if (props.forumType === 'mobile') {
-		return (
+  }
+  //create post for mobile site button
+  else if (props.forumType === "mobile") {
+    return (
       <li>
         <Link
           to={{ pathname: `/createPost`, state: { forumId: props.forumId } }}
@@ -63,5 +75,5 @@ export default function AddPost(props) {
         </Link>
       </li>
     );
-	}
+  }
 }

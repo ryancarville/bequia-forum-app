@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SelectedEvents.css";
 import { Link } from "react-router-dom";
 import formatDate from "../../helpers/formatDate";
-
+//all events on selected day user wants to see
 export default class SelectedEvents extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +10,8 @@ export default class SelectedEvents extends Component {
       events: this.props.events
     };
   }
+  //make all events listings for the day
   makeEvents = events => {
-    console.log(events);
     return events.map(e => (
       <div className="calendar-event" key={e.id}>
         <Link to={`/events/${e.id}`}>{e.title}</Link>

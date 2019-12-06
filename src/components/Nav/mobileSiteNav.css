@@ -1,29 +1,29 @@
 /*site mobile nav*/
 .mobile-nav-container {
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	border-radius: 25px 25px 0px 0px;
-	background-color: blue;
-	z-index: 1000;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-radius: 25px 25px 0px 0px;
+  background-color: blue;
+  z-index: 1000;
 }
 .mobile-nav-bar {
-	list-style: none;
-	padding: 0;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .mobile-nav-link {
-	font-size: 25px;
-	color: yellow;
+  font-size: 25px;
+  color: white;
 }
 
 @media only screen and (min-width: 700px) {
-	.mobile-search {
-		display: none;
-	}
-	.mobile-nav-container {
-		display: none;
-	}
+  .mobile-search {
+    display: none;
+  }
+  .mobile-nav-container {
+    display: none;
+  }
 }

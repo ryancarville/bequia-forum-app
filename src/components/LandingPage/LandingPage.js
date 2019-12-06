@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
-
+//landing page
 export default function LandingPage() {
+  window.scroll(0, 0);
   return (
     <section className="landingPage-container">
       <div className="landingPage-content">

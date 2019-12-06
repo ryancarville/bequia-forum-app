@@ -1,6 +1,6 @@
 import React from "react";
 import "./ShowPostPreview.css";
-
+// show forum post preview
 export default function ShowPostPreview(props) {
   return (
     <div className="create-post-preview">

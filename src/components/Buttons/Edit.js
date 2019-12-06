@@ -1,6 +1,7 @@
 import React from "react";
 import editIcon from "../Icons/edit";
 import "./Edit.css";
+//edit button for all edit events
 export default function EditButton(props) {
   return (
     <>

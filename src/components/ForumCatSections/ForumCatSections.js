@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./ForumCatSections.css";
 import apiServices from "../../services/apiServices";
-
+//forum section
 export default class ForumCatSections extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +13,12 @@ export default class ForumCatSections extends Component {
       error: null
     };
   }
+  //get number of threads for a board
   getCount = id => {
     const num = this.state.threadCounts.filter(count => count.board_id === id);
     return num[0].count;
   };
+  //make all the boards for the section
   makeBoards = () => {
     return this.state.boards.map(item => {
       return (
@@ -28,13 +30,18 @@ export default class ForumCatSections extends Component {
             </div>
             <span className="thread-count">
               <h5>Threads</h5>
-              <i className="far fa-file-alt" samesite="none" secure="true"></i>
+
               <p id={`thread-count-${item.id}`}>
+                <i
+                  className="far fa-file-alt"
+                  samesite="none"
+                  secure="true"
+                ></i>{" "}
                 {this.state.threadCounts.length === this.state.boards.length ? (
                   this.getCount(item.id)
                 ) : (
                   <img
-                    src="https://bequiaforum.com/images/JPEG/wave-loader.svg"
+                    src="/images/loader/wave-loader.svg"
                     alt="wave-loader"
                     id="wave-loader-gif"
                   />
@@ -47,6 +54,7 @@ export default class ForumCatSections extends Component {
     });
   };
   componentDidMount() {
+    window.scroll(0, 0);
     const { forum_cat } = this.props.match.params;
     apiServices
       .getFourmSectionTitles()
