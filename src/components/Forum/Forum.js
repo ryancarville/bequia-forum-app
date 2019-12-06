@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Forum.css";
+import waveLoader from "../Icons/waveLoader";
 import apiServices from "../../services/apiServices";
 //forum component
 export default class Forum extends Component {
@@ -148,11 +149,11 @@ export default class Forum extends Component {
           <header>
             <h3>Forum</h3>
           </header>
-
-          {this.state.forumTitles ? (
+          {this.state.error ? <p>{this.state.error}</p> : null}
+          {this.state.forumTitles.length > 0 ? (
             <ul className="sectionMenu">{this.makeForum()}</ul>
           ) : (
-            <p>{this.state.error}</p>
+            waveLoader
           )}
         </div>
       </section>

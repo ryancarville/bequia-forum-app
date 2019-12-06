@@ -13,9 +13,14 @@
       "sizes": "156x156"
     },
     {
-      "src": "/images/nav/bequia-logo.png.png",
+      "src": "/images/nav/bequia-logo.png",
       "type": "image/png",
       "sizes": "1481x1133"
+    },
+    {
+      "src": "/images/loader/wave-loader.svg",
+      "type": "image/svg",
+      "sizes": "156x156"
     },
     {
       "src": "/images/icons/coconut.png",
