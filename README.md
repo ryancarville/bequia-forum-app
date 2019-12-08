@@ -6,6 +6,12 @@ React App client that utilizes a custom API and modern technoliges. This client 
 
 React, JavaScript, Node.js, HTML5, CSS5
 
+## API Info
+
+Hosted on Heroku<br/>
+Git Repo
+https://github.com/ryancarville/bequia-forum-api
+
 ## Available Scripts
 
 In the project directory, you can run:
