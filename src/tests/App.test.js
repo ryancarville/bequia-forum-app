@@ -1,43 +1,29 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import ForumContext from "./ForumContext";
-import Router from "../src/Router/Router";
+
+import Router from "../Router/Router";
 import ShallowRenderer from "react-test-renderer/shallow";
-import Footer from "../src/components/Footer/Footer";
-import Nav from "../src/components/Nav/Nav";
-import Forum from "../src/components/Forum/Forum";
-import ForumCatSections from "./components/ForumCatSections/ForumCatSections";
-import ForumSection from "./components/ForumSection/ForumSection";
-import Jobs from "./components/Jobs/Jobs";
-import JobsSection from "./components/JobSection/JobSection";
-import JobsPage from "./components/JobPage/JobPage";
-import Rentals from "./components/Rentals/Rentals";
-import RentalSection from "./components/RentalSection/RentalSection";
-import RentalPage from "./components/RentalPage/RentalPage";
-import MarketPlace from "./components/MarketPlace/MarketPlace";
-import MarketPlaceSection from "./components/MarketPlaceSection/MarketPlaceSection";
-import MarketPlacePage from "./components/MarketPlacePage/MarketPlacePage";
-import Directory from "./components/Directory/Directory";
-import NewPost from "./components/NewPost/NewPost";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-15";
-import { mount } from "enzyme";
+import Footer from "../components/Footer/Footer";
+import Nav from "../components/Nav/Nav";
+import Forum from "../components/Forum/Forum";
+import ForumCatSections from "../components/ForumCatSections/ForumCatSections";
+import ForumSection from "../components/ForumSection/ForumSection";
+import Jobs from "../components/Jobs/Jobs";
+import JobSection from "../components/JobSection/JobSection";
+import JobPage from "../components/JobPage/JobPage";
+import Rentals from "../components/Rentals/Rentals";
+import RentalSection from "../components/RentalSection/RentalSection";
+import RentalPage from "../components/RentalPage/RentalPage";
+import MarketPlace from "../components/MarketPlace/MarketPlace";
+import MarketPlaceSection from "../components/MarketPlaceSection/MarketPlaceSection";
+import MarketPlacePage from "../components/MarketPlacePage/MarketPlacePage";
+import Directory from "../components/Directory/Directory";
+import NewPost from "../components/NewPost/NewPost";
+import Dashboard from "../components/Dashboard/Dashboard";
+
 //snapshot variables
 const renderer = new ShallowRenderer();
 const tree = renderer.getRenderOutput();
 
-describe.only("Smoke Tests", () => {
-  Enzyme.configure({ adapter: new Adapter() });
-  describe("App", () => {
-    it("renders without crashing", () => {
-      const wrapper = mount(<Nav />, <Router />, <Footer />);
-      ReactDOM.render(<App />, wrapper);
-      ReactDOM.unmountComponentAtNode(wrapper);
-    });
-  });
-});
 describe("Snapshot Tests", () => {
   describe("App Component", () => {
     it("renders Nav correctly", () => {
@@ -108,12 +94,14 @@ describe("Snapshot Tests", () => {
     });
 
     it("renders jobs cats correctly", () => {
-      renderer.render(<JobsSection />);
+      const match = { params: { jobId: 1 } };
+      renderer.render(<JobSection match={match} />);
       expect(tree).toMatchSnapshot();
     });
 
     it("renders jobs page cats correctly", () => {
-      renderer.render(<JobsPage />);
+      const match = { params: { jobId: 1 } };
+      renderer.render(<JobPage match={match} />);
       expect(tree).toMatchSnapshot();
     });
   });

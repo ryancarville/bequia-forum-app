@@ -11,7 +11,7 @@ import ForumContext from "../../ForumContext";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
 //job page component
-class JobPage extends Component {
+export default class JobPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -342,4 +342,3 @@ class JobPage extends Component {
     );
   }
 }
-export default withRouter(JobPage);

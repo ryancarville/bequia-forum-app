@@ -13,7 +13,7 @@ import EditButtons from "./editButtons";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
 //post page component
-class PostPage extends Component {
+export default class PostPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -279,5 +279,3 @@ class PostPage extends Component {
     );
   }
 }
-
-export default withRouter(PostPage);

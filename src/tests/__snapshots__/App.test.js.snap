@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot Tests All Dashboard components renders dashboard correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Directory Components renders directory correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Forum Components renders New Posts correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Forum Components renders forum catagories correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Forum Components renders forum correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Forum Components renders forum section correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Jobs Components renders jobs cats correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Jobs Components renders jobs correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Jobs Components renders jobs page cats correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Market Place Components renders Market Place Section Correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Market Place Components renders Market Place correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Market Place Components renders market Place listing correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Rental Components renders rental cats correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Rental Components renders rental page correctly 1`] = `null`;
+
+exports[`Snapshot Tests All Rental Components renders rentals correctly 1`] = `null`;
+
+exports[`Snapshot Tests App Component renders Nav correctly 1`] = `null`;
+
+exports[`Snapshot Tests App Component renders Router correctly 1`] = `null`;
+
+exports[`Snapshot Tests App Component renders footer correctly 1`] = `null`;
