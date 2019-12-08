@@ -2,7 +2,7 @@
   width: 100%;
   height: auto;
   padding-bottom: 50px;
-  animation: fadeIn 2s ease-in forwards;
+  animation: fadeIn .5s ease-in forwards;
 }
 .logIn-content {
   width: 100%;

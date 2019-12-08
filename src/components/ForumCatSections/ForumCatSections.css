@@ -4,7 +4,7 @@
   margin-top: 80px;
   padding-bottom: 150px;
   opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeIn .5s ease-in forwards;
 }
 .forum-cat-sections-content {
   width: 100%;

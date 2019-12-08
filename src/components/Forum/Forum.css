@@ -40,7 +40,7 @@
   margin-bottom: 20px;
   text-decoration: none;
   border-radius: 10px;
-  animation: moveRight 1s ease-in-out;
+  animation: moveRight .5s ease-in-out;
 }
 
 @media only screen and (min-width: 700px) {

@@ -2,10 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 //footer
-export default function Footer() {
+export default function Footer(props) {
   return (
     <section className="footer-container">
-      <div className="footer-content">
+      <div
+        className="footer-content"
+        onLoad={props.handleNavTextColor}
+        onClick={props.handleNavTextColor}
+      >
         <Link to={"/about-us"}>About</Link>
         <Link to={"/help"}>Support</Link>
         <Link to={"/contact-us"}>Contact</Link>

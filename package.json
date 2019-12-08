@@ -10,8 +10,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-test-renderer": "^16.11.0",
-    "react-truncate": "^2.4.0",
-    "typescript": "^3.7.3"
+    "react-truncate": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

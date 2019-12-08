@@ -1,56 +1,66 @@
 .add-comment-container {
-	width: 100%;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 .add-comment-container form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .add-comment-container textarea {
-	width: 100%;
-	height: 250px;
-	height: 100px;
-	font-size: 20px;
-	border: 1px solid black;
+  width: 100%;
+  height: 250px;
+  font-size: 20px;
+  border: 1px solid black;
 }
 .add-comment-container span {
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 .add-comment-container button {
-	width: 30%;
-	height: 35px;
-	font-size: 16px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 5px;
-	border: 1px solid black;
-	background-color: transparent;
-	cursor: pointer;
+  width: 100%;
+  height: 45px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+
+  background-color: blue;
+  color: white;
+  border-radius: 100px;
+  cursor: pointer;
+}
+.add-comment-container button:hover {
+  background-color: limegreen;
+  color: yellow;
 }
 
 @media only screen and (min-width: 700px) {
-	.add-comment-container {
-		margin: 0;
-	}
+  .add-comment-container {
+    margin: 0;
+  }
 
-	.add-comment-container textarea {
-		height: 200px;
-		margin-top: 15px;
-		font-size: 16px;
-		padding: 5px;
-	}
-	.add-comment-container span {
-		width: 50%;
-	}
-	.add-comment-container button {
-		width: 100%;
-		margin: 10px;
-	}
+  .add-comment-container textarea {
+    width: 90%;
+    height: 150px;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 5px;
+  }
+  .add-comment-container span {
+    width: 50%;
+    flex-direction: row;
+  }
+  .add-comment-container button {
+    width: 100%;
+    margin: 10px;
+  }
 }

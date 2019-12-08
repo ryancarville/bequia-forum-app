@@ -18,6 +18,7 @@ class App extends Component {
         email: "",
         lastLogin: ""
       },
+      navColorClass: "nav-text-color-white",
       searchResults: {},
       resultsCount: 0,
       showSearch: false,
@@ -25,6 +26,18 @@ class App extends Component {
       loggedIn: false
     };
   }
+  //handle nav color
+  handleNavTextColor = () => {
+    if (window.location.pathname !== "/") {
+      this.setState({
+        navColorClass: "nav-text-color-blue"
+      });
+    } else {
+      this.setState({
+        navColorClass: "nav-text-color-white"
+      });
+    }
+  };
   //set token and user id
   setUserData = (user_id, user) => {
     sessionStorage.setItem("user_id", user_id);
@@ -354,13 +367,15 @@ class App extends Component {
           <Nav
             loggedIn={this.state.loggedIn}
             handleLogOut={this.handleLogOut}
+            navColorClass={this.state.navColorClass}
+            handleNavTextColor={this.handleNavTextColor}
           />
           <Router
             searchResults={this.state.searchResults}
             showSearch={this.state.showSearch}
             searchRedirect={this.state.searchRedirect}
           />
-          <Footer />
+          <Footer handleNavTextColor={this.handleNavTextColor} />
         </ForumContext.Provider>
       </div>
     );

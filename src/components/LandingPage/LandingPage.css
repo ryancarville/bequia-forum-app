@@ -8,7 +8,7 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: 600%;
-  animation: fadeIn 2s ease-in forwards;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 .landingPage-content {
   width: 95%;

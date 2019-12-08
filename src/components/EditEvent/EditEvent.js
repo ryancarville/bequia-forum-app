@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ForumContext from "../../ForumContext";
-import "./EditEvent.css";
+
 //edit event component
 export default class EditEvent extends Component {
   constructor(props) {

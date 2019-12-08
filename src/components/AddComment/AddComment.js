@@ -46,6 +46,8 @@ export default class AddComment extends Component {
   };
   static contextType = ForumContext;
   componentDidMount() {
+    const box = document.getElementById("add-comment");
+    box.scrollIntoView();
     this.setState({
       //set logged in user id
       user_id: this.context.user.id
