@@ -72,6 +72,7 @@ export default class DesktopSiteNav extends Component {
                 <SearchInput
                   closeNavSearch={this.showSearchForm}
                   colorClass={this.props.colorClass}
+                  handleNavTextColor={() => this.props.handleNavTextColor()}
                 />
               ) : null}
             </div>

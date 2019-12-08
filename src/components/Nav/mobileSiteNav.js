@@ -10,7 +10,9 @@ export default class MobileNav extends Component {
     const mobileSiteNav = (
       <>
         <span className="mobile-search">
-          <SearchInput />
+          <SearchInput
+            handleNavTextColor={() => this.props.handleNavTextColor()}
+          />
         </span>
         <section className="mobile-nav-container">
           <ul

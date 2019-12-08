@@ -53,6 +53,7 @@ export default class SearchInput extends Component {
       this.setState({
         fadeOut: "search-form-fadeOut"
       });
+      this.props.handleNavTextColor();
       this.props.closeNavSearch();
       return true;
     }

@@ -40,7 +40,10 @@ class Nav extends Component {
               <h1 className={this.props.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
-          <DesktopSiteNav colorClass={this.props.navColorClass} />
+          <DesktopSiteNav
+            colorClass={this.props.navColorClass}
+            handleNavTextColor={() => this.props.handleNavTextColor()}
+          />
           <div className="rightNavInfo">
             <Link
               to="/signup"
@@ -58,7 +61,10 @@ class Nav extends Component {
             </Link>
           </div>
         </div>
-        <MobileSiteNav handleNavTextColor={this.props.handleNavTextColor} />
+        <MobileSiteNav
+          colorClass={this.props.navColorClass}
+          handleNavTextColor={() => this.props.handleNavTextColor()}
+        />
       </>
     );
     const privateNav = (
@@ -76,7 +82,10 @@ class Nav extends Component {
               <h1 className={this.props.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
-          <DesktopSiteNav colorClass={this.props.navColorClass} />
+          <DesktopSiteNav
+            colorClass={this.props.navColorClass}
+            handleNavTextColor={() => this.props.handleNavTextColor()}
+          />
           <div className="rightNavInfo">
             {TokenServices.getAuthToken() ? (
               <Link
@@ -100,7 +109,10 @@ class Nav extends Component {
             </Link>
           </div>
         </div>
-        <MobileSiteNav />
+        <MobileSiteNav
+          colorClass={this.props.navColorClass}
+          handleNavTextColor={() => this.props.handleNavTextColor()}
+        />
       </>
     );
 
