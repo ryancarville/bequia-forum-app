@@ -1,14 +1,19 @@
 {
-	"version": 2,
-	"name": "bequia-forum",
-	"routes": [
-		{
-			"src": "^/static/(.*)",
-			"dest": "/static/$1"
-		},
-		{
-			"src": ".*",
-			"dest": "/index.html"
-		}
-	]
+  "version": 2,
+  "name": "bequia-forum",
+  "routes": [
+    {
+      "src": "^/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/mainfest.json",
+      "dest": "/mainfest.json",
+      "type": "json"
+    },
+    {
+      "src": ".*",
+      "dest": "/index.html"
+    }
+  ]
 }
