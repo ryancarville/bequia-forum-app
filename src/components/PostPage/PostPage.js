@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./PostPage.css";
 import Post from "../Post/Post";
 import ForumContext from "../../ForumContext";

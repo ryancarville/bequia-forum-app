@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import "./JobPage.css";
 import formatDate from "../../helpers/formatDate";
