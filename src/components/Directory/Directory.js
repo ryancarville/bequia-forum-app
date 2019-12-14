@@ -19,11 +19,11 @@ export default class Directory extends Component {
     };
   }
   //updates directory when new entry added
-  updateDiretory = () => {
+  updateDirectory = () => {
     this.setState({
       directory: []
     });
-    apiServices.getDriectory().then(dir => {
+    apiServices.getDirectory().then(dir => {
       this.setState({
         directory: dir
       });
@@ -45,7 +45,7 @@ export default class Directory extends Component {
   //handle delete entry
   handleDelete = () => {
     const { id } = this.state;
-    apiServices.deleteDirectoryListing(id).then(() => this.updateDiretory());
+    apiServices.deleteDirectoryListing(id).then(() => this.updateDirectory());
     this.setState({
       showDeletePopUp: !this.state.showDeletePopUp
     });
@@ -191,7 +191,7 @@ export default class Directory extends Component {
   };
   componentDidMount() {
     window.scroll(0, 0);
-    apiServices.getDriectory().then(dir => {
+    apiServices.getDirectory().then(dir => {
       this.setState({
         directory: dir
       });
@@ -208,7 +208,7 @@ export default class Directory extends Component {
                 context={context}
                 showAddForm={this.handleShowAddForm}
                 user_id={context.user.id}
-                updateDiretory={this.updateDiretory}
+                updateDirectory={this.updateDirectory}
               />
             ) : this.state.showDeletePopUp ? (
               <DeletePopUp

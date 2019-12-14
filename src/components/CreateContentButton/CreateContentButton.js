@@ -8,7 +8,7 @@ export default function AddPost(props) {
     return (
       <span className="create-post-button">
         <Link to={"/createJobListing"} id="create-job-listing-button">
-          <i className="fas fa-plus" samesite="none" secure="true"></i>Listing
+          <i className="fas fa-plus"></i>Listing
         </Link>
       </span>
     );
@@ -18,7 +18,7 @@ export default function AddPost(props) {
     return (
       <span className="create-post-button">
         <Link to={"/createRentalListing"} id="create-rental-listing-button">
-          <i className="fas fa-plus" samesite="none" secure="true"></i>Listing
+          <i className="fas fa-plus"></i>Listing
         </Link>
       </span>
     );
@@ -31,7 +31,7 @@ export default function AddPost(props) {
           to={"/createMarketPlaceListing"}
           id="create-market-place-listing-button"
         >
-          <i className="fas fa-plus" samesite="none" secure="true"></i>
+          <i className="fas fa-plus"></i>
           Listing
         </Link>
       </span>
@@ -42,7 +42,7 @@ export default function AddPost(props) {
     return (
       <span className="create-post-button">
         <Link to={"/createEvent"} id="create-event-listing-button">
-          <i className="fas fa-plus" samesite="none" secure="true"></i>Event
+          <i className="fas fa-plus"></i>Event
         </Link>
       </span>
     );
@@ -56,7 +56,7 @@ export default function AddPost(props) {
             to={{ pathname: `/createPost`, state: { forumId: props.forumId } }}
             id="create-forum-post-button"
           >
-            <i className="fas fa-plus" samesite="none" secure="true"></i>Thread
+            <i className="fas fa-plus"></i>Thread
           </Link>
         </span>
       </li>
@@ -71,7 +71,7 @@ export default function AddPost(props) {
           id="create-forum-post-button"
           className="mobile-nav-link"
         >
-          <i className="far fa-plus-square" samesite="none" secure="true"></i>
+          <i className="far fa-plus-square"></i>
         </Link>
       </li>
     );

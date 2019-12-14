@@ -112,7 +112,7 @@ const apiServices = {
     });
   },
   //get the high level forum catagories
-  getFourmSectionTitles() {
+  getForumSectionTitles() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/catagories", {
         method: "GET",
@@ -129,7 +129,7 @@ const apiServices = {
       return err;
     });
   },
-  //get a specific messageboard name by id
+  //get a specific message board name by id
   getForumNameById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board-name/${id}`, {
@@ -147,8 +147,8 @@ const apiServices = {
       return err;
     });
   },
-  //get all the forum sub sections for a catagory
-  getFourmBoards(forum_cat) {
+  //get all the forum sub sections for a category
+  getForumBoards(forum_cat) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/${forum_cat}`, {
         method: "GET",
@@ -165,8 +165,8 @@ const apiServices = {
       return err;
     });
   },
-  //get all messageboards
-  getFourm() {
+  //get all message boards
+  getForum() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/messageBoards", {
         method: "GET",
@@ -183,7 +183,7 @@ const apiServices = {
       return err;
     });
   },
-  //get a messageboard by id
+  //get a message board by id
   getBoardById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board/${id}`, {
@@ -222,7 +222,7 @@ const apiServices = {
       return err;
     });
   },
-  //get a messageboard post by id
+  //get a message board post by id
   getPostById(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-post-by-id/${id}`, {
@@ -243,7 +243,7 @@ const apiServices = {
   //get the number of comments for a single post
   getNumOfCommentsByPostId(id) {
     return new Promise((resolve, reject) => {
-      fetch(config.API_ENDPOINT + `/comments/count-coumments/${id}`, {
+      fetch(config.API_ENDPOINT + `/comments/count-comments/${id}`, {
         method: "GET",
         headers: {
           "content-type": "application/json"
@@ -258,7 +258,7 @@ const apiServices = {
       return err;
     });
   },
-  //get the number of posts on a specific messageboard
+  //get the number of posts on a specific message board
   getNumOfThreads(board_id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {
@@ -489,7 +489,7 @@ const apiServices = {
       return err;
     });
   },
-  //get renatal catagory name by id
+  //get rental category name by id
   getRentalCatName(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/catagories/${id}`, {
@@ -507,7 +507,7 @@ const apiServices = {
       return err;
     });
   },
-  //get all the rental listings by catagory
+  //get all the rental listings by category
   getRentalListings(rental_cat) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/rentals/listings-by-cat/${rental_cat}`, {
@@ -561,11 +561,11 @@ const apiServices = {
       return err;
     });
   },
-  //get all the market place post by catagory id
+  //get all the market place post by category id
   getMarketPlacePostsByCat(id) {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/marketPlace/listings-by-cat/${id}`, {
-        methoid: "GET",
+        method: "GET",
         headers: {
           "content-type": "application/json"
         },
@@ -598,7 +598,7 @@ const apiServices = {
     });
   },
   //get entire directory
-  getDriectory() {
+  getDirectory() {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/directory", {
         method: "GET",
@@ -703,7 +703,6 @@ const apiServices = {
           mode: "cors"
         }
       ).then(res => {
-        console.log(res);
         !res.ok
           ? res.json().then(err => reject(err))
           : res.json().then(data => resolve(data));

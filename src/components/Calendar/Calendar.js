@@ -38,9 +38,25 @@ class Calendar extends Component {
       dayInt: today.getDate(),
       month: today.getMonth(),
       monthNum: monthsNums,
-      year: today.getFullYear()
+      year: today.getFullYear(),
+      prevDay: today.getDate()
     };
   }
+
+  //handle date change
+  handleDayChange = (day, events) => {
+    const { prevDay } = this.state;
+    const lastCell = document.getElementById(`day-${prevDay}`);
+    lastCell.classList.remove("currDay");
+    this.setState({
+      prevDay: day
+    });
+
+    const cell = document.getElementById(`day-${day}`);
+
+    cell.classList.add("currDay");
+    this.props.handleShowEvents(events);
+  };
   //handle move to next month on calendar
   handleClickNext = () => {
     this.setState(({ month, year }) => {
@@ -76,6 +92,7 @@ class Calendar extends Component {
       calendarItems.push(<li key={`blank-${x}`} />);
     }
     // render rest
+
     for (let day = 1; day <= totalDays; day++) {
       //get todays date cell
       const isActive =
@@ -94,12 +111,14 @@ class Calendar extends Component {
           year.toString() === eventYear
         );
       });
+
       //push all dates with events to calendar array
       calendarItems.push(
         <li
           className={`singleDay ${isActive ? "active" : ""}`}
           key={`day-${day}`}
-          onClick={() => this.props.handleShowEvents(eventsOnThisDay)}
+          id={`day-${day}`}
+          onClick={() => this.handleDayChange(day, eventsOnThisDay)}
         >
           {day}
 
@@ -109,6 +128,7 @@ class Calendar extends Component {
         </li>
       );
     }
+
     return calendarItems;
   };
 
@@ -141,8 +161,8 @@ class Calendar extends Component {
             </ul>
             <ul id="days">{this.renderCalendar()}</ul>
           </div>
-          <div id="calendar-ledgend-container">
-            <span className="calender-ledgend" />
+          <div id="calendar-legend-container">
+            <span className="calender-legend" />
             <p>scheduled event</p>
           </div>
         </div>

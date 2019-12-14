@@ -73,7 +73,7 @@ export default class NewPost extends Component {
   componentDidMount() {
     window.scroll(0, 0);
     apiServices
-      .getFourm()
+      .getForum()
       .then(forum => this.setState({ forum: forum }))
       .then(() =>
         apiServices.getNewestPosts().then(posts => {

@@ -28,6 +28,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .post-edit-container button {
   cursor: pointer;
@@ -37,7 +39,9 @@
   font-size: 16px;
   padding: 5px;
   border: 1px solid black;
-  background-color: transparent;
+  background-color: blue;
+  border-radius: 25px;
+  color: white;
 }
 
 @media only screen and (min-width: 700px) {

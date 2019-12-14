@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SearchInput.css";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
-//serach component
+//search component
 export default class SearchInput extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ export default class SearchInput extends Component {
       term: e.target.value
     });
   };
-  //handle site catagory
+  //handle site category
   handleCat = e => {
     const id = e.target.value;
     if (id === "null") {
@@ -80,7 +80,7 @@ export default class SearchInput extends Component {
     ));
   };
   componentDidMount() {
-    apiServices.getFourm().then(forum => {
+    apiServices.getForum().then(forum => {
       this.setState({
         forum: forum
       });
@@ -96,11 +96,7 @@ export default class SearchInput extends Component {
           onSubmit={this.handleSearch}
         >
           <button id="search-submit" type="submit" value="Search">
-            <i
-              className={this.props.colorClass + " fas fa-search"}
-              samesite="none"
-              secure="true"
-            ></i>
+            <i className={this.props.colorClass + " fas fa-search"}></i>
           </button>
           <input
             type="text"
@@ -127,11 +123,7 @@ export default class SearchInput extends Component {
             type="submit"
             onClick={this.closeSearch}
           >
-            <i
-              className={this.props.colorClass + " fas fa-times"}
-              samesite="none"
-              secure="true"
-            ></i>
+            <i className={this.props.colorClass + " fas fa-times"}></i>
           </button>
         </form>
       </section>

@@ -99,7 +99,7 @@ export default class CreateListing extends Component {
           error: data.error
         });
       }
-      this.props.updateDiretory();
+      this.props.updateDirectory();
       this.props.showAddForm();
       this.props.context.getDirectory();
     });

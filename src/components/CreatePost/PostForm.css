@@ -50,12 +50,12 @@
     align-items: center;
   }
   .create-post-content form input {
-    width: 25%;
+    width: 50%;
     height: 35px;
     font-size: 16px;
   }
   .create-post-content form select {
-    width: 25%;
+    width: 50%;
     height: 35px;
     font-size: 16px;
   }

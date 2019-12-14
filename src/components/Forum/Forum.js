@@ -20,7 +20,7 @@ export default class Forum extends Component {
         links.push(
           <Link to={"/jobs"} className="section-menu-link" key={title.id}>
             {title.name}
-            <i className="fas fa-briefcase" samesite="none" secure="true"></i>
+            <i className="fas fa-briefcase"></i>
           </Link>
         );
       }
@@ -32,7 +32,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i className="fas fa-store" samesite="none" secure="true"></i>
+            <i className="fas fa-store"></i>
           </Link>
         );
       }
@@ -40,7 +40,7 @@ export default class Forum extends Component {
         links.push(
           <Link to={"/rentals"} className="section-menu-link" key={title.id}>
             {title.name}
-            <i className="fas fa-home" samesite="none" secure="true"></i>
+            <i className="fas fa-home"></i>
           </Link>
         );
       }
@@ -48,11 +48,7 @@ export default class Forum extends Component {
         links.push(
           <Link to={"/events"} className="section-menu-link" key={title.id}>
             {title.name}
-            <i
-              className="far fa-calendar-alt"
-              samesite="none"
-              secure="true"
-            ></i>
+            <i className="far fa-calendar-alt"></i>
           </Link>
         );
       }
@@ -64,11 +60,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i
-              className="fas fa-umbrella-beach"
-              samesite="none"
-              secure="true"
-            ></i>
+            <i className="fas fa-umbrella-beach"></i>
           </Link>
         );
       }
@@ -80,11 +72,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i
-              className="fas fa-people-carry"
-              samesite="none"
-              secure="true"
-            ></i>
+            <i className="fas fa-people-carry"></i>
           </Link>
         );
       }
@@ -96,7 +84,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i className="fas fa-hiking" samesite="none" secure="true"></i>
+            <i className="fas fa-hiking"></i>
           </Link>
         );
       }
@@ -108,7 +96,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i className="fas fa-question" samesite="none" secure="true"></i>
+            <i className="fas fa-question"></i>
           </Link>
         );
       }
@@ -120,7 +108,7 @@ export default class Forum extends Component {
             key={title.id}
           >
             {title.name}
-            <i className="fas fa-info" samesite="none" secure="true"></i>
+            <i className="fas fa-info"></i>
           </Link>
         );
       }
@@ -129,7 +117,7 @@ export default class Forum extends Component {
   };
   componentDidMount() {
     window.scroll(0, 0);
-    apiServices.getFourmSectionTitles().then(titles => {
+    apiServices.getForumSectionTitles().then(titles => {
       if (titles.error) {
         this.setState({
           error: titles.error

@@ -11,7 +11,7 @@ export default class CreatePost extends Component {
     super(props);
     this.state = {
       title: "",
-      board_id: 0,
+      board_id: 1,
       user_id: null,
       content: "",
       date_posted: new Date().toISOString(),
@@ -102,6 +102,29 @@ export default class CreatePost extends Component {
   };
   componentDidMount() {
     window.scroll(0, 0);
+    const { board_id } = this.state;
+    apiServices.getForumNameById(board_id).then(title => {
+      this.setState({
+        board_title: title
+      });
+    });
+    apiServices
+      .getBoardById(board_id)
+      .then(board => {
+        this.setState({
+          board: board
+        });
+      })
+      .then(() => {
+        apiServices.getFourmSectionTitles().then(sections => {
+          const forumCat = sections.filter(
+            sec => sec.id === this.state.board.messageboard_section
+          );
+          this.setState({
+            forumCat: forumCat[0].id
+          });
+        });
+      });
     this.setState({
       user_id: this.context.user.id
     });

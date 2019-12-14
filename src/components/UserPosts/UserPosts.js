@@ -17,13 +17,13 @@ export default class UserPosts extends Component {
       jPosts: []
     };
   }
-  //diveds posts into forum sections
+  //divide posts into forum sections
   divideResponsePosts = () => {
     const { allPosts } = this.state;
     allPosts.forEach(posts => {
       if (posts.mbPosts) {
         apiServices
-          .getFourm()
+          .getForum()
           .then(boards => {
             this.setState({
               messageBoards: boards
@@ -74,9 +74,13 @@ export default class UserPosts extends Component {
         to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
       >
         {p.title}{" "}
-        <span>
-          {like} {p.likes}
-          {comment} {p.numComments}
+        <span className='post-stats-wrapper'>
+          <span>
+            {like} {p.likes}
+          </span>
+          <span>
+            {comment} {p.numComments}
+          </span>
         </span>
       </Link>
     ));
@@ -127,7 +131,7 @@ export default class UserPosts extends Component {
 
   render() {
     return (
-      <div>
+      <div className="user-post-wrapper">
         {this.state.dataLoaded
           ? this.state.mbPosts.length > 0
             ? this.makeMbPosts()

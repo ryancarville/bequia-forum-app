@@ -32,11 +32,7 @@ export default class ForumCatSections extends Component {
               <h5>Threads</h5>
 
               <p id={`thread-count-${item.id}`}>
-                <i
-                  className="far fa-file-alt"
-                  samesite="none"
-                  secure="true"
-                ></i>{" "}
+                <i className="far fa-file-alt"></i>{" "}
                 {this.state.threadCounts.length === this.state.boards.length ? (
                   this.getCount(item.id)
                 ) : (
@@ -57,7 +53,7 @@ export default class ForumCatSections extends Component {
     window.scroll(0, 0);
     const { forum_cat } = this.props.match.params;
     apiServices
-      .getFourmSectionTitles()
+      .getForumSectionTitles()
       .then(forumTitles => {
         const title = forumTitles.filter(
           title => title.id.toString() === forum_cat
@@ -68,7 +64,7 @@ export default class ForumCatSections extends Component {
       })
       .then(() => {
         apiServices
-          .getFourmBoards(forum_cat)
+          .getForumBoards(forum_cat)
           .then(boards => {
             this.setState({
               boards: boards

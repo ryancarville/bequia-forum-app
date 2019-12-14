@@ -73,7 +73,7 @@ class Events extends Component {
               params={{ updateEvnts: this.updateEvents }}
               id="create-event-listing-button"
             >
-              <i className="fas fa-plus" samesite="none" secure="true"></i>Event
+              <i className="fas fa-plus"></i>Event
             </Link>
           </span>
         ) : null}

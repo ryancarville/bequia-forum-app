@@ -12,7 +12,9 @@
   padding: 10px;
   font-size: 20px;
   border: 1px solid black;
-  background-color: transparent;
+  background-color: blue;
+  color: white;
+  border-radius: 25px;
   cursor: pointer;
 }
 @media only screen and (min-width: 700px) {
@@ -32,11 +34,6 @@
   }
   .create-post-preview button {
     width: 150px;
-    height: 50px;
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 20px;
-    border: 1px solid black;
-    background-color: transparent;
+    font-size: 18px;
   }
 }

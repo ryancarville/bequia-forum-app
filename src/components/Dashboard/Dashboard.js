@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
       showEvents: !this.state.showEvents
     });
   };
-  //show newests posts
+  //show newest posts
   showNewPosts = () => {
     this.setState({
       showPosts: !this.state.showPosts

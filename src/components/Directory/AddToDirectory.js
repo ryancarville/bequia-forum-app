@@ -7,7 +7,7 @@ export default function AddToDirectory(props) {
       type="button"
       onClick={props.showAddForm}
     >
-      <i className="far fa-address-card" samesite="none" secure="true"></i>
+      <i className="far fa-address-card"></i>
       Create Listing
     </button>
   );
