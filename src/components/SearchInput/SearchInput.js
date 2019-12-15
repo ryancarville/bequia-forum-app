@@ -71,6 +71,7 @@ export default class SearchInput extends Component {
     }
     apiServices.searchPosts(searchCreds).then(data => {
       this.context.searchResults(data);
+      this.props.handleNavTextColor();
     });
   };
 
