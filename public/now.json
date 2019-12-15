@@ -8,8 +8,7 @@
     },
     {
       "src": "/mainfest.json",
-      "dest": "/mainfest.json",
-      "type": "json"
+      "dest": "/mainfest.json"
     },
     {
       "src": ".*",
