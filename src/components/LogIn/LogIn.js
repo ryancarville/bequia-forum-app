@@ -15,6 +15,14 @@ export default class LogIn extends Component {
     };
   }
   static contextType = ForumContext;
+  resetState = () => {
+    this.setState({
+      loginName: "",
+      password: "",
+      success: false,
+      error: null
+    });
+  };
   //handle user name
   handleLoginName = e => {
     if (this.state.error) {
@@ -66,7 +74,7 @@ export default class LogIn extends Component {
       });
   };
   //set test user credentials
-  setTestUser = () => {
+  setTestUser = e => {
     this.setState({
       loginName: "testUser@gmail.com",
       password: "testUser!2"
@@ -112,7 +120,9 @@ export default class LogIn extends Component {
             <button type="submit" onKeyDownCapture={this.handleSubmit}>
               Log In
             </button>
-            <button type="reset">Clear Form</button>
+            <button type="reset" onClick={this.resetState}>
+              Clear Form
+            </button>
           </form>
         </div>
       </div>
