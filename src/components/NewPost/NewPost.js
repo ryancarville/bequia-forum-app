@@ -13,13 +13,13 @@ export default class NewPost extends Component {
     super(props);
     this.state = {
       posts: [],
-      postsWithCount: [],
+
       error: null
     };
   }
   //get most rest posts
   recentPosts = () => {
-    return this.state.postsWithCount.map(p => {
+    return this.state.posts.map(p => {
       var forum = this.state.forum.filter(f => f.id === p.board_id);
       forum = forum[0];
       return (
@@ -84,17 +84,21 @@ export default class NewPost extends Component {
             });
           }
           posts.forEach(post => {
+            console.log(post);
             apiServices
               .getNumOfCommentsByPostId(post.id)
               .then(num => {
-                const addCount = post;
-                addCount.commentCount = num[0].count;
+                post.commentCount = num[0].count;
                 this.setState({
-                  postsWithCount: [...this.state.postsWithCount, addCount]
+                  posts: [...this.state.posts, post]
                 });
               })
               .then(() => {
+                const sorted = this.state.posts.sort((a, b) =>
+                  a.date_posted > b.date_posted ? -1 : 1
+                );
                 this.setState({
+                  posts: sorted,
                   dataLoaded: true
                 });
               });
@@ -109,7 +113,7 @@ export default class NewPost extends Component {
         <header>{this.props.dashboard ? null : <h2>Newest Posts</h2>}</header>
         <div className="newPost-content">
           {this.state.dataLoaded ? (
-            this.state.postsWithCount ? (
+            this.state.posts ? (
               <ul>{this.recentPosts()}</ul>
             ) : (
               <p>{this.state.error}</p>
