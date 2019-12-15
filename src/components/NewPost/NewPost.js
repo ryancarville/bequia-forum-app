@@ -84,7 +84,6 @@ export default class NewPost extends Component {
             });
           }
           posts.forEach(post => {
-            console.log(post);
             apiServices
               .getNumOfCommentsByPostId(post.id)
               .then(num => {
