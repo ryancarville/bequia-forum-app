@@ -14,10 +14,47 @@ export default class SingUp extends Component {
       user_name: "",
       password: "",
       confirmPass: "",
+      showPass: false,
+      showConfirmPass: false,
       error: null
     };
   }
   static contextType = ForumContext;
+  resetState = () => {
+    this.setState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      user_name: "",
+      password: "",
+      confirmPass: "",
+      error: null
+    });
+  };
+  //show password
+  showPass = () => {
+    const pass = document.getElementById("signUp-pass");
+    if (pass.type === "password") {
+      pass.type = "text";
+    } else {
+      pass.type = "password";
+    }
+    this.setState({
+      showPass: !this.state.showPass
+    });
+  };
+  //show confirm password
+  showConfirmPass = () => {
+    const pass = document.getElementById("signUp-re-pass");
+    if (pass.type === "password") {
+      pass.type = "text";
+    } else {
+      pass.type = "password";
+    }
+    this.setState({
+      showConfirmPass: !this.state.showConfirmPass
+    });
+  };
   //handle first name
   handleFirstName = e => {
     this.setState({
@@ -50,9 +87,22 @@ export default class SingUp extends Component {
   };
   //handle confirm password
   handleConfirmPass = e => {
-    this.setState({
-      confirmPass: e.target.value
-    });
+    this.setState(
+      {
+        confirmPass: e.target.value
+      },
+      () => {
+        if (this.state.confirmPass !== this.state.password) {
+          this.setState({
+            error: "Passwords do not match."
+          });
+        } else if (this.state.confirmPass === this.state.password) {
+          this.setState({
+            error: null
+          });
+        }
+      }
+    );
   };
   //handle submit
   handleSubmit = e => {
@@ -64,7 +114,13 @@ export default class SingUp extends Component {
       return true;
     }
     const { first_name, last_name, email, user_name, password } = this.state;
-    const newUser = { first_name, last_name, email, user_name, password };
+    const newUser = {
+      first_name,
+      last_name,
+      email,
+      user_name,
+      password
+    };
     apiService.signUp(newUser).then(data => {
       if (data.error) {
         this.setState({
@@ -85,6 +141,7 @@ export default class SingUp extends Component {
       <div className="signUp-container">
         <div className="signUp-content">
           <h3>Create Account</h3>
+
           <form onSubmit={this.handleSubmit}>
             {this.state.error}
             <input
@@ -96,7 +153,6 @@ export default class SingUp extends Component {
               onChange={this.handleFirstName}
               required
             />
-
             <input
               type="text"
               name="lName"
@@ -106,7 +162,6 @@ export default class SingUp extends Component {
               onChange={this.handleLastName}
               required
             />
-
             <input
               type="email"
               name="email"
@@ -116,7 +171,6 @@ export default class SingUp extends Component {
               onChange={this.handleEmail}
               required
             />
-
             <input
               type="text"
               name="user_name"
@@ -136,7 +190,14 @@ export default class SingUp extends Component {
               onChange={this.handlePass}
               required
             />
-
+            {this.state.showPass ? (
+              <i
+                className="far fa-eye-slash showPass"
+                onClick={this.showPass}
+              />
+            ) : (
+              <i className="far fa-eye showPass" onClick={this.showPass} />
+            )}
             <input
               type="password"
               name="confirmPass"
@@ -146,10 +207,24 @@ export default class SingUp extends Component {
               onChange={this.handleConfirmPass}
               required
             />
+
+            {this.state.showConfirmPass ? (
+              <i
+                className="far fa-eye-slash showPass"
+                onClick={this.showConfirmPass}
+              />
+            ) : (
+              <i
+                className="far fa-eye showPass"
+                onClick={this.showConfirmPass}
+              />
+            )}
             <button type="submit" onSubmit={this.handleSubmit}>
               Create Account
             </button>
-            <button type="reset">Clear Form</button>
+            <button type="button" onClick={this.resetState}>
+              Clear Form
+            </button>
           </form>
         </div>
       </div>
