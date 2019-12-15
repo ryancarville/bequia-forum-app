@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-top: 80px;
   opacity: 0;
-  animation: fadeIn .5s ease-in forwards;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 #job-section-cat-title {
   text-align: center;
@@ -19,8 +19,7 @@
 }
 .job-section-content ul li {
   width: 90%;
-  border: 1px solid blue;
-  border-radius: 25px;
+  border-bottom: 1px solid blue;
   padding: 15px;
   margin: 0;
   margin-bottom: 20px;
@@ -45,10 +44,17 @@
     text-align: left;
     margin-left: 100px;
   }
+  .non-board-post {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   .job-section-content ul li {
-    width: 88%;
+    width: 70%;
     font-size: 16px;
-    padding: 15px;
+    padding: 20px;
   }
   .job-section-content ul li h3 {
     margin: 0;

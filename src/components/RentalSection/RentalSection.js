@@ -181,28 +181,42 @@ export default class RentalSection extends Component {
   //make all rental listings for section
   makeRentalListings = () => {
     return this.state.listings.map(r => (
-      <li key={r.id}>
-        <Link to={`/rentals/${r.rental_cat}/${r.id}`}>
-          <h3>{r.title}</h3>
-        </Link>
-        <Truncate
-          className="post-teaser"
-          lines={2}
-          ellipsis={
-            <span>
-              ...
-              <Link to={`/rentals/${r.rental_cat}/${r.id}`}>Read more</Link>
-            </span>
-          }
-        >
-          <p>{r.description}</p>
-        </Truncate>
-        <span className="post-info">
-          {r.price ? r.price === "0" ? null : <p>Price: {r.price}</p> : null}
-          {r.location ? <p>Location: {r.location}</p> : null}
-          <p>Posted By: {r.contact_name}</p>
-          <p>Posted On: {formatDate(r.date_posted)}</p>
-        </span>
+      <li key={r.id} className="post-card">
+        <article className="post-card-info non-board-post">
+          <span>
+            <Link to={`/rentals/${r.rental_cat}/${r.id}`}>
+              <h3>{r.title}</h3>
+            </Link>
+            <Truncate
+              className="post-teaser"
+              lines={2}
+              ellipsis={
+                <span>
+                  ...
+                  <Link to={`/rentals/${r.rental_cat}/${r.id}`}>Read more</Link>
+                </span>
+              }
+            >
+              <p>{r.description}</p>
+            </Truncate>
+          </span>
+          <span className="post-info">
+            {r.price ? (
+              r.price === "0" ? null : (
+                <p>
+                  <i className="fas fa-dollar-sign"></i> {r.price}
+                </p>
+              )
+            ) : null}
+            {r.location ? (
+              <p>
+                <i className="fas fa-map-marked-alt"></i> {r.location}
+              </p>
+            ) : null}
+            <p>Posted By: {r.contact_name}</p>
+            <p>Posted On: {formatDate(r.date_posted)}</p>
+          </span>
+        </article>
       </li>
     ));
   };

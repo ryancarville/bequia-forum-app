@@ -25,20 +25,19 @@
 .market-place-section-content ul li {
   width: 90%;
   height: auto;
-  border: 1px solid blue;
+  border-bottom: 1px solid blue;
   padding: 15px;
   margin-bottom: 20px;
-  border-radius: 25px;
   margin-top: 0px;
 }
-.market-place-section-content ul li h4 {
-  margin-top: 0px;
-  margin-bottom: 5px;
+.market-place-section-content ul li span a h4 {
+  text-decoration: none;
+  color: limegreen;
+  font-size: 30px;
 }
 
-.market-place-section-content a {
-  text-decoration: none;
-  font-size: 20px;
+.post-info {
+  line-height: 1em;
 }
 #mp-section-error {
   text-align: center;

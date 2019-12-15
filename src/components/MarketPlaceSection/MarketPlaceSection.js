@@ -147,58 +147,52 @@ export default class MarketPlaceSections extends Component {
   //make all listings for section
   makeListings = () => {
     return this.state.listings.map(l => (
-      <li key={l.id}>
-        <Link
-          to={{
-            pathname: `/marketPlace/${l.market_place_cat}/${l.id}`,
-            state: { id: l.id }
-          }}
-        >
-          <h4>{l.title}</h4>
-        </Link>
-        <Truncate
-          className="post-teaser"
-          lines={1}
-          ellipsis={
-            <span>
-              ...
-              <Link
-                to={{
-                  pathname: `/marketPlace/${l.market_place_cat}/${l.id}`,
-                  state: { id: l.id }
-                }}
-              >
-                Read more
-              </Link>
-            </span>
-          }
-        >
-          <p>{l.description}</p>
-        </Truncate>
-        <span className="post-info">
-          {l.price && l.price !== "0" ? (
-            <p>
-              <i
-                className="fas fa-dollar-sign"
-                samesite="none"
-                secure="true"
-              ></i>{" "}
-              {l.price}
-            </p>
-          ) : null}
-          {l.location ? (
-            <p>
-              <i
-                className="fas fa-map-marked-alt"
-                samesite="none"
-                secure="true"
-              ></i>{" "}
-              {l.location}
-            </p>
-          ) : null}
-          <p>Posted By: {l.contact_name}</p>
-          <p>Posted On: {formatDate(l.date_posted)}</p>
-        </span>
+      <li key={l.id} className="post-card">
+        <article className="post-card-info non-board-post">
+          <span>
+            <Link
+              to={{
+                pathname: `/marketPlace/${l.market_place_cat}/${l.id}`,
+                state: { id: l.id }
+              }}
+            >
+              <h4>{l.title}</h4>
+            </Link>
+            <Truncate
+              className="post-teaser"
+              lines={3}
+              ellipsis={
+                <span>
+                  ...
+                  <Link
+                    to={{
+                      pathname: `/marketPlace/${l.market_place_cat}/${l.id}`,
+                      state: { id: l.id }
+                    }}
+                  >
+                    Read more
+                  </Link>
+                </span>
+              }
+            >
+              <p>{l.description}</p>
+            </Truncate>
+          </span>
+          <span className="post-info">
+            {l.price && l.price !== "0" ? (
+              <p>
+                <i className="fas fa-dollar-sign"></i> {l.price}
+              </p>
+            ) : null}
+            {l.location ? (
+              <p>
+                <i className="fas fa-map-marked-alt"></i> {l.location}
+              </p>
+            ) : null}
+            <p>Posted By: {l.contact_name}</p>
+            <p>Posted On: {formatDate(l.date_posted)}</p>
+          </span>
+        </article>
       </li>
     ));
   };

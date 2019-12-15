@@ -16,27 +16,31 @@ export default class JobPage extends Component {
   //get all job listings for section
   makeListings = () => {
     return this.state.listings.map(j => (
-      <li key={j.id}>
-        <Link to={`/jobs/${j.job_cat}/${j.id}`}>
-          <h3>{j.title}</h3>
-        </Link>
-        <Truncate
-          className="post-teaser"
-          lines={2}
-          ellipsis={
-            <span>
-              ...
-              <Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
-            </span>
-          }
-        >
-          <p>{j.description}</p>
-        </Truncate>
-        <span className="post-info">
-          {j.location ? <p>Location: {j.location}</p> : null}
-          {j.employment ? <p>Employment: {j.employment}</p> : null}
-          <p>Posted On: {formatDate(j.date_posted)}</p>
-        </span>
+      <li key={j.id} className="post-card">
+        <article className="post-card-info non-board-post">
+          <span>
+            <Link to={`/jobs/${j.job_cat}/${j.id}`}>
+              <h3>{j.title}</h3>
+            </Link>
+            <Truncate
+              className="post-teaser"
+              lines={3}
+              ellipsis={
+                <span>
+                  ...
+                  <Link to={`/jobs/${j.job_cat}/${j.id}`}>Read more</Link>
+                </span>
+              }
+            >
+              <p>{j.description}</p>
+            </Truncate>
+          </span>
+          <span className="post-card-user-info">
+            {j.location ? <p>Location: {j.location}</p> : null}
+            {j.employment ? <p>Employment: {j.employment}</p> : null}
+            <p>Posted On: {formatDate(j.date_posted)}</p>
+          </span>
+        </article>
       </li>
     ));
   };
