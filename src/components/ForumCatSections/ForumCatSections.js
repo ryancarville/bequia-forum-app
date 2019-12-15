@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./ForumCatSections.css";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 //forum section
 export default class ForumCatSections extends Component {
   constructor(props) {
@@ -33,15 +34,9 @@ export default class ForumCatSections extends Component {
 
               <p id={`thread-count-${item.id}`}>
                 <i className="far fa-file-alt"></i>{" "}
-                {this.state.threadCounts.length === this.state.boards.length ? (
-                  this.getCount(item.id)
-                ) : (
-                  <img
-                    src="/images/loader/wave-loader.svg"
-                    alt="wave-loader"
-                    id="wave-loader-gif"
-                  />
-                )}
+                {this.state.threadCounts.length === this.state.boards.length
+                  ? this.getCount(item.id)
+                  : waveLoader}
               </p>
             </span>
           </Link>

@@ -11,7 +11,9 @@ export default class SearchInput extends Component {
       board_name: "Search Entire Forum",
       board_id: "null",
       term: "",
-      showResults: false
+      showResults: false,
+      forum: [],
+      cats: []
     };
   }
   static contextType = ForumContext;
@@ -71,22 +73,62 @@ export default class SearchInput extends Component {
       this.context.searchResults(data);
     });
   };
+
   //make site sections menu
-  makeOptions = catagories => {
-    return catagories.map(cat => (
-      <option key={cat.id} value={cat.id}>
-        {cat.name}
-      </option>
-    ));
+  makeOptions = () => {
+    return this.state.cats.map(cat => {
+      if (
+        cat.name === "Jobs" ||
+        cat.name === "Rentals" ||
+        cat.name === "Market Place" ||
+        cat.name === "Events"
+      ) {
+        return (
+          <option key={cat.id} value={cat.id}>
+            {cat.name}
+          </option>
+        );
+      }
+      return (
+        <option key={cat.id} value={cat.id}>
+          {cat.name} - {cat.count} threads
+        </option>
+      );
+    });
   };
   componentDidMount() {
-    apiServices.getForum().then(forum => {
-      this.setState({
-        forum: forum
+    apiServices
+      .getForum()
+      .then(forum => {
+        this.setState({
+          forum: forum,
+          cats: []
+        });
+      })
+      .then(() => {
+        this.state.forum.map(cat =>
+          apiServices.getNumOfThreads(cat.id).then(count => {
+            cat.count = count[0].count;
+            this.setState({
+              cats: [...this.state.cats, cat]
+            });
+          })
+        );
       });
+
+    if (this.state.cats.length === this.state.forum.length) {
+      this.setState({
+        forumLoaded: true
+      });
+    }
+  }
+  componentDidUnmount() {
+    this.setState({
+      forum: [],
+      cats: [],
+      forumLoaded: false
     });
   }
-
   render() {
     return (
       <section className="search-input-container">
@@ -115,8 +157,16 @@ export default class SearchInput extends Component {
             value={this.state.board_id}
             onChange={this.handleCat}
           >
-            <option value="null">Search Entire Forum</option>
-            {this.state.forum ? this.makeOptions(this.state.forum) : null}
+            {this.state.forumLoaded ? (
+              <>
+                <option value="null">Search Entire Forum</option>
+                {this.makeOptions()}
+              </>
+            ) : (
+              <option disabled value="null">
+                Loading...
+              </option>
+            )}
           </select>
           <button
             id="search-cancel-icon"
