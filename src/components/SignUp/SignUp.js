@@ -28,6 +28,8 @@ export default class SingUp extends Component {
       user_name: "",
       password: "",
       confirmPass: "",
+      showPass: false,
+      showConfirmPass: false,
       error: null
     });
   };
