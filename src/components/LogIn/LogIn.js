@@ -52,26 +52,27 @@ export default class LogIn extends Component {
       creds = { user_name, password };
     }
     let token;
-    apiServices
-      .login(creds)
-      .then(data => {
-        if (data.error) {
-          this.setState({
-            error: data.error
-          });
-        } else {
-          token = data.authToken;
-          TokenServices.saveAuthToken(token);
-          apiServices.getUserData(data.user_id).then(user => {
-            this.context.setUserData(data.user_id, user);
-          });
-        }
-      })
-      .then(() => {
+    apiServices.login(creds).then(data => {
+      if (data.error) {
         this.setState({
-          success: true
+          error: data.error
         });
-      });
+        return true;
+      } else {
+        token = data.authToken;
+        TokenServices.saveAuthToken(token);
+        apiServices
+          .getUserData(data.user_id)
+          .then(user => {
+            this.context.setUserData(data.user_id, user);
+          })
+          .then(() => {
+            this.setState({
+              success: true
+            });
+          });
+      }
+    });
   };
   //set test user credentials
   setTestUser = e => {

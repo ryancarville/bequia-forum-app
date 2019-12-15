@@ -8,7 +8,7 @@ export default class SingUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      frist_name: "",
+      first_name: "",
       last_name: "",
       email: "",
       user_name: "",
@@ -91,6 +91,7 @@ export default class SingUp extends Component {
               type="text"
               name="fName"
               id="signUp-fName"
+              value={this.state.first_name}
               placeholder="First Name"
               onChange={this.handleFirstName}
               required
@@ -100,6 +101,7 @@ export default class SingUp extends Component {
               type="text"
               name="lName"
               id="signUp-lname"
+              value={this.state.last_name}
               placeholder="Last Name"
               onChange={this.handleLastName}
               required
@@ -109,6 +111,7 @@ export default class SingUp extends Component {
               type="email"
               name="email"
               id="signUp-email"
+              value={this.state.email}
               placeholder="Email Address"
               onChange={this.handleEmail}
               required
@@ -118,6 +121,7 @@ export default class SingUp extends Component {
               type="text"
               name="user_name"
               id="signUp-user_name"
+              value={this.state.user_name}
               placeholder="User Name"
               onChange={this.handleUserName}
               required
@@ -127,6 +131,7 @@ export default class SingUp extends Component {
               type="password"
               name="pass"
               id="signUp-pass"
+              value={this.state.password}
               placeholder="Password"
               onChange={this.handlePass}
               required
@@ -136,11 +141,12 @@ export default class SingUp extends Component {
               type="password"
               name="confirmPass"
               id="signUp-re-pass"
+              value={this.state.confirmPass}
               placeholder="Confirm Password"
               onChange={this.handleConfirmPass}
               required
             />
-            <button type="submit" onKeyDownCapture={this.handleSubmit}>
+            <button type="submit" onSubmit={this.handleSubmit}>
               Create Account
             </button>
             <button type="reset">Clear Form</button>
