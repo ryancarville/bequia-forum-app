@@ -654,7 +654,6 @@ const apiServices = {
   },
   //add like to post
   addLike(post_id) {
-    console.log(post_id);
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/post/addLike/${post_id}`, {
         method: "PATCH",
