@@ -731,6 +731,7 @@ const apiServices = {
   },
   //delete from likes tracker
   deleteFromLikesTracker(info) {
+    console.log(info);
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + `/forum/post/deleteFromTracker`, {
         method: "DELETE",

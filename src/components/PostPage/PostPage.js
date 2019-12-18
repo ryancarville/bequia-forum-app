@@ -11,6 +11,7 @@ import LikeButtons from "./likeButton";
 import CommentButton from "./commentButton";
 import EditButtons from "./editButtons";
 import apiServices from "../../services/apiServices";
+import TokenServices from "../../services/TokenServices";
 import waveLoader from "../Icons/waveLoader";
 //post page component
 export default class PostPage extends Component {
@@ -37,26 +38,35 @@ export default class PostPage extends Component {
   //post like handler
   handlePostLike = () => {
     const post_id = this.state.id;
-    const user_id = this.context.user.id;
+    const user_id = TokenServices.getUserId();
     const info = { post_id, user_id };
-    if (this.state.didLike) {
-      apiServices.minusLike(post_id).then(res => {
-        this.setState({
-          likes: res.likes,
-          didLike: false
-        });
-        apiServices.deleteFromLikesTracker(info);
-      });
-    }
-    if (!this.state.didLike) {
-      apiServices.addLike(post_id).then(res => {
-        this.setState({
-          likes: res.likes,
-          didLike: true
-        });
-        apiServices.addToLikesTracker(info);
-      });
-    }
+    apiServices.getLikesTracker(info).then(tracker => {
+      if (tracker.length > 0) {
+        apiServices
+          .minusLike(post_id)
+          .then(res => {
+            this.setState({
+              likes: res.likes,
+              didLike: false
+            });
+          })
+          .then(() => {
+            apiServices.deleteFromLikesTracker(info);
+          });
+      } else {
+        apiServices
+          .addLike(post_id)
+          .then(res => {
+            this.setState({
+              likes: res.likes,
+              didLike: true
+            });
+          })
+          .then(() => {
+            apiServices.addToLikesTracker(info);
+          });
+      }
+    });
   };
 
   //post edit handler
@@ -196,12 +206,12 @@ export default class PostPage extends Component {
           });
       });
 
-    const user_id = this.context.user.id;
+    const user_id = TokenServices.getUserId();
     const post_id = this.state.id;
-    const likeInfo = { user_id, post_id };
-    if (user_id !== null) {
-      apiServices.getLikesTracker(likeInfo).then(res => {
-        if (res.length !== 0) {
+    const info = { post_id, user_id };
+    if (user_id) {
+      apiServices.getLikesTracker(info).then(res => {
+        if (res.length > 0) {
           this.setState({
             didLike: true
           });
