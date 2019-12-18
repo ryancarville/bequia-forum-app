@@ -26,7 +26,7 @@ export default class PostForm extends Component {
   componentDidMount() {
     window.scroll(0, 0);
     //get all forum catagories
-    apiServices.getFourm().then(forum =>
+    apiServices.getForum().then(forum =>
       this.setState({
         forum: forum,
         dataLoaded: true

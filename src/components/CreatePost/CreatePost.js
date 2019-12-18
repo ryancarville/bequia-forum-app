@@ -61,7 +61,7 @@ export default class CreatePost extends Component {
         });
       })
       .then(() => {
-        apiServices.getFourmSectionTitles().then(sections => {
+        apiServices.getForumSectionTitles().then(sections => {
           const forumCat = sections.filter(
             sec => sec.id === this.state.board.messageboard_section
           );
@@ -116,7 +116,7 @@ export default class CreatePost extends Component {
         });
       })
       .then(() => {
-        apiServices.getFourmSectionTitles().then(sections => {
+        apiServices.getForumSectionTitles().then(sections => {
           const forumCat = sections.filter(
             sec => sec.id === this.state.board.messageboard_section
           );
