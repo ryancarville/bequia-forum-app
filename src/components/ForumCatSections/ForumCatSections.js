@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./ForumCatSections.css";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 
 //forum section
 export default class ForumCatSections extends Component {
@@ -84,7 +85,8 @@ export default class ForumCatSections extends Component {
                 })
                 .then(() => {
                   this.setState({
-                    threadCounts: counts
+                    threadCounts: counts,
+                    dataLoaded: true
                   });
                 });
             });
@@ -93,15 +95,17 @@ export default class ForumCatSections extends Component {
   }
 
   render() {
-    return (
+    return this.state.dataLoaded ? (
       <section className="forum-cat-sections-container">
         <div className="forum-cat-sections-content">
           <header>
             <p>{this.state.forumTitle}</p>
           </header>
-          {this.state.boards ? <ul>{this.makeBoards()}</ul> : <p>Loading...</p>}
+          <ul>{this.makeBoards()}</ul>
         </div>
       </section>
+    ) : (
+      <span className="loader-wrapper">{waveLoader}</span>
     );
   }
 }

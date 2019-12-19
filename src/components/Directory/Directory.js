@@ -8,6 +8,7 @@ import AddToDirectory from "./AddToDirectory";
 import Listings from "./listings";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import apiServices from "../../services/apiServices";
+import waveLoader from "../Icons/waveLoader";
 //directory component
 export default class Directory extends Component {
   constructor(props) {
@@ -193,13 +194,14 @@ export default class Directory extends Component {
     window.scroll(0, 0);
     apiServices.getDirectory().then(dir => {
       this.setState({
-        directory: dir
+        directory: dir,
+        dataLoaded: true
       });
     });
   }
 
   render() {
-    return (
+    return this.state.dataLoaded ? (
       <div className="directory-container">
         <ForumContext.Consumer>
           {context =>
@@ -218,8 +220,8 @@ export default class Directory extends Component {
               />
             ) : (
               <>
-                <Sort handleSort={this.handleSort} sortType={"dir"} />
                 <h2>Directory</h2>
+                <Sort handleSort={this.handleSort} sortType={"dir"} />
                 {TokenServices.getAuthToken() ? (
                   <AddToDirectory showAddForm={this.handleShowAddForm} />
                 ) : null}
@@ -240,6 +242,8 @@ export default class Directory extends Component {
           }
         </ForumContext.Consumer>
       </div>
+    ) : (
+      <span>{waveLoader}</span>
     );
   }
 }

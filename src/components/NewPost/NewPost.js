@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Truncate from "react-truncate";
 import apiServices from "../../services/apiServices";
 import formatDate from "../../helpers/formatDate";
+import Sort from "../Sort/Sort";
 import "./NewPost.css";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
@@ -70,6 +71,95 @@ export default class NewPost extends Component {
       );
     });
   };
+
+  handleSort = sort => {
+    if (sort.sortType === "asc" && sort.column === "title") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        var x = a.title.toLowerCase();
+        var y = b.title.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "title") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        var x = a.title.toLowerCase();
+        var y = b.title.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "date_posted") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        var x = a.date_posted.toLowerCase();
+        var y = b.date_posted.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "date_posted") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        var x = a.date_posted.toLowerCase();
+        var y = b.date_posted.toLowerCase();
+        if (x > y) {
+          return -1;
+        }
+        if (x < y) {
+          return 1;
+        }
+        return 0;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+    if (sort.sortType === "asc" && sort.column === "likes") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        return a.likes - b.likes;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+    if (sort.sortType === "desc" && sort.column === "likes") {
+      const sorted = this.state.posts.sort(function(a, b) {
+        return b.likes - a.likes;
+      });
+      this.setState({
+        posts: sorted
+      });
+      return;
+    }
+  };
   componentDidMount() {
     window.scroll(0, 0);
     apiServices
@@ -107,21 +197,19 @@ export default class NewPost extends Component {
   }
 
   render() {
-    return (
+    return this.state.dataLoaded ? (
       <div className="newPost-container">
-        <header>{this.props.dashboard ? null : <h2>Newest Posts</h2>}</header>
+        <header>
+          {this.props.dashboard ? null : <h2>Newest Posts</h2>}{" "}
+          <Sort sortType="posts" handleSort={this.handleSort} />
+        </header>
         <div className="newPost-content">
-          {this.state.dataLoaded ? (
-            this.state.posts ? (
-              <ul>{this.recentPosts()}</ul>
-            ) : (
-              <p>{this.state.error}</p>
-            )
-          ) : (
-            <div className="forum-loader">{waveLoader}</div>
-          )}
+          <ul>{this.recentPosts()}</ul>
+          <p>{this.state.error}</p>)
         </div>
       </div>
+    ) : (
+      <span>{waveLoader}</span>
     );
   }
 }

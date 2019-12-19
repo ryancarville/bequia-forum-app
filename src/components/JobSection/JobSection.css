@@ -40,10 +40,7 @@
   .job-section-container {
     margin-top: 20px;
   }
-  #job-section-cat-title {
-    text-align: left;
-    margin-left: 100px;
-  }
+  
   .non-board-post {
     width: 100%;
     display: flex;

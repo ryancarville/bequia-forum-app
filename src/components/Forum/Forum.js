@@ -124,27 +124,27 @@ export default class Forum extends Component {
         });
       } else {
         this.setState({
-          forumTitles: titles
+          forumTitles: titles,
+          dataLoaded: true
         });
       }
     });
   }
 
   render() {
-    return (
+    return this.state.dataLoaded ? (
       <section className="forum-container">
         <div className="forum-content">
           <header>
             <h3>Forum</h3>
           </header>
           {this.state.error ? <p>{this.state.error}</p> : null}
-          {this.state.forumTitles.length > 0 ? (
-            <ul className="sectionMenu">{this.makeForum()}</ul>
-          ) : (
-            waveLoader
-          )}
+
+          <ul className="sectionMenu">{this.makeForum()}</ul>
         </div>
       </section>
+    ) : (
+      <span className="loader-wrapper">{waveLoader}</span>
     );
   }
 }

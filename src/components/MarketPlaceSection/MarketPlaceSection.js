@@ -199,11 +199,11 @@ export default class MarketPlaceSections extends Component {
   render() {
     return (
       <section className="market-place-section-container">
-        <Sort sortType="marketPlace" handleSort={this.handleSort} />
         <header>
           {this.state.market_place_name ? (
             <h4>{this.state.market_place_name}</h4>
           ) : null}
+          <Sort sortType="marketPlace" handleSort={this.handleSort} />
         </header>
         <div className="market-place-section-content">
           {this.state.listings.length !== 0 ? (

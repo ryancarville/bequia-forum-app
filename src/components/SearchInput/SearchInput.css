@@ -1,7 +1,10 @@
 .search-input-container {
+  width: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  margin-top: 2rem;
 }
 .mobile-search form {
   position: absolute;
@@ -39,6 +42,25 @@
   border: none;
 }
 @media only screen and (min-width: 700px) {
+  .search-input-container {
+    width: 100%;
+    margin-top: -9px;
+  }
+  #search-input-loader {
+    position: relative;
+    top: -50px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  #search-input-loader img {
+    width: 30px;
+  }
+  #search-input-loader p {
+    font-size: 16px;
+  }
+
   #search-cancel-icon {
     display: block;
     border: none;

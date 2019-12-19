@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SearchInput.css";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
+import waveLoader from "../Icons/waveLoader";
 //search component
 export default class SearchInput extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class SearchInput extends Component {
       board_name: "Search Entire Forum",
       board_id: "null",
       term: "",
+      showForm: false,
       showResults: false,
       forum: [],
       cats: []
@@ -108,20 +110,23 @@ export default class SearchInput extends Component {
       })
       .then(() => {
         this.state.forum.map(cat =>
-          apiServices.getNumOfThreads(cat.id).then(count => {
-            cat.count = count[0].count;
-            this.setState({
-              cats: [...this.state.cats, cat]
-            });
-          })
+          apiServices
+            .getNumOfThreads(cat.id)
+            .then(count => {
+              cat.count = count[0].count;
+              this.setState({
+                cats: [...this.state.cats, cat]
+              });
+            })
+            .then(() => {
+              if (this.state.cats.length === this.state.forum.length) {
+                this.setState({
+                  forumLoaded: true
+                });
+              }
+            })
         );
       });
-
-    if (this.state.cats.length === this.state.forum.length) {
-      this.setState({
-        forumLoaded: true
-      });
-    }
   }
   componentWillUnmount() {
     this.setState({
@@ -131,7 +136,7 @@ export default class SearchInput extends Component {
     });
   }
   render() {
-    return (
+    return this.state.forumLoaded ? (
       <section className="search-input-container">
         <form
           className={this.state.fadeOut}
@@ -148,7 +153,6 @@ export default class SearchInput extends Component {
             placeholder={this.state.board_name}
             value={this.state.term}
             onChange={this.handleSearchTerm}
-            autoFocus
           />
 
           <select
@@ -158,16 +162,8 @@ export default class SearchInput extends Component {
             value={this.state.board_id}
             onChange={this.handleCat}
           >
-            {this.state.forumLoaded ? (
-              <>
-                <option value="null">Search Entire Forum</option>
-                {this.makeOptions()}
-              </>
-            ) : (
-              <option disabled value="null">
-                Loading...
-              </option>
-            )}
+            <option value="null">Search Entire Forum</option>
+            {this.makeOptions()}
           </select>
           <button
             id="search-cancel-icon"
@@ -178,6 +174,8 @@ export default class SearchInput extends Component {
           </button>
         </form>
       </section>
+    ) : (
+      <span id="search-input-loader">{waveLoader}</span>
     );
   }
 }

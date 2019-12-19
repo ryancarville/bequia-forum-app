@@ -192,10 +192,10 @@ export default class JobPage extends Component {
   render() {
     return (
       <section className="job-section-container">
-        <Sort sortType="jobs" handleSort={this.handleSort} />
         <h3 id="job-section-cat-title">
           {this.state.cat_name ? this.state.cat_name : null}
         </h3>
+        <Sort sortType="jobs" handleSort={this.handleSort} />
         <div className="job-section-content">
           {this.state.listings.length !== 0 ? (
             <ul className="job-section-ul">{this.makeListings()}</ul>

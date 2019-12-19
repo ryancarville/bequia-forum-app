@@ -5,7 +5,7 @@
   flex-direction: column;
   margin-top: 50px;
   opacity: 0;
-  animation: fadeIn .5s ease-in forwards;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 .forum-section-container h3 {
   text-align: center;
@@ -75,16 +75,12 @@
     display: block;
     margin-top: 20px;
   }
-  .forum-section-container h3 {
-    margin-left: 100px;
-    float: left;
-  }
 
   .forum-section-content {
     padding: 25px;
   }
   .forum-section-content ul {
-    margin-top: 90px;
+    margin-top: 50px;
   }
   .forum-loader {
     margin-top: 70px;
@@ -100,6 +96,8 @@
     text-align: left;
     padding: 15px;
     font-size: 15px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
   }
   .post-card-info {
     width: 70%;

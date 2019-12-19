@@ -6,12 +6,9 @@ const waveLoader = (
     <img
       src="/images/loader/wave-loader.svg"
       alt="wave-loader"
-      id="wave-loader-gif"
+      className="wave-loader-gif"
     />
-    <p>
-      Dig your toes in the sand. <br />
-      Loading your coconuts.
-    </p>
+    <p>Loading your coconuts.</p>
   </div>
 );
 export default waveLoader;

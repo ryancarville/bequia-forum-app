@@ -173,7 +173,8 @@ export default class RentalSection extends Component {
           );
           this.setState({
             rentalCats: cats,
-            rental_cat_title: rental_cat_title[0].name
+            rental_cat_title: rental_cat_title[0].name,
+            dataLoaded: true
           });
         });
       });
@@ -222,13 +223,13 @@ export default class RentalSection extends Component {
   };
 
   render() {
-    return (
+    return this.state.dataLoaded ? (
       <section className="rentals-section-container">
-        <Sort sortType="rentals" handleSort={this.handleSort} />
         <header>
           <h3>
             {this.state.rental_cat_title ? this.state.rental_cat_title : null}
           </h3>
+          <Sort sortType="rentals" handleSort={this.handleSort} />
         </header>
         <div className="rentals-section-content">
           {this.state.error ? (
@@ -237,10 +238,12 @@ export default class RentalSection extends Component {
           {this.state.listings.length > 0 ? (
             <ul>{this.makeRentalListings()}</ul>
           ) : this.state.error ? null : (
-            waveLoader
+            <span className="loader-wrapper">{waveLoader}</span>
           )}
         </div>
       </section>
+    ) : (
+      waveLoader
     );
   }
 }

@@ -1,4 +1,5 @@
 .sortForm {
+  width: 100%;
   float: right;
   display: flex;
   flex-direction: column;
@@ -21,6 +22,6 @@
     height: 25px;
     font-size: 16px;
     float: right;
-    margin-right: 100px;
+    margin-right: 60px;
   }
 }

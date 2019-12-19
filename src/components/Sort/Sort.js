@@ -71,7 +71,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-last_name">Last Name A-Z</option>
@@ -144,7 +144,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
@@ -169,7 +169,7 @@ export default class Sort extends Component {
           }
         >
           <select name="sort" id="selectSort" onChange={this.handleSortType}>
-            <option defaultValue disabled value="">
+            <option selected disabled value="">
               Sort By...
             </option>
             <option value="asc-title">Title A-Z</option>
