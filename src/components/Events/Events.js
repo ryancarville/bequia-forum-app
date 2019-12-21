@@ -70,7 +70,7 @@ class Events extends Component {
           <span className="create-post-button">
             <Link
               to={"/createEvent"}
-              params={{ updateEvnts: this.updateEvents }}
+              params={{ updateEvents: this.updateEvents }}
               id="create-event-listing-button"
             >
               <i className="fas fa-plus"></i>Event

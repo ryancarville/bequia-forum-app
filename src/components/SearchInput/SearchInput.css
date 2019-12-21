@@ -1,16 +1,21 @@
 .search-input-container {
-  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+#search-input-loader {
+  display: none;
 }
 .mobile-search form {
   position: absolute;
   display: flex;
   align-items: center;
-  width: 95%;
+  justify-content: flex-end;
+  width: 90%;
   margin-top: 0px;
   z-index: 3;
   opacity: 0;
@@ -35,7 +40,7 @@
   position: absolute;
   font-size: 18px;
   color: black;
-  margin-left: 300px;
+
   margin-top: 0px;
   z-index: 5;
   background: transparent;
@@ -67,5 +72,85 @@
     font-size: 18px;
     cursor: pointer;
     background-color: transparent;
+  }
+
+  .fa-search {
+    cursor: pointer;
+  }
+  .fa-search:hover {
+    color: blue;
+  }
+  .search-form-fadeOut {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    animation: fadeOut 1s ease-in-out;
+  }
+  .search-container {
+    float: right;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .search-form-fadeIn {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in;
+  }
+  #search-input-loader {
+    height: 40px;
+    margin-top: 9px;
+  }
+  #search-input-loader p {
+    color: white;
+    margin: 0px;
+  }
+  #search-input {
+    width: 20rem;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+  }
+  .search-input-white::placeholder {
+    color: white;
+  }
+  .search-input-blue::placeholder {
+    color: blue;
+  }
+  #search-catagories {
+    display: block;
+    font-size: 16px;
+    width: auto;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid white;
+    background-color: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+  }
+  #search-submit,
+  #search-cancel {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    color: limegreen;
   }
 }

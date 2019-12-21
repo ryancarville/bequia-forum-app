@@ -45,10 +45,10 @@ export default class SearchInput extends Component {
   //close search and clear term
   closeSearch = () => {
     this.setState({
-      term: ""
+      term: "",
+      fadeOut: "search-form-fadeOut"
     });
-    this.props.closeNavSearch();
-    return true;
+    return this.props.closeSearchForm;
   };
   //handle search submit
   handleSearch = e => {
@@ -58,10 +58,9 @@ export default class SearchInput extends Component {
         fadeOut: "search-form-fadeOut"
       });
       this.props.handleNavTextColor();
-      this.props.closeNavSearch();
+      this.props.closeSearchForm();
       return true;
     }
-
     const { board_id, term } = this.state;
     sessionStorage.setItem("searchTerm", term);
     sessionStorage.setItem("searchBoard", board_id);
@@ -150,6 +149,9 @@ export default class SearchInput extends Component {
             type="text"
             name="search"
             id="search-input"
+            className={
+              this.props.colorClass + " " + this.props.placeholderColor
+            }
             placeholder={this.state.board_name}
             value={this.state.term}
             onChange={this.handleSearchTerm}
@@ -175,7 +177,9 @@ export default class SearchInput extends Component {
         </form>
       </section>
     ) : (
-      <span id="search-input-loader">{waveLoader}</span>
+      <span className={this.props.colorClass} id="search-input-loader">
+        {waveLoader}
+      </span>
     );
   }
 }

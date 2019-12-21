@@ -51,9 +51,7 @@ class Calendar extends Component {
     this.setState({
       prevDay: day
     });
-
     const cell = document.getElementById(`day-${day}`);
-
     cell.classList.add("currDay");
     this.props.handleShowEvents(events);
   };
@@ -118,6 +116,9 @@ class Calendar extends Component {
           className={`singleDay ${isActive ? "active" : ""}`}
           key={`day-${day}`}
           id={`day-${day}`}
+          onLoad={
+            isActive ? () => this.props.handleShowEvents(eventsOnThisDay) : null
+          }
           onClick={() => this.handleDayChange(day, eventsOnThisDay)}
         >
           {day}

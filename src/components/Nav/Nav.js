@@ -42,6 +42,7 @@ class Nav extends Component {
           </span>
           <DesktopSiteNav
             colorClass={this.props.navColorClass}
+            placeholderColor={this.props.placeholderColor}
             handleNavTextColor={() => this.props.handleNavTextColor()}
           />
           <div className="rightNavInfo">
@@ -84,6 +85,7 @@ class Nav extends Component {
           </span>
           <DesktopSiteNav
             colorClass={this.props.navColorClass}
+            placeholderColor={this.props.placeholderColor}
             handleNavTextColor={() => this.props.handleNavTextColor()}
           />
           <div className="rightNavInfo">

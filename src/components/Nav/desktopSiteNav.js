@@ -29,6 +29,18 @@ export default class DesktopSiteNav extends Component {
       });
     }
   };
+  closeSearchForm = () => {
+    if (this.state.showSearchForm) {
+      this.setState({
+        fadeOut: "fadeOut"
+      });
+      setTimeout(() => {
+        this.setState({
+          showSearchForm: false
+        });
+      }, 1000);
+    }
+  };
 
   render() {
     return (
@@ -56,25 +68,21 @@ export default class DesktopSiteNav extends Component {
                   <p>Directory</p>
                 </Link>
               </li>
+              <li>
+                <i
+                  className={this.props.colorClass + " fas fa-search"}
+                  onClick={() => this.showSearchForm()}
+                ></i>
+              </li>
             </>
-          ) : null}
-          <li>
-            {!this.state.showSearchForm ? (
-              <i
-                className={this.props.colorClass + " fas fa-search"}
-                onClick={() => this.showSearchForm()}
-              ></i>
-            ) : null}
-            <div className="search-container">
-              {this.state.showSearchForm ? (
-                <SearchInput
-                  closeNavSearch={this.showSearchForm}
-                  colorClass={this.props.colorClass}
-                  handleNavTextColor={() => this.props.handleNavTextColor()}
-                />
-              ) : null}
-            </div>
-          </li>
+          ) : (
+            <SearchInput
+              closeSearchForm={this.closeSearchForm}
+              colorClass={this.props.colorClass}
+              placeholderColor={this.props.placeholderColor}
+              handleNavTextColor={this.props.handleNavTextColor}
+            />
+          )}
         </ul>
       </div>
     );

@@ -10,14 +10,16 @@
   z-index: 1;
   background-color: transparent;
   height: auto;
-  opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
 }
 .nav-text-color-white {
   color: white;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
 .nav-text-color-blue {
   color: blue;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
 .forumLogo {
   display: flex;
@@ -43,6 +45,8 @@
   display: block;
   width: 100%;
   text-align: right;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
 .rightNavInfo a {
   font-size: 25px;

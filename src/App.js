@@ -19,6 +19,7 @@ class App extends Component {
         lastLogin: ""
       },
       navColorClass: "nav-text-color-white",
+      placeholderColor: "search-input-white",
       searchResults: {},
       resultsCount: 0,
       showSearch: false,
@@ -30,16 +31,18 @@ class App extends Component {
   handleNavTextColor = () => {
     if (window.location.pathname !== "/") {
       this.setState({
-        navColorClass: "nav-text-color-blue"
+        navColorClass: "nav-text-color-blue",
+        placeholderColor: "search-input-blue"
       });
     } else {
       this.setState({
-        navColorClass: "nav-text-color-white"
+        navColorClass: "nav-text-color-white",
+        placeholderColor: "search-input-white"
       });
     }
   };
   //set token and user id
-  setUserData = (user_id, user) => {
+  setUserData = user_id => {
     sessionStorage.setItem("user_id", user_id);
     this.setState({
       user: {
@@ -368,6 +371,7 @@ class App extends Component {
             loggedIn={this.state.loggedIn}
             handleLogOut={this.handleLogOut}
             navColorClass={this.state.navColorClass}
+            placeholderColor={this.state.placeholderColor}
             handleNavTextColor={this.handleNavTextColor}
           />
           <Router
