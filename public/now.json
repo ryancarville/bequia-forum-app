@@ -7,9 +7,9 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/mainfest.json",
-      "dest": "/mainfest.json",
-      "type": "application/json"
+      "src": "/manifest.json",
+      "headers": { "key": "content-type", "value": "application/json" },
+      "dest": "/manifest.json"
     },
     {
       "src": ".*",

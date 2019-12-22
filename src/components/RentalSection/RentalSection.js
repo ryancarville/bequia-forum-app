@@ -25,7 +25,7 @@ export default class RentalSection extends Component {
   //handle sort
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "title") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x < y) {
@@ -37,12 +37,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "title") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x > y) {
@@ -54,12 +54,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "date_posted") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x < y) {
@@ -71,12 +71,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "date_posted") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x > y) {
@@ -88,12 +88,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "price") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.price.toLowerCase();
         var y = b.price.toLowerCase();
         if (x < y) {
@@ -105,12 +105,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "price") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.price.toLowerCase();
         var y = b.price.toLowerCase();
         if (x > y) {
@@ -122,12 +122,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "location") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.location.toLowerCase();
         var y = b.location.toLowerCase();
         if (x < y) {
@@ -139,12 +139,12 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "location") {
-      const sorted = this.state.listings.sort(function(a, b) {
+      const sorted = this.state.currentListings.sort(function(a, b) {
         var x = a.location.toLowerCase();
         var y = b.location.toLowerCase();
         if (x > y) {
@@ -156,15 +156,15 @@ export default class RentalSection extends Component {
         return 0;
       });
       this.setState({
-        listings: sorted
+        currentListings: sorted
       });
       return;
     }
   };
 
   //make all rental listings for section
-  makeRentalListings = () => {
-    return this.state.listings.map(r => (
+  makeRentalListings = listings => {
+    return listings.map(r => (
       <li key={r.id} className="post-card">
         <article className="post-card-info non-board-post">
           <span>
@@ -338,7 +338,7 @@ export default class RentalSection extends Component {
           </div>
         </header>
         <div className="rentals-section-content">
-          <ul>{this.makeRentalListings()}</ul>
+          <ul>{this.makeRentalListings(currentListings)}</ul>
         </div>
       </section>
     ) : (
