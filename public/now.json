@@ -8,7 +8,7 @@
     },
     {
       "src": "/manifest.json",
-      "headers": { "key": "content-type", "value": "application/json" },
+
       "dest": "/manifest.json"
     },
     {

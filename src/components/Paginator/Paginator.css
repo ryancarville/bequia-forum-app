@@ -1,0 +1,57 @@
+.paginator-wrapper {
+  position: relative;
+  top: 0px;
+  right: 0;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.paginator-wrapper-fixed {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+}
+
+ul.paginator {
+  height: auto;
+  width: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.paginator-current-page {
+  font-size: 16px;
+  padding: 10px;
+}
+ul.paginator li.page-item.active button.page-link {
+  color: #ffffff !important;
+  background-color: #0000ff !important;
+}
+ul.paginator button.page-link {
+  min-width: 1em;
+  text-align: center;
+  box-shadow: none !important;
+  border-color: #ced4da !important;
+  color: #6b88a4;
+  font-weight: 900;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 5px;
+}
+ul.paginator button.page-link:hover {
+  background-color: #eeff00;
+  color: limegreen;
+}
+.paginator-wrapper select {
+  width: auto;
+  height: auto;
+}
