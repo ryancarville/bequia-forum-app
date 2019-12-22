@@ -17,6 +17,9 @@
 }
 
 @media only screen and (min-width: 700px) {
+  .sortForm {
+    width: auto;
+  }
   .sortForm select {
     width: 250px;
     height: 25px;

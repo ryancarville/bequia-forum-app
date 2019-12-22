@@ -13,9 +13,11 @@ export default class NewPost extends Component {
     this.state = {
       posts: [],
       currentPosts: [],
-      currentPage: null,
+      currentPage: 1,
       totalPages: null,
-      pageLimit: 5,
+      pageLimit: null,
+      pageNeighbours: null,
+      paginatorScroll: "paginator-wrapper",
       error: null
     };
   }
@@ -108,6 +110,53 @@ export default class NewPost extends Component {
       return;
     }
   };
+  onPageChanged = data => {
+    const { posts } = this.state;
+    const { currentPage, totalPages, pageLimit } = data;
+    const offset = (currentPage - 1) * pageLimit;
+    const currentPosts = posts.slice(offset, offset + pageLimit);
+
+    this.setState({ currentPage, currentPosts, totalPages });
+  };
+
+  handlePageLimit = e => {
+    this.setState(
+      {
+        pageLimit: parseInt(e.target.value)
+      },
+      () => {
+        if (this.state.pageLimit >= this.state.posts.length) {
+          const paginationData = {
+            currentPage: 1,
+            totalPages: 1,
+            pageLimit: this.state.pageLimit,
+            totalRecords: this.state.posts.length
+          };
+          this.onPageChanged(paginationData);
+        } else {
+          const paginationData = {
+            currentPage: this.state.currentPage,
+            totalPages: this.state.totalPages,
+            pageLimit: this.state.pageLimit,
+            totalRecords: this.state.posts.length
+          };
+          this.onPageChanged(paginationData);
+        }
+      }
+    );
+  };
+
+  paginatorScroll = () => {
+    if (window.scrollY > 140) {
+      this.setState({
+        paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
+      });
+    } else {
+      this.setState({
+        paginatorScroll: "paginator-wrapper"
+      });
+    }
+  };
   componentDidMount() {
     window.scroll(0, 0);
     apiServices
@@ -151,34 +200,9 @@ export default class NewPost extends Component {
           });
         })
       );
+    window.addEventListener("scroll", () => this.paginatorScroll());
   }
 
-  onPageChanged = data => {
-    const { posts } = this.state;
-    const { currentPage, totalPages, pageLimit } = data;
-    const offset = (currentPage - 1) * pageLimit;
-    const currentPosts = posts.slice(offset, offset + pageLimit);
-
-    this.setState({ currentPage, currentPosts, totalPages });
-  };
-
-  handlePageLimit = e => {
-    this.setState(
-      {
-        pageLimit: parseInt(e.target.value)
-      },
-      () => {
-        console.log(this.state);
-        const paginationData = {
-          currentPage: this.state.currentPage,
-          totalPages: this.state.totalPages,
-          pageLimit: this.state.pageLimit,
-          totalRecords: this.state.totalRecords
-        };
-        this.onPageChanged(paginationData);
-      }
-    );
-  };
   render() {
     const { posts, currentPosts, currentPage, totalPages } = this.state;
     const totalPosts = posts.length;
@@ -188,24 +212,8 @@ export default class NewPost extends Component {
       <div className="newPost-container">
         <header>
           {this.props.dashboard ? null : <h2>Newest Posts</h2>}{" "}
-          <Sort sortType="posts" handleSort={this.handleSort} />
-        </header>
-
-        <p>{this.state.error}</p>
-        <div className="newPost-content">
-          <div className="paginator-wrapper">
-            {currentPage && (
-              <span className="paginator-current-page">
-                Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-                <span className="font-weight-bold">{totalPages}</span>
-              </span>
-            )}
-            <Paginator
-              totalRecords={totalPosts}
-              pageLimit={this.state.pageLimit}
-              pageNeighbours={1}
-              onPageChanged={this.onPageChanged}
-            />
+          <div className={this.state.paginatorScroll}>
+            <Sort sortType="posts" handleSort={this.handleSort} />
             <select
               className="num-post-results"
               onChange={this.handlePageLimit}
@@ -220,7 +228,28 @@ export default class NewPost extends Component {
               <option value="25">25</option>
               <option value="30">30</option>
             </select>
+            <Paginator
+              totalRecords={totalPosts}
+              pageLimit={this.state.pageLimit}
+              pageNeighbours={this.state.pageNeighbours}
+              onPageChanged={this.onPageChanged}
+            />
+
+            {currentPage && (
+              <span className="paginator-current-page">
+                Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+                <span className="font-weight-bold">{totalPages}</span>
+              </span>
+            )}
+            {totalPages && (
+              <span className="paginator-total-results">
+                {this.state.posts.length} <span>Results</span>{" "}
+              </span>
+            )}
           </div>
+        </header>
+        <div className="newPost-content">
+          <p>{this.state.error}</p>
           <ul>
             <MakePostCards posts={currentPosts} forum={this.state.forum} />
           </ul>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate";
 import TokenServices from "../../services/TokenServices";
+import Paginator from "../Paginator/Paginator";
 import formatDate from "../../helpers/formatDate";
 import comment from "../Icons/comment";
 import like from "../Icons/like";
@@ -9,6 +10,7 @@ import "./ForumSection.css";
 import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
 import waveLoader from "../Icons/waveLoader";
+import MakePostCard from "../MakePostCards/MakePostCards";
 //forum board
 export default class ForumSection extends Component {
   constructor(props) {
@@ -19,6 +21,12 @@ export default class ForumSection extends Component {
       posts: [],
       postsWithCount: [],
       completePost: [],
+      currentPosts: [],
+      currentPage: 1,
+      totalPages: null,
+      pageLimit: null,
+      pageNeighbours: null,
+      paginatorScroll: "paginator-wrapper",
       error: null
     };
   }
@@ -163,6 +171,54 @@ export default class ForumSection extends Component {
       return;
     }
   };
+
+  onPageChanged = data => {
+    const { posts } = this.state;
+    const { currentPage, totalPages, pageLimit } = data;
+    const offset = (currentPage - 1) * pageLimit;
+    const currentPosts = posts.slice(offset, offset + pageLimit);
+
+    this.setState({ currentPage, currentPosts, totalPages });
+  };
+
+  handlePageLimit = e => {
+    this.setState(
+      {
+        pageLimit: parseInt(e.target.value)
+      },
+      () => {
+        if (this.state.pageLimit >= this.state.posts.length) {
+          const paginationData = {
+            currentPage: 1,
+            totalPages: 1,
+            pageLimit: this.state.pageLimit,
+            totalRecords: this.state.posts.length
+          };
+          this.onPageChanged(paginationData);
+        } else {
+          const paginationData = {
+            currentPage: this.state.currentPage,
+            totalPages: this.state.totalPages,
+            pageLimit: this.state.pageLimit,
+            totalRecords: this.state.posts.length
+          };
+          this.onPageChanged(paginationData);
+        }
+      }
+    );
+  };
+
+  paginatorScroll = () => {
+    if (window.scrollY > 140) {
+      this.setState({
+        paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
+      });
+    } else {
+      this.setState({
+        paginatorScroll: "paginator-wrapper"
+      });
+    }
+  };
   componentDidMount() {
     window.scroll(0, 0);
     //get all the board info and post info
@@ -215,19 +271,63 @@ export default class ForumSection extends Component {
             });
           });
       });
+    window.addEventListener("scroll", () => this.paginatorScroll());
   }
 
   render() {
+    const { posts, currentPosts, currentPage, totalPages } = this.state;
+    const totalPosts = posts.length;
+    if (totalPosts === 0) return null;
     return (
       <section className="forum-section-container">
         <header>
           <h3 className="forum-title">{this.state.boardName}</h3>
+          <div className={this.state.paginatorScroll}>
+            <Sort sortType="posts" handleSort={this.handleSort} />
+            <select
+              className="num-post-results"
+              onChange={this.handlePageLimit}
+            >
+              <option selected disabled value="">
+                Posts per page
+              </option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+            <Paginator
+              totalRecords={totalPosts}
+              pageLimit={this.state.pageLimit}
+              pageNeighbours={this.state.pageNeighbours}
+              onPageChanged={this.onPageChanged}
+            />
+
+            {currentPage && (
+              <span className="paginator-current-page">
+                Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+                <span className="font-weight-bold">{totalPages}</span>
+              </span>
+            )}
+            {totalPages && (
+              <span className="paginator-total-results">
+                {this.state.posts.length} <span>Results</span>{" "}
+              </span>
+            )}
+          </div>
         </header>
-        <Sort sortType="posts" handleSort={this.handleSort} />
+
         <div className="forum-section-content">
           {this.state.dataLoaded ? (
             this.state.postsWithCount.length > 0 ? (
-              <ul>{this.getPosts()}</ul>
+              <ul>
+                <MakePostCard
+                  posts={currentPosts}
+                  boardName={this.state.boardName}
+                />
+              </ul>
             ) : TokenServices.getAuthToken() ? (
               <p className="error-message">
                 {this.state.error} Be the first one!
