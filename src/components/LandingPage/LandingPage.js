@@ -11,15 +11,36 @@ export default function LandingPage() {
         <div id="landing-page-text">
           <header>
             <h1>Welcome to Bequia Forum!</h1>
-            <h4>Connect with locals, travelers and the world.</h4>
+            <h4>
+              Connect with locals, travelers and the world.
+              <Link to="/signup">
+                <strong>Create an account</strong>
+              </Link>{" "}
+              today to get the most out of the platform.
+            </h4>
           </header>
           <article id="landing-page-message">
-            <p>
-              Message boards, events calendar, job listings, a market place and
-              rentals section.
-              <br /> <Link to="/signup">Create an account</Link> today to get
-              the most out of the platform.
-            </p>
+            <h5>
+              <Link to="/messageBoard">
+                <i className="far fa-comments"> Message boards </i>{" "}
+              </Link>
+              <br />
+              <Link to="/events">
+                <i className="fas fa-glass-cheers"> Events calendar</i>
+              </Link>
+              <br />
+              <Link to="/jobs">
+                <i className="fas fa-globe-europe"> Job Listings </i>
+              </Link>{" "}
+              <br />
+              <Link to="marketPlace">
+                <i className="far fa-lightbulb"> Market Place </i>
+              </Link>
+              <br />
+              <Link to="/rentals">
+                <i className="fas fa-bed"> Rentals</i>
+              </Link>
+            </h5>
           </article>
         </div>
       </div>

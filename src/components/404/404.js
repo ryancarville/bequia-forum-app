@@ -8,16 +8,11 @@ export default function NoPath() {
       <header>
         <h1>404 Path not Found</h1>
       </header>
-      <img
-        src="https://media.giphy.com/media/fGOAbNrp0WtctLULQV/source.gif"
-        alt="plam-tree"
-      />
-
       <p>
-        You must have had to many pina coladas and mistyped or this path is
-        still under construction. <br />
-        Check back later.
+        <i className="fas fa-umbrella-beach"> Nothing to see here.</i>
+        
       </p>
+      <img src="/images/windy-palms.gif" alt="plam-tree" />
     </section>
   );
 }

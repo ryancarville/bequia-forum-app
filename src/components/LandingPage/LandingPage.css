@@ -39,7 +39,7 @@
 }
 #landing-page-text header h4 {
   margin: 0;
-  margin-top: 20px;
+  margin-top: 15px;
   font-size: 18px;
   text-align: center;
   text-shadow: black 1px 1px 4px;
@@ -49,15 +49,29 @@
   float: right;
   height: auto;
   padding: 5px;
-  margin-top: 100px;
+  margin-top: 20px;
   margin-left: -20px;
   z-index: -1000;
   text-align: center;
   text-shadow: black 1px 1px 4px;
-  font-size: 20px;
+  font-size: 25px;
+}
+#landing-page-message h5 {
+  width: 100%;
+
+  text-align: center;
+  margin-top: 0px;
+  margin-left: -5px;
+}
+#landing-page-message h5 i {
+  transform: rotate(30deg);
+  margin-top: 20px;
+  animation: slideDown 1s forwards;
 }
 #landing-page-text a {
-  color: yellow;
+  color: limegreen;
+  font-size: 20px;
+  margin: 5px;
 }
 @media only screen and (min-width: 700px) {
   .landingPage-container {
@@ -75,7 +89,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: 10%;
     width: 100%;
     text-align: left;
@@ -93,10 +107,17 @@
     font-size: 18px;
     text-align: left;
   }
-  #landing-page-message {
-    float: left;
-    text-align: left;
-    margin-top: 0px;
-    margin-left: -5px;
+  #landing-page-message h5 {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  #landing-page-text a {
+    color: limegreen;
+    font-size: 30px;
+  }
+  #landing-page-text a:hover {
+    color: yellow;
+    animation: grow 2s forwards;
   }
 }

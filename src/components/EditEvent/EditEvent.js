@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ForumContext from "../../ForumContext";
+import apiServices from "../../services/apiServices";
 
 //edit event component
 export default class EditEvent extends Component {
@@ -79,9 +80,10 @@ export default class EditEvent extends Component {
       event_time,
       description
     };
-    this.context.editEvent(eventToUpdate);
-    this.setState({
-      redirect: true
+    apiServices.editEvent(eventToUpdate).then(() => {
+      this.setState({
+        redirect: true
+      });
     });
   };
   //make event times menus

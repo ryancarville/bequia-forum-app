@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserPosts.css";
 import apiServices from "../../services/apiServices";
+import Truncate from "react-truncate";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
 import waveLoader from "../Icons/waveLoader";
@@ -73,15 +74,34 @@ export default class UserPosts extends Component {
         className="dashboard-user-post-card-item"
         to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
       >
-        {p.title}{" "}
-        <span className='post-stats-wrapper'>
+        <div className="dash-truncate">
+          <h4>{p.title}</h4>
+          <Truncate
+            className="post-teaser"
+            lines={1}
+            ellipsis={
+              <span>
+                ...
+                <Link
+                  to={{
+                    pathname: `/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`,
+                    state: { id: p.id }
+                  }}
+                ></Link>
+              </span>
+            }
+          >
+            <p>{p.content}</p>
+          </Truncate>
+        </div>
+        <aside className="post-stats-wrapper">
           <span>
             {like} {p.likes}
           </span>
           <span>
             {comment} {p.numComments}
           </span>
-        </span>
+        </aside>
       </Link>
     ));
   };

@@ -47,7 +47,7 @@ export default class Rentals extends Component {
   render() {
     return (
       <section className="rentals-container">
-        <span>
+        <header>
           <h2>Rentals</h2>
           {this.state.loggedIn ? (
             <span className="create-post-button">
@@ -60,7 +60,7 @@ export default class Rentals extends Component {
               </Link>
             </span>
           ) : null}
-        </span>
+        </header>
         <div className="rentals-content">
           {this.state.catagories ? (
             this.makeCatagories()

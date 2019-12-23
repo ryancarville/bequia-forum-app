@@ -85,7 +85,7 @@ export default class ForumSection extends Component {
   //handle sort
   handleSort = sort => {
     if (sort.sortType === "asc" && sort.column === "title") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x < y) {
@@ -97,12 +97,12 @@ export default class ForumSection extends Component {
         return 0;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "title") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x > y) {
@@ -114,12 +114,12 @@ export default class ForumSection extends Component {
         return 0;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "date_posted") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x < y) {
@@ -131,12 +131,12 @@ export default class ForumSection extends Component {
         return 0;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "date_posted") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x > y) {
@@ -148,25 +148,25 @@ export default class ForumSection extends Component {
         return 0;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "likes") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         return a.likes - b.likes;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "likes") {
-      const sorted = this.state.postsWithCount.sort(function(a, b) {
+      const sorted = this.state.currentPosts.sort(function(a, b) {
         return b.likes - a.likes;
       });
       this.setState({
-        postsWithCount: sorted
+        currentPosts: sorted
       });
       return;
     }

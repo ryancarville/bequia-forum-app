@@ -147,7 +147,7 @@ export default class NewPost extends Component {
   };
 
   paginatorScroll = () => {
-    if (window.scrollY > 140) {
+    if (window.scrollY > 215) {
       this.setState({
         paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
       });
@@ -209,7 +209,7 @@ export default class NewPost extends Component {
     if (totalPosts === 0) return null;
 
     return this.state.dataLoaded ? (
-      <div className="newPost-container">
+      <section className="newPost-container">
         <header>
           {this.props.dashboard ? null : <h2>Newest Posts</h2>}{" "}
           <div className={this.state.paginatorScroll}>
@@ -254,7 +254,7 @@ export default class NewPost extends Component {
             <MakePostCards posts={currentPosts} forum={this.state.forum} />
           </ul>
         </div>
-      </div>
+      </section>
     ) : (
       <span>{waveLoader}</span>
     );

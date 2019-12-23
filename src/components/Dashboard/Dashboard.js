@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Dashboard.css";
-import NewPost from "../NewPost/NewPost";
+
 import ThisWeek from "../ThisWeek/ThisWeek";
 import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
@@ -47,7 +47,8 @@ export default class Dashboard extends Component {
       .then(() => {
         apiServices.getAllUserPosts(this.context.user.id).then(posts => {
           this.setState({
-            userPosts: posts
+            userPosts: posts,
+            postsLoaded: true
           });
         });
       });
@@ -82,28 +83,6 @@ export default class Dashboard extends Component {
                 <p>Currently there are no events for this week.</p>
               )}
             </div>
-            <div className="mobile-home-page-new-post-content"></div>
-
-            <h3 onClick={this.showNewPosts}>
-              {this.state.showPosts ? (
-                <i
-                  className="far fa-times-circle"
-                  samesite="none"
-                  secure="true"
-                ></i>
-              ) : (
-                "New Posts"
-              )}
-            </h3>
-            <div
-              className={`${
-                this.state.showPosts
-                  ? "mobile-home-page-new-posts-open"
-                  : "mobile-home-page-new-posts-closed"
-              }`}
-            >
-              <NewPost dashboard={true} />
-            </div>
 
             <div className="mobile-home-page-user-post-content"></div>
 
@@ -125,7 +104,7 @@ export default class Dashboard extends Component {
                   : "mobile-home-page-user-posts-closed"
               }`}
             >
-              {this.state.userPosts.length > 0 ? (
+              {this.state.postsLoaded ? (
                 <ul>
                   <UserPosts posts={this.state.userPosts} />
                 </ul>
@@ -137,10 +116,6 @@ export default class Dashboard extends Component {
         </section>
         <div className="home-page-container">
           <div className="home-page-content">
-            <section id="home-page-newest-post">
-              <h3>New Posts</h3>
-              <NewPost dashboard={true} />
-            </section>
             <section id="home-page-upcoming-events">
               <h3>Upcoming Events</h3>
               {this.state.events.length > 0 ? (
@@ -156,7 +131,7 @@ export default class Dashboard extends Component {
                   <UserPosts posts={this.state.userPosts} />
                 </ul>
               ) : (
-                waveLoader
+                <p>No posts yest</p>
               )}
             </section>
           </div>
