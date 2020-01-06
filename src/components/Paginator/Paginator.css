@@ -78,6 +78,7 @@ ul.paginator button.page-link:hover {
     position: fixed;
     width: 100%;
     background-color: white;
+    animation: fadeIn 1s 1s forwards;
   }
 
   ul.paginator {

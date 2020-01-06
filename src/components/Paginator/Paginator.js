@@ -7,19 +7,17 @@ const RIGHT_PAGE = "RIGHT";
 const range = (from, to, step = 1) => {
   let i = from;
   const range = [];
-
   while (i <= to) {
     range.push(i);
     i += step;
   }
-
   return range;
 };
 
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 10, pageNeighbours = 0 } = props;
+    const { totalRecords, pageLimit = 10, pageNeighbours = 0 } = props;
 
     this.pageLimit = typeof pageLimit === "number" ? pageLimit : 10;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
@@ -32,10 +30,6 @@ class Pagination extends Component {
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
 
     this.state = { currentPage: 1 };
-  }
-
-  componentDidMount() {
-    this.gotoPage(1);
   }
 
   gotoPage = page => {
@@ -52,7 +46,9 @@ class Pagination extends Component {
 
     this.setState({ currentPage }, () => onPageChanged(paginationData));
   };
-
+  componentDidMount() {
+    this.gotoPage(1);
+  }
   handleClick = (page, evt) => {
     evt.preventDefault();
     this.gotoPage(page);
@@ -115,7 +111,6 @@ class Pagination extends Component {
 
   render() {
     if (!this.totalRecords) return null;
-
     if (this.totalPages === 1) return null;
 
     const { currentPage } = this.state;

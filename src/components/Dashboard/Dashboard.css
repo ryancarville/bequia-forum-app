@@ -12,6 +12,16 @@
   background-color: blue;
   text-align: center;
 }
+.mobile-home-page-weather-closed {
+  display: none;
+}
+.mobile-home-page-weather-open {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 .mobile-home-page-events-closed {
   display: none;
 }

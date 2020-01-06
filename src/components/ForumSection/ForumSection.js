@@ -177,7 +177,6 @@ export default class ForumSection extends Component {
     const { currentPage, totalPages, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
     const currentPosts = posts.slice(offset, offset + pageLimit);
-
     this.setState({ currentPage, currentPosts, totalPages });
   };
 
@@ -191,25 +190,23 @@ export default class ForumSection extends Component {
           const paginationData = {
             currentPage: 1,
             totalPages: 1,
-            pageLimit: this.state.pageLimit,
-            totalRecords: this.state.posts.length
+            pageLimit: this.state.pageLimit
           };
-          this.onPageChanged(paginationData);
+          return this.onPageChanged(paginationData);
         } else {
           const paginationData = {
             currentPage: this.state.currentPage,
             totalPages: this.state.totalPages,
-            pageLimit: this.state.pageLimit,
-            totalRecords: this.state.posts.length
+            pageLimit: this.state.pageLimit
           };
-          this.onPageChanged(paginationData);
+          return this.onPageChanged(paginationData);
         }
       }
     );
   };
 
   paginatorScroll = () => {
-    if (window.scrollY > 140) {
+    if (window.scrollY > 130) {
       this.setState({
         paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
       });
