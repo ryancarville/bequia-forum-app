@@ -33,6 +33,19 @@ export default class EventPage extends Component {
       showDeletePopUp: !this.state.showDeletePopUp
     });
   };
+  //updates calendar after new event added
+  updateEvent = () => {
+    this.setState({
+      event: null
+    });
+    const { eventId } = this.props.match.params;
+    apiServices.getEventById(eventId).then(event => {
+      console.log(event);
+      this.setState({
+        event: event
+      });
+    });
+  };
   //handle detlete
   handleDelete = () => {
     const { id } = this.state;
@@ -73,7 +86,11 @@ export default class EventPage extends Component {
           />
         ) : null}
         {this.state.showEditPopUp ? (
-          <EditEvent event={event} showEditPopUp={this.showEditPopUp} />
+          <EditEvent
+            event={event}
+            showEditPopUp={this.showEditPopUp}
+            updateEvent={this.updateEvent}
+          />
         ) : this.state.event ? (
           <MakeEvent event={event} />
         ) : null}

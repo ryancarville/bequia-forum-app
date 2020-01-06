@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserPosts.css";
 import apiServices from "../../services/apiServices";
-import Truncate from "react-truncate";
 import like from "../Icons/like";
 import comment from "../Icons/comment";
 import waveLoader from "../Icons/waveLoader";
@@ -69,40 +68,24 @@ export default class UserPosts extends Component {
     const { mbPosts } = this.state;
 
     return mbPosts.map(p => (
-      <Link
-        key={p.id}
-        className="dashboard-user-post-card-item"
-        to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
-      >
-        <div className="dash-truncate">
-          <h4>{p.title}</h4>
-          <Truncate
-            className="post-teaser"
-            lines={1}
-            ellipsis={
-              <span>
-                ...
-                <Link
-                  to={{
-                    pathname: `/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`,
-                    state: { id: p.id }
-                  }}
-                ></Link>
-              </span>
-            }
-          >
-            <p>{p.content}</p>
-          </Truncate>
-        </div>
-        <aside className="post-stats-wrapper">
-          <span>
-            {like} {p.likes}
-          </span>
-          <span>
-            {comment} {p.numComments}
-          </span>
-        </aside>
-      </Link>
+      <li>
+        <Link
+          key={p.id}
+          className="dashboard-user-post-card-item"
+          to={`/messageBoard/${p.messageboard_section}/${p.board_id}/${p.id}`}
+        >
+          <div>
+            <h4>{p.title}</h4>
+            <article className="dash-post-teaser"></article>
+          </div>
+          <aside className="post-stats-wrapper">
+            <span>
+              {like} {p.likes}
+              {comment} {p.numComments}
+            </span>
+          </aside>
+        </Link>
+      </li>
     ));
   };
   //makes all market place posts
@@ -150,20 +133,16 @@ export default class UserPosts extends Component {
   }
 
   render() {
-    return (
-      <div className="user-post-wrapper">
-        {this.state.dataLoaded
-          ? this.state.mbPosts.length > 0
-            ? this.makeMbPosts()
-            : null(this.state.mpPosts.length > 0)
-            ? this.makeMpPosts()
-            : null(this.state.rPosts.length > 0)
-            ? this.makeRPosts()
-            : null(this.state.jPosts.length > 0)
-            ? this.makeJPosts()
-            : null
-          : waveLoader}
-      </div>
-    );
+    return this.state.dataLoaded
+      ? this.state.mbPosts.length > 0
+        ? this.makeMbPosts()
+        : null(this.state.mpPosts.length > 0)
+        ? this.makeMpPosts()
+        : null(this.state.rPosts.length > 0)
+        ? this.makeRPosts()
+        : null(this.state.jPosts.length > 0)
+        ? this.makeJPosts()
+        : null
+      : waveLoader;
   }
 }

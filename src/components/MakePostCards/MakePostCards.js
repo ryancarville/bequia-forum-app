@@ -8,7 +8,6 @@ import comment from "../Icons/comment";
 export default class MakePostCard extends Component {
   makeCards = () => {
     return this.props.posts.map(p => {
-      console.log(this.props.forum);
       if (this.props.boardName) {
         var forum = this.props.boardName;
       } else if (this.props.forum) {

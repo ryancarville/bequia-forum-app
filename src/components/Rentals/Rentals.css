@@ -9,6 +9,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   align-items: flex-start;
   padding: 15px;
 }
@@ -44,20 +45,17 @@
     margin-top: 20px;
   }
   .rentals-content {
-    width: 90%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
-    grid-template-columns: repeat(autoFill, 1fr);
+    grid-template-columns: repeat(auto, 1fr);
     grid-gap: 1em;
   }
   .rentals-card-text {
-    display: none;
-    position: absolute;
-    font-size: 25px;
-    color: blue;
+    font-size: 30px;
   }
   .rental-cat-img {
-    width: 200px;
+    width: 150px;
   }
   .rentals-container a:hover .rentals-card-text {
     display: block;

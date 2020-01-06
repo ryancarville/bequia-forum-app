@@ -68,12 +68,8 @@ class Events extends Component {
         </header>
         {this.state.loggedIn ? (
           <span className="create-post-button">
-            <Link
-              to={"/createEvent"}
-              params={{ updateEvents: this.updateEvents }}
-              id="create-event-listing-button"
-            >
-              <i className="fas fa-plus"></i>Event
+            <Link to={"/createEvent"} id="create-event-listing-button">
+              <i className="fas fa-plus"> Event</i>
             </Link>
           </span>
         ) : null}

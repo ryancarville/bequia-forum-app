@@ -81,6 +81,7 @@ export default class EditEvent extends Component {
       description
     };
     apiServices.editEvent(eventToUpdate).then(() => {
+      this.props.updateEvent();
       this.setState({
         redirect: true
       });
@@ -192,7 +193,7 @@ export default class EditEvent extends Component {
             <input
               type="date"
               name="eventDate"
-              id="event-date"
+              className="event-date"
               value={this.state.event_date}
               min={this.state.today}
               onChange={this.handleDate}
@@ -219,7 +220,7 @@ export default class EditEvent extends Component {
             <label htmlFor="eventDescription">Event Description</label>
             <textarea
               name="eventDescritption"
-              id="event-description"
+              className="event-description"
               value={this.state.description}
               onChange={this.handleDescription}
             />

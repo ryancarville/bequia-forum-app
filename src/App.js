@@ -28,8 +28,8 @@ class App extends Component {
     };
   }
   //handle nav color
-  handleNavTextColor = () => {
-    if (window.location.pathname !== "/") {
+  handleNavTextColor = currLoc => {
+    if (window.location.pathname !== "/" || currLoc === "landing_links") {
       this.setState({
         navColorClass: "nav-text-color-blue",
         placeholderColor: "search-input-blue"
@@ -93,7 +93,6 @@ class App extends Component {
   };
   //set app state with search results
   searchResults = data => {
-    console.log(data);
     this.setState({
       searchRedirect: false
     });
@@ -362,7 +361,8 @@ class App extends Component {
       user: this.state.user,
       verifyLoginOnReload: this.verifyLoginOnReload,
       searchResults: this.searchResults,
-      resetSearchRedirect: this.resetSearchRedirect
+      resetSearchRedirect: this.resetSearchRedirect,
+      handleNavTextColor: this.handleNavTextColor
     };
     return (
       <div className="App">

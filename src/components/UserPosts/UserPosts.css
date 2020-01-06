@@ -1,36 +1,34 @@
-.user-post-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
 .dashboard-user-post-card-item {
-  display: flex;
-  margin: 20px;
   width: 100%;
-  height: 80px;
-  padding: 10px;
-}
-.dash-truncate {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+  height: auto;
+  padding: 25px;
+  border-bottom: 1px solid limegreen;
 }
 .dash-truncate h4 {
-  text-align: left;
+  text-align: center;
   margin: 0;
+  padding: 0px;
 }
 
 .post-stats-wrapper {
-  width: 100%;
+  width: 30%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  margin-left: 10px;
 }
 .post-stats-wrapper span {
-  width: 20%;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (min-width: 700px) {
+  .dashboard-user-post-card-item {
+    border: none;
+    text-align: center;
+  }
+  .post-stats-wrapper {
+    margin-top: 5px;
+    width: 50%;
+  }
 }

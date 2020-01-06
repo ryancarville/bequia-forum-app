@@ -19,9 +19,9 @@ export default class MarketPlace extends Component {
       <li key={mp.id} className="market-place-card">
         <Link key={`link-${mp.id}`} to={`/marketPlace/${mp.id}`}>
           <img src={mp.img_path} alt={mp.name} className="market-place-img" />
-          <span className="market-place-card-text">
-            <h4>{mp.name}</h4>
-          </span>
+          <p className="market-place-card-text">
+            {mp.name}
+          </p>
         </Link>
       </li>
     ));

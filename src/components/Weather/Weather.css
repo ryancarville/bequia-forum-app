@@ -1,0 +1,29 @@
+.weather-wrapper {
+  width: 100%;
+  height: 60px;
+  grid-column: 1 / 2;
+  margin-left: auto;
+  margin-right: auto;
+}
+.weather-widget {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  font-size: 16px;
+  margin: 0;
+}
+.weather-widget span {
+  margin: 10px;
+}
+.weather-widget h3 {
+  margin: 0;
+}
+#weather-widget-p {
+  margin: 0;
+}
+#change-unit {
+  cursor: pointer;
+  font-style: italic;
+  font-size: 14px;
+}

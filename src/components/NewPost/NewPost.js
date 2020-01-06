@@ -122,7 +122,8 @@ export default class NewPost extends Component {
   handlePageLimit = e => {
     this.setState(
       {
-        pageLimit: parseInt(e.target.value)
+        pageLimit: parseInt(e.target.value),
+        pageLimitReload: true
       },
       () => {
         if (this.state.pageLimit >= this.state.posts.length) {
@@ -147,7 +148,7 @@ export default class NewPost extends Component {
   };
 
   paginatorScroll = () => {
-    if (window.scrollY > 215) {
+    if (window.scrollY > 160) {
       this.setState({
         paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
       });

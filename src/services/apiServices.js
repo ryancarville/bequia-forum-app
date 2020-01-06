@@ -915,6 +915,24 @@ const apiServices = {
       return err;
     });
   },
+  //get all events by user id
+  getAllEventsByUserId(id) {
+    return new Promise((resolve, reject) => {
+      fetch(config.API_ENDPOINT + `/events/user/${id}`, {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+        mode: "cors"
+      }).then(res => {
+        !res.ok
+          ? res.json().then(err => reject(err))
+          : res.json().then(data => resolve(data));
+      });
+    }).catch(err => {
+      return err;
+    });
+  },
   //add new job listing
   addJobListing(newEvent) {
     return new Promise((resolve, reject) => {

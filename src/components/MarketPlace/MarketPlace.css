@@ -1,83 +1,64 @@
 .market-place-container {
-	width: 100%;
-	text-align: center;
-	margin-top: 80px;
-	opacity: 0;
-	animation: fadeIn .5s ease-in forwards;
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 
 .market-place-content ul {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 1em;
-	list-style: none;
-	padding: 15px;
-	margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  list-style: none;
+  padding: 15px;
+  margin: 0;
 }
 .market-place-card {
-	width: 100%;
-	height: 170px;
+  width: auto;
+  height: auto;
 }
+
 .market-place-content a {
-	text-decoration: none;
-	bottom: 0;
+  text-decoration: none;
+  bottom: 0;
 }
 
 .market-place-img {
-	width: 150px;
+  width: 100px;
 }
 
 .market-place-card-text h4 {
-	margin: 0;
+  margin: 0;
 }
 .market-place-card-text {
-	color: limegreen;
-	font-size: 20px;
-	text-align: center;
-	margin: 0;
+  color: rgb(48, 160, 0);
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
 }
 
-.market-place-card:hover .market-place-card-text {
-	display: block;
-	text-align: center;
-}
-.market-place-card:hover .market-place-img {
-	opacity: 0.1;
-}
 @media only screen and (min-width: 700px) {
-	.market-place-container {
-		margin-top: 20px;
-	}
-	.market-place-content ul {
-		margin-left: auto;
-		margin-right: auto;
-		width: 70%;
-		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 1em;
-	}
-	.market-place-content a {
-		border: none;
-		margin-bottom: 0px;
-	}
-	.market-place-card {
-		margin-bottom: 100px;
-	}
-	.market-place-card-text {
-		display: none;
-		position: absolute;
-		margin-top: -120px;
-		margin-left: 80px;
-		color: blue;
-		font-size: 20px;
-		width: 175px;
-	}
-	.market-place-img {
-		width: 200px;
-	}
-	.market-place-card:hover .market-place-card-text {
-		display: block;
-	}
-	.market-place-card:hover .market-place-img {
-		opacity: 0.1;
-	}
+  .market-place-container {
+    margin-top: 20px;
+  }
+  .market-place-content ul {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    grid-template-columns: repeat(auoFill, 1fr);
+  }
+  .market-place-content a {
+    border: none;
+    margin-bottom: 0px;
+  }
+  .market-place-card {
+    margin-bottom: 100px;
+  }
+  .market-place-card-text {
+    font-size: 20px;
+  }
+  .market-place-img {
+    width: 200px;
+  }
 }
