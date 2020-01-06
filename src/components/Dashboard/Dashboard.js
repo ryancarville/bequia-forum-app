@@ -30,10 +30,10 @@ export default class Dashboard extends Component {
       showEvents: !this.state.showEvents
     });
   };
-  //show newest posts
-  showNewPosts = () => {
+  //show weather
+  showWeather = () => {
     this.setState({
-      showPosts: !this.state.showPosts
+      showWeather: !this.state.showWeather
     });
   };
   //show users posts
@@ -78,6 +78,7 @@ export default class Dashboard extends Component {
         });
       });
   }
+  //desktop page views
   handleDashView = path => {
     if (path === "upcomingEvents") {
       this.setState({
@@ -111,13 +112,21 @@ export default class Dashboard extends Component {
         showWeather: true
       });
     }
+    if (path === "dash") {
+      this.setState({
+        showUpcomingEvents: true,
+        showUserEvents: true,
+        showUserPosts: true,
+        showWeather: true
+      });
+    }
   };
   render() {
     return (
       <>
         <section className="mobile-home-page-container">
           <div className="mobile-home-page-weather-content">
-            <h3 onClick={this.showHomePageEvents}>
+            <h3 onClick={this.showWeather}>
               {this.state.showWeather ? (
                 <i className="far fa-times-circle"></i>
               ) : (
@@ -206,6 +215,7 @@ export default class Dashboard extends Component {
         <section className="home-page-container">
           <nav className="home-page-nav">
             <ul>
+              <li onClick={() => this.handleDashView("dash")}>HOME</li>
               <li onClick={() => this.handleDashView("upcomingEvents")}>
                 <i className="fas fa-glass-cheers"></i> Upcoming Events
               </li>
@@ -237,20 +247,6 @@ export default class Dashboard extends Component {
                 )}
               </section>
             ) : null}
-            {this.state.showUserEvents ? (
-              <section className="dashboard-home-user-events">
-                <h3>Your Events</h3>
-                {this.state.userEvents.length > 0 ? (
-                  <article className="dashboard-scroll-content">
-                    <ul>
-                      <UserEvents events={this.state.userEvents} />
-                    </ul>
-                  </article>
-                ) : (
-                  <p>{this.state.eventsError}</p>
-                )}
-              </section>
-            ) : null}
             {this.state.showUserPosts ? (
               <section className="dashboard-home-user-posts">
                 <h3>Your Posts</h3>
@@ -262,6 +258,20 @@ export default class Dashboard extends Component {
                   </article>
                 ) : (
                   <p>No posts yest</p>
+                )}
+              </section>
+            ) : null}
+            {this.state.showUserEvents ? (
+              <section className="dashboard-home-user-events">
+                <h3>Your Events</h3>
+                {this.state.userEvents.length > 0 ? (
+                  <article className="dashboard-scroll-content">
+                    <ul>
+                      <UserEvents events={this.state.userEvents} />
+                    </ul>
+                  </article>
+                ) : (
+                  <p>{this.state.eventsError}</p>
                 )}
               </section>
             ) : null}
