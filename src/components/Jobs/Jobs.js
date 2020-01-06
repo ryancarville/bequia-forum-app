@@ -14,17 +14,20 @@ export default class Jobs extends Component {
   //make all job catagories
   makeCatagories = () => {
     return this.state.catagories.map(j => (
-      <div className="job-card" key={j.id}>
-        <Link to={`/jobs/${j.id}`}>
+      <Link to={`/jobs/${j.id}`}>
+        <div className="job-card" key={j.id}>
           <img
             className="job-cat-icon"
             src={j.img_url}
             alt={j.name + "-icon"}
           />
-          <h3>{j.name}</h3>
-          <p>{j.description}</p>
-        </Link>
-      </div>
+          <span>
+            <h3>{j.name}</h3>
+
+            <p>{j.description}</p>
+          </span>
+        </div>
+      </Link>
     ));
   };
   componentDidMount() {
