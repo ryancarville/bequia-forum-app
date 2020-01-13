@@ -9,7 +9,7 @@ class ToolBar extends Component {
 
     this.state = {
       posts: this.props.posts,
-      pageLimit: 1,
+      pageLimit: 10,
       pages: [],
       totalPages: 0,
       currentPage: 1,
@@ -41,13 +41,13 @@ class ToolBar extends Component {
   };
 
   fetchPageNumbers = () => {
-    console.log("fetch page nums");
+    console.log("HELLO");
     const LEFT_PAGE = "LEFT";
     const RIGHT_PAGE = "RIGHT";
     const totalPages = this.state.totalPages;
     const currentPage = this.state.currentPage;
     const pageNeighbours = this.state.pageNeighbours;
-
+    console.log(totalPages);
     const totalNumbers = pageNeighbours * 2 + 3;
     const totalBlocks = totalNumbers + 2;
 
@@ -91,13 +91,16 @@ class ToolBar extends Component {
     return this.range(1, totalPages);
   };
   componentDidMount() {
-    const intPageCount = this.props.posts.length / this.state.pageLimit;
+    window.scroll(0, 0);
+    const intPageCount = Math.ceil(
+      this.props.posts.length / this.state.pageLimit
+    );
     this.setState(
       {
         totalPages: intPageCount
       },
       () => {
-        const p = this.fetchPageNumbers(intPageCount);
+        const p = this.fetchPageNumbers();
         this.setState({
           pages: p,
           dataLoaded: true
@@ -199,10 +202,10 @@ class ToolBar extends Component {
           className="num-post-results"
           onChange={e => this.handlePageLimit(e)}
         >
-          <option selected value="5">
-            5 post per page
+          <option value="5">5 post per page</option>
+          <option selected value="10">
+            10 post per page
           </option>
-          <option value="10">10 post per page</option>
           <option value="15">15 post per page</option>
           <option value="20">20 post per page</option>
           <option value="25">25 post per page</option>

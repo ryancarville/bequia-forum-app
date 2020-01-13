@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate";
 import formatDate from "../../helpers/formatDate";
-import Paginator from "../Paginator/Paginator";
+import ToolBar from "../ToolBar/ToolBar";
 import "./JobSection.css";
-import Sort from "../Sort/Sort";
 import apiServices from "../../services/apiServices";
 //job section component
 export default class JobPage extends Component {
@@ -212,17 +211,6 @@ export default class JobPage extends Component {
     );
   };
 
-  paginatorScroll = () => {
-    if (window.scrollY > 140) {
-      this.setState({
-        paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
-      });
-    } else {
-      this.setState({
-        paginatorScroll: "paginator-wrapper"
-      });
-    }
-  };
   componentDidMount() {
     window.scroll(0, 0);
     const { job_cat } = this.props.match.params;
@@ -234,82 +222,55 @@ export default class JobPage extends Component {
     });
     apiServices.getJobListingsByCat(job_cat).then(listings => {
       if (listings.error) {
+        console.log(listings.error);
         this.setState({
-          error: listings.error
+          error: listings.error,
+          dataLoaded: true
         });
+        return;
       }
+      const sorted = listings.sort((a, b) =>
+        a.date_posted > b.date_posted ? -1 : 1
+      );
+
       this.setState({
-        listings: listings
+        listings: sorted,
+        dataLoaded: true
       });
     });
-    window.addEventListener("scroll", () => this.paginatorScroll());
   }
-
+  handleCurrentPosts = currentListings => {
+    this.setState({
+      currentListings
+    });
+  };
   render() {
-    const { listings, currentListings, currentPage, totalPages } = this.state;
-    const totalPosts = listings.length;
-    if (totalPosts === 0) return null;
-    return this.state.error !== null ? (
+    const { listings, currentListings, cat_name, dataLoaded } = this.state;
+    return !dataLoaded ? null : (
       <section className="job-section-container">
         <header>
-          <h3 id="job-section-cat-title">
-            {this.state.cat_name ? this.state.cat_name : null}
-          </h3>
+          <h3 id="job-section-cat-title">{cat_name ? cat_name : null}</h3>
+          <ToolBar
+            currentPosts={currentListings}
+            posts={listings}
+            handleCurrentPosts={this.handleCurrentPosts}
+            handleSort={this.handleSort}
+          />
         </header>
-        <article>
-          <p style={{ textAlign: "center" }}>
-            <strong>{this.state.error}</strong>
-          </p>
-        </article>
-      </section>
-    ) : (
-      <section className="job-section-container">
-        <header>
-          <h3 id="job-section-cat-title">
-            {this.state.cat_name ? this.state.cat_name : null}
-          </h3>
 
-          <div className={this.state.paginatorScroll}>
-            <Sort sortType="jobs" handleSort={this.handleSort} />
-            <select
-              className="num-post-results"
-              onChange={this.handlePageLimit}
-            >
-              <option selected disabled value="">
-                Posts per page
-              </option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-            </select>
-            <Paginator
-              totalRecords={totalPosts}
-              pageLimit={this.state.pageLimit}
-              pageNeighbours={this.state.pageNeighbours}
-              onPageChanged={this.onPageChanged}
-            />
-
-            {currentPage && (
-              <span className="paginator-current-page">
-                Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-                <span className="font-weight-bold">{totalPages}</span>
-              </span>
-            )}
-            {totalPages && (
-              <span className="paginator-total-results">
-                {this.state.listings.length} <span>Results</span>{" "}
-              </span>
-            )}
-          </div>
-        </header>
-        <div className="job-section-content">
-          <ul className="job-section-ul">
-            {this.makeListings(currentListings)}
-          </ul>
-        </div>
+        {this.state.error !== null ? (
+          <article>
+            <p style={{ textAlign: "center" }}>
+              <strong>{this.state.error}</strong>
+            </p>
+          </article>
+        ) : (
+          <article className="job-section-content">
+            <ul className="job-section-ul">
+              {this.makeListings(currentListings)}
+            </ul>
+          </article>
+        )}
       </section>
     );
   }

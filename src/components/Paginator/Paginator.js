@@ -28,7 +28,7 @@ class Pagination extends Component {
   }
 
   gotoPage = page => {
-    const currentPage = Math.max(0, Math.min(page, this.props.totalPages));
+    const currentPage = Math.max(0, Math.min(page, this.totalPages));
     console.log(currentPage);
     const paginationData = {
       currentPage
