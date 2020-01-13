@@ -205,17 +205,6 @@ export default class ForumSection extends Component {
     );
   };
 
-  paginatorScroll = () => {
-    if (window.scrollY > 130) {
-      this.setState({
-        paginatorScroll: "paginator-wrapper paginator-wrapper-fixed"
-      });
-    } else {
-      this.setState({
-        paginatorScroll: "paginator-wrapper"
-      });
-    }
-  };
   componentDidMount() {
     window.scroll(0, 0);
     //get all the board info and post info
@@ -268,7 +257,6 @@ export default class ForumSection extends Component {
             });
           });
       });
-    window.addEventListener("scroll", () => this.paginatorScroll());
   }
 
   render() {
@@ -295,12 +283,6 @@ export default class ForumSection extends Component {
               <option value="25">25</option>
               <option value="30">30</option>
             </select>
-            <Paginator
-              totalRecords={totalPosts}
-              pageLimit={this.state.pageLimit}
-              pageNeighbours={this.state.pageNeighbours}
-              onPageChanged={this.onPageChanged}
-            />
 
             {currentPage && (
               <span className="paginator-current-page">
