@@ -32,12 +32,15 @@
 }
 .market-place-section-content ul li span a h4 {
   text-decoration: none;
-  color: limegreen;
   font-size: 30px;
 }
 
+.mp-card-title h5 {
+  font-size: 20px;
+  margin: 0;
+}
 .post-info {
-  line-height: 1em;
+  line-height: .5em;
 }
 #mp-section-error {
   text-align: center;
@@ -48,5 +51,8 @@
   }
   .market-place-section-content ul {
     padding: 20px;
+  }
+  .market-place-section-content ul li {
+    width: 90%;
   }
 }

@@ -29,7 +29,7 @@ class App extends Component {
   }
   //handle nav color
   handleNavTextColor = currLoc => {
-    if (window.location.pathname !== "/" || currLoc === "landing_links") {
+    if (window.location.pathname !== "/") {
       this.setState({
         navColorClass: "nav-text-color-blue",
         placeholderColor: "search-input-blue"
@@ -53,7 +53,7 @@ class App extends Component {
   };
   //handle log out
   handleLogOut = () => {
-    sessionStorage.clear();
+    TokenServices.clearAuthToken();
     this.setState({
       loggedIn: false
     });
@@ -63,12 +63,12 @@ class App extends Component {
     const token = TokenServices.getAuthToken();
     if (token) {
       apiServices.verifyToken(token).then(data => {
-        if (data.message === "jwt expired") {
+        if (data.error) {
           TokenServices.clearAuthToken();
           this.setState({
             loggedIn: false
           });
-          return false;
+          return true;
         } else {
           this.setState({
             user: {

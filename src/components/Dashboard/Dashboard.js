@@ -21,32 +21,12 @@ export default class Dashboard extends Component {
       showUpcomingEvents: true,
       showUserEvents: true,
       showUserPosts: true,
-      showWeather: true
+      showWeather: true,
+      liActive: ""
     };
+    this.root = document.root;
   }
-  //show upcoming events
-  showHomePageEvents = () => {
-    this.setState({
-      showEvents: !this.state.showEvents
-    });
-  };
-  //show weather
-  showWeather = () => {
-    this.setState({
-      showWeather: !this.state.showWeather
-    });
-  };
-  //show users posts
-  showUserPosts = () => {
-    this.setState({
-      showUserPosts: !this.state.showUserPosts
-    });
-  };
-  showUserEvents = () => {
-    this.setState({
-      showUserEvents: !this.state.showUserEvents
-    });
-  };
+
   static contextType = ForumContext;
   componentDidMount() {
     window.scroll(0, 0);
@@ -80,54 +60,115 @@ export default class Dashboard extends Component {
   }
   //desktop page views
   handleDashView = path => {
+    console.log(this.root);
+    document.documentElement.style.setProperty(
+      "--dash-home-grid-cols",
+      1000 + "px"
+    );
+    document.documentElement.style.setProperty("--dash-scroll-el", "visible");
     if (path === "upcomingEvents") {
-      this.setState({
-        showUpcomingEvents: true,
-        showUserEvents: false,
-        showUserPosts: false,
-        showWeather: false
-      });
+      const tab = document.getElementById("dash-nav-events");
+
+      console.log(tab);
+      this.setState(
+        {
+          showUpcomingEvents: true,
+          showUserEvents: false,
+          showUserPosts: false,
+          showWeather: false,
+          liActive: "showEvents"
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
     }
     if (path === "userEvents") {
-      this.setState({
-        showUpcomingEvents: false,
-        showUserEvents: true,
-        showUserPosts: false,
-        showWeather: false
-      });
+      const tab = document.getElementById("dash-nav-user-events");
+      this.setState(
+        {
+          showUpcomingEvents: false,
+          showUserEvents: true,
+          showUserPosts: false,
+          showWeather: false,
+          liActive: "showUserEvents"
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
     }
     if (path === "userPosts") {
-      this.setState({
-        showUpcomingEvents: false,
-        showUserEvents: false,
-        showUserPosts: true,
-        showWeather: false
-      });
+      const tab = document.getElementById("dash-nav-user-posts");
+      this.setState(
+        {
+          showUpcomingEvents: false,
+          showUserEvents: false,
+          showUserPosts: true,
+          showWeather: false,
+          liActive: "showUserPosts"
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
     }
     if (path === "weather") {
-      this.setState({
-        showUpcomingEvents: false,
-        showUserEvents: false,
-        showUserPosts: false,
-        showWeather: true
-      });
+      const tab = document.getElementById("dash-nav-weather");
+      this.setState(
+        {
+          showUpcomingEvents: false,
+          showUserEvents: false,
+          showUserPosts: false,
+          showWeather: true,
+          liActive: "showWeather"
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
     }
     if (path === "dash") {
-      this.setState({
-        showUpcomingEvents: true,
-        showUserEvents: true,
-        showUserPosts: true,
-        showWeather: true
-      });
+      const tab = document.getElementById("dash-nav-dash");
+      document.documentElement.style.setProperty(
+        "--dash-home-grid-cols",
+        500 + "px"
+      );
+      document.documentElement.style.setProperty("--dash-scroll-el", "scroll");
+      this.setState(
+        {
+          showUpcomingEvents: true,
+          showUserEvents: true,
+          showUserPosts: true,
+          showWeather: true,
+          liActive: "showDash"
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
     }
   };
   render() {
+    const {
+      liActive,
+      showWeather,
+      showEvents,
+      events,
+      showUserPosts,
+      showUserEvents,
+      postsLoaded,
+      userPosts,
+      eventsLoaded,
+      showUpcomingEvents,
+      userEvents
+    } = this.state;
     return (
       <>
         <section className="mobile-home-page-container">
           <div className="mobile-home-page-weather-content">
             <h3 onClick={this.showWeather}>
-              {this.state.showWeather ? (
+              {showWeather ? (
                 <i className="far fa-times-circle"></i>
               ) : (
                 "Weather"
@@ -135,15 +176,17 @@ export default class Dashboard extends Component {
             </h3>
             <div
               className={`${
-                this.state.showWeather
+                showWeather
                   ? "mobile-home-page-weather-open"
                   : "mobile-home-page-weather-closed"
               }`}
-            ></div>
+            >
+              <Weather />
+            </div>
           </div>
           <div className="mobile-home-page-event-content">
             <h3 onClick={this.showHomePageEvents}>
-              {this.state.showEvents ? (
+              {showEvents ? (
                 <i className="far fa-times-circle"></i>
               ) : (
                 "Upcoming Events"
@@ -151,13 +194,13 @@ export default class Dashboard extends Component {
             </h3>
             <div
               className={`${
-                this.state.showEvents
+                showEvents
                   ? "mobile-home-page-events-open"
                   : "mobile-home-page-events-closed"
               }`}
             >
-              {this.state.events.length > 0 ? (
-                <ThisWeek events={this.state.events} />
+              {events.length > 0 ? (
+                <ThisWeek events={events} />
               ) : (
                 <p>Currently there are no events for this week.</p>
               )}
@@ -165,7 +208,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="mobile-home-page-user-post-content">
             <h3 onClick={this.showUserPosts}>
-              {this.state.showUserPosts ? (
+              {showUserPosts ? (
                 <i className="far fa-times-circle"></i>
               ) : (
                 "Your Posts"
@@ -173,14 +216,14 @@ export default class Dashboard extends Component {
             </h3>
             <div
               className={`${
-                this.state.showUserPosts
+                showUserPosts
                   ? "mobile-home-page-user-posts-open"
                   : "mobile-home-page-user-posts-closed"
               }`}
             >
-              {this.state.postsLoaded ? (
+              {postsLoaded ? (
                 <ul>
-                  <UserPosts posts={this.state.userPosts} />
+                  <UserPosts posts={userPosts} />
                 </ul>
               ) : (
                 waveLoader
@@ -189,7 +232,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="mobile-home-page-user-events-content">
             <h3 onClick={this.showUserEvents}>
-              {this.state.showUserEvents ? (
+              {showUserEvents ? (
                 <i className="far fa-times-circle"></i>
               ) : (
                 "Your Events"
@@ -197,14 +240,14 @@ export default class Dashboard extends Component {
             </h3>
             <div
               className={`${
-                this.state.showUserEvents
+                showUserEvents
                   ? "mobile-home-page-user-events-open"
                   : "mobile-home-page-user-events-closed"
               }`}
             >
-              {this.state.eventsLoaded ? (
+              {eventsLoaded ? (
                 <ul>
-                  <UserEvents events={this.state.userEvents} />
+                  <UserEvents events={userEvents} />
                 </ul>
               ) : (
                 waveLoader
@@ -215,45 +258,67 @@ export default class Dashboard extends Component {
         <section className="home-page-container">
           <nav className="home-page-nav">
             <ul>
-              <li onClick={() => this.handleDashView("dash")}>HOME</li>
-              <li onClick={() => this.handleDashView("upcomingEvents")}>
+              <li
+                className={liActive}
+                id="dash-nav-dash"
+                onClick={() => this.handleDashView("dash")}
+              >
+                DASHBOARD
+              </li>
+              <li
+                className={liActive}
+                id="dash-nav-events"
+                onClick={() => this.handleDashView("upcomingEvents")}
+              >
                 <i className="fas fa-glass-cheers"></i> Upcoming Events
               </li>
-              <li onClick={() => this.handleDashView("weather")}>
+              <li
+                className={liActive}
+                id="dash-nav-weather"
+                onClick={() => this.handleDashView("weather")}
+              >
                 <i className="fas fa-cloud-sun"></i> Weather
               </li>
-              <li onClick={() => this.handleDashView("userPosts")}>
+              <li
+                className={liActive}
+                id="dash-nav-user-posts"
+                onClick={() => this.handleDashView("userPosts")}
+              >
                 <i className="far fa-sticky-note"></i> Your Posts
               </li>
-              <li onClick={() => this.handleDashView("userEvents")}>
+              <li
+                className={liActive}
+                id="dash-nav-user-events"
+                onClick={() => this.handleDashView("userEvents")}
+              >
                 <i className="far fa-calendar-alt"></i> Your Events
               </li>
             </ul>
           </nav>
           <div className="home-page-content">
-            {this.state.showWeather ? (
+            {showWeather ? (
               <section id="home-page-weather-wrapper">
                 <h3>Current Weather</h3>
                 <Weather />
               </section>
             ) : null}
-            {this.state.showUpcomingEvents ? (
+            {showUpcomingEvents ? (
               <section id="home-page-upcoming-events">
                 <h3>Upcoming Events</h3>
-                {this.state.events.length > 0 ? (
+                {events.length > 0 ? (
                   <ThisWeek events={this.state.events} />
                 ) : (
                   <p>Currently there are no events for this week.</p>
                 )}
               </section>
             ) : null}
-            {this.state.showUserPosts ? (
+            {showUserPosts ? (
               <section className="dashboard-home-user-posts">
                 <h3>Your Posts</h3>
-                {this.state.userPosts.length > 0 ? (
+                {userPosts.length > 0 ? (
                   <article className="dashboard-scroll-content">
                     <ul>
-                      <UserPosts posts={this.state.userPosts} />
+                      <UserPosts posts={userPosts} />
                     </ul>
                   </article>
                 ) : (
@@ -261,13 +326,13 @@ export default class Dashboard extends Component {
                 )}
               </section>
             ) : null}
-            {this.state.showUserEvents ? (
+            {showUserEvents ? (
               <section className="dashboard-home-user-events">
                 <h3>Your Events</h3>
-                {this.state.userEvents.length > 0 ? (
+                {userEvents.length > 0 ? (
                   <article className="dashboard-scroll-content">
                     <ul>
-                      <UserEvents events={this.state.userEvents} />
+                      <UserEvents events={userEvents} />
                     </ul>
                   </article>
                 ) : (

@@ -1100,6 +1100,15 @@ const apiServices = {
     }).catch(err => {
       return err;
     });
+  },
+  uploadToCloudinary(file) {
+    return new Promise((resolve, reject) => {
+      fetch(`http://res.cloudinary.com/users-posts/${config.CLOUDINARY.NAME}/image/upload`, {
+        method: "POST",
+        uploadPreset: 'allImages',
+        
+      })
+    })
   }
 };
 

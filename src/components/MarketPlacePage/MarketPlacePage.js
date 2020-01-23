@@ -4,7 +4,7 @@ import "./MarketPlacePage.css";
 import DeleteButton from "../Buttons/deleteButton";
 import DeletePopUp from "../DeletePopUp/DeletePopUp";
 import EditButton from "../Buttons/Edit";
-import MarketPlaceListingForm from "../CreateMarketPlaceListing/MarketPlaceListingForm";
+import ListingEntryForm from "../ListingEntryForm/ListingEntryForm";
 import ForumContext from "../../ForumContext";
 import ListingBody from "./ListingBody";
 import apiServices from "../../services/apiServices";
@@ -209,7 +209,7 @@ export default class MarketPlacePage extends Component {
             />
           ) : null}
           {this.state.showEditPopUp ? (
-            <MarketPlaceListingForm
+            <ListingEntryForm
               edit={true}
               state={this.state}
               handleMarketPlaceCat={this.handleMarketPlaceCat}

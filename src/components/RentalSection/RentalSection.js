@@ -235,7 +235,7 @@ export default class RentalSection extends Component {
     });
   };
   render() {
-    const { listings, currentListings, currentPage, totalPages } = this.state;
+    const { listings, currentListings } = this.state;
     const totalPosts = listings.length;
     if (totalPosts === 0) return null;
     return this.state.error !== null ? (

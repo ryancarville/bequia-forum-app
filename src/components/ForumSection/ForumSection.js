@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Truncate from "react-truncate";
 import TokenServices from "../../services/TokenServices";
-import formatDate from "../../helpers/formatDate";
-import comment from "../Icons/comment";
-import like from "../Icons/like";
 import "./ForumSection.css";
 import ToolBar from "../ToolBar/ToolBar";
 import apiServices from "../../services/apiServices";

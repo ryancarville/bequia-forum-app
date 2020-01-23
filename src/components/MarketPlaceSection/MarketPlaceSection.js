@@ -133,12 +133,13 @@ export default class MarketPlaceSections extends Component {
         <article className="post-card-info non-board-post">
           <span>
             <Link
+              className="mp-card-title"
               to={{
                 pathname: `/marketPlace/${l.market_place_cat}/${l.id}`,
                 state: { id: l.id }
               }}
             >
-              <h4>{l.title}</h4>
+              <h5>{l.title}</h5>
             </Link>
             <Truncate
               className="post-teaser"
@@ -178,7 +179,7 @@ export default class MarketPlaceSections extends Component {
       </li>
     ));
   };
-  
+
   componentDidMount() {
     window.scroll(0, 0);
     const { marketPlaceId } = this.props.match.params;

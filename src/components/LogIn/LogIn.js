@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import apiServices from "../../services/apiServices";
 import TokenServices from "../../services/TokenServices";
 import ForumContext from "../../ForumContext";
@@ -87,13 +88,13 @@ export default class LogIn extends Component {
 
   render() {
     if (this.state.success) {
-      this.props.history.go(-1);
+      this.context.handleNavTextColor();
+      return <Redirect to={"/dashboard"} />;
     }
     return (
       <div className="logIn-container">
         <div className="logIn-content">
           <h3>Sign In</h3>
-
           <form onSubmit={this.handleSubmit}>
             <button type="button" onClick={this.setTestUser}>
               Login as Test User
