@@ -198,6 +198,7 @@ export default class MarketPlaceSections extends Component {
       .then(() => {
         apiServices.getMarketPlaceCatagories().then(cats => {
           const currCat = cats.filter(c => c.id.toString() === marketPlaceId);
+          console.log(marketPlaceId);
           this.setState({
             market_place_name: currCat[0].name,
             dataLoaded: true

@@ -382,7 +382,7 @@ export default class ListingEntryForm extends Component {
           <aside className="listing-form-image-wrapper">
             <h2>Images</h2>
 
-            <span id="add-image-wrapper"></span>
+            <span className="add-image-wrapper" id="add-image-wrapper"></span>
             <span id="addImage" onClick={this.handleAddAnotherImage}>
               <i className="fas fa-plus " />
               <p>add image</p>

@@ -66,6 +66,7 @@
   border: 5px solid rgb(206, 206, 206);
   box-shadow: rgb(177, 177, 177) 2px 2px 20px 0px;
   border-radius: 100%;
+  cursor: pointer;
 }
 #addImage p {
   margin: 0;
@@ -108,6 +109,9 @@
   border-radius: 25px;
 }
 @media only screen and (min-width: 700px) {
+  .listing-form {
+    width: 70%;
+  }
   .listing-form header {
     text-align: center;
   }
@@ -116,7 +120,7 @@
     margin-bottom: 5px;
   }
   .listing-form-aside {
-    width: 50%;
+    width: 30%;
   }
   .listing-form-top {
     display: flex;
@@ -156,7 +160,12 @@
     border-radius: 100%;
   }
   #add-image-wrapper {
-    width: 500px;
+    margin-left: 50px;
+    padding: 20px;
+    width: 550px;
+    height: 400px;
+    overflow: hidden;
+    scroll-behavior: smooth;
   }
 
   .single-image-uploader {
