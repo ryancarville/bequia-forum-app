@@ -8,8 +8,7 @@
     },
     {
       "src": "/manifest.json",
-      "dest": "/manifest.json",
-      "type": "text/json"
+      "dest": "/manifest.json"
     },
     {
       "src": ".*",
