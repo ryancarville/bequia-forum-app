@@ -81,9 +81,9 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/users/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
+          "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        }
       }).then(res => {
         !res.ok
           ? res.json().then(err => reject(err))
@@ -153,9 +153,9 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/messageboards/${forum_cat}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
+          "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        }
       }).then(res => {
         !res.ok
           ? res.json().then(err => reject(err))
@@ -1103,12 +1103,14 @@ const apiServices = {
   },
   uploadToCloudinary(file) {
     return new Promise((resolve, reject) => {
-      fetch(`http://res.cloudinary.com/users-posts/${config.CLOUDINARY.NAME}/image/upload`, {
-        method: "POST",
-        uploadPreset: 'allImages',
-        
-      })
-    })
+      fetch(
+        `http://res.cloudinary.com/users-posts/${config.CLOUDINARY.NAME}/image/upload`,
+        {
+          method: "POST",
+          uploadPreset: "allImages"
+        }
+      );
+    });
   }
 };
 
