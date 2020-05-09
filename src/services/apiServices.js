@@ -6,16 +6,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/signUp", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newUser),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -25,16 +25,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/login", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(creds),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -44,16 +44,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/login/verifyToken/${token}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
 
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -63,15 +63,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/login/token/extended/${token}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -82,14 +82,14 @@ const apiServices = {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      }).then(res => {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -99,15 +99,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/users/userName/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -117,15 +117,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/forum/catagories", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -135,15 +135,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board-name/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -154,14 +154,14 @@ const apiServices = {
         method: "GET",
         headers: {
           "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      }).then(res => {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -170,16 +170,14 @@ const apiServices = {
     return new Promise((resolve, reject) => {
       fetch(config.API_ENDPOINT + "/forum/messageBoards", {
         method: "GET",
-        headers: {
-          "content-type": "application/json"
-        },
-        mode: "cors"
-      }).then(res => {
+
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -189,15 +187,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-board/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -209,16 +207,16 @@ const apiServices = {
         {
           method: "GET",
           headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
           },
-          mode: "cors"
+          mode: "cors",
         }
-      ).then(res => {
+      ).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -228,15 +226,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/messageboards/get-post-by-id/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -246,15 +244,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/comments/count-comments/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -264,15 +262,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/numOfThreads/${board_id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -282,15 +280,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/forum/newestPosts", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "no-cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -300,15 +298,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/get-user-posts/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -322,17 +320,17 @@ const apiServices = {
           {
             method: "GET",
             headers: {
-              "content-type": "application/json"
+              "content-type": "application/json",
             },
 
-            mode: "cors"
+            mode: "cors",
           }
-        ).then(res => {
+        ).then((res) => {
           !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
+            ? res.json().then((err) => reject(err))
+            : res.json().then((data) => resolve(data));
         });
-      }).catch(err => {
+      }).catch((err) => {
         return err;
       });
     } else {
@@ -340,16 +338,16 @@ const apiServices = {
         fetch(config.API_ENDPOINT + `/forum/search/posts/${search.term}`, {
           method: "GET",
           headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
           },
 
-          mode: "cors"
-        }).then(res => {
+          mode: "cors",
+        }).then((res) => {
           !res.ok
-            ? res.json().then(err => reject(err))
-            : res.json().then(data => resolve(data));
+            ? res.json().then((err) => reject(err))
+            : res.json().then((data) => resolve(data));
         });
-      }).catch(err => {
+      }).catch((err) => {
         return err;
       });
     }
@@ -360,15 +358,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/comments/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -378,15 +376,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/events", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -404,15 +402,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/events/thisWeek/${today}/${nextWeek}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -422,16 +420,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/jobs/catagories", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
 
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -441,15 +439,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/jobs/listings-by-cat/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -459,15 +457,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/jobs/listings/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -477,15 +475,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/rentals/catagories", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -495,15 +493,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/catagories/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -513,15 +511,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/rentals/listings-by-cat/${rental_cat}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -531,15 +529,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/rentals/listing/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -549,15 +547,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/marketPlace/catagories", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -567,15 +565,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/marketPlace/listings-by-cat/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -585,15 +583,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/marketPlace/listings/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -603,15 +601,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/directory", {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -621,16 +619,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/directory/addListing", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newListing),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -640,15 +638,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/directory/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -658,15 +656,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/post/addLike/${post_id}`, {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -676,15 +674,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/post/minusLike/${post_id}`, {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -697,16 +695,16 @@ const apiServices = {
         {
           method: "GET",
           headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
           },
-          mode: "cors"
+          mode: "cors",
         }
-      ).then(res => {
+      ).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -716,16 +714,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/post/addToTracker`, {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(info),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -735,16 +733,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/post/deleteFromTracker`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(info),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -754,16 +752,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/forum/addPost", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newPost),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -773,16 +771,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/forum/edit", {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(postToUpdate),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -792,15 +790,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/forum/posts/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -810,16 +808,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/comments/addComment", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newComment),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -829,15 +827,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/comments/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -847,15 +845,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/events/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -865,16 +863,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/events/addEvent", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newEvent),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -884,16 +882,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/events/edit", {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(eventToUpdate),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -903,15 +901,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/events/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -921,15 +919,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/events/user/${id}`, {
         method: "GET",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -939,16 +937,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/jobs/addJob", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newEvent),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -958,16 +956,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/jobs/edit", {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(listingToUpdate),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -977,15 +975,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/jobs/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -995,16 +993,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/rentals/addListing", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newRental),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1014,16 +1012,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/rentals/edit", {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(listingToUpdate),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1033,15 +1031,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/rentals/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1051,16 +1049,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/marketPlace/addListing", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(newListing),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1070,16 +1068,16 @@ const apiServices = {
       fetch(config.API_ENDPOINT + "/marketPlace/edit", {
         method: "PATCH",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
         body: JSON.stringify(listingToUpdate),
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1089,15 +1087,15 @@ const apiServices = {
       fetch(config.API_ENDPOINT + `/marketPlace/delete/${id}`, {
         method: "DELETE",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        mode: "cors"
-      }).then(res => {
+        mode: "cors",
+      }).then((res) => {
         !res.ok
-          ? res.json().then(err => reject(err))
-          : res.json().then(data => resolve(data));
+          ? res.json().then((err) => reject(err))
+          : res.json().then((data) => resolve(data));
       });
-    }).catch(err => {
+    }).catch((err) => {
       return err;
     });
   },
@@ -1107,11 +1105,11 @@ const apiServices = {
         `http://res.cloudinary.com/users-posts/${config.CLOUDINARY.NAME}/image/upload`,
         {
           method: "POST",
-          uploadPreset: "allImages"
+          uploadPreset: "allImages",
         }
       );
     });
-  }
+  },
 };
 
 export default apiServices;
