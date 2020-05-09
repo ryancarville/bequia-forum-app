@@ -282,7 +282,7 @@ const apiServices = {
         headers: {
           "content-type": "application/json",
         },
-        mode: "no-cors",
+        mode: "cors",
       }).then((res) => {
         !res.ok
           ? res.json().then((err) => reject(err))

@@ -15,13 +15,13 @@ export default class NewPost extends Component {
       posts: [],
       currentPosts: [],
       dataLoaded: false,
-      error: null
+      error: null,
     };
   }
 
-  handleSort = sort => {
+  handleSort = (sort) => {
     if (sort.sortType === "asc" && sort.column === "title") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x < y) {
@@ -33,12 +33,12 @@ export default class NewPost extends Component {
         return 0;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "title") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         var x = a.title.toLowerCase();
         var y = b.title.toLowerCase();
         if (x > y) {
@@ -50,12 +50,12 @@ export default class NewPost extends Component {
         return 0;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "date_posted") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x < y) {
@@ -67,12 +67,12 @@ export default class NewPost extends Component {
         return 0;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "date_posted") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         var x = a.date_posted.toLowerCase();
         var y = b.date_posted.toLowerCase();
         if (x > y) {
@@ -84,25 +84,25 @@ export default class NewPost extends Component {
         return 0;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
     if (sort.sortType === "desc" && sort.column === "likes") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         return b.likes - a.likes;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
     if (sort.sortType === "asc" && sort.column === "likes") {
-      const sorted = this.state.posts.sort(function(a, b) {
+      const sorted = this.state.posts.sort(function (a, b) {
         return a.likes - b.likes;
       });
       this.setState({
-        posts: sorted
+        posts: sorted,
       });
       return;
     }
@@ -112,22 +112,23 @@ export default class NewPost extends Component {
     window.scroll(0, 0);
     apiServices
       .getForum()
-      .then(forum => this.setState({ forum: forum }))
+      .then((forum) => this.setState({ forum: forum }))
       .then(() =>
-        apiServices.getNewestPosts().then(posts => {
+        apiServices.getNewestPosts().then((posts) => {
           if (posts.error) {
+            console.log(posts);
             this.setState({
               error: posts.error,
-              dataLoaded: true
+              dataLoaded: true,
             });
           }
-          posts.forEach(post => {
+          posts.forEach((post) => {
             apiServices
               .getNumOfCommentsByPostId(post.id)
-              .then(num => {
+              .then((num) => {
                 post.commentCount = num[0].count;
                 this.setState({
-                  posts: [...this.state.posts, post]
+                  posts: [...this.state.posts, post],
                 });
               })
               .then(() => {
@@ -138,7 +139,7 @@ export default class NewPost extends Component {
                   this.setState({
                     posts: sorted,
                     currentPosts: sorted,
-                    dataLoaded: true
+                    dataLoaded: true,
                   });
                 }
               });
@@ -146,9 +147,9 @@ export default class NewPost extends Component {
         })
       );
   }
-  handleCurrentPosts = currentPosts => {
+  handleCurrentPosts = (currentPosts) => {
     this.setState({
-      currentPosts: currentPosts
+      currentPosts: currentPosts,
     });
   };
   render() {
