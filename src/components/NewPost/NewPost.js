@@ -116,7 +116,6 @@ export default class NewPost extends Component {
       .then(() =>
         apiServices.getNewestPosts().then((posts) => {
           if (posts.error) {
-            console.log(posts);
             this.setState({
               error: posts.error,
               dataLoaded: true,
