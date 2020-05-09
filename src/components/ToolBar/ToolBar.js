@@ -41,16 +41,13 @@ class ToolBar extends Component {
   };
 
   fetchPageNumbers = () => {
-    console.log("HELLO");
     const LEFT_PAGE = "LEFT";
     const RIGHT_PAGE = "RIGHT";
     const totalPages = this.state.totalPages;
     const currentPage = this.state.currentPage;
     const pageNeighbours = this.state.pageNeighbours;
-    console.log(totalPages);
     const totalNumbers = pageNeighbours * 2 + 3;
     const totalBlocks = totalNumbers + 2;
-
     if (totalPages > totalBlocks) {
       let pages = [];
 
