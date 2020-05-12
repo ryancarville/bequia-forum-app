@@ -1,18 +1,18 @@
 .landingPage-container {
   width: 100%;
-  height: 800px;
+  height: 100vh;
   margin-top: -120px;
   padding: 15px;
   z-index: 0;
   background-image: url("./bequia-image.jpg");
   background-position: top;
   background-repeat: no-repeat;
-  background-size: 250%;
+  background-size: 100vh;
   animation: fadeIn 0.5s ease-in forwards;
 }
 .landingPage-content {
   width: 100%;
-  margin-top: 170px;
+  margin-top: 7em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@
   z-index: 2;
   position: relative;
   opacity: 1;
-  margin-top: -30px;
+  margin-top: 30px;
 }
 #landing-page-text header {
   width: 100%;
@@ -37,83 +37,45 @@
   margin: 0;
   text-shadow: black 1px 1px 4px;
 }
-#landing-page-text header h4 {
+#landing-page-text header h4 h3 {
   margin: 0;
-  margin-top: 15px;
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
   text-shadow: black 1px 1px 4px;
-}
-#landing-page-message {
-  width: 100%;
-  float: right;
-  height: auto;
-  padding: 5px;
-  margin-top: 20px;
-  margin-left: -20px;
-  z-index: -1000;
-  text-align: center;
-  text-shadow: black 1px 1px 4px;
-  font-size: 25px;
-}
-#landing-page-message h5 {
-  width: 100%;
-  text-align: center;
-  font-size: 25px;
 }
 
 #landing-page-text a {
-  color: limegreen;
-  font-size: 18px;
+  color: rgb(24, 156, 189);
+  font-size: 28px;
   margin: 5px;
+  font-weight: bold;
+  text-shadow: black 1px 1px 1px;
+  text-decoration: none;
+}
+#landing-page-text a:hover {
+  color: rgb(236, 252, 14);
+  transition: all 0.5s;
+  font-size: 40px;
 }
 @media only screen and (min-width: 700px) {
   .landingPage-container {
     width: 100%;
-    height: auto;
+    height: 100vh;
     background-size: 100%;
-    margin-top: -10%;
   }
   .landingPage-content {
-    height: auto;
-    width: 100%;
-    margin-top: 0px;
-    padding-bottom: 260px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    margin-top: 0;
+
+    position: relative;
   }
   #landing-page-text {
-    display: flex;
-    flex-direction: column;
-    margin-top: 27%;
-    margin-left: 5%;
-    width: 40%;
-    text-align: left;
+    margin-top: 7em;
+    margin-right: 10em;
   }
   #landing-page-text header {
-    float: left;
-    font-size: 25px;
-    text-align: left;
-    width: 100%;
-    margin-top: 0px;
-  }
-
-  #landing-page-text header h4 {
-    margin: 0;
-    font-size: 20px;
-    text-align: left;
-  }
-  #landing-page-message h5 {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  }
-  #landing-page-text a {
-    color: limegreen;
-    font-size: 25px;
-  }
-  #landing-page-text a:hover {
-    color: yellow;
-    animation: grow 2s forwards;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
   }
 }

@@ -8,38 +8,39 @@ export default class DesktopSiteNav extends Component {
     super(props);
     this.state = {
       showSearchForm: false,
-      fadeOut: ""
+      fadeOut: "",
     };
   }
   //expand or hide search input
   showSearchForm = () => {
     if (this.state.showSearchForm === true) {
       this.setState({
-        fadeOut: "fadeOut"
+        fadeOut: "fadeOut",
       });
       setTimeout(() => {
         this.setState({
-          showSearchForm: false
+          showSearchForm: false,
         });
       }, 1000);
     } else {
       this.setState({
         fadeOut: "",
-        showSearchForm: true
+        showSearchForm: true,
       });
     }
   };
   closeSearchForm = () => {
     if (this.state.showSearchForm) {
       this.setState({
-        fadeOut: "fadeOut"
+        fadeOut: "fadeOut",
       });
       setTimeout(() => {
         this.setState({
-          showSearchForm: false
+          showSearchForm: false,
         });
       }, 1000);
     }
+    this.props.handleNavTextColor(window.location.pathname);
   };
 
   render() {
@@ -49,29 +50,47 @@ export default class DesktopSiteNav extends Component {
           {!this.state.showSearchForm ? (
             <>
               <li>
-                <Link to="/messageBoard" className={this.props.colorClass}>
+                <Link
+                  to="/messageBoard"
+                  className={this.props.colorClass}
+                  onClick={() => this.props.handleNavTextColor("/not")}
+                >
                   <p>Forum</p>
                 </Link>
               </li>
               <li>
-                <Link to="/new-post" className={this.props.colorClass}>
+                <Link
+                  to="/new-post"
+                  className={this.props.colorClass}
+                  onClick={() => this.props.handleNavTextColor("/not")}
+                >
                   <p>New Posts</p>
                 </Link>
               </li>
               <li>
-                <Link to="/events" className={this.props.colorClass}>
+                <Link
+                  to="/events"
+                  className={this.props.colorClass}
+                  onClick={() => this.props.handleNavTextColor("/not")}
+                >
                   <p>Events</p>
                 </Link>
               </li>
               <li>
-                <Link to="/directory" className={this.props.colorClass}>
+                <Link
+                  to="/directory"
+                  className={this.props.colorClass}
+                  onClick={() => this.props.handleNavTextColor("/not")}
+                >
                   <p>Directory</p>
                 </Link>
               </li>
               <li>
                 <i
                   className={this.props.colorClass + " fas fa-search"}
-                  onClick={() => this.showSearchForm()}
+                  onClick={() =>
+                    this.showSearchForm() && this.props.handleNavTextColor("/")
+                  }
                 ></i>
               </li>
             </>

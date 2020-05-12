@@ -83,6 +83,8 @@
   }
 
   .navBar ul li p:hover {
-    color: limegreen;
+    color: rgb(214, 255, 65);
+    transition: all .5s;
+    font-size: 18px;
   }
 }

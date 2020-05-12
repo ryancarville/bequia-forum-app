@@ -1,8 +1,71 @@
 .dashboard-user-post-card-item {
-  width: 100%;
+  padding: 15px;
+  background-color: rgb(245, 206, 97);
+  border-radius: 50px;
+  box-shadow: rgb(168, 168, 168) 10px 10px 20px;
+  text-shadow: rgb(168, 168, 168) 10px 10px 20px;
+  color: rgb(8, 8, 8);
+  border: 10px solid rgb(112, 145, 35);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  animation: fadeIn 0.7s ease-in forwards;
+  width: auto;
   height: auto;
-  padding: 25px;
-  border-bottom: 1px solid limegreen;
+}
+
+.dashboard-user-post-card-item h4 {
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+.dashboard-user-post-card-item span {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+}
+.dashboard-user-post-card-item:hover {
+  background-color: blue;
+  color: white;
+}
+
+.dash-user-posts {
+  color: rgb(151, 151, 248);
+  text-shadow: rgb(168, 168, 168) 10px 10px 20px;
+  padding: 20px;
+  background-color: #fbf049;
+  border-radius: 25px;
+  box-shadow: rgb(218, 218, 218) 0px 0px 50px 0px;
+  overflow: scroll;
+}
+
+.dashboard-scroll-content {
+  padding: 10px;
+  overflow: var(--dash-scroll-el);
+  scroll-behavior: smooth;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-flow: dense;
+}
+.dashboard-scroll-content div ul {
+  flex: 1 1 0;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 50px;
+  width: 100%;
+  display: flex;
+
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .dash-truncate h4 {
   text-align: center;
@@ -11,17 +74,17 @@
 }
 
 .post-stats-wrapper {
-  width: 30%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
+  justify-content: space-around;
 }
 .post-stats-wrapper span {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
+
 @media only screen and (min-width: 700px) {
   .dashboard-user-post-card-item {
     border: none;

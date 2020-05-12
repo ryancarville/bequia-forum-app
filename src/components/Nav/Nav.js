@@ -10,54 +10,50 @@ class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navColorClass: "nav-text-color-white"
+      navColorClass: "nav-text-color-white",
     };
   }
   //handle nav text color change when not landing page
   handleNavTextColor = () => {
     if (window.location.pathname !== "/") {
       this.setState({
-        navColorClass: "nav-text-color-blue"
+        navColorClass: "nav-text-color-blue",
       });
     } else {
       this.setState({
-        navColorClass: "nav-text-color-white"
+        navColorClass: "nav-text-color-white",
       });
     }
   };
   render() {
     const publicNav = (
       <>
-        <div
-          className="navBar"
-          onLoad={this.props.handleNavTextColor}
-          onClick={this.props.handleNavTextColor}
-        >
+        <div className="navBar">
           <span className="forumLogo">
-            <Link to="/" onClick={this.props.handleNavTextColor}>
+            <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <img src="/images/nav/bequia-logo.png" alt="forum-icon" />
             </Link>
-            <Link to="/" onClick={this.props.handleNavTextColor}>
+            <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <h1 className={this.props.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
           <DesktopSiteNav
             colorClass={this.props.navColorClass}
             placeholderColor={this.props.placeholderColor}
-            handleNavTextColor={() => this.props.handleNavTextColor()}
+            handleNavTextColor={this.props.handleNavTextColor}
           />
           <div className="rightNavInfo">
             <Link
               to="/signup"
               className={this.props.navColorClass}
-              onClick={this.props.handleNavTextColor}
+              onClick={() => this.props.handleNavTextColor("/signup")}
             >
               <i className="fas fa-user-plus"></i>
             </Link>
             <Link
               to="/login"
               className={this.props.navColorClass}
-              onClick={this.props.handleNavTextColor}
+              onClick={() => this.props.handleNavTextColor("/login")}
             >
               <i className="fas fa-sign-in-alt"></i>
             </Link>
@@ -65,29 +61,25 @@ class Nav extends Component {
         </div>
         <MobileSiteNav
           colorClass={this.props.navColorClass}
-          handleNavTextColor={() => this.props.handleNavTextColor()}
+          handleNavTextColor={this.props.handleNavTextColor}
         />
       </>
     );
     const privateNav = (
       <>
-        <div
-          className="navBar"
-          onLoad={this.props.handleNavTextColor}
-          onClick={this.props.handleNavTextColor}
-        >
+        <div className="navBar">
           <span className="forumLogo">
-            <Link to="/">
+            <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <img src="/images/nav/bequia-logo.png" alt="forum-icon" />
             </Link>
-            <Link to="/">
+            <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <h1 className={this.props.navColorClass}>Bequia Forum</h1>
             </Link>
           </span>
           <DesktopSiteNav
             colorClass={this.props.navColorClass}
             placeholderColor={this.props.placeholderColor}
-            handleNavTextColor={() => this.props.handleNavTextColor()}
+            handleNavTextColor={this.props.handleNavTextColor}
           />
           <div className="rightNavInfo">
             {TokenServices.getAuthToken() ? (
@@ -95,12 +87,17 @@ class Nav extends Component {
                 to={`/createPost`}
                 id="create-forum-post-button"
                 className={this.props.navColorClass}
+                onClick={() => this.props.handleNavTextColor("/createPosts")}
               >
                 <i className="fas fa-plus"></i>
               </Link>
             ) : null}
 
-            <Link to="/dashboard" className={this.props.navColorClass}>
+            <Link
+              to="/dashboard"
+              className={this.props.navColorClass}
+              onClick={() => this.props.handleNavTextColor("/dashboard")}
+            >
               <i className="fas fa-tachometer-alt"></i>
             </Link>
             <Link

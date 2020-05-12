@@ -50,7 +50,7 @@ export default class Router extends Component {
 
           <Route
             path="/searchResults"
-            render={props => (
+            render={(props) => (
               <SearchResults results={this.props.searchResults} {...props} />
             )}
             exact

@@ -22,7 +22,7 @@ export default class Dashboard extends Component {
       showUserEvents: true,
       showUserPosts: true,
       showWeather: true,
-      liActive: ""
+      liActive: "",
     };
     this.root = document.root;
   }
@@ -30,37 +30,37 @@ export default class Dashboard extends Component {
   static contextType = ForumContext;
   componentDidMount() {
     window.scroll(0, 0);
-
     apiServices
       .getThisWeeksEvents()
-      .then(events => {
+      .then((events) => {
         this.setState({ events: events });
       })
       .then(() => {
-        apiServices.getAllUserPosts(this.context.user.id).then(posts => {
+        apiServices.getAllUserPosts(this.context.user.id).then((posts) => {
           this.setState({
             userPosts: posts,
-            postsLoaded: true
+            postsLoaded: true,
           });
         });
       })
       .then(() => {
-        apiServices.getAllEventsByUserId(this.context.user.id).then(events => {
-          if (events.error) {
+        apiServices
+          .getAllEventsByUserId(this.context.user.id)
+          .then((events) => {
+            if (events.error) {
+              this.setState({
+                eventsError: events.error,
+              });
+            }
             this.setState({
-              eventsError: events.error
+              userEvents: events,
+              eventsLoaded: true,
             });
-          }
-          this.setState({
-            userEvents: events,
-            eventsLoaded: true
           });
-        });
       });
   }
   //desktop page views
-  handleDashView = path => {
-    console.log(this.root);
+  handleDashView = (path) => {
     document.documentElement.style.setProperty(
       "--dash-home-grid-cols",
       1000 + "px"
@@ -68,15 +68,13 @@ export default class Dashboard extends Component {
     document.documentElement.style.setProperty("--dash-scroll-el", "visible");
     if (path === "upcomingEvents") {
       const tab = document.getElementById("dash-nav-events");
-
-      console.log(tab);
       this.setState(
         {
           showUpcomingEvents: true,
           showUserEvents: false,
           showUserPosts: false,
           showWeather: false,
-          liActive: "showEvents"
+          liActive: "showEvents",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -91,7 +89,7 @@ export default class Dashboard extends Component {
           showUserEvents: true,
           showUserPosts: false,
           showWeather: false,
-          liActive: "showUserEvents"
+          liActive: "showUserEvents",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -106,7 +104,7 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showUserPosts: true,
           showWeather: false,
-          liActive: "showUserPosts"
+          liActive: "showUserPosts",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -121,7 +119,7 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showUserPosts: false,
           showWeather: true,
-          liActive: "showWeather"
+          liActive: "showWeather",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -130,18 +128,14 @@ export default class Dashboard extends Component {
     }
     if (path === "dash") {
       const tab = document.getElementById("dash-nav-dash");
-      document.documentElement.style.setProperty(
-        "--dash-home-grid-cols",
-        500 + "px"
-      );
-      document.documentElement.style.setProperty("--dash-scroll-el", "scroll");
+
       this.setState(
         {
           showUpcomingEvents: true,
           showUserEvents: true,
           showUserPosts: true,
           showWeather: true,
-          liActive: "showDash"
+          liActive: "showDash",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -161,11 +155,11 @@ export default class Dashboard extends Component {
       userPosts,
       eventsLoaded,
       showUpcomingEvents,
-      userEvents
+      userEvents,
     } = this.state;
     return (
       <>
-        <section className="mobile-home-page-container">
+        {/* <section className="mobile-home-page-container">
           <div className="mobile-home-page-weather-content">
             <h3 onClick={this.showWeather}>
               {showWeather ? (
@@ -254,92 +248,98 @@ export default class Dashboard extends Component {
               )}
             </div>
           </div>
-        </section>
-        <section className="home-page-container">
-          <nav className="home-page-nav">
+        </section> */}
+        <section className="dash-container">
+          <nav className="dash-nav">
             <ul>
               <li
-                className={liActive}
+                className={liActive + "dash-nav-active"}
                 id="dash-nav-dash"
                 onClick={() => this.handleDashView("dash")}
               >
-                DASHBOARD
+                <i className="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
               </li>
               <li
                 className={liActive}
                 id="dash-nav-events"
                 onClick={() => this.handleDashView("upcomingEvents")}
               >
-                <i className="fas fa-glass-cheers"></i> Upcoming Events
+                <i className="fas fa-glass-cheers"></i>
+                <span>Upcoming Events</span>
               </li>
               <li
                 className={liActive}
                 id="dash-nav-weather"
                 onClick={() => this.handleDashView("weather")}
               >
-                <i className="fas fa-cloud-sun"></i> Weather
+                <i className="fas fa-cloud-sun"></i>
+                <span>Weather</span>
               </li>
               <li
                 className={liActive}
                 id="dash-nav-user-posts"
                 onClick={() => this.handleDashView("userPosts")}
               >
-                <i className="far fa-sticky-note"></i> Your Posts
+                <i className="far fa-sticky-note"></i>
               </li>
               <li
                 className={liActive}
                 id="dash-nav-user-events"
                 onClick={() => this.handleDashView("userEvents")}
               >
-                <i className="far fa-calendar-alt"></i> Your Events
+                <i className="far fa-calendar-alt"></i>
               </li>
             </ul>
           </nav>
-          <div className="home-page-content">
+          <div className="dash-content">
             {showWeather ? (
-              <section id="home-page-weather-wrapper">
-                <h3>Current Weather</h3>
+              <section id="weather-wrapper">
                 <Weather />
               </section>
             ) : null}
-            {showUpcomingEvents ? (
-              <section id="home-page-upcoming-events">
-                <h3>Upcoming Events</h3>
-                {events.length > 0 ? (
-                  <ThisWeek events={this.state.events} />
-                ) : (
-                  <p>Currently there are no events for this week.</p>
-                )}
-              </section>
-            ) : null}
             {showUserPosts ? (
-              <section className="dashboard-home-user-posts">
-                <h3>Your Posts</h3>
+              <section className="dash-user-posts">
+                <h3
+                  onClick={() => this.handleDashView("userPosts")}
+                  className="dashboard-header-link"
+                >
+                  Your Posts
+                </h3>
                 {userPosts.length > 0 ? (
                   <article className="dashboard-scroll-content">
-                    <ul>
-                      <UserPosts posts={userPosts} />
-                    </ul>
+                    <UserPosts posts={userPosts} />
                   </article>
                 ) : (
                   <p>No posts yest</p>
                 )}
               </section>
             ) : null}
-            {showUserEvents ? (
-              <section className="dashboard-home-user-events">
-                <h3>Your Events</h3>
-                {userEvents.length > 0 ? (
-                  <article className="dashboard-scroll-content">
-                    <ul>
+
+            <section className="dashboard-events">
+              {showUpcomingEvents ? (
+                <section id="home-page-upcoming-events">
+                  <h3 className="dashboard-header-link">Upcoming Events</h3>
+                  {events.length > 0 ? (
+                    <ThisWeek events={this.state.events} />
+                  ) : (
+                    <p>Currently there are no events for this week.</p>
+                  )}
+                </section>
+              ) : null}
+              {showUserEvents ? (
+                <section className="dash-user-events-wrapper">
+                  <h3 className="dashboard-header-link">Your Events</h3>
+                  {userEvents.length > 0 ? (
+                    <article className="dashboard-user-events">
                       <UserEvents events={userEvents} />
-                    </ul>
-                  </article>
-                ) : (
-                  <p>{this.state.eventsError}</p>
-                )}
-              </section>
-            ) : null}
+                    </article>
+                  ) : (
+                    <p>{this.state.eventsError}</p>
+                  )}
+                </section>
+              ) : null}
+            </section>
           </div>
         </section>
       </>

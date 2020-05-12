@@ -88,7 +88,7 @@ export default class LogIn extends Component {
 
   render() {
     if (this.state.success) {
-      this.context.handleNavTextColor();
+      this.context.handleNavTextColor(window.location.pathname);
       return <Redirect to={"/dashboard"} />;
     }
     return (

@@ -51,19 +51,6 @@
   margin-right: auto;
 }
 
-.dashboard-user-post-card-item {
-  text-decoration: none;
-  color: black;
-  font-size: 18px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  cursor: pointer;
-  animation: fadeIn 0.7s ease-in forwards;
-}
-
 .mobile-home-page-user-events-closed {
   display: none;
 }
@@ -77,28 +64,6 @@
   padding: 0;
 }
 
-.dashboard-user-event-card-item {
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  width: 100%;
-  border-bottom: 1px solid limegreen;
-  padding: 10px;
-  padding-bottom: 20px;
-  line-height: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.7s ease-in forwards;
-}
-.dashboard-user-event-card-item h3 {
-  background-color: transparent;
-  color: black;
-  border: none;
-
-  margin: 0;
-}
 .home-page-container {
   display: none;
 }
@@ -107,20 +72,34 @@
   .mobile-home-page-container {
     display: none;
   }
-  .home-page-container {
+  .dash-container {
     display: block;
     width: auto;
     display: flex;
   }
-  .home-page-nav {
+  .dash-content {
     position: relative;
+    margin-left: 12%;
+    margin-right: 20px;
     width: auto;
-    height: auto;
-    background-color: rgb(244, 244, 244);
-    border-radius: 0px 50px 50px 0px;
+    display: grid;
+    grid-gap: 20px 20px;
+    grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr));
+
+    grid-auto-flow: dense;
   }
-  .home-page-nav ul {
-    width: 100%;
+
+  .dash-nav {
+    position: fixed;
+    width: 9vw;
+    height: 100vh;
+    background-color: rgb(175, 255, 238);
+    box-shadow: rgb(251, 209, 131) 0px 0px 50px 0px;
+    border-radius: 0px 20px;
+    border: rgb(251, 209, 131) 5px solid;
+    padding: 10px;
+  }
+  .dash-nav ul {
     margin: 0px;
     padding: 0px;
     list-style: none;
@@ -128,128 +107,45 @@
     flex-direction: column;
     align-items: center;
   }
-  .home-page-nav ul li {
-    height: 100px;
-    padding: 50px;
+  .dash-nav ul li {
+    width: 100%;
+    height: auto;
+    padding: 20px;
     font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.1em;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: rgb(6, 187, 0);
-  }
-  .dash-nav-active {
-    width: 100%;
-    background-color: rgb(21, 255, 0);
-    border-radius: 0px 50px 50px 0px;
-    color: white;
-  }
-  :root {
-    --dash-home-grid-cols: 500px;
-    --dash-scroll-el: "scroll";
-  }
-  .home-page-content {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(var(--dash-home-grid-cols), 1fr)
-    );
-    grid-gap: 0px 50px;
-    margin: 25px;
-    overflow: hidden;
-  }
-
-  #home-page-upcoming-events {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    padding-top: 0;
-    margin-bottom: 150px;
-    overflow: auto;
-    scroll-behavior: smooth;
-  }
-  .dashboard-user-post-card-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    color: rgb(25, 48, 70);
+    text-shadow: rgb(163, 161, 161) 5px 5px 10px;
     font-size: 18px;
   }
-  .dashboard-user-post-card-item h4 {
-    margin: 0;
+  .dash-nav ul li:hover {
+    width: 300px;
+    background-color: rgb(234, 23, 2);
   }
-  .dashboard-user-post-card-item span {
-    width: auto;
+  .dash-nav-active {
+    width: 300px;
+    box-shadow: rgb(255, 255, 255) 0px 0px 20px 0px;
+    background-color: rgb(39, 255, 20);
+    color: black;
+    border-radius: 0px 0px 10px 0px;
+    border: #bada55 solid 1px;
+  }
+
+  .dashboard-header-link {
+    font-size: 30px;
+    cursor: pointer;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0;
-    float: right;
   }
-  .dashboard-user-post-card-item:hover {
-    color: rgb(0, 8, 255);
-  }
-
-  .dashboard-home-user-posts {
-    width: 100%;
-    height: 400px;
-    padding: 10px;
-    padding-top: 0;
-  }
-  .dashboard-scroll-content {
-    width: 100%;
-    height: 400px;
-    padding: 10px;
-    overflow: var(--dash-scroll-el);
-    scroll-behavior: smooth;
-  }
-  .dashboard-home-user-posts ul {
-    width: 100%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 50px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-  .dashboard-home-user-events {
-    width: 100%;
-    height: 400px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .dashboard-home-user-events ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-gap: 25px 25px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-  .dashboard-home-user-events li a {
-    text-decoration: none;
-  }
-  .dashboard-user-event-card-item {
-    border: none;
-    font-size: 16px;
-  }
-  .dashboard-user-event-card-item h3 {
-    margin: 0;
-  }
-  .dashboard-user-event-card-item:hover {
-    color: blue;
-    background-color: rgb(238, 255, 0);
-    border-radius: 25px;
+  .dash-container section {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    
   }
 }

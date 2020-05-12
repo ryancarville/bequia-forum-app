@@ -15,29 +15,29 @@ export default class SearchInput extends Component {
       showForm: false,
       showResults: false,
       forum: [],
-      cats: []
+      cats: [],
     };
   }
   static contextType = ForumContext;
   //handle search term
-  handleSearchTerm = e => {
+  handleSearchTerm = (e) => {
     this.setState({
-      term: e.target.value
+      term: e.target.value,
     });
   };
   //handle site category
-  handleCat = e => {
+  handleCat = (e) => {
     const id = e.target.value;
     if (id === "null") {
       this.setState({
         board_name: "Search Entire Forum",
-        board_id: "null"
+        board_id: "null",
       });
     } else {
-      apiServices.getForumNameById(id).then(name => {
+      apiServices.getForumNameById(id).then((name) => {
         this.setState({
           board_name: "Search " + name.name,
-          board_id: id
+          board_id: id,
         });
       });
     }
@@ -46,18 +46,18 @@ export default class SearchInput extends Component {
   closeSearch = () => {
     this.setState({
       term: "",
-      fadeOut: "search-form-fadeOut"
+      fadeOut: "search-form-fadeOut",
     });
     return this.props.closeSearchForm;
   };
   //handle search submit
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault();
     if (this.state.term === "") {
       this.setState({
-        fadeOut: "search-form-fadeOut"
+        fadeOut: "search-form-fadeOut",
       });
-      this.props.handleNavTextColor();
+      this.props.handleNavTextColor("/");
       this.props.closeSearchForm();
       return true;
     }
@@ -70,15 +70,15 @@ export default class SearchInput extends Component {
       const board_id = sessionStorage.getItem("searchBoard");
       searchCreds = { board_id, term };
     }
-    apiServices.searchPosts(searchCreds).then(data => {
+    apiServices.searchPosts(searchCreds).then((data) => {
       this.context.searchResults(data);
-      this.props.handleNavTextColor();
+      this.props.handleNavTextColor("/searchResults");
     });
   };
 
   //make site sections menu
   makeOptions = () => {
-    return this.state.cats.map(cat => {
+    return this.state.cats.map((cat) => {
       if (
         cat.name === "Jobs" ||
         cat.name === "Rentals" ||
@@ -101,26 +101,26 @@ export default class SearchInput extends Component {
   componentDidMount() {
     apiServices
       .getForum()
-      .then(forum => {
+      .then((forum) => {
         this.setState({
           forum: forum,
-          cats: []
+          cats: [],
         });
       })
       .then(() => {
-        this.state.forum.map(cat =>
+        this.state.forum.map((cat) =>
           apiServices
             .getNumOfThreads(cat.id)
-            .then(count => {
+            .then((count) => {
               cat.count = count[0].count;
               this.setState({
-                cats: [...this.state.cats, cat]
+                cats: [...this.state.cats, cat],
               });
             })
             .then(() => {
               if (this.state.cats.length === this.state.forum.length) {
                 this.setState({
-                  forumLoaded: true
+                  forumLoaded: true,
                 });
               }
             })
@@ -131,7 +131,7 @@ export default class SearchInput extends Component {
     this.setState({
       forum: [],
       cats: [],
-      forumLoaded: false
+      forumLoaded: false,
     });
   }
   render() {
@@ -142,7 +142,12 @@ export default class SearchInput extends Component {
           id="search-form"
           onSubmit={this.handleSearch}
         >
-          <button id="search-submit" type="submit" value="Search">
+          <button
+            id="search-submit"
+            type="submit"
+            value="Search"
+            onClick={() => this.props.handleNavTextColor("/")}
+          >
             <i className={this.props.colorClass + " fas fa-search"}></i>
           </button>
           <input
@@ -170,7 +175,7 @@ export default class SearchInput extends Component {
           <button
             id="search-cancel-icon"
             type="submit"
-            onClick={this.closeSearch}
+            onClick={() => this.closeSearch()}
           >
             <i className={this.props.colorClass + " fas fa-times"}></i>
           </button>

@@ -16,7 +16,7 @@ class App extends Component {
         id: null,
         name: "",
         email: "",
-        lastLogin: ""
+        lastLogin: "",
       },
       navColorClass: "nav-text-color-white",
       placeholderColor: "search-input-white",
@@ -24,66 +24,68 @@ class App extends Component {
       resultsCount: 0,
       showSearch: false,
       searchRedirect: false,
-      loggedIn: false
+      loggedIn: false,
     };
   }
   //handle nav color
-  handleNavTextColor = currLoc => {
-    if (window.location.pathname !== "/") {
+  handleNavTextColor = (loc) => {
+    console.log(loc);
+    if (loc !== "/") {
       this.setState({
         navColorClass: "nav-text-color-blue",
-        placeholderColor: "search-input-blue"
+        placeholderColor: "search-input-blue",
       });
     } else {
       this.setState({
         navColorClass: "nav-text-color-white",
-        placeholderColor: "search-input-white"
+        placeholderColor: "search-input-white",
       });
     }
   };
   //set token and user id
-  setUserData = user_id => {
+  setUserData = (user_id) => {
     sessionStorage.setItem("user_id", user_id);
     this.setState({
       user: {
-        id: user_id
+        id: user_id,
       },
-      loggedIn: true
+      loggedIn: true,
     });
   };
   //handle log out
   handleLogOut = () => {
     TokenServices.clearAuthToken();
     this.setState({
-      loggedIn: false
+      loggedIn: false,
     });
+    this.handleNavTextColor("/");
   };
   //verify token
   verifyLoginOnReload = () => {
     const token = TokenServices.getAuthToken();
     if (token) {
-      apiServices.verifyToken(token).then(data => {
+      apiServices.verifyToken(token).then((data) => {
         if (data.error) {
           TokenServices.clearAuthToken();
           this.setState({
-            loggedIn: false
+            loggedIn: false,
           });
           return true;
         } else {
           this.setState({
             user: {
-              id: data.user_id
+              id: data.user_id,
             },
-            loggedIn: true
+            loggedIn: true,
           });
-          apiServices.getUserData(data.user_id).then(user => {
+          apiServices.getUserData(data.user_id).then((user) => {
             this.setState({
               user: {
                 id: this.state.user.id,
                 name: user.first_name + " " + user.last_name,
-                lastLogin: user.last_login
+                lastLogin: user.last_login,
               },
-              loggedIn: true
+              loggedIn: true,
             });
           });
           return true;
@@ -92,9 +94,9 @@ class App extends Component {
     }
   };
   //set app state with search results
-  searchResults = data => {
+  searchResults = (data) => {
     this.setState({
-      searchRedirect: false
+      searchRedirect: false,
     });
     this.setState({
       showSearch: false,
@@ -103,44 +105,44 @@ class App extends Component {
       resultsCount: 0,
       searchBoardDataLoaded: false,
       siteSearchDataLoaded: false,
-      searchRedirect: true
+      searchRedirect: true,
     });
     if (data.message) {
       this.setState({
         searchResults: { error: data.message },
-        showSearch: true
+        showSearch: true,
       });
       return true;
     }
     if (data.specificBoard) {
       this.setState({
-        searchResults: { formattedPosts: [], numofComments: [] }
+        searchResults: { formattedPosts: [], numofComments: [] },
       });
-      data.specificBoard.map(post => {
+      data.specificBoard.map((post) => {
         const formattedPost = post;
         return apiServices
           .getBoardById(post.board_id)
-          .then(board => {
+          .then((board) => {
             formattedPost.section_id = board.messageboard_section;
           })
           .then(() => {
             apiServices
               .getUserName(post.user_id)
-              .then(user => {
+              .then((user) => {
                 formattedPost.user_name = user.user_name;
               })
               .then(() => {
                 apiServices
                   .getNumOfCommentsByPostId(post.id)
-                  .then(num => {
+                  .then((num) => {
                     formattedPost.commentCount = num[0].count;
                     this.setState({
                       searchResults: {
                         formattedPosts: [
                           ...this.state.searchResults.formattedPosts,
-                          formattedPost
-                        ]
-                      }
+                          formattedPost,
+                        ],
+                      },
                     });
                   })
                   .then(() => {
@@ -150,7 +152,7 @@ class App extends Component {
                     ) {
                       this.setState({
                         showSearch: true,
-                        searchBoardDataLoaded: true
+                        searchBoardDataLoaded: true,
                       });
                     }
                   });
@@ -167,13 +169,13 @@ class App extends Component {
           mpPosts: [],
           rPosts: [],
           jPosts: [],
-          numOfComments: []
+          numOfComments: [],
         },
         searchRedirect: true,
-        newStateSet: true
+        newStateSet: true,
       });
       let resultsLength = 0;
-      data.forEach(data => {
+      data.forEach((data) => {
         if (data.siteSearch) {
           return;
         }
@@ -187,46 +189,46 @@ class App extends Component {
       });
 
       if (this.state.newStateSet) {
-        data.forEach(board => {
+        data.forEach((board) => {
           if (board.siteSearch) {
             return;
           }
           if (board.mbPosts) {
-            board.mbPosts.map(post => {
+            board.mbPosts.map((post) => {
               const formattedPost = post;
               return apiServices
                 .getBoardById(post.board_id)
-                .then(board => {
+                .then((board) => {
                   formattedPost.section_id = board.messageboard_section;
                 })
                 .then(() => {
-                  apiServices.getUserName(post.user_id).then(user => {
+                  apiServices.getUserName(post.user_id).then((user) => {
                     formattedPost.user_name = user.user_name;
                   });
                 })
                 .then(() => {
                   apiServices
                     .getNumOfCommentsByPostId(post.id)
-                    .then(num => {
+                    .then((num) => {
                       formattedPost.commentCount = num[0].count;
                       this.setState({
                         siteSearchResults: {
                           mbPosts: [
                             ...this.state.siteSearchResults.mbPosts,
-                            formattedPost
+                            formattedPost,
                           ],
                           mpPosts: this.state.siteSearchResults.mpPosts,
                           rPosts: this.state.siteSearchResults.rPosts,
-                          jPosts: this.state.siteSearchResults.jPosts
+                          jPosts: this.state.siteSearchResults.jPosts,
                         },
-                        resultsCount: this.state.resultsCount + 1
+                        resultsCount: this.state.resultsCount + 1,
                       });
                     })
                     .then(() => {
                       if (this.state.resultsCount === resultsLength) {
                         this.setState({
                           showSearch: true,
-                          siteSearchDataLoaded: true
+                          siteSearchDataLoaded: true,
                         });
                       }
                     });
@@ -234,11 +236,11 @@ class App extends Component {
             });
           }
           if (board.mpPosts) {
-            board.mpPosts.map(post => {
+            board.mpPosts.map((post) => {
               const formattedPost = post;
               return apiServices
                 .getUserName(post.user_id)
-                .then(user => {
+                .then((user) => {
                   formattedPost.user_name = user.user_name;
                 })
                 .then(() => {
@@ -247,19 +249,19 @@ class App extends Component {
                       mbPosts: this.state.siteSearchResults.mbPosts,
                       mpPosts: [
                         ...this.state.siteSearchResults.mpPosts,
-                        formattedPost
+                        formattedPost,
                       ],
                       rPosts: this.state.siteSearchResults.rPosts,
-                      jPosts: this.state.siteSearchResults.jPosts
+                      jPosts: this.state.siteSearchResults.jPosts,
                     },
-                    resultsCount: this.state.resultsCount + 1
+                    resultsCount: this.state.resultsCount + 1,
                   });
                 })
                 .then(() => {
                   if (this.state.resultsCount === resultsLength) {
                     this.setState({
                       showSearch: true,
-                      siteSearchDataLoaded: true
+                      siteSearchDataLoaded: true,
                     });
                   }
                 });
@@ -267,11 +269,11 @@ class App extends Component {
           }
 
           if (board.rPosts) {
-            board.rPosts.map(post => {
+            board.rPosts.map((post) => {
               const formattedPost = post;
               return apiServices
                 .getUserName(post.user_id)
-                .then(user => {
+                .then((user) => {
                   formattedPost.user_name = user.user_name;
                 })
                 .then(() => {
@@ -282,29 +284,29 @@ class App extends Component {
 
                       rPosts: [
                         ...this.state.siteSearchResults.rPosts,
-                        formattedPost
+                        formattedPost,
                       ],
-                      jPosts: this.state.siteSearchResults.jPosts
+                      jPosts: this.state.siteSearchResults.jPosts,
                     },
-                    resultsCount: this.state.resultsCount + 1
+                    resultsCount: this.state.resultsCount + 1,
                   });
                 })
                 .then(() => {
                   if (this.state.resultsCount === resultsLength) {
                     this.setState({
                       showSearch: true,
-                      siteSearchDataLoaded: true
+                      siteSearchDataLoaded: true,
                     });
                   }
                 });
             });
           }
           if (board.jPosts) {
-            board.jPosts.map(post => {
+            board.jPosts.map((post) => {
               const formattedPost = post;
               return apiServices
                 .getUserName(post.user_id)
-                .then(user => {
+                .then((user) => {
                   formattedPost.user_name = user.user_name;
                 })
                 .then(() => {
@@ -315,17 +317,17 @@ class App extends Component {
                       rPosts: this.state.siteSearchResults.rPosts,
                       jPosts: [
                         ...this.state.siteSearchResults.jPosts,
-                        formattedPost
-                      ]
+                        formattedPost,
+                      ],
                     },
-                    resultsCount: this.state.resultsCount + 1
+                    resultsCount: this.state.resultsCount + 1,
                   });
                 })
                 .then(() => {
                   if (this.state.resultsCount === resultsLength) {
                     this.setState({
                       showSearch: true,
-                      siteSearchDataLoaded: true
+                      siteSearchDataLoaded: true,
                     });
                   }
                 });
@@ -343,11 +345,12 @@ class App extends Component {
     if (user_id) {
       this.setState({
         user: {
-          id: user_id
-        }
+          id: user_id,
+        },
       });
     }
     this.verifyLoginOnReload();
+    this.handleNavTextColor(window.location.pathname);
   }
 
   render() {
@@ -362,7 +365,7 @@ class App extends Component {
       verifyLoginOnReload: this.verifyLoginOnReload,
       searchResults: this.searchResults,
       resetSearchRedirect: this.resetSearchRedirect,
-      handleNavTextColor: this.handleNavTextColor
+      handleNavTextColor: this.handleNavTextColor,
     };
     return (
       <div className="App">

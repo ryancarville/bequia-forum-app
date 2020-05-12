@@ -14,61 +14,69 @@ export default class UserPosts extends Component {
       mbPosts: [],
       mpPosts: [],
       rPosts: [],
-      jPosts: []
+      jPosts: [],
+      messageBoards: [],
+      sectionsLoaded: 0,
+      dataLoaded: false,
     };
   }
   //divide posts into forum sections
   divideResponsePosts = () => {
     const { allPosts } = this.state;
-    allPosts.forEach(posts => {
-      if (posts.mbPosts) {
-        apiServices
+    let i = 0;
+    allPosts.forEach((sec) => {
+      i++;
+
+      if (sec.mpPosts) {
+        return this.setState({
+          mpPosts: sec.mpPosts,
+        });
+      }
+      if (sec.jPosts) {
+        return this.setState({
+          jPosts: sec.jPosts,
+        });
+      }
+      if (sec.rPosts) {
+        return this.setState({
+          rPosts: sec.rPosts,
+        });
+      }
+      if (sec.mbPosts) {
+        return apiServices
           .getForum()
-          .then(boards => {
+          .then((boards) => {
             this.setState({
-              messageBoards: boards
+              messageBoards: boards,
             });
           })
           .then(() => {
-            posts.mbPosts.forEach(post => {
-              apiServices.getNumOfCommentsByPostId(post.id).then(num => {
-                const forumTitle = this.state.messageBoards.filter(
-                  board => post.board_id === board.id
-                );
-
+            sec.mbPosts.forEach((post) => {
+              const forumTitle = this.state.messageBoards.filter(
+                (board) => post.board_id === board.id
+              );
+              apiServices.getNumOfCommentsByPostId(post.id).then((num) => {
                 post.numComments = num[0].count;
                 post.messageboard_section = forumTitle[0].messageboard_section;
                 this.setState({
                   mbPosts: [...this.state.mbPosts, post],
-                  dataLoaded: true
                 });
               });
             });
           });
       }
-      if (posts.mpPosts) {
-        this.setState({
-          mpPosts: posts.mpPosts
-        });
-      }
-      if (posts.rPosts) {
-        this.setState({
-          rPosts: posts.rPosts
-        });
-      }
-      if (posts.jPosts) {
-        this.setState({
-          jPosts: posts.jPosts
-        });
-      }
     });
+    if (i === allPosts.length) {
+      this.setState({
+        dataLoaded: true,
+      });
+    }
   };
   //makes a message board posts
   makeMbPosts = () => {
     const { mbPosts } = this.state;
-
-    return mbPosts.map(p => (
-      <li>
+    return mbPosts.map((p) => (
+      <li key={p.id}>
         <Link
           key={p.id}
           className="dashboard-user-post-card-item"
@@ -91,39 +99,39 @@ export default class UserPosts extends Component {
   //makes all market place posts
   makeMpPosts = () => {
     const { mpPosts } = this.state;
-    return mpPosts.map(p => (
+    return mpPosts.map((p) => (
       <Link
         key={p.id}
         className="dashboard-user-post-card-item"
         to={`/marketPlace/${p.market_place_cat}/${p.id}`}
       >
-        <li>{p.title}</li>
+        <li key={p.id}>{p.title}</li>
       </Link>
     ));
   };
   //makes all rental posts
   makeRPosts = () => {
     const { rPosts } = this.state;
-    return rPosts.map(p => (
+    return rPosts.map((p) => (
       <Link
         key={p.id}
         className="dashboard-user-post-card-item"
         to={`/rentals/${p.rental_cat}/${p.id}`}
       >
-        <li>{p.title}</li>
+        <li key={p.id}>{p.title}</li>
       </Link>
     ));
   };
   //make all job posts
   makeJPosts = () => {
     const { jPosts } = this.state;
-    return jPosts.map(p => (
+    return jPosts.map((p) => (
       <Link
         key={p.id}
         className="dashboard-user-post-card-item"
         to={`/jobs/${p.job_cat}/${p.id}`}
       >
-        <li>{p.title}</li>
+        <li key={p.id}>{p.title}</li>
       </Link>
     ));
   };
@@ -133,16 +141,35 @@ export default class UserPosts extends Component {
   }
 
   render() {
-    return this.state.dataLoaded
-      ? this.state.mbPosts.length > 0
-        ? this.makeMbPosts()
-        : null(this.state.mpPosts.length > 0)
-        ? this.makeMpPosts()
-        : null(this.state.rPosts.length > 0)
-        ? this.makeRPosts()
-        : null(this.state.jPosts.length > 0)
-        ? this.makeJPosts()
-        : null
-      : waveLoader;
+    return this.state.dataLoaded ? (
+      <>
+        {this.state.mbPosts.length > 0 ? (
+          <div>
+            <h3>Messageboards</h3>
+            <ul>{this.makeMbPosts()}</ul>
+          </div>
+        ) : null}
+        {this.state.mpPosts.length > 0 ? (
+          <div>
+            <h3>Marketplace</h3>
+            <ul>{this.makeMpPosts()}</ul>
+          </div>
+        ) : null}
+        {this.state.rPosts.length > 0 ? (
+          <div>
+            <h3>Rentals</h3>
+            <ul>{this.makeRPosts()}</ul>
+          </div>
+        ) : null}
+        {this.state.jPosts.length > 0 ? (
+          <div>
+            <h3>Jobs</h3>
+            <ul>{this.makeJPosts()}</ul>
+          </div>
+        ) : null}
+      </>
+    ) : (
+      waveLoader
+    );
   }
 }
