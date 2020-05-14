@@ -17,8 +17,9 @@
   margin-bottom: 20px;
   cursor: pointer;
   animation: fadeIn 0.7s ease-in forwards;
-  width: auto;
+  width: 100%;
   height: auto;
+  
 }
 
 .dashboard-user-post-card-item h4 {
@@ -26,6 +27,7 @@
   letter-spacing: 0.1em;
 }
 .dashboard-user-post-card-item span {
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -36,24 +38,6 @@
   color: white;
 }
 
-.dash-user-posts {
-  color: rgb(151, 151, 248);
-  text-shadow: rgb(168, 168, 168) 10px 10px 20px;
-  padding: 20px;
-  background-color: #fbf049;
-  border-radius: 25px;
-  box-shadow: rgb(218, 218, 218) 0px 0px 50px 0px;
-  overflow: scroll;
-}
-
-.dashboard-scroll-content {
-  padding: 10px;
-  overflow: var(--dash-scroll-el);
-  scroll-behavior: smooth;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-auto-flow: dense;
-}
 .dashboard-scroll-content div ul {
   flex: 1 1 0;
   width: 100%;

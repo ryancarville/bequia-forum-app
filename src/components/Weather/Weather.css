@@ -1,5 +1,5 @@
 #weather-wrapper {
-  height: 300px;
+  height: auto;
   color: white;
   text-shadow: black 5px 15px 25px;
   border-radius: 25px;
@@ -11,17 +11,15 @@
   width: 100%;
   overflow: scroll;
   display: flex;
+  flex-wrap: wrap;
 }
 .weather-widget {
   padding: 25px;
   width: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, mimax(150px, 1fr));
   font-size: 16px;
   margin: 0;
-  
 }
 .weather-widget aside {
   display: flex;
@@ -48,7 +46,7 @@
 
 #weather-daily {
   width: auto;
-  height: 300px;
+  height: auto;
   display: flex;
   list-style: none;
   margin: 0;

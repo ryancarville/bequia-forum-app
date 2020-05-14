@@ -15,17 +15,17 @@ class ToolBar extends Component {
       currentPage: 1,
       pageNeighbours: 1,
       paginatorScroll: "paginator-wrapper",
-      error: null
+      error: null,
     };
   }
   paginatorScroll = () => {
-    if (window.scrollY >= 165) {
+    if (window.scrollY >= 35) {
       this.setState({
-        paginatorScroll: "paginator-wrapper-fixed"
+        paginatorScroll: "paginator-wrapper-fixed",
       });
     } else {
       this.setState({
-        paginatorScroll: "paginator-wrapper"
+        paginatorScroll: "paginator-wrapper",
       });
     }
   };
@@ -94,13 +94,13 @@ class ToolBar extends Component {
     );
     this.setState(
       {
-        totalPages: intPageCount
+        totalPages: intPageCount,
       },
       () => {
         const p = this.fetchPageNumbers();
         this.setState({
           pages: p,
-          dataLoaded: true
+          dataLoaded: true,
         });
       }
     );
@@ -109,7 +109,7 @@ class ToolBar extends Component {
     });
   }
 
-  onPageChanged = data => {
+  onPageChanged = (data) => {
     const { posts } = this.props;
     let { currentPage } = data;
     const { pageLimit } = this.state;
@@ -120,11 +120,11 @@ class ToolBar extends Component {
       this.props.handleCurrentPosts(currentPosts);
       pages = this.fetchPageNumbers();
       this.setState({
-        pages
+        pages,
       });
     });
   };
-  handleSort = sort => {
+  handleSort = (sort) => {
     this.props.handleSort(sort);
     const { posts } = this.props;
     const { pageLimit, totalPages, currentPage } = this.state;
@@ -134,12 +134,12 @@ class ToolBar extends Component {
       currentPage,
       totalPages,
       pageLimit,
-      totalRecords: parseInt(posts.length)
+      totalRecords: parseInt(posts.length),
     };
 
     this.onPageChanged(paginationData);
   };
-  handlePageLimit = e => {
+  handlePageLimit = (e) => {
     e.preventDefault();
     var num = parseInt(e.target.value);
     const { posts } = this.props;
@@ -154,7 +154,7 @@ class ToolBar extends Component {
       {
         pageLimit: num,
         pageLimitReload: true,
-        totalPages
+        totalPages,
       },
       () => {
         if (parseInt(posts.length) <= num) {
@@ -163,7 +163,7 @@ class ToolBar extends Component {
             currentPage: 1,
             totalPages: 1,
             pageLimit: num,
-            totalRecords: parseInt(posts.length)
+            totalRecords: parseInt(posts.length),
           };
           this.onPageChanged(paginationData);
         } else {
@@ -172,7 +172,7 @@ class ToolBar extends Component {
             currentPage: currPage,
             totalPages,
             pageLimit: num,
-            totalRecords: parseInt(posts.length)
+            totalRecords: parseInt(posts.length),
           };
           this.onPageChanged(paginationData);
         }
@@ -187,7 +187,7 @@ class ToolBar extends Component {
       pageLimit,
       pageNeighbours,
       pages,
-      dataLoaded
+      dataLoaded,
     } = this.state;
     const { posts } = this.props;
     const totalPosts = parseInt(posts.length);
@@ -197,7 +197,7 @@ class ToolBar extends Component {
         <Sort sortType="posts" handleSort={this.handleSort} />
         <select
           className="num-post-results"
-          onChange={e => this.handlePageLimit(e)}
+          onChange={(e) => this.handlePageLimit(e)}
         >
           <option value="5">5 post per page</option>
           <option selected value="10">

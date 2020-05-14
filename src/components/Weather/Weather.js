@@ -79,7 +79,7 @@ export default class Weather extends Component {
     const weatherInfo = data.daily;
     return weatherInfo.map((info, i) => {
       if (i > 4) {
-        return;
+        return null;
       }
       let day = new Date(info.dt);
       day = day.getDay();
@@ -162,8 +162,8 @@ export default class Weather extends Component {
                   {this.msToTime(weather.current.sunset)}
                 </span>
               </aside>
+              <ul id="weather-daily">{this.getHourly()}</ul>
             </section>
-            <ul id="weather-daily">{this.getHourly()}</ul>
           </>
         ) : null}
       </section>

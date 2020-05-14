@@ -11,6 +11,7 @@ class Nav extends Component {
     super(props);
     this.state = {
       navColorClass: "nav-text-color-white",
+      navClass: "navBar",
     };
   }
   //handle nav text color change when not landing page
@@ -25,10 +26,30 @@ class Nav extends Component {
       });
     }
   };
+  navClass = () => {
+    let y = window.scrollY;
+
+    if (y > 15) {
+      this.setState({
+        navClass: "navBar navBarFixed",
+      });
+    } else {
+      this.setState({
+        navClass: "navBar",
+      });
+    }
+  };
+  componentDidMount() {
+    document.addEventListener("scroll", () => {
+      this.navClass(window.scrollY);
+    });
+  }
+
   render() {
+    let navClass = this.state.navClass;
     const publicNav = (
       <>
-        <div className="navBar">
+        <div className={navClass}>
           <span className="forumLogo">
             <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <img src="/images/nav/bequia-logo.png" alt="forum-icon" />
@@ -67,7 +88,7 @@ class Nav extends Component {
     );
     const privateNav = (
       <>
-        <div className="navBar">
+        <div className={navClass}>
           <span className="forumLogo">
             <Link to="/" onClick={() => this.props.handleNavTextColor("/")}>
               <img src="/images/nav/bequia-logo.png" alt="forum-icon" />

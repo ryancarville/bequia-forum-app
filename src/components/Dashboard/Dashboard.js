@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import UserEvents from "../UserEvents/UserEvents";
 import ThisWeek from "../ThisWeek/ThisWeek";
@@ -22,14 +23,34 @@ export default class Dashboard extends Component {
       showUserEvents: true,
       showUserPosts: true,
       showWeather: true,
+      dashUserEvents: "dashboard-user-events",
       liActive: "",
+      navFixed: "dash-nav",
     };
     this.root = document.root;
   }
-
+  handleNavBarFix = () => {
+    if (window.scrollY >= 200) {
+      this.setState(
+        {
+          navFixed: "dash-nav dashNavFixed",
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+    } else {
+      this.setState({
+        navFixed: "dash-nav",
+      });
+    }
+  };
   static contextType = ForumContext;
   componentDidMount() {
     window.scroll(0, 0);
+    window.addEventListener("scroll", () => {
+      this.handleNavBarFix();
+    });
     apiServices
       .getThisWeeksEvents()
       .then((events) => {
@@ -55,26 +76,24 @@ export default class Dashboard extends Component {
             this.setState({
               userEvents: events,
               eventsLoaded: true,
+              dataLoaded: true,
             });
           });
       });
   }
   //desktop page views
   handleDashView = (path) => {
-    document.documentElement.style.setProperty(
-      "--dash-home-grid-cols",
-      1000 + "px"
-    );
-    document.documentElement.style.setProperty("--dash-scroll-el", "visible");
     if (path === "upcomingEvents") {
       const tab = document.getElementById("dash-nav-events");
       this.setState(
         {
-          showUpcomingEvents: true,
           showUserEvents: false,
           showUserPosts: false,
           showWeather: false,
+          showUpcomingEvents: true,
+
           liActive: "showEvents",
+          dashUserEvents: "dashboard-user-events-solo",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -86,10 +105,11 @@ export default class Dashboard extends Component {
       this.setState(
         {
           showUpcomingEvents: false,
-          showUserEvents: true,
           showUserPosts: false,
           showWeather: false,
+          showUserEvents: true,
           liActive: "showUserEvents",
+          dashUserEvents: "dashboard-user-events-solo",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -102,8 +122,9 @@ export default class Dashboard extends Component {
         {
           showUpcomingEvents: false,
           showUserEvents: false,
-          showUserPosts: true,
           showWeather: false,
+          showUserPosts: true,
+          dashUserEvents: "dashboard-user-events",
           liActive: "showUserPosts",
         },
         () => {
@@ -119,6 +140,7 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showUserPosts: false,
           showWeather: true,
+          dashUserEvents: "dashboard-user-events",
           liActive: "showWeather",
         },
         () => {
@@ -135,6 +157,7 @@ export default class Dashboard extends Component {
           showUserEvents: true,
           showUserPosts: true,
           showWeather: true,
+          dashUserEvents: "dashboard-user-events",
           liActive: "showDash",
         },
         () => {
@@ -156,6 +179,9 @@ export default class Dashboard extends Component {
       eventsLoaded,
       showUpcomingEvents,
       userEvents,
+      dashUserEvents,
+      dataLoaded,
+      navFixed,
     } = this.state;
     return (
       <>
@@ -249,99 +275,122 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </section> */}
-        <section className="dash-container">
-          <nav className="dash-nav">
-            <ul>
-              <li
-                className={liActive + "dash-nav-active"}
-                id="dash-nav-dash"
-                onClick={() => this.handleDashView("dash")}
-              >
-                <i className="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-              </li>
-              <li
-                className={liActive}
-                id="dash-nav-events"
-                onClick={() => this.handleDashView("upcomingEvents")}
-              >
-                <i className="fas fa-glass-cheers"></i>
-                <span>Upcoming Events</span>
-              </li>
-              <li
-                className={liActive}
-                id="dash-nav-weather"
-                onClick={() => this.handleDashView("weather")}
-              >
-                <i className="fas fa-cloud-sun"></i>
-                <span>Weather</span>
-              </li>
-              <li
-                className={liActive}
-                id="dash-nav-user-posts"
-                onClick={() => this.handleDashView("userPosts")}
-              >
-                <i className="far fa-sticky-note"></i>
-              </li>
-              <li
-                className={liActive}
-                id="dash-nav-user-events"
-                onClick={() => this.handleDashView("userEvents")}
-              >
-                <i className="far fa-calendar-alt"></i>
-              </li>
-            </ul>
-          </nav>
-          <div className="dash-content">
-            {showWeather ? (
-              <section id="weather-wrapper">
-                <Weather />
-              </section>
-            ) : null}
-            {showUserPosts ? (
-              <section className="dash-user-posts">
-                <h3
-                  onClick={() => this.handleDashView("userPosts")}
-                  className="dashboard-header-link"
+        {dataLoaded ? (
+          <section className="dash-container">
+            <nav className={navFixed}>
+              <ul>
+                <li
+                  className={liActive + "dash-nav-active"}
+                  id="dash-nav-dash"
+                  onClick={() => this.handleDashView("dash")}
                 >
-                  Your Posts
-                </h3>
-                {userPosts.length > 0 ? (
-                  <article className="dashboard-scroll-content">
-                    <UserPosts posts={userPosts} />
-                  </article>
-                ) : (
-                  <p>No posts yest</p>
-                )}
-              </section>
-            ) : null}
-
-            <section className="dashboard-events">
-              {showUpcomingEvents ? (
-                <section id="home-page-upcoming-events">
-                  <h3 className="dashboard-header-link">Upcoming Events</h3>
-                  {events.length > 0 ? (
-                    <ThisWeek events={this.state.events} />
-                  ) : (
-                    <p>Currently there are no events for this week.</p>
-                  )}
+                  <i className="fas fa-tachometer-alt"></i>
+                </li>
+                <li
+                  className={liActive}
+                  id="dash-nav-events"
+                  onClick={() => this.handleDashView("upcomingEvents")}
+                >
+                  <i className="fas fa-glass-cheers"></i>
+                </li>
+                <li
+                  className={liActive}
+                  id="dash-nav-weather"
+                  onClick={() => this.handleDashView("weather")}
+                >
+                  <i className="fas fa-cloud-sun"></i>
+                </li>
+                <li
+                  className={liActive}
+                  id="dash-nav-user-posts"
+                  onClick={() => this.handleDashView("userPosts")}
+                >
+                  <i className="far fa-sticky-note"></i>
+                </li>
+                <li
+                  className={liActive}
+                  id="dash-nav-user-events"
+                  onClick={() => this.handleDashView("userEvents")}
+                >
+                  <i className="far fa-calendar-alt"></i>
+                </li>
+              </ul>
+            </nav>
+            <div className="dash-content">
+              {showWeather ? (
+                <section id="weather-wrapper">
+                  <Weather />
                 </section>
               ) : null}
-              {showUserEvents ? (
-                <section className="dash-user-events-wrapper">
-                  <h3 className="dashboard-header-link">Your Events</h3>
-                  {userEvents.length > 0 ? (
-                    <article className="dashboard-user-events">
-                      <UserEvents events={userEvents} />
+              {showUserPosts ? (
+                <section className="dash-user-posts">
+                  <h3
+                    onClick={() => this.handleDashView("userPosts")}
+                    className="dashboard-header-link"
+                  >
+                    Your Posts
+                  </h3>
+                  {userPosts.length > 0 ? (
+                    <article className="dashboard-scroll-content">
+                      <UserPosts posts={userPosts} />
                     </article>
                   ) : (
-                    <p>{this.state.eventsError}</p>
+                    <p>No posts yest</p>
                   )}
                 </section>
               ) : null}
-            </section>
-          </div>
-        </section>
+
+              <section className="dashboard-events">
+                {showUpcomingEvents ? (
+                  <section id="home-page-upcoming-events">
+                    <span>
+                      <h3 className="dashboard-header-link">Upcoming Events</h3>
+                      <h4>
+                        <Link to={"/events"} style={{ textDecoration: "none" }}>
+                          <i className="fas fa-arrow-right"></i> Go to Events
+                          Section
+                        </Link>
+                      </h4>
+                    </span>
+                    {events.length > 0 ? (
+                      <ThisWeek events={this.state.events} />
+                    ) : (
+                      <p>Currently there are no events for this week.</p>
+                    )}
+                  </section>
+                ) : null}
+                {showUserEvents ? (
+                  <section className="dash-user-events-wrapper">
+                    <span>
+                      <h3
+                        className="dashboard-header-link"
+                        onClick={() => this.handleDashView("userEvents")}
+                      >
+                        Your Events
+                      </h3>
+                      <p
+                        onClick={() => this.handleDashView("userEvents")}
+                        style={{ fontSize: "19px", cursor: "pointer" }}
+                      >
+                        <i className="far fa-calendar-alt"></i> Go To Your
+                        Events
+                      </p>
+                    </span>
+                    {userEvents.length > 0 ? (
+                      <article className={dashUserEvents}>
+                        <UserEvents events={userEvents} />
+                      </article>
+                    ) : (
+                      <p>{this.state.eventsError}</p>
+                    )}
+                  </section>
+                ) : null}
+              </section>
+            </div>
+          </section>
+        ) : (
+          waveLoader
+        )}
       </>
     );
   }

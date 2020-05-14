@@ -29,7 +29,6 @@ class App extends Component {
   }
   //handle nav color
   handleNavTextColor = (loc) => {
-    console.log(loc);
     if (loc !== "/") {
       this.setState({
         navColorClass: "nav-text-color-blue",

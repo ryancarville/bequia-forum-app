@@ -8,11 +8,11 @@
   padding: 10px;
   text-transform: uppercase;
   z-index: 1;
-  background-color: transparent;
+  background-color: white;
   height: auto;
 }
 .nav-text-color-white {
-  color: white;
+  color: blue;
   opacity: 0;
   animation: fadeIn 1s ease-in forwards;
 }
@@ -55,11 +55,12 @@
 }
 
 @media only screen and (min-width: 700px) {
-  .navBar {
-    width: 100%;
-    text-transform: uppercase;
-    border: none;
-    background-color: transparent;
+  .navBarFixed {
+    position: fixed;
+    top: 0;
+    height: 55px;
+    box-shadow: rgb(61, 58, 58) 0px 5px 30px 0px;
+    transition: all 0.5s;
   }
 
   .forumLogo img {
@@ -83,8 +84,11 @@
   }
 
   .navBar ul li p:hover {
-    color: rgb(214, 255, 65);
-    transition: all .5s;
-    font-size: 18px;
+    color: rgb(0, 167, 158);
+    transition: all 0.5s;
+    font-size: 15px;
+  }
+  .navBar ul li p:active {
+    font-size: 13px;
   }
 }
