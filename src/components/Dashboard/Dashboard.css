@@ -90,14 +90,15 @@
     grid-auto-flow: dense;
     padding: 20px;
     margin-left: 6%;
+    width: 100%;
   }
 
   .dash-nav {
     position: fixed;
     width: auto;
-    height: 92vh;
+    height: 100vh;
     background-color: rgb(175, 255, 238);
-    box-shadow: rgb(197, 197, 197) 0px 0px 50px 0px;
+    box-shadow: rgb(197, 197, 197) 0px 0px 20px 0px;
     border-radius: 0px 20px 0px 0px;
     padding: 10px;
   }

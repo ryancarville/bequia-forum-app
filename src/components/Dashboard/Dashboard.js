@@ -24,6 +24,7 @@ export default class Dashboard extends Component {
       showUserEvents: false,
       showUserPosts: true,
       showWeather: true,
+      showSettings: false,
       dashEvents: true,
       dashUserEvents: "dashboard-user-events",
       liActive: "",
@@ -76,6 +77,7 @@ export default class Dashboard extends Component {
           showWeather: false,
           showSettings: false,
           showUpcomingEvents: true,
+          showSettings: false,
           dashEvents: false,
           liActive: "showEvents",
           dashUserEvents: "dashboard-user-events-solo",
@@ -159,7 +161,7 @@ export default class Dashboard extends Component {
       );
     }
     if (path === "settings") {
-      const tab = document.getElementById("dash-nav-dash");
+      const tab = document.getElementById("dash-nav-settings");
 
       this.setState(
         {
@@ -339,8 +341,8 @@ export default class Dashboard extends Component {
             </nav>
             <div className="dash-content">
               {showSettings ? (
-                <section className="dash">
-                  <h3>Profile Settings</h3>
+                <section className="dash-settings">
+                  <h3 className="dashboard-header-link">Profile Settings</h3>
                   <UserSettings />
                 </section>
               ) : null}
