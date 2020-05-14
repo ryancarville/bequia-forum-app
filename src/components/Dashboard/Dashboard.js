@@ -7,6 +7,7 @@ import apiServices from "../../services/apiServices";
 import ForumContext from "../../ForumContext";
 import UserPosts from "../UserPosts/UserPosts";
 import Weather from "../Weather/Weather";
+import UserSettings from "../UserSettings/UserSettings";
 import waveLoader from "../Icons/waveLoader";
 //user dashboard
 export default class Dashboard extends Component {
@@ -19,38 +20,20 @@ export default class Dashboard extends Component {
       error: null,
       postsLoaded: false,
       eventsLoaded: false,
-      showUpcomingEvents: true,
-      showUserEvents: true,
+      showUpcomingEvents: false,
+      showUserEvents: false,
       showUserPosts: true,
       showWeather: true,
+      dashEvents: true,
       dashUserEvents: "dashboard-user-events",
       liActive: "",
       navFixed: "dash-nav",
     };
     this.root = document.root;
   }
-  handleNavBarFix = () => {
-    if (window.scrollY >= 200) {
-      this.setState(
-        {
-          navFixed: "dash-nav dashNavFixed",
-        },
-        () => {
-          console.log(this.state);
-        }
-      );
-    } else {
-      this.setState({
-        navFixed: "dash-nav",
-      });
-    }
-  };
+
   static contextType = ForumContext;
   componentDidMount() {
-    window.scroll(0, 0);
-    window.addEventListener("scroll", () => {
-      this.handleNavBarFix();
-    });
     apiServices
       .getThisWeeksEvents()
       .then((events) => {
@@ -83,6 +66,7 @@ export default class Dashboard extends Component {
   }
   //desktop page views
   handleDashView = (path) => {
+    window.scroll(0, 0);
     if (path === "upcomingEvents") {
       const tab = document.getElementById("dash-nav-events");
       this.setState(
@@ -90,8 +74,9 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showUserPosts: false,
           showWeather: false,
+          showSettings: false,
           showUpcomingEvents: true,
-
+          dashEvents: false,
           liActive: "showEvents",
           dashUserEvents: "dashboard-user-events-solo",
         },
@@ -108,6 +93,8 @@ export default class Dashboard extends Component {
           showUserPosts: false,
           showWeather: false,
           showUserEvents: true,
+          showSettings: false,
+          dashEvents: false,
           liActive: "showUserEvents",
           dashUserEvents: "dashboard-user-events-solo",
         },
@@ -124,6 +111,8 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showWeather: false,
           showUserPosts: true,
+          showSettings: false,
+          dashEvents: false,
           dashUserEvents: "dashboard-user-events",
           liActive: "showUserPosts",
         },
@@ -140,6 +129,8 @@ export default class Dashboard extends Component {
           showUserEvents: false,
           showUserPosts: false,
           showWeather: true,
+          showSettings: false,
+          dashEvents: false,
           dashUserEvents: "dashboard-user-events",
           liActive: "showWeather",
         },
@@ -153,12 +144,33 @@ export default class Dashboard extends Component {
 
       this.setState(
         {
-          showUpcomingEvents: true,
-          showUserEvents: true,
+          showUpcomingEvents: false,
+          showUserEvents: false,
+          dashEvents: true,
           showUserPosts: true,
           showWeather: true,
+          showSettings: false,
           dashUserEvents: "dashboard-user-events",
           liActive: "showDash",
+        },
+        () => {
+          tab.classList.add("dash-nav-active");
+        }
+      );
+    }
+    if (path === "settings") {
+      const tab = document.getElementById("dash-nav-dash");
+
+      this.setState(
+        {
+          showUpcomingEvents: false,
+          showUserEvents: false,
+          showUserPosts: false,
+          showWeather: false,
+          showSettings: true,
+          dashEvents: false,
+          dashUserEvents: "dashboard-user-events",
+          liActive: "showSettings",
         },
         () => {
           tab.classList.add("dash-nav-active");
@@ -174,11 +186,13 @@ export default class Dashboard extends Component {
       events,
       showUserPosts,
       showUserEvents,
+      showSettings,
       postsLoaded,
       userPosts,
       eventsLoaded,
       showUpcomingEvents,
       userEvents,
+      dashEvents,
       dashUserEvents,
       dataLoaded,
       navFixed,
@@ -314,34 +328,47 @@ export default class Dashboard extends Component {
                 >
                   <i className="far fa-calendar-alt"></i>
                 </li>
+                <li
+                  className={liActive}
+                  id="dash-nav-settings"
+                  onClick={() => this.handleDashView("settings")}
+                >
+                  <i class="fas fa-user-cog"></i>
+                </li>
               </ul>
             </nav>
             <div className="dash-content">
+              {showSettings ? (
+                <section className="dash">
+                  <h3>Profile Settings</h3>
+                  <UserSettings />
+                </section>
+              ) : null}
               {showWeather ? (
                 <section id="weather-wrapper">
                   <Weather />
                 </section>
               ) : null}
-              {showUserPosts ? (
-                <section className="dash-user-posts">
-                  <h3
-                    onClick={() => this.handleDashView("userPosts")}
-                    className="dashboard-header-link"
-                  >
-                    Your Posts
-                  </h3>
-                  {userPosts.length > 0 ? (
-                    <article className="dashboard-scroll-content">
-                      <UserPosts posts={userPosts} />
-                    </article>
+              {showUpcomingEvents ? (
+                <section id="home-page-upcoming-events">
+                  <span>
+                    <h3 className="dashboard-header-link">Upcoming Events</h3>
+                    <h4>
+                      <Link to={"/events"} style={{ textDecoration: "none" }}>
+                        <i className="fas fa-arrow-right"></i> Go to Events
+                        Section
+                      </Link>
+                    </h4>
+                  </span>
+                  {events.length > 0 ? (
+                    <ThisWeek events={this.state.events} />
                   ) : (
-                    <p>No posts yest</p>
+                    <p>Currently there are no events for this week.</p>
                   )}
                 </section>
               ) : null}
-
-              <section className="dashboard-events">
-                {showUpcomingEvents ? (
+              {dashEvents ? (
+                <section className="dashboard-events">
                   <section id="home-page-upcoming-events">
                     <span>
                       <h3 className="dashboard-header-link">Upcoming Events</h3>
@@ -358,8 +385,6 @@ export default class Dashboard extends Component {
                       <p>Currently there are no events for this week.</p>
                     )}
                   </section>
-                ) : null}
-                {showUserEvents ? (
                   <section className="dash-user-events-wrapper">
                     <span>
                       <h3
@@ -384,8 +409,50 @@ export default class Dashboard extends Component {
                       <p>{this.state.eventsError}</p>
                     )}
                   </section>
-                ) : null}
-              </section>
+                </section>
+              ) : null}
+              {showUserEvents ? (
+                <section className="dash-user-events-wrapper">
+                  <span>
+                    <h3
+                      className="dashboard-header-link"
+                      onClick={() => this.handleDashView("userEvents")}
+                    >
+                      Your Events
+                    </h3>
+                    <p
+                      onClick={() => this.handleDashView("userEvents")}
+                      style={{ fontSize: "19px", cursor: "pointer" }}
+                    >
+                      <i className="far fa-calendar-alt"></i> Go To Your Events
+                    </p>
+                  </span>
+                  {userEvents.length > 0 ? (
+                    <article className={dashUserEvents}>
+                      <UserEvents events={userEvents} />
+                    </article>
+                  ) : (
+                    <p>{this.state.eventsError}</p>
+                  )}
+                </section>
+              ) : null}
+              {showUserPosts ? (
+                <section className="dash-user-posts">
+                  <h3
+                    onClick={() => this.handleDashView("userPosts")}
+                    className="dashboard-header-link"
+                  >
+                    Your Posts
+                  </h3>
+                  {userPosts.length > 0 ? (
+                    <article className="dashboard-scroll-content">
+                      <UserPosts posts={userPosts} />
+                    </article>
+                  ) : (
+                    <p>No posts yest</p>
+                  )}
+                </section>
+              ) : null}
             </div>
           </section>
         ) : (

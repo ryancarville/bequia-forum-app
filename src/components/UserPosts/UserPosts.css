@@ -17,7 +17,7 @@
   margin-bottom: 20px;
   cursor: pointer;
   animation: fadeIn 0.7s ease-in forwards;
-  width: 100%;
+  width: auto;
   height: auto;
   
 }
