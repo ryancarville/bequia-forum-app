@@ -333,7 +333,7 @@ export default class Dashboard extends Component {
                   id="dash-nav-settings"
                   onClick={() => this.handleDashView("settings")}
                 >
-                  <i class="fas fa-user-cog"></i>
+                  <i className="fas fa-user-cog"></i>
                 </li>
               </ul>
             </nav>

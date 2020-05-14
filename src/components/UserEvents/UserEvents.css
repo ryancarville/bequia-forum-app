@@ -1,5 +1,6 @@
 .dashboard-events {
-  grid-row: 2;
+  position: relative;
+  grid-row: 1;
   background-color: #ffe600;
   border-radius: 20px;
   box-shadow: grey 0px 0px 20px 0px;
@@ -7,12 +8,10 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  grid-row: 1;
 }
 .dash-user-events-wrapper {
   width: 100%;
   height: auto;
-
   padding: 10px;
   display: flex;
   align-items: flex-start;
